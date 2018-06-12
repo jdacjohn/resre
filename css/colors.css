@@ -1,0 +1,48 @@
+@charset "UTF-8";
+/*
+ * resre
+ * colors.css
+ *
+ * Description - Enter a description of the file and its purpose.
+ *
+ * Author:      John Arnold <john@jdacsolutions.com>
+ * Link:           https://jdacsolutions.com
+ *
+ * Created:             May 24, 2018 9:28:42 AM
+ * Last Updated:    Date 
+ * Copyright            Copyright 2018 JDAC Computing Solutions All Rights Reserved
+ */
+/* 
+    Created on : May 24, 2018, 9:28:42 AM
+    Author     : John Arnold <john@jdacsolutions.com>
+*/
+/* Color Variables */
+:root {
+    --berry: rgba(179,18,49,1);
+    --black: rgba(0,0,0,1);
+    --blue: rgba(0,74,128,1);
+    --gray: rgba(74,74,74,1);
+    --ivory: rgba(240,240,240,1);
+    --lightBlue: rgba(106,149,181,1);
+    --lightGray: rgba(216,216,216,1);
+    --mediumGray: rgba(191,191,191,1);
+    --mustard: rgba(243,201,60,1);
+    --offWhite: rgba(254,254,254,1);
+    --paleBlue: rgba(186,206,221,1);
+    --paleGreen: rgba(211,228,204,1);
+    --red: rgba(255, 0, 0, 1);
+    --rust: rgba(196,25,23,1);
+    --sand: rgba(252,232,164,1);
+    --slate: rgba(26,45,60,1);
+    --transBlack: rgba(0,0,0,0.2);
+    --transBlack2: rgba(0,0,0,0.3);
+    --white: rgba(255,255,255,1);
+    --white20: rgba(255,255,255,0.2);
+    --white32: rgba(255,255,255,0.32);
+    --white40: rgba(255,255,255,0,4);
+}
+
+.blue {
+    color: var(--blue);
+}
+

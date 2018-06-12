@@ -1,0 +1,424 @@
+.img-responsive,
+.thumbnail > img,
+.thumbnail a > img,
+.carousel-inner > .item > img,
+.carousel-inner > .item > a > img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+/* ------------------- Carousel Styling ------------------- */
+
+.container
+{
+	padding:0;
+}
+
+.carousel.container 
+{
+	position:relative;
+	top:0px;
+}
+.carousel-inner {
+  
+}
+
+.carousel-caption 
+{
+	width:100%;
+	height:100%;
+	position:absolute;
+	top:0;
+	left:0;
+	text-shadow:none;
+	padding:0;
+}
+
+.carousel-content-wrapper
+{
+	height: auto;
+	left: 10%;
+	position: absolute;
+	text-align: left;
+	top: 20%;
+}
+
+.carousel-content-wrapper.center
+{
+	height: auto;
+    left: 0;
+    position: absolute;
+    top: 35%;
+    width: 100%;
+}
+
+.carousel-content-wrapper.what_does_it_mean h2
+{
+	margin-bottom:0.5em;
+}
+
+.hurrican_strong_home_title
+{
+	 top: 20% !important;
+}
+
+.carousel-indicators {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  width: 100%;
+  z-index: 15;
+  margin: 0;
+  padding:0px;
+  text-align: center;
+  border-bottom:3px solid #0097a9;
+  
+}
+
+.carousel-indicators li
+{
+	bottom:-16px;
+	position:relative;
+	background-color:#0097a9;
+	border-radius: 9px;
+	cursor: pointer;
+	display: inline-block;
+	height: 18px;
+	margin: 0px 20px;
+	text-indent: -999px;
+	width: 18px;
+	border:none transparent;
+}
+
+.carousel-indicators li.active
+{
+	background-color:#eda83c;
+	height: 18px;
+	width: 18px;
+	border-radius: 9px;
+	margin: 0px 20px;
+}
+
+.hurrican_strong_home_title
+{
+	padding:1em 5em;
+}
+
+.hurrican_strong_home_title img 
+{
+	max-width:55px;
+	height:auto;
+	margin:0 auto 1em auto;
+}
+
+.hurrican_strong_kids_title.carousel-content-wrapper 
+{
+	padding:0;
+	right:0px !important;
+	position:absolute;
+	width:50%;
+	left:auto !important;
+}
+
+.hurrican_strong_kids_title img 
+{
+	max-width:80px;
+	height:auto;
+	margin:0 auto;
+	margin-bottom:10px;
+}
+
+
+/* CONTENT WRAPPER SIZES*/
+@media (max-width: 320px) {
+.carousel.container 
+{
+	min-width:320px;
+}
+
+.hurrican_strong_kids_title img 
+{
+	max-width:80px;
+}
+
+.hurrican_strong_home_title img 
+{
+	max-width:55px;
+}
+
+} /* > max-width: 320px */
+
+
+
+@media (min-width: 768px) {
+	
+	.hurrican_strong_home_title img 
+	{
+		max-width:145px;
+	}
+
+}
+
+
+@media (min-width: 768px) {
+	
+	.hurrican_strong_home_title img 
+	{
+		max-width:145px;
+	}
+
+}
+
+@media (min-width: 800px) {
+	
+	.hurrican_strong_home_title img 
+	{
+		max-width:155px;
+	}
+
+}
+
+@media (min-width: 980px) {
+	
+	.hurrican_strong_home_title img 
+	{
+		max-width:175px;
+	}
+
+}
+
+
+@media (min-width: 1280px) {
+	
+	.hurrican_strong_home_title img 
+	{
+		max-width:245px;
+	}
+
+}
+
+@media (min-width: 1360px) {
+	
+	.hurrican_strong_home_title img 
+	{
+		max-width:265px;
+	}
+
+}
+
+
+@media (min-width: 480px) {
+	
+.hurrican_strong_kids_title img 
+{
+	max-width:200px;
+}
+
+} /* > min-width: 480px */
+
+@media (min-width: 640px) 
+{
+.carousel-content-wrapper
+{
+	top: 20%;
+}
+
+.hurrican_strong_kids_title.carousel-content-wrapper 
+{
+	top:18%;
+}
+.hurrican_strong_kids_title img 
+{
+	max-width:400px;
+}
+
+} /* > min-width: 640px */
+
+@media (min-width: 768px) {
+
+.hurrican_strong_kids_title.carousel-content-wrapper 
+{
+	top:27%;
+}
+
+.carousel-content-wrapper
+{
+	top: 35%;
+}
+
+.carousel-content-wrapper.espanol
+{
+	top: 44%;
+}    
+    
+.hurrican_strong_kids_title img 
+{
+	max-width:172px;
+}
+
+}
+
+@media (min-width: 800px) {
+
+
+.hurrican_strong_kids_title img 
+{
+	max-width:180px;
+}
+
+}
+
+@media (min-width: 980px) {
+
+.hurrican_strong_kids_title img 
+{
+	max-width:165px;
+}
+
+}
+
+@media (min-width: 1024px)  {
+
+} /* > min-width: 1024px*/
+
+@media (min-width: 1280px) {
+
+.hurrican_strong_kids_title img 
+{
+	max-width:200px;
+}
+
+} /* > min-width: 1280px*/
+
+@media (min-width: 1366px) {
+
+.hurrican_strong_kids_title img 
+{
+	max-width:220px;
+}
+
+} /* > min-width: 1366px*/
+
+
+@media (min-width: 1440px) {
+
+.hurrican_strong_kids_title img 
+{
+	max-width:240px;
+}
+
+} /* > min-width: 1366px*/
+
+
+
+
+@media (max-width: 767px) 
+{
+	.carousel h2
+	{
+		font-size:3.22em;
+	}
+	.carousel-content-wrapper.center
+	{
+		position:relative;
+		width:82%;
+		margin:0 auto;
+		margin-top:40%;
+		left:auto;
+		top:auto;		
+	}	
+	.carousel-content-wrapper.center.national_hurrican_preparedness
+	{
+		margin-top:25%;
+	}
+	.carousel-content-wrapper
+	{
+		position:relative;
+		width:85%;
+		margin:0 auto;
+		margin-top:40%;
+		left:auto;
+		top:auto;
+	}
+	
+	.hurrican_strong_home_title {
+		top: auto !important;
+	}
+	
+	.carousel-content-wrapper.center.hurrican_strong_home_title
+	{
+		margin-top:10%;
+	}
+	
+	.hurrican_strong_home_title img
+	{
+		max-width:250px;
+	}
+	
+	.hurrican_strong_home_title
+	{
+		padding:2em 8em;
+	}
+	
+	.carousel-content-wrapper.center.hurrican_strong_kids_title
+	{
+		margin-top:25%;
+	}
+	
+	.carousel-content-wrapper.center.hurrican_strong_kids_title.kids
+	{
+		padding-right: 0;
+		text-align: center;
+		top: 0%;
+		width: 75%;
+		margin-top:20%;
+	}
+	
+}
+
+@media (max-width: 640px) 
+{
+	.carousel h2
+	{
+		font-size:2.8em;
+	}
+	.hurrican_strong_home_title
+	{
+		padding:2em 8em;
+	}
+	.carousel-content-wrapper.center.hurrican_strong_home_title
+	{
+		margin-top:14%;
+	}
+}
+
+@media (max-width: 480px) 
+{
+	.carousel h2
+	{
+		font-size:2.8em;
+	}	
+	
+	.hurrican_strong_home_title
+	{
+		padding:2em 7em ;
+	}
+	.carousel-content-wrapper.center.hurrican_strong_kids_title img
+	{
+		max-width:200px;	
+	}
+}
+
+@media (max-width: 360px) 
+{
+	.carousel-content-wrapper
+	{
+		margin-top:200px;
+	}
+	.carousel h2
+	{
+		font-size:2.2em;
+	}
+}

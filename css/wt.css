@@ -1,0 +1,305 @@
+@charset "UTF-8";
+/* CSS File for Wall Type Characteristics */
+
+.characteristics-inner {
+    position: relative;
+    width: 100%;
+    height: 1450px;
+    overflow: hidden;
+}
+@media screen and (min-width: 480px) {
+    .characteristics-inner {
+        height: 1825px;
+    }
+}
+@media screen and (min-width: 600px) {
+    .characteristics-inner {
+        height: 2150px;
+    }
+}
+@media screen and (min-width: 768px) {
+    .characteristics-inner {
+        height: 850px;
+    }
+}
+@media screen and (min-width: 800px) {
+    .characteristics-inner {
+        height: 950px;
+    }
+}
+@media screen and (min-width: 1024px) {
+    .characteristics-inner {
+        height: 975px;
+    }
+}
+@media screen and (min-width: 1280px) {
+    .characteristics-inner {
+        height: 1050px;
+    }
+}
+@media screen and (min-width: 1366px) {
+    .characteristics-inner {
+        height: 1100px;
+    }
+}
+@media screen and (min-width: 1440px) {
+    .characteristics-inner {
+        height: 1150px;
+    }
+}
+@media screen and (min-width: 1536px) {
+    .characteristics-inner {
+        height: 1225px;
+    }
+}
+
+/* Characteristics Screens Vertical Lines */
+/* Wall Types */
+.chars-border-middle-wt-1 {
+    position: absolute;
+    border: none;
+    border-left: 3px solid var(--lightBlue);
+    height: 9%;
+    margin-top: -43%;
+}
+@media screen and (min-width: 360px) {
+    .chars-border-middle-wt-1 {
+        height: 11%;
+    }
+}
+@media screen and (min-width: 480px) {
+    .chars-border-middle-wt-1 {
+        margin-top: -46%;
+        height: 10%;
+    }
+}
+@media screen and (min-width: 600px) {
+    .chars-border-middle-wt-1 {
+        margin-top: -41%;
+        height: 9%;
+    }
+}
+@media screen and (min-width: 800px) {
+    .chars-border-middle-wt-1 {
+        margin-top: -12.5%;
+        height: 25%;
+    }
+}
+@media screen and (min-width: 1280px) {
+    .chars-border-middle-wt-1 {
+        margin-top: -12.5%;
+        height: 32%;
+    }
+}
+@media screen and (min-width: 1440px) {
+    .chars-border-middle-wt-1 {
+        margin-top: -12.5%;
+        height: 36%;
+    }
+}
+.chars-border-middle-wt-2 {
+    position: absolute;
+    border: none;
+    border-left: 3px solid var(--lightBlue);
+    height: 19%;
+    margin-top: -5%;
+}
+@media screen and (min-width: 360px) {
+    .chars-border-middle-wt-2 {
+        height: 15.35%;
+    }
+}
+@media screen and (min-width: 375px) {
+    .chars-border-middle-wt-2 {
+        height: 15.8%;
+    }
+}
+@media screen and (min-width: 414px) {
+    .chars-border-middle-wt-2 {
+        height: 15.6%;
+    }
+}
+@media screen and (min-width: 480px) {
+    .chars-border-middle-wt-2 {
+        height: 12.1%;
+    }
+}
+@media screen and (min-width: 600px) {
+    .chars-border-middle-wt-2 {
+        height: 11.3%;
+    }
+}
+@media screen and (min-width: 768px) {
+    .chars-border-middle-wt-2 {
+        height: 105%;
+    }
+}
+@media screen and (min-width: 1280px) {
+    .chars-border-middle-wt-2 {
+        height: 93%;
+    }
+}
+@media screen and (min-width: 1366px) {
+    .chars-border-middle-wt-2 {
+        height: 92%;
+    }
+}
+.chars-border-middle-wt-3 {
+    position: absolute;
+    border: none;
+    border-left: 3px solid var(--lightBlue);
+    height: 4.8%;
+    margin-top: 74%;
+}
+@media screen and (min-width: 360px) {
+    .chars-border-middle-wt-3 {
+        height: 5%;
+        margin-top: 72%
+    }
+}
+@media screen and (min-width: 375px) {
+    .chars-border-middle-wt-3 {
+        height: 5.05%;
+        margin-top: 81.25%
+    }
+}
+@media screen and (min-width: 414px) {
+    .chars-border-middle-wt-3 {
+        margin-top: 81.75%
+    }
+}
+@media screen and (min-width: 480px) {
+    .chars-border-middle-wt-3 {
+        margin-top: 91.6%;
+    }
+}
+@media screen and (min-width: 600px) {
+    .chars-border-middle-wt-3 {
+        margin-top: 83.1%;
+    }
+}
+.chars-border-middle-wt-4 {
+    position: absolute;
+    border: none;
+    border-left: 3px solid var(--lightBlue);
+    height: 4.85%;
+    margin-top: 171%;
+}
+@media screen and (min-width: 360px) {
+    .chars-border-middle-wt-4 {
+        margin-top: 166.25%;
+        height: 5%;
+    }
+}
+@media screen and (min-width: 375px) {
+    .chars-border-middle-wt-4 {
+        margin-top: 187.75%;
+        height: 5.05%;
+    }
+}
+@media screen and (min-width: 411px) {
+    .chars-border-middle-wt-4 {
+        margin-top: 188.9%;
+    }
+}
+@media screen and (min-width: 480px) {
+    .chars-border-middle-wt-4 {
+        margin-top: 205.5%;
+    }
+}
+@media screen and (min-width: 600px) {
+    .chars-border-middle-wt-4 {
+        margin-top: 185.3%;
+    }
+}
+.chars-border-middle-wt-4a {
+    position: absolute;
+    border: none;
+    border-left: 3px solid var(--lightBlue);
+    height: 4.85%;
+    margin-top: 268%;
+}
+@media screen and (min-width: 360px) {
+    .chars-border-middle-wt-4a {
+        margin-top: 260%;
+        height: 5%;
+    }
+}
+@media screen and (min-width: 375px) {
+    .chars-border-middle-wt-4a {
+        margin-top: 294.25%;
+        height: 5.05%;
+    }
+}
+@media screen and (min-width: 411px) {
+    .chars-border-middle-wt-4a {
+        margin-top: 294.75%;
+    }
+}
+@media screen and (min-width: 414px) {
+    .chars-border-middle-wt-4a {
+        margin-top: 295.75%;
+    }
+}
+@media screen and (min-width: 480px) {
+    .chars-border-middle-wt-4a {
+        margin-top: 319.25%;
+    }
+}
+@media screen and (min-width: 600px) {
+    .chars-border-middle-wt-4a {
+        margin-top: 287.5%;
+    }
+}
+@media screen and (min-width: 411px) {
+    .chars-border-middle-wt-3,
+    .chars-border-middle-wt-4,
+    .chars-border-middle-wt-4a {
+        height: 5.05%;
+    }
+}
+@media screen and (min-width: 480px) {
+    .chars-border-middle-wt-3,
+    .chars-border-middle-wt-4,
+    .chars-border-middle-wt-4a {
+        height: 4.35%;
+    }
+}
+@media screen and (min-width: 600px) {
+    .chars-border-middle-wt-3,
+    .chars-border-middle-wt-4,
+    .chars-border-middle-wt-4a {
+        height: 4.2%;
+    }
+}
+.chars-border-middle-wt-5 {
+    position: absolute;
+    border: none;
+    border-left: 3px solid var(--lightBlue);
+    height: 130px;
+    margin-top: -60px;
+}
+@media screen and (min-width: 360px) {
+    .chars-border-middle-wt-5 {
+        margin-top: -22%;
+        height: 5%;
+    }
+}
+@media screen and (min-width: 375px) {
+    .chars-border-middle-wt-5 {
+        margin-top: -25.5%;
+        height: 8%;
+    }
+}
+@media screen and (min-width: 480px) {
+    .chars-border-middle-wt-5 {
+        margin-top: -22.5%;
+        height: 8%;
+    }
+}
+@media screen and (min-width: 600px) {
+    .chars-border-middle-wt-5 {
+        margin-top: -19%;
+        height: 8%;
+    }
+}

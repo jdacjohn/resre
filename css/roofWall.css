@@ -1,0 +1,388 @@
+@charset "UTF-8";
+/* CSS File for Wall Type Characteristics */
+
+.characteristics-inner {
+    position: relative;
+    width: 100%;
+    height: 1800px;
+    overflow: hidden;
+}
+@media screen and (min-width: 360px) {
+    .characteristics-inner {
+        height: 1900px;
+    }
+}
+@media screen and (min-width: 480px) {
+    .characteristics-inner {
+        height: 2250px;
+    }
+}
+@media screen and (min-width: 600px) {
+    .characteristics-inner {
+        height: 2625px;
+    }
+}
+@media screen and (min-width: 768px) {
+    .characteristics-inner {
+        height: 825px;
+    }
+}
+@media screen and (min-width: 800px) {
+    .characteristics-inner {
+        height: 850px;
+    }
+}
+@media screen and (min-width: 1024px) {
+    .characteristics-inner {
+        height: 915px;
+    }
+}
+@media screen and (min-width: 1280px) {
+    .characteristics-inner {
+        height: 1000px;
+    }
+}
+@media screen and (min-width: 1440px) {
+    .characteristics-inner {
+        height: 1200px;
+    }
+}
+@media screen and (min-width: 1536px) {
+    .characteristics-inner {
+        height: 1200px;
+    }
+}
+@media screen and (min-width: 1600px) {
+    .characteristics-inner {
+        height: 1250px;
+    }
+}
+
+/* Characteristics Screens Vertical Lines */
+/* Wall Types */
+.chars-border-middle-wt-1 {
+    position: absolute;
+    border: none;
+    border-left: 3px solid var(--lightBlue);
+    height: 10%;
+    margin-top: -54%;
+}
+@media screen and (min-width: 360px) {
+    .chars-border-middle-wt-1 {
+        height: 11%;
+    }
+}
+@media screen and (min-width: 360px) {
+    .chars-border-middle-wt-1 {
+        margin-top: -59%;
+    }
+}
+@media screen and (min-width: 480px) {
+    .chars-border-middle-wt-1 {
+        margin-top: -46%;
+        height: 11%;
+    }
+}
+@media screen and (min-width: 600px) {
+    .chars-border-middle-wt-1 {
+        margin-top: -41%;
+        height: 12%;
+    }
+}
+@media screen and (min-width: 768px) {
+    .chars-border-middle-wt-1 {
+        margin-top: -6.5%;
+        height: 20%;
+    }
+}
+@media screen and (min-width: 800px) {
+    .chars-border-middle-wt-1 {
+        margin-top: -12.5%;
+        height: 25%;
+    }
+}
+@media screen and (min-width: 1280px) {
+    .chars-border-middle-wt-1 {
+        margin-top: -12.5%;
+        height: 32%;
+    }
+}
+@media screen and (min-width: 1440px) {
+    .chars-border-middle-wt-1 {
+        margin-top: -12.5%;
+        height: 36%;
+    }
+}
+.chars-border-middle-wt-2 {
+    position: absolute;
+    border: none;
+    border-left: 3px solid var(--lightBlue);
+    height: 21.45%;
+    margin-top: -17%;
+}
+@media screen and (min-width: 360px) {
+    .chars-border-middle-wt-2 {
+        height: 18.5%;
+    }
+}
+@media screen and (min-width: 375px) {
+    .chars-border-middle-wt-2 {
+        height: 17.75%;
+    }
+}
+@media screen and (min-width: 411px) {
+    .chars-border-middle-wt-2 {
+        height: 17.7%;
+    }
+}
+@media screen and (min-width: 414px) {
+    .chars-border-middle-wt-2 {
+        height: 17.55%;
+    }
+}
+@media screen and (min-width: 480px) {
+    .chars-border-middle-wt-2 {
+        height: 14.45%;
+    }
+}
+@media screen and (min-width: 600px) {
+    .chars-border-middle-wt-2 {
+        height: 13.05%;
+    }
+}
+@media screen and (min-width: 768px) {
+    .chars-border-middle-wt-2 {
+        height: 118% !important;
+    }
+}
+@media screen and (min-width: 1280px) {
+    .chars-border-middle-wt-2 {
+        height: 133% !important;
+    }
+}
+@media screen and (min-width: 1366px) {
+    .chars-border-middle-wt-2 {
+        height: 97%;
+    }
+}
+.chars-border-middle-wt-3 {
+    position: absolute;
+    border: none;
+    border-left: 3px solid var(--lightBlue);
+    height: 3.85%;
+    margin-top: 73.5%;
+}
+@media screen and (min-width: 360px) {
+    .chars-border-middle-wt-3 {
+        margin-top: 71.8%
+    }
+}
+@media screen and (min-width: 375px) {
+    .chars-border-middle-wt-3 {
+        margin-top: 81%
+    }
+}
+@media screen and (min-width: 411px) {
+    .chars-border-middle-wt-3 {
+        margin-top: 81%
+    }
+}
+@media screen and (min-width: 414px) {
+    .chars-border-middle-wt-3 {
+        margin-top: 82%
+    }
+}
+@media screen and (min-width: 480px) {
+    .chars-border-middle-wt-3 {
+        height: 5.1%;
+        margin-top: 91%;
+    }
+}
+@media screen and (min-width: 600px) {
+    .chars-border-middle-wt-3 {
+        margin-top: 83.2%;
+    }
+}
+.chars-border-middle-wt-4 {
+    position: absolute;
+    border: none;
+    border-left: 3px solid var(--lightBlue);
+    height: 3.85%;
+    margin-top: 170.6%;
+}
+@media screen and (min-width: 360px) {
+    .chars-border-middle-wt-4 {
+        margin-top: 166%;
+    }
+}
+@media screen and (min-width: 375px) {
+    .chars-border-middle-wt-4 {
+        margin-top: 187.5%;
+    }
+}
+@media screen and (min-width: 411px) {
+    .chars-border-middle-wt-4 {
+        margin-top: 188%;
+    }
+}
+@media screen and (min-width: 414px) {
+    .chars-border-middle-wt-4 {
+        margin-top: 189%;
+    }
+}
+@media screen and (min-width: 480px) {
+    .chars-border-middle-wt-4 {
+        margin-top: 205.25%;
+    }
+}
+@media screen and (min-width: 600px) {
+    .chars-border-middle-wt-4 {
+        margin-top: 185.5%;
+    }
+}
+.chars-border-middle-wt-4a {
+    position: absolute;
+    border: none;
+    border-left: 3px solid var(--lightBlue);
+    height: 3.85%;
+    margin-top: 268%;
+}
+@media screen and (min-width: 360px) {
+    .chars-border-middle-wt-4a {
+        margin-top: 260%;
+    }
+}
+@media screen and (min-width: 375px) {
+    .chars-border-middle-wt-4a {
+        margin-top: 294.5%;
+    }
+}
+@media screen and (min-width: 411px) {
+    .chars-border-middle-wt-4a {
+        margin-top: 295%;
+    }
+}
+@media screen and (min-width: 414px) {
+    .chars-border-middle-wt-4a {
+        margin-top: 296.25%;
+    }
+}
+@media screen and (min-width: 480px) {
+    .chars-border-middle-wt-4a {
+        margin-top: 318.9%;
+    }
+}
+@media screen and (min-width: 600px) {
+    .chars-border-middle-wt-4a {
+        margin-top: 287.6%;
+    }
+}
+.chars-border-middle-wt-4b {
+    position: absolute;
+    border: none;
+    border-left: 3px solid var(--lightBlue);
+    height: 3.8%;
+    margin-top: 365.2%;
+}
+@media screen and (min-width: 360px) {
+    .chars-border-middle-wt-4b {
+        margin-top: 354%;
+    }
+}
+@media screen and (min-width: 375px) {
+    .chars-border-middle-wt-4b {
+        margin-top: 401.5%;
+    }
+}
+@media screen and (min-width: 414px) {
+    .chars-border-middle-wt-4b {
+        margin-top: 402.75%;
+    }
+}
+@media screen and (min-width: 480px) {
+    .chars-border-middle-wt-4b {
+        margin-top: 432.8%;
+    }
+}
+@media screen and (min-width: 600px) {
+    .chars-border-middle-wt-4b {
+        margin-top: 389.8%;
+    }
+}
+@media screen and (min-width: 360px) {
+    .chars-border-middle-wt-3,
+    .chars-border-middle-wt-4,
+    .chars-border-middle-wt-4a,
+    .chars-border-middle-wt-4b {
+        height: 3.9%;
+    }
+}
+@media screen and (min-width: 375px) {
+    .chars-border-middle-wt-3,
+    .chars-border-middle-wt-4,
+    .chars-border-middle-wt-4a,
+    .chars-border-middle-wt-4b {
+        height: 4%;
+    }
+}
+@media screen and (min-width: 414px) {
+    .chars-border-middle-wt-3,
+    .chars-border-middle-wt-4,
+    .chars-border-middle-wt-4a,
+    .chars-border-middle-wt-4b {
+        height: 3.9%;
+    }
+}
+@media screen and (min-width: 480px) {
+    .chars-border-middle-wt-3,
+    .chars-border-middle-wt-4,
+    .chars-border-middle-wt-4a,
+    .chars-border-middle-wt-4b {
+        height: 3.5%;
+    }
+}
+@media screen and (min-width: 600px) {
+    .chars-border-middle-wt-3,
+    .chars-border-middle-wt-4,
+    .chars-border-middle-wt-4a,
+    .chars-border-middle-wt-4b {
+        height: 3.3%;
+    }
+}
+.chars-border-middle-wt-5 {
+    position: absolute;
+    border: none;
+    border-left: 3px solid var(--lightBlue);
+    height: 7%;
+    margin-top: -23.5%;
+}
+@media screen and (min-width: 360px) {
+    .chars-border-middle-wt-5 {
+        margin-top: -22.5%;
+        height: 5%;
+    }
+}
+@media screen and (min-width: 375px) {
+    .chars-border-middle-wt-5 {
+        margin-top: -25.4%;
+        height: 8%;
+    }
+}
+@media screen and (min-width: 411px) {
+    .chars-border-middle-wt-5 {
+        margin-top: -25.4%;
+        height: 11%;
+    }
+}
+@media screen and (min-width: 480px) {
+    .chars-border-middle-wt-5 {
+        margin-top: -22.5%;
+        height: 10%;
+    }
+}
+@media screen and (min-width: 600px) {
+    .chars-border-middle-wt-5 {
+        margin-top: -19%;
+        height: 8%;
+    }
+}

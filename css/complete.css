@@ -1,0 +1,508 @@
+@charset "UTF-8";
+/* CSS File for Wall Type Characteristics */
+/*
+ * resre
+ * complete.css
+ *
+ * Description - Contains css styles specificatlly for the us/report-loading/complete page.
+ *                        Because of the vericial lines used as connectors between sections, all major breakpoints have to
+ *                        be validated against.  Baseline designs were done at widths 375px and 1440px.
+ *
+ * Author:      John Arnold <john@jdacsolutions.com>
+ * Link:           https://jdacsolutions.com
+ *
+ * Created:             Jun 8, 2018 8:03:57 AM
+ * Last Updated:    Date 
+ * Copyright            Copyright 2018 JDAC Computing Solutions All Rights Reserved
+ */
+/* 
+    Created on : Jun 8, 2018, 8:03:57 AM
+    Author     : John Arnold <john@jdacsolutions.com>
+*/
+
+.ccButtons {
+    top: 0px;
+}
+.ccButton-first {
+    margin-left: 11%;
+}
+.ccButton-last {
+    margin-left: -4%;
+}
+.ccButton-middle {
+    margin-left: 9%;
+}
+.chars {
+    margin-top: 18%;
+    margin-left: 2%;
+}
+.chars-border-middle-wt-1 {
+    position: absolute;
+    border: none;
+    border-left: 2px solid var(--lightGray);
+    height: 14%;
+    margin-top: 0%;
+}
+.chars-border-middle {
+    border-left: 2px solid var(--lightGray);
+}
+.chars-border-middle-wt-2 {
+    position: absolute;
+    border: none;
+    border-left: 2px solid var(--lightGray);
+    height: 29.5%;
+    margin-top: -1%;
+}
+.chars-desc {
+    padding-right: 75px;
+}
+.complete {
+    background-color: var(--blue);
+    height: 150px;
+}
+.complete-border-middle-1 {
+    position: absolute;
+    border: none;
+    border-left: 2px solid var(--lightGray);
+    height: 80%;
+    margin-top: -10%;
+}
+.complete-border-middle-2 {
+    position: absolute;
+    border: none;
+    border-left: 2px solid var(--lightGray);
+    height: 90%;
+    margin-top: 55%;
+}
+.complete-border-middle-1, .complete-border-middle-2 {
+    margin-left: 9.5%;
+    z-index: 0;
+}
+.complete-down {
+    padding-top: 10px;
+}
+.complete-modal {
+    margin-left: 5%;
+    margin-top:  30%;
+}
+.footer {
+    padding-top: 40px;
+}
+.mid-button-mustard, .mid-button-sand {
+    width: 90%;
+}
+.topic {
+    margin-left: -7%;
+    margin-top: 16%;
+    margin-right: 10%;
+}
+.topic h4 {
+    line-height: 42px;
+}
+
+@media screen and (min-width: 360px) {
+    .complete-modal {
+        margin-left: 9%;
+        margin-top: 28%;
+    }
+    .complete-border-middle-2 {
+        height: 106%;
+        margin-top: 50%;
+    }
+    .ccButton-middle {
+        margin-left: 11%;
+    }
+}
+@media screen and (min-width: 375px) {
+    .complete-border-middle-1, .complete-border-middle-2 {
+        margin-left: 14%;
+    }
+    .complete-border-middle-1 {
+        height: 85%;
+        margin-top: -12%;
+    }
+    .complete-border-middle-2 {
+        height: 125%;
+    }
+    .complete-modal {
+        margin-left: 11%;
+    }
+    .marker-complete {
+        padding: 20px 8px;
+    }
+    .chars-border-middle-wt-1 {
+        margin-left: 19.75%;
+    }
+    .chars {
+        margin-left: 4%;
+    }
+    .complete-down {
+        padding-top: 5px;
+    }
+}
+@media screen and (min-width: 411px) {
+    .complete-border-middle-1, .complete-border-middle-2 {
+        margin-left: 12.75%;
+    }
+    .complete-border-middle-1 {
+        height: 100%;
+        margin-top: -14%;
+    }
+    .complete-border-middle-2 {
+        height: 140%;
+    }
+    .chars {
+        margin-left: 4.25%;
+    }
+}
+@media screen and (min-width: 414px) {
+    .chars-border-middle-wt-1 {
+        margin-left: 19.5%;
+        margin-top: -1%;
+    }
+}
+@media screen and (min-width: 480px) {
+    .complete-modal {
+        margin-left: 14.5%;
+    }
+    .complete-border-middle-1, .complete-border-middle-2 {
+        margin-left: 12%;
+    }
+    .complete-border-middle-2 {
+        margin-top: 45%;
+        height: 165%;
+    }
+    .chars {
+        margin-left: 6.5%;
+    }
+    .topic {
+        margin-top: 16.5%;
+    }
+    .chars-desc {
+        padding-right: 90px;
+        margin-left: 22.75%;
+        padding-top: 15px;
+        padding-bottom: 25px;
+    }
+}
+@media screen and (min-width: 600px) {
+    .complete-modal {
+        margin-left: 20.5%;
+        margin-top: 30%;
+    }
+    .complete-border-middle-1 {
+        height: 125%;
+        margin-top: -20%;
+    }
+    .chars {
+        margin-left: 8.5%;
+    }
+    .chars-desc {
+        padding-right: 125px;
+    }
+    .chars-border-middle-wt-1 {
+        margin-left: 19.25%;
+    }
+}
+@media screen and (min-width: 768px) {
+    .complete {
+        height: 90px;
+    }
+    .chars-border-middle-wt-1, .chars-border-middle-wt-2, .chars-border-middle {
+        margin-left: 17.8%;
+    }
+    .chars-border-middle-wt-1 {
+        height: 10%;
+    }
+    .chars-border-middle-wt-2 {
+        height: 12.5%;
+        margin-top: -3%;
+    }
+    .chars-border-middle {
+        margin-top: -1%;
+        height: 35px;
+    }
+    .mid-button-mustard, .mid-button-sand {
+        width: auto;
+    }
+    .footer {
+        padding-top: 0px;
+    }
+    .ccButton-first {
+        margin-left: 7%;
+    }
+    .ccButton-middle {
+        margin-left: 0%;
+    }
+    .ccButton-last {
+        margin-left: -3%;
+    }
+    .chars {
+        margin-left: 9.25%;
+        margin-top: 8%;
+    }
+    .topic {
+        margin-top: 7.2%;
+        margin-left: -11%;
+        margin-right: 0%;
+    }
+    .complete-border-middle-1, .complete-border-middle-2 {
+        margin-left: 105%;
+    }
+    .complete-border-middle-1 {
+        margin-top: -32%;
+    }
+    .complete-border-middle-2 {
+        margin-top: 125%;
+        height: 200%;
+    }
+    .complete-modal {
+        margin-top: 85%;
+    }
+    .chars-desc {
+        margin-left: 19.75%;
+        padding-top: 0px;
+        padding-bottom: 0px;
+        margin-top: -2%;
+    }
+}
+@media screen and (min-width: 800px) {
+    .complete {
+        height: 100px;
+    }
+    .complete-modal {
+        margin-top: 50%;
+        margin-left: 4.5%;
+    }
+    .complete-border-middle-1, .complete-border-middle-2 {
+        margin-left: 70%;
+    }
+    .topic {
+        margin-top: 9.5%;
+        margin-left: -6%;
+    }
+    .complete-border-middle-1 {
+        margin-top: -50%;
+    }
+    .marker-complete {
+        padding: 31px 8px;
+    }
+    .chars-border-middle-wt-1, .chars-border-middle-wt-2, .chars-border-middle {
+        margin-left: 17.9%;
+    }
+    .chars-desc {
+        margin-left: 22.55%;
+        margin-top: -6%;
+        padding-bottom: 40px;
+        padding-right: 25%;
+    }
+    .ccButton-first {
+        margin-left: 10%;
+    }
+}
+@media screen and (min-width: 1024px) {
+    .complete-border-middle-1, .complete-border-middle-2 {
+        margin-left: 83%;
+    }
+    .complete-border-middle-2 {
+        margin-top: 200%;
+    }
+    .chars-border-middle, .chars-border-middle-wt-1, .chars-border-middle-wt-2 {
+        margin-left: 17.25%;
+    }
+    .complete-modal {
+        margin-top: 85%;
+        margin-left: 13.5%;
+    }
+    .chars {
+        margin-left: 10.25%;
+    }
+    .topic {
+        margin-left: -7%;
+    }
+    .ccButton-first {
+        margin-left: 11%;
+    }
+}
+@media screen and (min-width: 1280px) {
+    .complete-border-middle-1, .complete-border-middle-2 {
+        margin-left: 103%;
+    }
+    .complete-modal {
+        margin-top: 110%;
+        margin-left: 27.5%;
+    }
+    .chars {
+        margin-left: 8.25%;
+        margin-top: 5%;
+    }
+    .topic {
+        margin-top: 6.5%;
+    }
+    .chars-desc {
+        margin-left: 20.75%;
+        margin-top: -3%;
+    }
+    .chars-border-middle-wt-2 {
+        height: 16.5%;
+    }
+    .ccButton-middle {
+        margin-left: 8%;
+    }
+    .ccButton-last {
+        margin-left: -7%;
+    }
+}
+@media screen and (min-width: 1366px) {
+    .chars-border-middle, .chars-border-middle-wt-1, .chars-border-middle-wt-2 {
+        margin-left: 16.9%;
+    }
+    .chars-border-middle-wt-1 {
+        height: 15%;
+    }
+    .chars-border-middle-wt-2 {
+        height: 17.5%;
+    }
+    .chars {
+        margin-left: 8%;
+    }
+}
+@media screen and (min-width: 1440px) {
+    .complete {
+        height: 200px;
+    }
+    .complete-down {
+        padding-top: 2px;
+    }
+    .complete-modal {
+        margin-left: 13%;
+        margin-top: 88%;
+    }
+    .ccButtons {
+        top: 30px !important;
+    }
+    .ccButton-middle {
+        margin-left: 5% !important;
+    }
+    .chars-border-middle-wt-1, .chars-border-middle-wt-2, .chars-border-middle {
+        margin-left: 16.55%;
+    }
+    .chars-border-middle-wt-1 {
+        height: 160px;
+    }
+    .chars-border-middle-wt-2 {
+        height: 17.5%;
+    }
+    .chars-border-middle {
+        margin-top: -0.5%;
+        height: 60px;
+    }
+    .chars {
+        margin-left: 7.35%;
+        margin-top: 10%;
+    }
+    .complete-border-middle-1, .complete-border-middle-2 {
+        margin-left: 78.5%;
+    }
+    .complete-border-middle-1 {
+        height: 75%;
+        margin-top: -38%;
+    }
+    .complete-border-middle-2 {
+        height: 198%;
+        margin-top: 120%;
+    }
+    .topic {
+        margin-left: -6%;
+        margin-top: 11.2%;
+    }
+    .chars-desc {
+        margin-left: 5%;
+        margin-top: 1%;
+    }
+    .marker-complete {
+        border-radius: 60px;
+        width: 120px;
+        height: 120px;
+        padding: 45px 8px;
+        margin-left: 75%;
+    }
+}
+@media screen and (min-width: 1536px)  {
+    .complete-border-middle-1, .complete-border-middle-2 {
+        margin-left: 86.5%;
+    }
+    .chars-border-middle-wt-1, .chars-border-middle-wt-2, .chars-border-middle {
+        margin-left: 16.85%;
+    }
+    .chars-border-middle-wt-2 {
+        height: 18.5%;
+    }
+    .chars-border-middle {
+        height: 70px;
+    }
+    .complete-modal {
+        margin-left: 19%;
+    }
+    .chars {
+        margin-left: 7.75%;
+        margin-top: 7%;
+    }
+    .topic {
+        margin-left: -6.75%;
+        margin-top: 8.2%;
+    }
+}
+@media screen and (min-width: 1600px) {
+    .chars-border-middle-wt-1, .chars-border-middle-wt-2, .chars-border-middle {
+        margin-left: 16.55%;
+    }
+    .chars {
+        margin-left: 7%;
+        margin-top: 3%;
+    }
+    .topic {
+        margin-left: -5.5%;
+        margin-top: 3.5%;
+    }
+    .complete {
+        height: 150px;
+    }
+}
+@media screen and (min-width: 1680px) {
+    .complete-border-middle-1, .complete-border-middle-2 {
+        margin-left: 90.5%;
+    }
+    .complete-modal {
+        margin-left: 23%;
+        margin-top: 125%;
+    }
+    .chars {
+        margin-left: 7.25%;
+    }
+    .topic {
+        margin-top: 4%;
+    }
+}
+@media screen and (min-width: 1920px) {
+    .complete-border-middle-1, .complete-border-middle-2 {
+        margin-left: 104%;
+    }
+    .complete-border-middle-1 {
+        margin-top: -60%;
+    }
+    .complete-modal {
+        margin-left: 34%;
+        margin-top: 140%;
+    }
+    .chars {
+        margin-left: 7.5%;
+    }
+    .topic {
+        margin-top: 4.4%;
+        margin-left: -2.5%;
+    }
+    .ccButton-first {
+        margin-left: 12%;
+    }
+}

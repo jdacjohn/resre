@@ -1,0 +1,188 @@
+@charset "UTF-8";
+/*
+ * resre
+ * ccSave.css
+ *
+ * Description - Contains all the styling settings for the continue/cancel area used at the bottom of the home characteristics
+ *                        screens..
+ *
+ * Author:      John Arnold <john@jdacsolutions.com>
+ * Link:           https://jdacsolutions.com
+ *
+ * Created:             Jun 6, 2018 10:24:58 AM
+ * Last Updated:    Date 
+ * Copyright            Copyright 2018 JDAC Computing Solutions All Rights Reserved
+ */
+/* 
+    Created on : Jun 6, 2018, 10:24:58 AM
+    Author     : John Arnold <john@jdacsolutions.com>
+*/
+.ccSave {
+    background-color: var(--paleGreen);
+    padding: 0px 0px;
+    height: 140px;
+}
+.stories-upload {
+    margin-top: 4%;
+    margin-bottom: 27%;
+    margin-left: 13px;
+}
+.ccButtons {
+    position: relative;
+    float: left;
+    top: -80px;
+}
+.ccButton-first {
+    margin-left: 10px;
+}
+.ccButton-middle {
+    margin-left: -20px;
+}
+.ccButton-last {}
+.ccUpload {}
+@media screen and (min-width: 360px) {
+    .ccButton-first {
+        margin-left: 15px;
+    }
+    .stories-upload {
+        margin-top: 5%;
+    }
+}
+@media screen and (min-width: 375px) {
+    .stories-upload {
+        margin-left: 18px;
+    }
+}
+@media screen and (min-width: 411px) {
+    .stories-upload {
+        margin-left: 7.5%;
+        margin-bottom: 23%;
+        margin-top: 7%;
+    }
+    .ccButton-first {
+        margin-left: 25px;
+    }
+    .ccButton-middle {
+        margin-left: 10px;
+    }
+    .ccButton-last {
+        margin-left: -20px;
+    }
+}
+@media screen and (min-width: 480px) {
+    .stories-upload {
+        margin-left: 12.5%;
+        margin-top: 6%;
+        margin-bottom: 20%;
+    }
+    .ccButton-first {
+        margin-left: 40px;
+    }
+    .ccButton-middle, .ccButton-last {
+        margin-left: -25px;
+    }
+}
+@media screen and (min-width: 600px) {
+    .stories-upload {
+        margin-top: 5%;
+        margin-bottom: 16%;
+    }
+    .ccButton-first {
+        margin-left: 11%;
+    }
+    .ccButton-middle {
+        margin-left: 0px;
+    }
+    .ccButton-last {
+        margin-left: -70px;
+    }
+}
+@media screen and (min-width: 768px) {
+    .ccSave {
+        height: 165px;
+    }
+    .stories-upload {
+        margin-top: 3%;
+        margin-bottom: 13%;
+        margin-left: 20.5%;
+    }
+    .ccButton-first {
+        margin-left: 5%;
+    }
+    .ccButton-middle {
+        margin-left: 10%;
+    }
+    .ccButton-last {
+        margin-left: -90px;
+    }
+}
+@media screen and (min-width: 800px) {
+    .ccButton-middle {
+        margin-left: 15px;
+    }
+    .ccButton-first {
+        margin-left: 8%;
+    }
+}
+@media screen and (min-width: 1024px) {
+    .ccSave {
+        height: 140px;
+    }
+    .ccButtons {
+        top: 35%;
+    }
+    .ccUpload {
+        margin-left: -50px;
+        margin-top: 13px;
+    }
+    .ccButton-middle {
+        margin-left: -35px;
+    }
+    .ccButton-last {
+        margin-left: -70px;
+    }
+}
+@media screen and (min-width: 1280px) {
+    .ccButton-first {
+        margin-left: 9%;
+    }
+    .ccUpload {
+        margin-top: 17px;
+    }
+    .ccButton-middle {
+        margin-left: -10%;
+    }
+    .ccButton-last {
+        margin-left: -7%;
+    }
+}
+@media screen and (min-width: 1440px) {
+    .ccButton-first {
+        margin-left: 10.5%;
+    }
+}
+@media screen and (min-width: 1536px) {
+    .ccSave {
+        height: 168px;
+    }
+    .ccButtons {
+        top: 31%;
+    }
+    .ccButton-first {
+        margin-left: 9.5%;
+    }
+    .ccUpload {
+        margin-left: -5%;
+        margin-top: 22px;
+    }
+}
+@media screen and (min-width: 1680px) {
+    .ccButton-first {
+        margin-left: 9.75%;
+    }
+}
+@media screen and (min-width: 1920px) {
+    .ccButton-first {
+        margin-left: 10.25%;
+    }
+}

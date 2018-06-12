@@ -1,0 +1,309 @@
+@charset "UTF-8";
+/* CSS File for markers used in the site */
+
+/**
+    Smallest Device width: 320px 
+    iPhone 5 and iPod Touch
+*/
+.marker-blue,
+.marker-mustard,
+.marker-white,
+.marker-transparent,
+.marker-sand {
+    border-radius: 50px;
+    width: 30px;
+    height: 30px;
+    text-align: center;
+    display: inline-block;
+    padding: 0px 8px;
+    margin-left: 75%;    
+}
+.marker-complete {
+    background-color: var(--white);
+    border-radius: 50px;
+    width: 60px;
+    height: 60px;
+    text-align: center;
+    display: inline-block;
+    padding: 16px 8px;
+    margin-left: -180%;        
+}
+
+.marker-blue {
+    background-color: var(--blue);
+    border-radius: 50px;
+}
+.marker-mustard {
+    background-color: var(--mustard);
+}
+.marker-white {
+    background-color: var(--white);
+}
+.marker-transparent {
+    background-color: transparent;
+}
+.marker-sand {
+    background-color: var(--sand);
+}
+@media screen and (min-width: 375px) {
+    .marker-blue, .marker-mustard, .marker-white, 
+    .marker-transparent, .marker-sand {
+        width: 30px;
+        height: 30px;
+        padding: 4px 8px;
+        margin-left: 75%;
+    }
+}
+@media screen and (min-width: 480px) {
+    .marker-blue, .marker-mustard, .marker-white, 
+    .marker-transparent, .marker-sand {
+        width: 30px;
+        height: 30px;
+        padding: 4px 8px;
+        margin-left: 57%;
+    }
+}
+@media screen and (min-width: 600px) {
+    .marker-blue, .marker-mustard, .marker-white, 
+    .marker-transparent, .marker-sand {
+        width: 30px;
+        height: 30px;
+        padding: 4px 8px;
+        margin-left: 43%;
+    }
+}
+@media screen and (min-width: 768px) {
+    .marker-blue, .marker-mustard, .marker-white, 
+    .marker-transparent, .marker-sand {
+        width: 30px;
+        height: 30px;
+        padding: 4px 8px;
+        margin-left: 32%;
+    }
+}
+
+@media screen and (min-width: 769px) {
+    .marker-blue, .marker-mustard, .marker-white, 
+    .marker-transparent, .marker-sand {
+        width: 60px;
+        height: 60px;
+        padding: 14px 10px;
+        margin-left: 32%;
+    }
+}
+@media screen and (min-width: 800px) {
+    .marker-blue, .marker-mustard, .marker-white, 
+    .marker-transparent, .marker-sand {
+        width: 60px;
+        height: 60px;
+        padding: 14px 10px;
+        margin-left: 20%;
+    }
+    .marker-complete {
+        width: 90px;
+        height: 90px;
+    }
+}
+@media screen and (min-width: 992px) {
+    .marker-blue, .marker-mustard, .marker-white, 
+    .marker-transparent, .marker-sand {
+        width: 60px;
+        height: 60px;
+        padding: 14px 10px;
+        margin-left: 16%;
+    }
+}
+@media screen and (min-width: 1200px) {
+    .marker-blue, .marker-mustard, .marker-white, 
+    .marker-transparent, .marker-sand {
+        width: 60px;
+        height: 60px;
+        padding: 14px 10px;
+        margin-left: 37%;
+    }
+}
+@media screen and (min-width: 1400px) {
+    .marker-blue, .marker-mustard, .marker-white, 
+    .marker-transparent, .marker-sand {
+        width: 60px;
+        height: 60px;
+        padding: 14px 10px;
+        margin-left: 40%;
+    }
+}
+@media screen and (min-width: 1440px) {
+    .marker-complete {
+        border-radius: 60px;
+        width: 120px;
+        height: 120px;
+        padding: 45px 8px;
+        margin-left: 75%;        
+    }    
+}
+@media screen and (min-width: 1600px) {
+    .marker-blue, .marker-mustard, .marker-white, 
+    .marker-transparent, .marker-sand {
+        width: 60px;
+        height: 60px;
+        padding: 14px 10px;
+        margin-left: 43%;
+    }
+}
+
+/** Selection Button Horizontal positioning */
+.select-button {
+    padding: 0px 40px;
+}
+@media screen and (min-width: 768px) {
+    .select-button {
+        margin-left: -14%;
+        padding: 0px 60px 0px 0px;
+    }
+}
+@media screen and (min-width: 800px) {
+    .select-button {
+        margin-left: -15%;
+        padding: 0px 45px 0px 0px;
+    }
+}
+@media screen and (min-width: 1024px) {
+    .select-button {
+        margin-left: -10%;
+        padding: 0px 75px 0px 0px;
+    }
+}
+@media screen and (min-width: 1024px) {
+    .select-button {
+        margin-left: 8%;
+        padding: 0px 10px 0px 0px;
+    }
+}
+@media screen and (min-width: 1920px) {
+    .select-button {
+        margin-left: -13%;
+    }
+}
+
+/** Specifically for the characteristics screens */
+.chars {
+    margin-left: 5px;
+}
+@media screen and (min-width: 768px) {
+    .chars {
+        margin-top: -10px;
+    }
+}
+@media screen and (min-width: 800px) {
+    .chars {
+        margin-top: -20px;
+    }
+}
+@media screen and (min-width: 1366px) {
+    .chars {
+        margin-top: 11%;
+    }
+}
+
+.topic {
+    margin-left: -11%;
+}
+.chars-bumper {}
+.chars-buffer {}
+@media screen and (min-width: 600px) {
+    .topic {
+        margin-left: -7%;
+    }
+}
+@media screen and (min-width: 768px) {
+    .topic {
+        margin-top: -10px;
+        margin-left: -7%;
+    }
+    .chars-buffer {
+        padding-bottom: 40px;
+    }
+    .chars-bumper {
+        margin-left: 18%;
+    }
+}
+@media screen and (min-width: 800px) {
+    .topic {
+        margin-top: -5px;
+        margin-left: -3%;
+    }
+    .chars-buffer {
+        padding-bottom: 30px;
+    }
+    .chars-bumper {
+        margin-left: 20%;
+    }
+}
+@media screen and (min-width: 1024px) {
+    .chars-bumper {
+        margin-left: 12%;
+    }
+    .topic {
+        margin-left: -6%;
+    }
+    .chars-buffer {
+        padding-bottom: 0px;
+    }
+}
+@media screen and (min-width: 1280px) {
+    .topic {
+        margin-left: -4%;
+    }
+    .chars-bumper {
+        margin-left: 14%;
+    }
+    .chars-buffer {
+        padding-bottom: 20px;
+    }
+}
+@media screen and (min-width: 1366px) {
+    .topic {
+        margin-top: 12%;
+    }
+}
+@media screen and (min-width: 1440px) {
+    .topic {
+        margin-top: 12.25%;
+    }
+}
+@media screen and (min-width: 1536px) {
+    .chars-bumper {
+        margin-left: 13.5%;
+    }
+}
+@media screen and (min-width: 1600px) {
+    .topic {
+        margin-top: 11.5%;
+    }
+    .chars-bumper {
+        margin-left: 12.25%;
+    }
+}
+@media screen and (min-width: 1680px) {
+    .chars-bumper {
+        margin-left: 12.75%;
+    }
+    .topic {
+        margin-top: 12.2%;
+    }
+    .marker-complete {
+        border-radius: 90px;
+        width: 160px;
+        height: 160px;
+        padding: 70px 8px;
+        margin-left: 50%;
+    }
+}
+@media screen and (min-width: 1920px) {
+    .topic {
+        margin-left: -2%;
+        margin-top: 11.8%;
+    }
+    .chars-bumper {
+        margin-left: 16.5%;
+    }
+}

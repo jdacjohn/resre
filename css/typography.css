@@ -1,0 +1,630 @@
+@charset "UTF-8";
+/*
+ * resre
+ * typography.css
+ *
+ * Description - Enter a description of the file and its purpose.
+ *
+ * Author:      John Arnold <john@jdacsolutions.com>
+ * Link:           https://jdacsolutions.com
+ *
+ * Created:             May 24, 2018 9:36:31 AM
+ * Last Updated:    Date 
+ * Copyright            Copyright 2018 JDAC Computing Solutions All Rights Reserved
+ */
+/* 
+    Created on : May 24, 2018, 9:36:31 AM
+    Author     : John Arnold <john@jdacsolutions.com>
+*/
+
+/* ==== Google font ==== */
+@import url('https://fonts.googleapis.com/css?family=Encode+Sans:300,400,700,800,900');
+
+body {
+    font-family: "Encode Sans",sans-serif;
+    color: #667;
+    background-color: #fff;
+    font-size: 16px;
+    line-height: 1.6em;
+    font-weight: 400;
+}
+html, body {width:100%; padding:0; margin:0;}
+
+html { -webkit-text-size-adjust: none;}
+
+/* Header Styles */
+h1 {
+    font-size: 60px;
+    line-height: 60px;
+    font-weight: 900;
+    color: var(--white);
+}
+@media (max-width: 768px) {
+    h1 {
+        font-size: 42px;
+        line-height: 42px;
+        font-weight: 900;
+        color: var(--white);
+        text-transform: uppercase;
+        padding-top: 25px;
+        padding-bottom: 10px;
+    }
+}
+h2 {
+    font-size: 60px;
+    line-height: 75px;
+    font-weight: 400;
+    color: var(--slate);
+}
+h3 {
+    font-size: 40px;
+    line-height: 44px;
+    font-weight: 400;
+    color: var(--white);
+    margin-top: 10px;
+}
+h4 {
+    font-size: 40px;
+    line-height: 44px;
+    font-weight: 900;
+    color: var(--white);
+    background-color: transparent;
+}
+@media screen and (min-width: 320px) {
+    h4 {
+        font-size: 30px;
+        line-height:  32px;
+    }
+}
+@media screen and (min-width: 769px) {
+    h4 {
+        font-size: 36px;
+        line-height: 40px;
+    }
+}
+@media screen and (min-width: 992px) {
+    h4 {
+        font-size: 40px;
+        line-height: 44px;
+    }
+}
+@media screen and (min-width: 1920px) {
+    h4 {
+        font-size: 48px;
+        line-height: 68px;
+    }
+}
+
+h5 {
+    font-size: 30px;
+    line-height: 40px;
+    font-weight: 400;
+    color: var(--mustard);
+}
+h6 {
+    font-size: 30px;
+    line-height: 40px;
+    font-weight: 900;
+    color: var(--slate);
+}
+/* Paragraph Styles */
+.blue1620Bold {
+    color: var(--blue);
+    font-size: 16px;
+    line-height: 20px;
+    font-weight: 700;
+}
+.blue2025Bold {
+    color: var(--blue);
+    font-size: 20px;
+    line-height: 25px;
+    font-weight: 700;
+}
+
+.blue2228Bold {
+    color: var(--blue);
+    font-size: 22px;
+    line-height: 28px;
+    font-weight: 700;
+}
+@media (max-width: 767px) {
+    .blue2228Bold {
+        font-size: 16px;
+        line-height: 20px;
+    }
+}
+@media screen and (min-width: 1280px) {
+    .blue2228Bold {
+        font-size: 26px;
+        line-height: 32px;
+    }
+}
+@media screen and (min-width: 1536px) {
+    .blue2228Bold {
+        font-size: 30px;
+        line-height: 36px;
+    }
+}
+.blue2532 {
+    color: var(--blue);
+    font-size: 25px;
+    line-height: 32px;
+    font-weight: 400;
+}
+.blue2532Bold {
+    color: var(--blue);
+    font-size: 25px;
+    line-height: 30px;
+    font-weight: 700;
+}
+@media screen and (min-width: 375px) {
+    .blue2532Bold {
+        font-size: 20px;
+        line-height: 22px;
+    }
+}
+@media screen and (min-width: 769px) {
+    .blue2532Bold {
+        font-size: 25px;
+        line-height: 32px;
+    }
+}
+@media screen and (min-width: 1680px) {
+    .blue2532Bold {
+        font-size: 32px;
+        line-height: 36px;
+    }
+}
+.mustard2025Black {
+    color: var(--mustard);
+    font-size: 20px;
+    line-height: 25px;
+    font-weight: 900;
+}
+.offwhite1215EB {
+    color: var(--offWhite);
+    font-size: 12px;
+    line-height: 15px;
+    font-weight: 800;
+    background-color: transparent;
+}
+.pg2230Black {
+    color: var(--paleGreen);
+    font-size: 22px;
+    line-height: 30px;
+    font-weight: 900;
+    background-color: #333333;
+}
+.pg3040 {
+    color: var(--paleGreen);
+    font-size: 30px;
+    line-height: 40px;
+    background-color: #333333;
+}
+.sand2230Black {
+    color: var(--sand);
+    font-size: 22px;
+    line-height: 30px;
+    font-weight: 900;
+    background-color: #333333;
+}
+.slate1640Bold {
+    color: var(--slate);
+    font-size: 16px;
+    line-height: 40px;
+    font-weight: 700;
+}
+.slate2025 {
+    color: var(--slate);
+    font-size: 16px;
+    line-height: 20px;
+    font-weight: 400;
+}
+.slate2025 a {
+    font-weight: 700;
+    color: var(--blue);
+}
+.slate2025 a:hover {
+    color: var(--rust);
+}
+@media screen and (min-width: 600px) {
+    .slate2025 {
+        font-size: 18px;
+        line-height: 22px;        
+    }
+}
+@media screen and (min-width: 768px) {
+    .slate2025 {
+        font-size: 20px;
+        line-height: 25px;
+    }
+}
+@media screen and (min-width: 1024px) {
+    .slate2025 {
+        font-size: 22px;
+        line-height: 26px;
+    }
+    .slate2025 a {
+        text-transform: uppercase;
+        text-decoration: underline;
+    }
+}
+@media screen and (min-width: 1536px) {
+    .slate2025 {
+        font-size: 26px;
+        line-height: 30px;
+    }
+}
+.slate2025Bold {
+    color: var(--slate);
+    font-size: 20px;
+    line-height: 22px;
+    font-weight: 700;
+}
+.slate2025Black {
+    color: var(--slate);
+    font-size: 20px;
+    line-height: 25px;
+    font-weight: 900;
+}
+@media (max-width: 768px) {
+    .slate2025Black {
+        color: var(--slate);
+        font-size: 14px;
+        line-height: 16px;
+        font-weight: 900;
+    }
+}
+.slate2230 {
+    color: var(--slate);
+    font-size: 22px;
+    line-height: 30px;
+    font-weight: 400;
+}
+.slate2532 {
+    color: var(--slate);
+    font-size: 25px;
+    line-height: 32px;
+    font-weight: 400;
+}
+@media screen and (min-width: 375px) {
+    .slate2532 {
+        font-size: 20px;
+        line-height: 22px;
+    }
+}
+@media screen and (min-width: 600px) and (max-width: 768px) {
+    .slate2532 {
+        font-size: 25px;
+        line-height: 32px;
+    }
+}
+.slate3040 {
+    color: var(--slate);
+    font-size: 30px;
+    line-height: 40px;
+}
+.transparent2532 {
+    color: transparent;
+    font-size: 25px;
+    line-height: 32px;
+    font-weight: 400;
+    background: transparent;
+}
+.white1220 {
+    color: var(--white);
+    font-size: 12px;
+    line-height: 20px;
+}
+.white1220 > a {
+    color: var(--white);
+}
+@media screen and (max-width: 410px) {
+    .white1220 {
+        font-size: 11px;
+    }
+}
+@media screen and (min-width: 480px) {
+    .white1220 {
+        font-size: 13px;
+        font-weight: 300;
+    }
+}
+@media screen and (min-width: 600px) {
+    .white1220 {
+        font-size: 16px;
+    }
+}
+.white1220Bold {
+    color: var(--white);
+    font-size: 12px;
+    line-height: 20px;
+    font-weight: 700;
+}
+.white1220Bold > a {
+    color: var(--white);
+}
+@media screen and (min-width: 480px) {
+    .white1220Bold {
+        font-size: 13px;
+    }
+}
+@media screen and (min-width: 768px) {
+    .white1220Bold {
+        font-size: 15px;
+        line-height: 22px;
+    }
+}
+@media screen and (min-width: 800px) {
+    .white1220Bold {
+        font-size: 18px;
+        line-height: 26px;
+    }
+}
+.white1220Black {
+    color: var(--white);
+    font-size: 12px;
+    line-height: 20px;
+    font-weight: 900;
+}
+.white1220Black > a {
+    color: var(--white);
+}
+.white1640 {
+    color: var(--white);
+    font-size: 16px;
+    line-height: 40px;
+    font-weight: 400;
+}
+.white1640Bold {
+    color: var(--white);
+    font-size: 16px;
+    line-height: 40px;
+    font-weight: 700;
+}
+.white1822 {
+    color: var(--white);
+    font-size: 18px;
+    line-height: 22px;
+    font-weight: 400;
+}
+@media screen and (max-width: 599px) {
+    .white1822 {
+        font-size: 15px;
+        line-height: 20px;
+        font-weight: 300;
+    }
+}
+@media screen and (min-width: 600px) {
+    .white1822 {
+        font-size: 20px;
+        line-height: 28px;
+        font-weight: 300;
+    }
+}
+@media screen and (min-width: 768px) {
+    .white1822 {
+        font-size: 21px;
+    }
+}
+.white2025 {
+    color: var(--white);
+    font-size: 16px;
+    line-height: 20px;
+    font-weight: 300;
+}
+@media screen and (min-width: 480px) {
+    .white2025 {
+        font-size: 18px;
+        line-height: 22px;
+    }
+}
+@media screen and (min-width: 600px) {
+    .white2025 {
+        font-size: 20px;
+        line-height: 25px;
+    }
+}
+@media screen and (min-width: 769px) {
+    .white2025 {
+        font-size: 18px;
+        line-height: 22px;
+    }
+}
+@media screen and (min-width: 800px) {
+    .white2025 {
+        font-size: 20px;
+        line-height: 25px;
+        font-weight: 400;
+    }
+}
+@media screen and (min-width: 1280px) {
+    .white2025 {
+        font-size: 22px;
+        line-height: 30px;
+        font-weight: 300;
+    }
+}
+@media screen and (min-width: 1440px) {
+    .white2025 {
+        font-size: 26px;
+        line-height: 32px;
+        font-weight: 300;
+    }
+}
+.white2025Black {
+    color: var(--white);
+    font-size: 20px;
+    line-height: 25px;
+    font-weight: 900;
+}
+.white2025Black a {
+    color: var(--white);
+}
+.white2025Black a:hover {
+    color: var(--mustard);
+}
+.white2025Bold {
+    color: var(--white);
+    font-size: 16px;
+    line-height: 18px;
+    font-weight: 700;
+}
+@media screen and (min-width: 600px) {
+    .white2025Bold {
+        font-size: 18px;
+        line-height: 22px;
+    }
+}
+@media screen and (min-width: 768px) {
+    .white2025Bold {
+        font-size: 20px;
+        line-height: 25px;
+    }
+}
+@media screen and (min-width: 768px) {
+    .white2025Bold {
+        font-size: 22px;
+    }
+}
+@media screen and (min-width: 1536px) {
+    .white2025Bold {
+        font-size: 32px;
+        line-height: 32px;
+    }
+}
+.white2230 {
+    color: var(--white);
+    background-color: transparent;
+    font-size: 22px;
+    line-height: 30px;
+    font-weight: 400;
+}
+.white2230Black {
+    color: var(--white);
+    font-size: 22px;
+    line-height: 30px;
+    font-weight: 900;
+    background-color: #333333;
+}
+.white2532 {
+    color: var(--white);
+    font-size: 25px;
+    line-height: 32px;
+    font-weight: 400;
+    background: transparent;
+}
+.white2532Bold {
+    color: var(--white);
+    background-color: transparent;
+    font-size: 25px;
+    line-height: 32px;
+    font-weight: 700;
+}
+@media screen and (min-width: 320px) {
+    .white2532Bold {
+        font-size: 18px;
+    }
+}
+@media screen and (min-width: 375px) {
+    .white2532Bold {
+        font-size: 20px;
+        line-height: 22px;
+    }
+}
+@media screen and (min-width: 769px) {
+    .white2532Bold {
+        font-size: 25px;
+        line-height: 32px;
+    }
+}
+.white3040 {
+    color: var(--white);
+    font-size: 30px;
+    line-height: 40px;
+    font-weight: 400;
+}
+@media screen and (min-width: 375px) {
+    .white3040 {
+        font-size: 20px;
+        line-height: 22px;
+    }
+}
+@media screen and (min-width: 769px) {
+    .white3040 {
+        font-size: 22px;
+        line-height: 24px;
+    }
+}
+@media screen and (min-width: 992px) {
+    .white3040 {
+        font-size: 30px;
+        line-height: 40px;
+    }
+}
+
+/* CONTENT WRAPPER SIZES*/
+@media (max-width: 320px) {
+    html, body {
+        font-size:10px;
+    }
+} /* > max-width: 320px */
+@media (min-width: 320px) {
+    html, body {
+        font-size:10px;
+    }
+} /* > min-width: 320px */
+@media (min-width: 480px) {
+    html, body {
+        font-size:12px;
+    }
+} /* > min-width: 480px */
+@media (min-width: 640px)  {
+    html, body {
+        font-size:12px;
+    }
+} /* > min-width: 640px */ 
+@media (min-width: 769px) {
+    html, body {
+        font-size:14px;
+    }
+}
+@media (min-width: 800px) {
+    html, body {
+        font-size:14px;
+    }	
+}
+@media (min-width: 980px)  {
+    html, body {
+        font-size:14px;
+    }
+}
+@media (min-width: 1024px) {
+    /*normal*/
+    html, body {
+        font-size:16px;
+    }
+}
+@media (min-width: 1280px)  {
+    html, body {
+        font-size:18px;
+    }
+}
+@media (min-width: 1366px)  {
+    html, body {
+        font-size:18px;
+    }
+    .carousel h2 {
+        font-size:2.8em;
+    }
+}
+@media (max-width: 768px) {
+    h4.full_size_small_screen {
+        font-size:22px;
+        line-height:1.2;
+        font-weight:600;	
+    }
+    p.full_size_small_screen {
+    font-size:14px !important;
+    }
+}

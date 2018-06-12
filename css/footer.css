@@ -1,0 +1,190 @@
+@charset "UTF-8";
+/*
+ * resre
+ * footer.css
+ *
+ * Description - CSS classes and definitions for the site footer.
+ *
+ * Author:      John Arnold <john@jdacsolutions.com>
+ * Link:           https://jdacsolutions.com
+ *
+ * Created:             Jun 6, 2018 2:38:21 PM
+ * Last Updated:    Date 
+ * Copyright            Copyright 2018 JDAC Computing Solutions All Rights Reserved
+ */
+/* 
+    Created on : Jun 6, 2018, 2:38:21 PM
+    Author     : John Arnold <john@jdacsolutions.com>
+*/
+
+/** Narrowest screen res: 320px */
+.footer {
+    background-color: var(--slate);
+    text-align: center;
+    padding-bottom: 80px;
+}
+.footer .row {
+    margin-left: 0px;
+    margin-right: 0px;
+}
+.tagline {
+    margin-top: 0px;
+    margin-bottom: 40px;
+}
+.bottom-tag {
+    padding: 5px 8px;
+}
+.flash {
+    padding: 0px;
+}
+.footer-row {
+    padding-bottom: 5px;
+}
+.footer-row-padding-x2 {
+    padding-bottom: 10px;
+}
+.footer-row-padding-extra {
+    padding-bottom: 25px;
+}
+.footer-link-inner {
+    margin-left: -10px;
+}
+.fix-hr-padding {
+    padding-left: 0px;
+    padding-right: 0px;
+}
+.footer-menu {
+    display: flex;
+    justify-content: space-between;
+}
+.footer-button-red {
+    background-color: var(--red);
+    border-radius: 2px;
+    border: solid 2px var(--transBlack);
+    color: var(--blue);
+    padding: 4px 16px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    margin: 4px 2px;
+    cursor: pointer;       
+}
+.footer-img {
+    width: 27px;
+}
+.flash-img {}
+
+@media screen and (min-width: 375px) {
+    .tagline {
+        margin-left: 12%;
+        padding-right: 40px;
+    }
+}
+@media screen and (min-width: 411px) {
+    .tagline {
+        padding-right: 16%;
+    }
+}
+@media screen and (min-width: 414px) {
+    .tagline {
+        margin-top: 10px;
+    }
+}
+@media screen and (min-width: 480px) {
+    .tagline {
+        margin-top: 7%;
+        padding-right: 25%;
+        margin-left: 20%;
+    }
+    .footer-link-inner {
+        margin-left: -20px;
+    }
+}
+@media screen and (min-width: 768px) {
+    .footer-row-padding-x2 {
+        padding-bottom: 15px;
+    }
+    .footer-row-padding-extra {
+        padding-bottom: 35px;
+    }
+    .tagline {
+        padding-right: 35%;
+        margin-left: 25%;
+    }
+    .footer-link-inner {
+        margin-left: -4%;
+    }
+}
+.footer-icon-1, .footer-icon-inner {}
+@media screen and (min-width: 800px) {
+    .footer-icon-1 {
+        margin-left: 35%;
+    }
+    .footer-icon-inner {
+        margin-left: -8%;
+    }
+}
+.link-fix {}
+.stay, .signup, .social, .soc-icon, .bottom-tag-left, .bottom-tag-center, .bottom-tag-right {}
+@media screen and (min-width: 1024px) {
+    .flash-img {
+        max-width: 80%;
+        width: 80%;
+    }
+    .tagline {
+        margin-left: 15%;
+        padding-right: 15%;
+        margin-top: 10%;
+    }
+    .flash {
+        margin-left: 25px;
+        margin-right: -25px;
+    }
+    .footer-link-inner {
+        margin-left: 0;
+    }
+    .footer-row {
+        padding-left: 0;
+        padding-right: 0;
+    }
+    .link-fix {
+        margin-left: -7px;
+    }
+    .footer-icon-1 {
+        margin-left: -20px;
+    }
+    .footer-icon-inner {
+        margin-left: -3%;
+    }
+    .stay {
+        width: 35%;
+        margin-left: 30px;
+    }
+    .sign-up {
+        width: 12%;
+        margin-left: -18px;
+    }
+    .social {
+        width: 34%;
+        margin-left: -5px;
+    }
+    .soc-icon {
+        width: 7%;
+    }
+    .bottom-tag-left {
+        text-align: right;
+        margin-right: 15px;
+    }
+    .bottom-tag-center {
+        text-align: center;
+        border: none;
+        border-left: 1px solid var(--white);
+        border-right: 1px solid var(--white);
+        padding: 5px 0px;
+        width: 22%
+    }
+    .bottom-tag-right {
+        text-align: left;
+        padding-left: 15px;
+    }
+}

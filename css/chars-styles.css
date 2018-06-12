@@ -1,0 +1,327 @@
+@charset "UTF-8";
+/* CSS File for Characteristics screens headings, text, checkboxes, and labels */
+
+/** Content Wrapper */
+.wt-content-wrapper {
+    height: auto;
+    left: 10%;
+    position: absolute;
+    text-align: left;
+    top: 10%;
+}
+@media screen and (max-width: 767px) {
+    .wt-content-wrapper {
+        position: relative;
+        width: 85%;
+        margin: 0 auto;
+        margin-top: 40%;
+        left: auto;
+        top: auto;
+    }
+}
+.wt-content-wrapper.left {
+    top: 120px;
+    margin-top: 0;
+}
+@media screen and (min-width: 768px) {
+    .wt-content-wrapper.left {
+        top: 150px;
+        width: 97%;
+        left: 5%;
+    }
+}
+@media screen and (min-width: 1366px) {
+    .wt-content-wrapper.left {
+        top: 4%;
+    }
+}
+@media screen and (min-width: 1536px) {
+    .wt-content-wrapper.left {
+        top: 2%;
+    }
+}
+@media screen and (min-width: 1920px) {
+    .wt-content-wrapper.left {
+        top: -5%;
+    }
+}
+
+/** CONTINUE / CANCEL SECTION **/
+.ccSave {
+    background-color: var(--paleGreen);
+    padding: 80px 0;
+    height: auto;
+}
+
+
+/** Characteristics labels, headers, descriptions, and check box sizes */
+@media screen and (min-width: 360px) {
+    .chars-checkbox, .chars-checkbox-x3 {
+        margin-left: 38%;
+    }
+    .chars-label, .chars-label-x3 {
+        margin-left: 12%;
+    }
+}
+@media screen and (min-width: 375px) {
+    .chars-checkbox, .chars-checkbox-x3 {
+        margin-left: 45%;
+    }
+    .chars-label, .chars-label-x3 {
+        margin-left: 28%;
+        padding-top: 15px;
+    }
+    .chars-desc {
+        margin-left: 21.5%;
+        padding-right: 10px;
+    }
+}
+@media screen and (min-width: 600px) {
+    .chars-desc {
+        margin-left: 18.5%;
+        padding-bottom: 30px;
+    }
+    .chars-checkbox, .chars-checkbox-x3 {
+        margin-left: 40%;
+    }
+}
+@media screen and (min-width: 768px) {
+    .chars-desc {
+        margin-left: 15.5%;
+        padding-bottom: 20px;
+        margin-top: 0px;
+    }
+    .chars-label {
+        width: 75%;
+        margin-left: 22%;
+        line-height: 22px;
+    }
+    .chars-label-x3 {
+        width: 75%;
+        margin-left: 3%;
+        line-height: 22px;
+    }
+    .chars-checkbox {
+        margin-left: 23%;
+        margin-top: -21%;
+    }
+    .chars-checkbox-x3 {
+        margin-left: 5%;
+        margin-top: -21%;
+    }
+}
+@media screen and (min-width: 800px) {
+    .chars-label {
+        margin-left: 23%;
+        margin-top: 2%;
+    }
+    .chars-checkbox {
+        margin-left: 20%;
+        margin-top: -23%;
+    }
+    .chars-checkbox-x3 {
+        margin-left: 5%;
+        margin-top: -21%;
+    }
+    .check-select {
+        max-width: 150%;
+        width: 150%;
+    }
+    .chars-desc {
+        margin-left: 17.5%;
+        margin-top: -7%;
+        padding-right: 140px;
+    }
+}
+@media screen and (min-width: 1024px) {
+    .chars-label {
+        margin-left: 27%;
+        margin-top: 0%;
+    }
+    .chars-checkbox {
+        margin-left: 35%;
+        margin-top: -16%;
+    }
+    .chars-checkbox-x3 {
+        margin-left: 31%;
+        margin-top: -17%;
+    }
+    .check-select {
+        max-width: 100%;
+        width: 100%;
+    }
+    .chars-desc {
+        margin-left: -3%;
+        margin-top: 10px;
+        padding-right: 40px;
+        padding-bottom: 20px;
+    }
+}
+@media screen and (min-width: 1280px) {
+    .chars-desc {
+        margin-left: 1%;
+        margin-top: 1%;
+        padding-bottom: 30px;
+    }
+    .chars-label {
+        margin-left: 24%;
+        margin-top: 2%;
+        line-height: 25px;
+        margin-bottom: 3%;
+    }
+    .check-select {
+        max-width: 100%;
+        width: 100%;
+    }
+    .chars-checkbox {
+        margin-left: 34%;
+        margin-top: -16%;
+    }
+    .chars-checkbox-x3 {
+        margin-left: 28%;
+        margin-top: -15%;
+    }
+}
+@media screen and (min-width: 1366px) {
+    .chars-desc {
+        margin-left: 1%;
+        margin-top: 0%;
+        padding-bottom: 30px;
+        padding-right: 35px;
+    }
+    .chars-label {
+        margin-left: 21%;
+        margin-top: 1%;
+    }
+    .chars-label-x3 {
+        width: 75%;
+        margin-left: 19%;
+        line-height: 22px;
+    }
+    .check-select {
+        max-width: 80%;
+        width: 80%;
+    }
+    .chars-checkbox {
+        margin-left: 36%;
+        margin-top: -13%;
+    }
+    .chars-checkbox-x3 {
+        margin-left: 33%;
+        margin-top: -13%;
+    }
+}
+@media screen and (min-width: 1440px) {
+    .chars-label {
+        margin-left: 20%;
+        margin-top: 3%;
+    }
+    .chars-label-x3 {
+        width: 75%;
+        margin-left: 20%;
+        line-height: 22px;
+    }
+    .chars-checkbox {
+        margin-left: 32%;
+    }
+    .chars-checkbox-x3 {
+        margin-left: 32%;
+        margin-top: -14%;
+    }
+    .check-select {
+        max-width: 90%;
+        width: 90%;
+    }
+}
+@media screen and (min-width: 1536px) {
+    .chars-desc {
+        margin-left: 0.5%;
+        margin-top: 0.5%;
+        padding-bottom: 30px;
+        padding-right: 35px;
+    }
+    .chars-label {
+        margin-left: 19%;
+        margin-top: 4%;
+    }
+    .chars-label-x3 {
+        width: 75%;
+        margin-left: 20%;
+        line-height: 40px;
+    }
+    .chars-checkbox {
+        margin-left: 31%;
+    }
+    .check-select {
+        max-width: 95%;
+        width: 95%;
+    }
+}
+@media screen and (min-width: 1600px) {
+    .chars-desc {
+        margin-left: 0%;
+    }
+    .check-select {
+        max-width: 90%;
+        width: 90%;
+    }
+    .chars-checkbox {
+        margin-left: 33%;
+    }
+    .chars-checkbox-x3 {
+        margin-left: 29%;
+    }
+    .chars-label {
+        margin-left: 20%;
+    }
+    .chars-label-x3 {
+        margin-left: 16%;
+    }
+}
+@media screen and (min-width: 1680px) {
+    .chars-desc {
+        margin-left: 0%;
+        margin-top: 1%;
+    }
+    .chars-label {
+        margin-left: 13%;
+    }
+    .chars-label-x3 {
+        margin-left: 6%;
+    }
+    .chars-checkbox {
+        margin-left: 27%;
+    }
+    .chars-checkbox-x3 {
+        margin-left: 22%;
+    }
+    .check-select {
+        width: 85%;
+        max-width: 85%;
+    }
+}
+@media screen and (min-width: 1920px) {
+    .chars-label {
+        margin-left: -18%;
+    }
+    .chars-label-x3 {
+        margin-left: -19%;
+    }
+    .chars-checkbox {
+        margin-left: 2%;
+        margin-top: -11%;
+    }
+    .chars-checkbox-x3 {
+        margin-left: 1%;
+        margin-top: -11%;
+    }
+    .chars-desc {
+        margin-left: -1.5%;
+        padding-right: 10%;
+    }
+    .check-select {
+        width: 70%;
+        max-width: 70%;
+    }
+}
+
