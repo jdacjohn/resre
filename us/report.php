@@ -1,6 +1,48 @@
 <?php
-$root = '../';
-require($root . '_includes/app_start.inc.php');
+    $root = '../';
+    require($root . '_includes/app_start.inc.php');
+    if (!isset($_SESSION[SESSION_NAME]['home'])) {
+        // Session has expired or user not logged in
+        header('Location:  ' . HOME_LINK . 'us/index.php?postFrom=login');
+    }
+    printVarIfDebug($_SESSION, getenv('gDebug'), 'Session on Entry');
+    $resReHome = unserialize($_SESSION[SESSION_NAME]['home']);
+    $mitigants = unserialize($_SESSION[SESSION_NAME]['mitigants']);
+    if (isset($_SESSION[SESSION_NAME]['assessor'])) {
+        $assessor = unserialize($_SESSION[SESSION_NAME]['assessor']);
+    } else {
+        $assessor = new resre\ResReDamageAssessment($mitigants->getBaseConfig(), $mitigants->getCurHomeCharString(), $resReHome->getNumberOfComponents(), $resReHome->homeValue);
+        $assessor->buildReport();
+        $_SESSION[SESSION_NAME]['assessor'] = serialize($assessor);
+    }
+    if (isset($_SESSION[SESSION_NAME]['retroAssessor'])) {
+        $retroAssessor = unserialize($_SESSION[SESSION_NAME]['retroAssessor']);
+    } else {
+        $retroAssessor = new resre\ResReDamageAssessment($mitigants->getBaseConfig(), $mitigants->getOptimalHomeCharString(), 7, $resReHome->homeValue);
+        $retroAssessor->buildReport();
+        $_SESSION[SESSION_NAME]['retroAssessor'] = serialize($retroAssessor);
+    }
+
+    $gDoorYN = $mitigants->getGarageDoor()->getCurVal();
+    $numComponents = ($gDoorYN == 'gndod' || $gDoorYN == 'gdno2') ? 8 : 9;
+    
+    $postFrom = isset($_POST['postFrom']) ? $_POST['postFrom'] : '';
+    if ($postFrom == '__us-report__') {
+        $assessor->setHurricaneCategory($_POST['hCat']);
+        $assessor->buildReport();
+        $retroAssessor->setHurricaneCategory($_POST['hCat']);
+        $retroAssessor->buildReport();
+        $_SESSION[SESSION_NAME]['assessor'] = serialize($assessor);
+        $_SESSION[SESSION_NAME]['retroAssessor'] = serialize($retroAssessor);
+    }
+    $category = $assessor->getHurricaneCategory();
+    printVarIfDebug($postFrom, getenv('gDebug'), "Posted From");
+    printVarIfDebug($assessor, getenv('gDebug'), "ResRe Current Assessment Object unserialized from Session");
+    printVarIfDebug($retroAssessor, getenv('gDebug'), "ResRe Optimal Assessment Object unserialized from Session");
+    printVarIfDebug($resReHome, getenv('gDebug'), "ResRe Home object unserialized from Session");
+    printVarIfDebug($mitigants, getenv('gDebug'), "Damage Mitigators");
+    
+
 ?>
 
 <!DOCTYPE html>
@@ -9,24 +51,23 @@ require($root . '_includes/app_start.inc.php');
         <meta charset="utf-8" />
         <!-- Load site meta information -->
         <?php include($root . 'includes/page-head-meta.php'); ?>
-        <title><?php echo PROJECT_TITLE_SHORT; ?> US Damage Assessment - Garage Door</title>
+        <title><?php echo PROJECT_TITLE_SHORT; ?> Resilient Residence Report</title>
         <!-- Load Page HEAD script files -->
         <?php include($root . 'includes/page-head-scripts.php'); ?>
         <!-- Load site CSS -->
         <?php include($root . 'includes/page-styles.php'); ?>
         <link href="<?php echo $root; ?>css/chars-styles.css" rel='stylesheet' type='text/css' media="all" />
         <link href="<?php echo $root; ?>css/chars-borders.css" rel='stylesheet' type='text/css' media="all" />
-        <link href="<?php echo $root; ?>css/ccSave.css" rel='stylesheet' type='text/css' media="all" />
         <link href="<?php echo $root; ?>css/report.css" rel='stylesheet' type='text/css' media="all" />
     </head>
-    <body style="background-color: var(--slate);">
+    <body class="slate">
         <?php include_once($root . 'includes/nav-menu.php'); ?>
         <div class="characteristics rpt-wrapper">
-            <div class="characteristics-inner">
+            <div class="characteristics-inner" id="ci">
                 <div class="characteristics-wrapper">
-                   <div class="wt-content-wrapper left"> 
+                   <div class="wt-content-wrapper left" id="reportWrapper"> 
                         <!-- Report Heading -->
-                        <div class="row report-header">
+                        <div class="row report-header" id="reportHeader">
                             <div class="chars-border-middle-wt-1"></div>
                             <div class="chars-border-middle-wt-2"></div>
                             <div class="col-md-2 col-sm-2 col-xs-2 chars-marker chars">
@@ -37,9 +78,9 @@ require($root . '_includes/app_start.inc.php');
                             <div class="col-md-10 col-xs-10 white2025Black report-title">
                                 Resilient Residence Report
                             </div>
-                            <div class="col-md-10 col-sm-10 col-xs-10 col-xs-offset-2 topic"><h4 class="chars-h4">Jeff Lebowski's</h4></div>
+                            <div class="col-md-10 col-sm-10 col-xs-10 col-xs-offset-2 topic"><h4 class="chars-h4"><?php echo $resReHome->homeOwnerFirstName; ?>'s <?php echo $resReHome->homeName; ?></h4></div>
                         </div>
-                        <div class="row report-header section-padding">
+                        <div class="row report-header section-padding" id="reportHeaderContent">
                             <div class="col-md-10 col-sm-10 col-xs-10 col-xs-offset-2 chars-desc white2025">
                                 The purpose of this report is to identify specific actions that you can take to strengthen your home against
                                 hurricanes.  Please use this report as a resource to make your home as hurricane-resistant as possible.  
@@ -47,18 +88,9 @@ require($root . '_includes/app_start.inc.php');
                                 for high winds.
                             </div>
                             <div class='clear'></div>
-                            <div class='col-xs-10 col-xs-offset-1 col-sm-2 col-md-2 col-md-offset-1 rbuttons rbutton-first'>
-                                <a href="#" class='mid-button-sand'><span class="blue2228Bold">Print</span></a>
-                            </div>
-                            <div class='col-xs-10 col-xs-offset-1  col-sm-2 col-md-2 rbuttons rbutton-middle'>
-                                <a href="#" class='mid-button-sand'><span class="blue2228Bold">View</span></a>
-                            </div>
-                            <div class='col-xs-10 col-xs-offset-1 col-sm-2 col-md-2 rbuttons  rbutton-last'>
-                                <a href="#" class='mid-button-sand'><span class="blue2228Bold">Share</span></a>
-                            </div>
                         </div>
                         <!-- Report Summary -->
-                        <div class='row report-summary '>
+                        <div class='row report-summary' id="reportSummary">
                             <div class='chars-border-middle-wt-3'></div>
                             <div class='mit-cost white2230 hidden-xs hidden-sm'>
                                 <h4>Mitigation Cost Analysis</h4>
@@ -108,14 +140,17 @@ require($root . '_includes/app_start.inc.php');
                                 Choose a hurricane category to estimate damage before and after retrofits.
                             </div>
                             <div class='clear'></div>
-                            <div class="col-md-1 col-sm-1 col-xs-1 chars-marker rating-marker chars-bumper"><span class="blue2532Bold marker-white rating" style="margin-bottom: 0px; ">1</span></div>
-                            <div class="col-md-1 col-sm-1 col-xs-1 chars-marker rating-marker"><span class="blue2532Bold marker-white rating" style="margin-bottom: 0px; ">2</span></div>
-                            <div class="col-md-1 col-sm-1 col-xs-1 chars-marker rating-marker"><span class="blue2532Bold marker-white rating" style="margin-bottom: 0px; ">3</span></div>
-                            <div class="col-md-1 col-sm-1 col-xs-1 chars-marker rating-marker"><span class="blue2532Bold marker-white rating" style="margin-bottom: 0px; ">4</span></div>
-                            <div class="col-md-1 col-sm-1 col-xs-1 chars-marker rating-marker"><span class="blue2532Bold marker-white rating" style="margin-bottom: 0px; ">5</span></div>
+                            <div class="col-md-1 col-sm-1 col-xs-1 chars-marker rating-marker chars-bumper"><a href="#" id="cat1" title="Average Wind Speed 85mph"><span class="blue2532Bold <?php echo ($category == 1) ? 'marker-mustard' : 'marker-white'; ?> rating" style="margin-bottom: 0px; ">1</span></a></div>
+                            <div class="col-md-1 col-sm-1 col-xs-1 chars-marker rating-marker"><a href="#" id="cat2" title="Average Wind Speed 100mph"><span class="blue2532Bold <?php echo ($category == 2) ? 'marker-mustard' : 'marker-white'; ?> rating" style="margin-bottom: 0px; ">2</span></a></div>
+                            <div class="col-md-1 col-sm-1 col-xs-1 chars-marker rating-marker"><a href="#" id="cat3" title="Average Wind Speed 120mph"><span class="blue2532Bold <?php echo ($category == 3) ? 'marker-mustard' : 'marker-white'; ?> rating" style="margin-bottom: 0px; ">3</span></a></div>
+                            <div class="col-md-1 col-sm-1 col-xs-1 chars-marker rating-marker"><a href="#" id="cat4" title="Average Wind Speed 145mph"><span class="blue2532Bold <?php echo ($category == 4) ? 'marker-mustard' : 'marker-white'; ?> rating" style="margin-bottom: 0px; ">4</span></a></div>
+                            <div class="col-md-1 col-sm-1 col-xs-1 chars-marker rating-marker"><a href="#" id="cat5" title="Average Wind Speed 165mph"><span class="blue2532Bold <?php echo ($category == 5) ? 'marker-mustard' : 'marker-white'; ?> rating" style="margin-bottom: 0px; ">5</span></a></div>
                             <div class='clear'></div>
+                            <?php
+                            $impactPct = number_format(($assessor->getEstimatedLoss() / $resReHome->homeValue) * 100, 2);
+                            ?>
                             <div class="col-md-8 col-sm-10 col-xs-10 risk white2025">
-                                Your annual risk of a category <$var> hurricane is <strong><$varPct></strong>.
+                                Your cost impact risk of a Category <?php echo $category; ?> hurricane is <strong><?php echo $impactPct; ?>%</strong> of your home's value before retrofits.
                             </div>
                             <div class="col-md-8 col-sm-10 col-xs-10 risk report-title white2532Bold">
                                 Damage & Calculator Cost Analysis
@@ -124,23 +159,71 @@ require($root . '_includes/app_start.inc.php');
                                 <img src="<?php echo SITE_ROOT; ?>/us/images/spectrum.png"  id='slider' class="img-responsive report-slider"/>
                             </div>
                             <div class='clear'></div>
-                            <div class='col-md-1 col-md-offset-3 col-xs-4 col-xs-offset-2 white2532Bold' style='text-align: right;'><$varAfter></div>
-                            <div class='col-md-1 col-md-offset-1 col-xs-4 white2532Bold'><$varBefore></div>
+                            <div class='col-md-1 col-md-offset-3 col-xs-4 col-xs-offset-2 white2532Bold' style='text-align: right;'>$<?php echo number_format($retroAssessor->getEstimatedLoss(), 0); ?></div>
+                            <div class='col-md-1 col-md-offset-1 col-xs-4 white2532Bold'>$<?php echo number_format($assessor->getEstimatedLoss(), 0); ?></div>
                             <div class='clear'></div>
                             <div class='col-md-1 col-md-offset-3 col-xs-4 col-xs-offset-2 white1822' style="text-align: center;">After</div>
                             <div class='col-lg-1 col-lg-offset-1 col-md-1 col-md-offset-2 col-xs-4 white1822'>Before</div>
                             <div class='clear'></div>
                         </div> <!-- End summary row -->
+                        <form method="post" name="reportForm" id="reportForm" action="<?php echo HOME_LINK; ?>us/report.php">
+                            <input type="hidden" name="postFrom" id="postFrom" value="__us-report__" />
+                            <input type="hidden" name="hCat" id="hCat" value="<?php echo $category; ?>" />
+                            <input type="hidden" name="noComp" id="noComp" value="<?php echo $numComponents; ?>" />
+                        </form>
                         <!-- Retrofit Suggestions -->
-                        <div class='row report-details'>
+                        <div class='row report-details' id="reportDetails">
                             <div class='chars-border-middle-wt-4'></div>
                             <div class='retrofits-header white3040'>Suggested Retrofits</div>
+                            
+                            <!-- Stories -->
+                            <div class="col-md-2 col-sm-2 col-xs-2 chars-marker chars">
+                                <span class="blue2532Bold marker-sand" style="margin-bottom: 0px; ">
+                                    <img src="<?php echo SITE_ROOT; ?>/us/images/arrow_blue-dark.png" class="img-responsive complete-down"/>
+                                </span>
+                            </div>
+                            <?php $mitigant = $mitigants->getStories(); ?>
+                            <div class='col-md-1 col-sm-2 col-xs-2 retrofits-icon'><img src="<?php echo SITE_ROOT; ?>/us/images/report-icons/stories.png" class="img-responsive retrofits-img" /></div>
+                            <div class="col-md-3 col-sm-8 col-xs-8 retrofits-title"><h6>Stories</h6></div>
+                            <div class="col-md-6 hidden-xs hidden-sm retro-hr"><hr></div>
+                            <div class="clear"></div>
+                            <div class="col-md-5  col-md-offset-2 col-sm-8 col-sm-offset-2 col-xs-8 col-xs-offset-2 white2230Black recommendations chars-desc">
+                                FLASH Recommendations
+                            </div>
+                            <div class="col-md-3 hidden-xs hidden-sm white2230Black costs chars-desc">
+                                Costs
+                            </div>
+                            <div class="clear"></div>
+                            <div class="col-md-5 col-xs-10 col-xs-offset-2 chars-bumper slate2230 rec-desc">
+                                <strong><?php echo $mitigant->getLabel(); ?></strong><br />
+                                <?php 
+                                    echo '<p>' . $mitigant->getRecommendation() , '</p>';
+                                    if ($mitigant->getCostMsg() != '') {
+                                        echo "<p>" . $mitigant->getCostMsg() . "</p>";
+                                    }
+                                ?>
+                            </div>
+                            <div class="col-xs-10 col-xs-8 col-xs-offset-2 hidden-md hidden-lg white2230Black costs chars-desc">
+                                Costs
+                            </div>
+                            <div class='col-md-4 col-md-offset-0 col-xs-10 col-xs-offset-2 chars-bumper slate2230 rec-desc rec-desc-no-bumper'>
+                                <strong><?php echo $mitigant->getCostIndicator(); ?></strong>
+                            </div>
+                            <div class="col-md-8  col-md-offset-2 col-xs-8 col-xs-offset-2 white2230Black resources chars-desc">
+                                Resources
+                            </div>
+                            <div class="col-md-5 col-xs-10 col-xs-offset-2 chars-bumper slate2230 rec-resources">
+                                <?php echo ($mitigant->getResources() != '') ? '<a href="' . $mitigant->getResources() . '" target="_blank">' . $mitigant->getResFriendlyName() . '</a>' : 'No resources available'; ?>
+                            </div>
+                            <div class='clear'></div>
+                            
                             <!-- Wall Types -->
                             <div class="col-md-2 col-sm-2 col-xs-2 chars-marker chars">
                                 <span class="blue2532Bold marker-sand" style="margin-bottom: 0px; ">
                                     <img src="<?php echo SITE_ROOT; ?>/us/images/arrow_blue-dark.png" class="img-responsive complete-down"/>
                                 </span>
                             </div>
+                            <?php $mitigant = $mitigants->getWallType(); ?>
                             <div class='col-md-1 col-sm-2 col-xs-2 retrofits-icon'><img src="<?php echo SITE_ROOT; ?>/us/images/report-icons/wall-types.png" class="img-responsive retrofits-img" /></div>
                             <div class="col-md-3 col-sm-8 col-xs-8 retrofits-title"><h6>Wall Types</h6></div>
                             <div class="col-md-6 hidden-xs hidden-sm retro-hr"><hr></div>
@@ -153,29 +236,35 @@ require($root . '_includes/app_start.inc.php');
                             </div>
                             <div class="clear"></div>
                             <div class="col-md-5 col-xs-10 col-xs-offset-2 chars-bumper slate2230 rec-desc">
-                                Congratulations, your selection indicates that your roof deck attachment is superior and can provide additional 
-                                protection to your home.
+                                <strong><?php echo $mitigant->getLabel(); ?></strong><br />
+                                <?php 
+                                    echo '<p>' . $mitigant->getRecommendation() , '</p>';
+                                    if ($mitigant->getCostMsg() != '') {
+                                        echo "<p>" . $mitigant->getCostMsg() . "</p>";
+                                    }
+                                ?>
                             </div>
                             <div class="col-xs-10 col-xs-8 col-xs-offset-2 hidden-md hidden-lg white2230Black costs chars-desc">
                                 Costs
                             </div>
                             <div class='col-md-4 col-md-offset-0 col-xs-10 col-xs-offset-2 chars-bumper slate2230 rec-desc rec-desc-no-bumper'>
-                                Brace Walls - $$
+                                <strong><?php echo $mitigant->getCostIndicator(); ?></strong>
                             </div>
                             <div class="col-md-8  col-md-offset-2 col-xs-8 col-xs-offset-2 white2230Black resources chars-desc">
                                 Resources
                             </div>
                             <div class="col-md-5 col-xs-10 col-xs-offset-2 chars-bumper slate2230 rec-resources">
-                                Document 1 - <a href="#" target="_blank">Download PDF</a><br />
-                                Document 2 - <a href="#" target="_blank">Download PDF<a>
+                                <?php echo ($mitigant->getResources() != '') ? '<a href="' . $mitigant->getResources() . '" target="_blank">' . $mitigant->getResFriendlyName() . '</a>' : 'No resources available'; ?>
                             </div>
                             <div class='clear'></div>
+                            
                             <!-- Shutters -->
                             <div class="col-md-2 col-sm-2 col-xs-2 chars-marker chars">
                                 <span class="blue2532Bold marker-sand" style="margin-bottom: 0px; ">
                                     <img src="<?php echo SITE_ROOT; ?>/us/images/arrow_blue-dark.png" class="img-responsive complete-down"/>
                                 </span>
                             </div>
+                            <?php $mitigant = $mitigants->getShutters(); ?>
                             <div class='col-md-1 col-xs-2 retrofits-icon'><img src="<?php echo SITE_ROOT; ?>/us/images/report-icons/shutters.png" class="img-responsive retrofits-img" /></div>
                             <div class="col-md-3 col-sm-8 col-xs-8 retrofits-title"><h6>Shutters</h6></div>
                             <div class="col-md-6 hidden-xs hidden-sm retro-hr"><hr></div>
@@ -188,33 +277,35 @@ require($root . '_includes/app_start.inc.php');
                             </div>
                             <div class="clear"></div>
                             <div class="col-md-5 col-xs-10 col-xs-offset-2 chars-bumper slate2230 rec-desc">
-                                Protect all openings with a shutter or impact resistant glazing that meets one the the following large missle 
-                                impact tests:<br />&nbsp;<br />
-                                <ul>
-                                    <li>Miami-Dade TAS 201, 202 and 203</li>
-                                    <li>SSTD 12</li>
-                                    <li>ATSM E 1886 & 1996</li>
-                                </ul>
+                                <strong><?php echo $mitigant->getLabel(); ?></strong><br />
+                                <?php 
+                                    echo '<p>' . $mitigant->getRecommendation() , '</p>';
+                                    if ($mitigant->getCostMsg() != '') {
+                                        echo "<p>" . $mitigant->getCostMsg() . "</p>";
+                                    }
+                                ?>
                             </div>
                             <div class="col-xs-8 col-xs-offset-2 hidden-md hidden-lg white2230Black costs chars-desc">
                                 Costs
                             </div>
                             <div class='col-md-4 col-xs-10 col-xs-offset-2 chars-bumper slate2230 rec-desc rec-desc-no-bumper'>
-                                Add Shutters - $$
+                                <strong><?php echo $mitigant->getCostIndicator(); ?></strong>
                             </div>
                             <div class="col-md-8  col-md-offset-2 col-xs-8 col-xs-offset-2 white2230Black resources chars-desc">
                                 Resources
                             </div>
                             <div class="col-md-5 col-xs-10 col-xs-offset-2 chars-bumper slate2230 rec-resources">
-                                No resources available
+                                <?php echo ($mitigant->getResources() != '') ? '<a href="' . $mitigant->getResources() . '" target="_blank">' . $mitigant->getResFriendlyName() . '</a>' : 'No resources available'; ?>
                             </div>
                             <div class="clear"></div>
+                            
                             <!-- Roof Shape -->
                             <div class="col-md-2 col-sm-2 col-xs-2 chars-marker chars">
                                 <span class="blue2532Bold marker-sand" style="margin-bottom: 0px; ">
                                     <img src="<?php echo SITE_ROOT; ?>/us/images/arrow_blue-dark.png" class="img-responsive complete-down"/>
                                 </span>
                             </div>
+                            <?php $mitigant = $mitigants->getRoofShape(); ?>
                             <div class='col-md-1 col-xs-2 retrofits-icon'><img src="<?php echo SITE_ROOT; ?>/us/images/report-icons/roof-shapes.png" class="img-responsive retrofits-img" /></div>
                             <div class="col-md-3 col-sm-8 col-xs-8 retrofits-title"><h6>Roof Shapes</h6></div>
                             <div class="col-md-6 hidden-xs hidden-sm retro-hr"><hr></div>
@@ -227,23 +318,31 @@ require($root . '_includes/app_start.inc.php');
                             </div>
                             <div class="clear"></div>
                             <div class="col-md-5 col-xs-10 col-xs-offset-2 chars-bumper slate2230 rec-desc">
-                                Hipped roofs provide the best protection against high winds.  However, roof replacement is costly.
+                                <strong><?php echo $mitigant->getLabel(); ?></strong><br />
+                                <?php 
+                                    echo '<p>' . $mitigant->getRecommendation() , '</p>';
+                                    if ($mitigant->getCostMsg() != '') {
+                                        echo "<p>" . $mitigant->getCostMsg() . "</p>";
+                                    }
+                                ?>
                             </div>
                             <div class="col-xs-8 col-xs-offset-2 hidden-md hidden-lg white2230Black costs chars-desc">
                                 Costs
                             </div>
                             <div class='col-md-4 col-xs-10 col-xs-offset-2 chars-bumper slate2230 rec-desc rec-desc-no-bumper'>
-                                Replace Roof - $$$$
+                                <strong><?php echo $mitigant->getCostIndicator(); ?></strong>
                             </div>
                             <div class="col-md-8  col-md-offset-2 col-xs-8 col-xs-offset-2 white2230Black resources chars-desc">
                                 Resources
                             </div>
                             <div class="col-md-5 col-xs-10 col-xs-offset-2 chars-bumper slate2230 rec-resources">
-                                Document 1 - <a href="#" target="_blank">Download PDF</a><br />
-                                Document 2 - <a href="#" target="_blank">Download PDF<a>
+                                <?php echo ($mitigant->getResources() != '') ? '<a href="' . $mitigant->getResources() . '" target="_blank">' . $mitigant->getResFriendlyName() . '</a>' : 'No resources available'; ?>
                             </div>
                             <div class="clear"></div>
+                            
                             <!-- Garage -->
+                            <?php $mitigant = $mitigants->getGarageDoor(); ?>
+                            <?php if ($mitigant->getMitKey() != '') { ?>
                             <div class="col-md-2 col-sm-2 col-xs-2 chars-marker chars">
                                 <span class="blue2532Bold marker-sand" style="margin-bottom: 0px; ">
                                     <img src="<?php echo SITE_ROOT; ?>/us/images/arrow_blue-dark.png" class="img-responsive complete-down"/>
@@ -261,22 +360,193 @@ require($root . '_includes/app_start.inc.php');
                             </div>
                             <div class="clear"></div>
                             <div class="col-md-5 col-xs-10 col-xs-offset-2 chars-bumper slate2230 rec-desc">
-                               Impact rated garage doors provide the most protection against severe weather.
+                                <strong><?php echo $mitigant->getLabel(); ?></strong><br />
+                                <?php 
+                                    echo '<p>' . $mitigant->getRecommendation() , '</p>';
+                                    if ($mitigant->getCostMsg() != '') {
+                                        echo "<p>" . $mitigant->getCostMsg() . "</p>";
+                                    }
+                                ?>
                             </div>
                             <div class="col-xs-8 col-xs-offset-2 hidden-md hidden-lg white2230Black costs chars-desc">
                                 Costs
                             </div>
                             <div class='col-md-4 col-xs-10 col-xs-offset-2 chars-bumper slate2230 rec-desc rec-desc-no-bumper'>
-                                Replace Garage Door - $$$
+                                <strong><?php echo $mitigant->getCostIndicator(); ?></strong>
                             </div>
                             <div class="col-md-8  col-md-offset-2 col-xs-8 col-xs-offset-2 white2230Black resources chars-desc">
                                 Resources
                             </div>
                             <div class="col-md-5 col-xs-10 col-xs-offset-2 chars-bumper slate2230 rec-resources">
-                                Document 1 - <a href="#" target="_blank">Download PDF</a><br />
+                                <?php echo ($mitigant->getResources() != '') ? '<a href="' . $mitigant->getResources() . '" target="_blank">' . $mitigant->getResFriendlyName() . '</a>' : 'No resources available'; ?>
                             </div>
                             <div class="clear"></div>
-
+                            <?php } ?>
+                            
+                            <!-- Root to Wall -->
+                            <?php $mitigant = $mitigants->getRoofToWall(); ?>
+                            <div class="col-md-2 col-sm-2 col-xs-2 chars-marker chars">
+                                <span class="blue2532Bold marker-sand" style="margin-bottom: 0px; ">
+                                    <img src="<?php echo SITE_ROOT; ?>/us/images/arrow_blue-dark.png" class="img-responsive complete-down"/>
+                                </span>
+                            </div>
+                            <div class='col-md-1 col-xs-2 retrofits-icon'><img src="<?php echo SITE_ROOT; ?>/us/images/report-icons/roof-wall.png" class="img-responsive retrofits-img" /></div>
+                            <div class="col-md-3 col-sm-8 col-xs-8 retrofits-title"><h6>Roof to Wall</h6></div>
+                            <div class="col-md-6 hidden-xs hidden-sm retro-hr"><hr></div>
+                            <div class="clear"></div>
+                            <div class="col-md-5  col-md-offset-2 col-sm-8 col-sm-offset-2 col-xs-8 col-xs-offset-2 white2230Black recommendations chars-desc">
+                                FLASH Recommendations
+                            </div>
+                            <div class="col-md-3 hidden-xs hidden-sm white2230Black costs chars-desc">
+                                Costs
+                            </div>
+                            <div class="clear"></div>
+                            <div class="col-md-5 col-xs-10 col-xs-offset-2 chars-bumper slate2230 rec-desc">
+                                <strong><?php echo $mitigant->getLabel(); ?></strong><br />
+                                <?php 
+                                    echo '<p>' . $mitigant->getRecommendation() , '</p>';
+                                    if ($mitigant->getCostMsg() != '') {
+                                        echo "<p>" . $mitigant->getCostMsg() . "</p>";
+                                    }
+                                ?>
+                            </div>
+                            <div class="col-xs-8 col-xs-offset-2 hidden-md hidden-lg white2230Black costs chars-desc">
+                                Costs
+                            </div>
+                            <div class='col-md-4 col-xs-10 col-xs-offset-2 chars-bumper slate2230 rec-desc rec-desc-no-bumper'>
+                                <strong><?php echo $mitigant->getCostIndicator(); ?></strong>
+                            </div>
+                            <div class="col-md-8  col-md-offset-2 col-xs-8 col-xs-offset-2 white2230Black resources chars-desc">
+                                Resources
+                            </div>
+                            <div class="col-md-5 col-xs-10 col-xs-offset-2 chars-bumper slate2230 rec-resources">
+                                <?php echo ($mitigant->getResources() != '') ? '<a href="' . $mitigant->getResources() . '" target="_blank">' . $mitigant->getResFriendlyName() . '</a>' : 'No resources available'; ?>
+                            </div>
+                            <div class="clear"></div>
+                            
+                            <!-- RDA-A-->
+                            <?php $mitigant = $mitigants->getRdaA(); ?>
+                            <div class="col-md-2 col-sm-2 col-xs-2 chars-marker chars">
+                                <span class="blue2532Bold marker-sand" style="margin-bottom: 0px; ">
+                                    <img src="<?php echo SITE_ROOT; ?>/us/images/arrow_blue-dark.png" class="img-responsive complete-down"/>
+                                </span>
+                            </div>
+                            <div class='col-md-1 col-xs-2 retrofits-icon'><img src="<?php echo SITE_ROOT; ?>/us/images/report-icons/rda-a.png" class="img-responsive retrofits-img" /></div>
+                            <div class="col-md-3 col-sm-8 col-xs-8 retrofits-title"><h6>Deck Attach A</h6></div>
+                            <div class="col-md-6 hidden-xs hidden-sm retro-hr"><hr></div>
+                            <div class="clear"></div>
+                            <div class="col-md-5  col-md-offset-2 col-sm-8 col-sm-offset-2 col-xs-8 col-xs-offset-2 white2230Black recommendations chars-desc">
+                                FLASH Recommendations
+                            </div>
+                            <div class="col-md-3 hidden-xs hidden-sm white2230Black costs chars-desc">
+                                Costs
+                            </div>
+                            <div class="clear"></div>
+                            <div class="col-md-5 col-xs-10 col-xs-offset-2 chars-bumper slate2230 rec-desc">
+                                <strong><?php echo $mitigant->getLabel(); ?></strong><br />
+                                <?php 
+                                    echo '<p>' . $mitigant->getRecommendation() , '</p>';
+                                    if ($mitigant->getCostMsg() != '') {
+                                        echo "<p>" . $mitigant->getCostMsg() . "</p>";
+                                    }
+                                ?>
+                            </div>
+                            <div class="col-xs-8 col-xs-offset-2 hidden-md hidden-lg white2230Black costs chars-desc">
+                                Costs
+                            </div>
+                            <div class='col-md-4 col-xs-10 col-xs-offset-2 chars-bumper slate2230 rec-desc rec-desc-no-bumper'>
+                                <strong><?php echo $mitigant->getCostIndicator(); ?></strong>
+                            </div>
+                            <div class="col-md-8  col-md-offset-2 col-xs-8 col-xs-offset-2 white2230Black resources chars-desc">
+                                Resources
+                            </div>
+                            <div class="col-md-5 col-xs-10 col-xs-offset-2 chars-bumper slate2230 rec-resources">
+                                <?php echo ($mitigant->getResources() != '') ? '<a href="' . $mitigant->getResources() . '" target="_blank">' . $mitigant->getResFriendlyName() . '</a>' : 'No resources available'; ?>
+                            </div>
+                            <div class="clear"></div>
+                            
+                            <!-- RDA-B -->
+                            <?php $mitigant = $mitigants->getRdaB(); ?>
+                            <div class="col-md-2 col-sm-2 col-xs-2 chars-marker chars">
+                                <span class="blue2532Bold marker-sand" style="margin-bottom: 0px; ">
+                                    <img src="<?php echo SITE_ROOT; ?>/us/images/arrow_blue-dark.png" class="img-responsive complete-down"/>
+                                </span>
+                            </div>
+                            <div class='col-md-1 col-xs-2 retrofits-icon'><img src="<?php echo SITE_ROOT; ?>/us/images/report-icons/rda-b.png" class="img-responsive retrofits-img" /></div>
+                            <div class="col-md-3 col-sm-8 col-xs-8 retrofits-title"><h6>Deck Attach B</h6></div>
+                            <div class="col-md-6 hidden-xs hidden-sm retro-hr"><hr></div>
+                            <div class="clear"></div>
+                            <div class="col-md-5  col-md-offset-2 col-sm-8 col-sm-offset-2 col-xs-8 col-xs-offset-2 white2230Black recommendations chars-desc">
+                                FLASH Recommendations
+                            </div>
+                            <div class="col-md-3 hidden-xs hidden-sm white2230Black costs chars-desc">
+                                Costs
+                            </div>
+                            <div class="clear"></div>
+                            <div class="col-md-5 col-xs-10 col-xs-offset-2 chars-bumper slate2230 rec-desc">
+                                <strong><?php echo $mitigant->getLabel(); ?></strong><br />
+                                <?php 
+                                    echo '<p>' . $mitigant->getRecommendation() , '</p>';
+                                    if ($mitigant->getCostMsg() != '') {
+                                        echo "<p>" . $mitigant->getCostMsg() . "</p>";
+                                    }
+                                ?>
+                            </div>
+                            <div class="col-xs-8 col-xs-offset-2 hidden-md hidden-lg white2230Black costs chars-desc">
+                                Costs
+                            </div>
+                            <div class='col-md-4 col-xs-10 col-xs-offset-2 chars-bumper slate2230 rec-desc rec-desc-no-bumper'>
+                                <strong><?php echo $mitigant->getCostIndicator(); ?></strong>
+                            </div>
+                            <div class="col-md-8  col-md-offset-2 col-xs-8 col-xs-offset-2 white2230Black resources chars-desc">
+                                Resources
+                            </div>
+                            <div class="col-md-5 col-xs-10 col-xs-offset-2 chars-bumper slate2230 rec-resources">
+                                <?php echo ($mitigant->getResources() != '') ? '<a href="' . $mitigant->getResources() . '" target="_blank">' . $mitigant->getResFriendlyName() . '</a>' : 'No resources available'; ?>
+                            </div>
+                            <div class="clear"></div>
+                            
+                            <!-- Water Barrier-->
+                            <?php $mitigant = $mitigants->getWaterBarrier(); ?>
+                            <div class="col-md-2 col-sm-2 col-xs-2 chars-marker chars">
+                                <span class="blue2532Bold marker-sand" style="margin-bottom: 0px; ">
+                                    <img src="<?php echo SITE_ROOT; ?>/us/images/arrow_blue-dark.png" class="img-responsive complete-down"/>
+                                </span>
+                            </div>
+                            <div class='col-md-1 col-xs-2 retrofits-icon'><img src="<?php echo SITE_ROOT; ?>/us/images/report-icons/water-barrier.png" class="img-responsive retrofits-img" /></div>
+                            <div class="col-md-3 col-sm-8 col-xs-8 retrofits-title"><h6>Water Barrier</h6></div>
+                            <div class="col-md-6 hidden-xs hidden-sm retro-hr"><hr></div>
+                            <div class="clear"></div>
+                            <div class="col-md-5  col-md-offset-2 col-sm-8 col-sm-offset-2 col-xs-8 col-xs-offset-2 white2230Black recommendations chars-desc">
+                                FLASH Recommendations
+                            </div>
+                            <div class="col-md-3 hidden-xs hidden-sm white2230Black costs chars-desc">
+                                Costs
+                            </div>
+                            <div class="clear"></div>
+                            <div class="col-md-5 col-xs-10 col-xs-offset-2 chars-bumper slate2230 rec-desc">
+                                <strong><?php echo $mitigant->getLabel(); ?></strong><br />
+                                <?php 
+                                    echo '<p>' . $mitigant->getRecommendation() , '</p>';
+                                    if ($mitigant->getCostMsg() != '') {
+                                        echo "<p>" . $mitigant->getCostMsg() . "</p>";
+                                    }
+                                ?>
+                            </div>
+                            <div class="col-xs-8 col-xs-offset-2 hidden-md hidden-lg white2230Black costs chars-desc">
+                                Costs
+                            </div>
+                            <div class='col-md-4 col-xs-10 col-xs-offset-2 chars-bumper slate2230 rec-desc rec-desc-no-bumper'>
+                                <strong><?php echo $mitigant->getCostIndicator(); ?></strong>
+                            </div>
+                            <div class="col-md-8  col-md-offset-2 col-xs-8 col-xs-offset-2 white2230Black resources chars-desc">
+                                Resources
+                            </div>
+                            <div class="col-md-5 col-xs-10 col-xs-offset-2 chars-bumper slate2230 rec-resources">
+                                <?php echo ($mitigant->getResources() != '') ? '<a href="' . $mitigant->getResources() . '" target="_blank">' . $mitigant->getResFriendlyName() . '</a>' : 'No resources available'; ?>
+                            </div>
+                            <div class="clear"></div>
+                            
                         </div> <!--  ./ Report Details -->
 
 
@@ -287,18 +557,15 @@ require($root . '_includes/app_start.inc.php');
         <div class='clear'></div>
 
         <div class='bottom-nav'>
-            <div class="row ccSave">
-                    <div class="col-md-4 col-md-offset-1 col-sm-6 col-xs-10 col-xs-offset-2 bottom-text slate2025Black">
+            <div class="ccSave">
+                    <div class="col-xs-12 col-sm-8 bottom-text slate2025Black">
                         Want to take your report on the go?
                     </div>
-                    <div class='col-md-2 col-md-offset-0 col-sm-2 col-sm-offset-0 col-xs-10 col-xl-offset-1 ccButtons ccButton-first'>                    
-                        <a href="<?php echo HOME_LINK; ?>us/<?php echo $continue; ?>.php" class='mid-button-sand'><span class="blue2228Bold">Download</span></a>
+                    <div class='col-xs-10 col-xs-offset-1 col-sm-2 col-sm-offset-0 ccButtons ccButton-first'>                    
+                        <a href="<?php echo HOME_LINK .'us/print.php'; ?>" target="_blank" class='mid-button-sand'><span class="blue2228Bold">Download</span></a>
                     </div>
-                    <div class='col-md-2 col-md-offset-0 col-sm-2 col-sm-offset-0 col-xs-10 col-xl-offset-2 ccButtons ccButton-middle'>                    
-                        <a href="<?php echo HOME_LINK; ?>us/<?php echo $back; ?>.php" class='mid-button-sand'><span class="blue2228Bold">Print</span></a>
-                    </div>
-                    <div class='col-md-2 col-md-offset-0 col-sm-2 col-sm-offset-0 col-xs-10 col-xl-offset-1 ccButtons ccButton-last'>                    
-                        <a href="<?php echo HOME_LINK; ?>us/index.php" class='mid-button-sand'><span class="blue2228Bold">Share</span></a>
+                    <div class='col-xs-10 col-xs-offset-1 col-sm-2 col-sm-offset-0 ccButtons ccButton-middle'>                    
+                        <a href="<?php echo HOME_LINK .'us/print.php'; ?>" target="_blank"  class='mid-button-sand'><span class="blue2228Bold">Print</span></a>
                     </div>
             </div>
             
@@ -315,6 +582,39 @@ require($root . '_includes/app_start.inc.php');
                     $(document.getElementById('slider')).attr('src', src); 
                 }
             });
+            
+            $(window ).on({
+                'load': function() {
+                    var reportHeight = $(document.getElementById('reportWrapper')).height();
+                    var wrapperTop = $(document.getElementById('reportWrapper')).position().top;
+                    console.log("Report Wrapper Top Position = " + wrapperTop);
+                    console.log("Report Height = " + reportHeight);
+                    console.log('New CI height = ' + (wrapperTop + reportHeight));
+                    $(document.getElementById('ci')).height(reportHeight + wrapperTop);
+                }
+            });
+            
+            $("#cat1").click(function() {
+                 $("#hCat").attr("value", 1);
+                 $("#reportForm").submit(); 
+            });
+            $("#cat2").click(function() {
+                 $("#hCat").attr("value", 2);
+                 $("#reportForm").submit(); 
+            });
+            $("#cat3").click(function() {
+                 $("#hCat").attr("value", 3);
+                 $("#reportForm").submit(); 
+            });
+            $("#cat4").click(function() {
+                 $("#hCat").attr("value", 4);
+                 $("#reportForm").submit(); 
+            });
+            $("#cat5").click(function() {
+                 $("#hCat").attr("value", 5);
+                 $("#reportForm").submit(); 
+            });
+            
         </script>
     </body>
 </html>

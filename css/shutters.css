@@ -50,10 +50,18 @@
 
 /* Characteristics Screens Vertical Lines */
 /* Wall Types */
-.chars-border-middle-wt-1 {
+.chars-border-middle-wt-1,
+.chars-border-middle-wt-2,
+.chars-border-middle-wt-3,
+.chars-border-middle-wt-4,
+.chars-border-middle-wt-4a,
+.chars-border-middle-wt-5 {
     position: absolute;
     border: none;
     border-left: 3px solid var(--lightBlue);
+    border-left: 3px solid #6A95B5;
+}
+.chars-border-middle-wt-1 {
     height: 13%;
     margin-top: -49%;
 }
@@ -98,9 +106,6 @@
     }
 }
 .chars-border-middle-wt-2 {
-    position: absolute;
-    border: none;
-    border-left: 3px solid var(--lightBlue);
     height: 30.4%;
     margin-top: -5%;
 }
@@ -145,9 +150,6 @@
     }
 }
 .chars-border-middle-wt-3 {
-    position: absolute;
-    border: none;
-    border-left: 3px solid var(--lightBlue);
     height: 5.7%;
     margin-top: 73.5%;
 }
@@ -184,9 +186,6 @@
     }
 }
 .chars-border-middle-wt-4 {
-    position: absolute;
-    border: none;
-    border-left: 3px solid var(--lightBlue);
     height: 5.7%;
     margin-top: 170.5%;
 }
@@ -241,9 +240,6 @@
     }
 }
 .chars-border-middle-wt-4a {
-    position: absolute;
-    border: none;
-    border-left: 3px solid var(--lightBlue);
     height: 4.85%;
     margin-top: 268%;
 }
@@ -284,9 +280,6 @@
     }
 }
 .chars-border-middle-wt-5 {
-    position: absolute;
-    border: none;
-    border-left: 3px solid var(--lightBlue);
     height: 10%;
     margin-top: -23.25%;
 }

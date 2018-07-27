@@ -3,6 +3,7 @@
 
 body {
     background-color: var(--blue);
+    background-color: #004A80;
 }
 .video embed, .video object, .video iframe { 
                                             width: 100%;  
@@ -14,15 +15,20 @@ p {
 }
 a {
     color: var(--blue);
+    color: #004A80;
     -webkit-transition: all .2s ease-in-out;
     -moz-transition: all .2s ease-in-out;
     transition: all .2s ease-in-out;
 }
 a:hover, a:focus {
     color: var(--mustard);
+    color: #F3C93C;
     text-decoration: none;
 }
-
+a.disabled {
+    pointer-events: none;
+    background-color: #ccc;
+}
 /* page Headers */
 .header-container {
     position: absolute;
@@ -41,8 +47,10 @@ a:hover, a:focus {
 }
 .header-button {
     background-color: var(--sand);
+    background-color: #FCE8A4;
     border-radius: 25px;
     color: var(--blue);
+    color: #004A80;
     padding: 10px 30px;
     text-align: center;
     text-decoration: none;
@@ -54,6 +62,7 @@ a:hover, a:focus {
 
 .mid-content {
     background-color: var(--paleGreen);
+    background-color: #D3E4CC;
     padding: 40px 15% 140px;
     height: auto;
 }
@@ -64,6 +73,7 @@ a:hover, a:focus {
 }
 .login {
     background-color: var(--offWhite);
+    backround-color: #FEFEFE;
     margin-top: 150px;
     margin-bottom: 150px;
     padding: 40px 10% 140px;
@@ -91,6 +101,7 @@ a:hover, a:focus {
 .form-mustard {
     border: 0px;
     border-bottom: 2px solid var(--mustard);
+    border-bottom: 2px solid #F3C93C;
     border-radius: 0px;
     margin: 0px;
     padding: 0px;
@@ -101,6 +112,7 @@ a:hover, a:focus {
 .form-blue {
     border: 0px;
     border-bottom: 2px solid var(--blue);
+    border-bottom: 2px solid #004A80;
     border-radius: 0px;
     margin: 0px;
     padding: 0px;
@@ -111,6 +123,7 @@ a:hover, a:focus {
 .form-paleBlue {
     border: 0px;
     border-bottom: 2px solid var(--paleBlue);
+    border-bottom: 2px solid #BACEDD;
     border-radius: 0px;
     margin: 0px;
     padding: 0px;
@@ -158,9 +171,12 @@ a:hover, a:focus {
 }
 .mid-button-mustard {
     background-color: var(--mustard);
+    background-color: #F3C93C;
     border: solid 2px var(--transBlack2);
+    border: 2px solid rgba(0,0,0,0.3);
     border-radius: 30px;
     color: var(--blue);
+    color: #004A80;
     padding: 5px 20px;
     text-align: center;
     text-decoration: none;
@@ -171,9 +187,12 @@ a:hover, a:focus {
 }
 .mid-button-sand {
     background-color: var(--sand);
+    background-color: #FCE8A4;
     border: solid 2px var(--transBlack2);
+    border: solid 2px rgba(0,0,0,0.3);
     border-radius: 30px;
     color: var(--blue);
+    color: #004A80;
     padding: 5px 20px;
     text-align: center;
     text-decoration: none;
@@ -195,6 +214,7 @@ a:hover, a:focus {
 }
 .vertical-line {
     border-left: 2px solid var(--blue);
+    border-left: 2px solid #004A80;
     left: 50%;
     top: 0;
 }
@@ -208,6 +228,7 @@ a:hover, a:focus {
     z-index: 10;
     padding-bottom: 20px;
     color: var(--white);
+    color: #FFFFFF;
     text-align: center;
     text-shadow: none;
     width: 100%;
@@ -224,11 +245,13 @@ a:hover, a:focus {
 }
 .ccSave {
     background-color: var(--paleGreen);
+    background-color: #D3E4CC;
     padding: 80px 0;
     height: auto;
 }
 .questionairre {
     background-color: var(--white);
+    background-color: #FFFFFF;
     padding: 80px 25% 80px 25%;
     height: auto;
 }
@@ -263,11 +286,13 @@ a:hover, a:focus {
 
 .continue {
     background-color: var(--paleGreen);
+    background-color: #D3E4CC;
     padding: 60px 10% 110px 17%;
     height: auto;
 }
 .paleGreen {
     background-color: var(--paleGreen);
+    background-color: #D3E4CC;
 }
 label > input { /* HIDE RADIO */
     visibility: hidden; /* Makes input not-clickable */
@@ -287,7 +312,10 @@ label > input + img { /* IMAGE STYLES */
     top: 0;
     right: 0;
     left: 0;
-    position: fixed;
+    /* If you want a scrolling navbar, uncomment the next line */
+    /* position: fixed; */
+    /* If you want a non-scrolling navbar, uncomment the following line */
+    position: absolute;
     width: 100%;
     height: 65px;
     overflow-y: visible;
@@ -301,10 +329,12 @@ label > input + img { /* IMAGE STYLES */
 .navbar-brand  h3 { 
     margin: 0; 
     color: var(--white); 
+    color: #FFFFFF;
 }
 .navbar-toggle .icon-bar {
     height: 3px;
     background-color: var(--slate);
+    background-color: #1A2D3C;
 }
 
 .navbar-collapse.collapse {
@@ -316,7 +346,7 @@ label > input + img { /* IMAGE STYLES */
 }
 
 .navbar-nav.navbar-right:last-child {
-    margin-right: 15% !important;
+    /* margin-right: 15% !important; */
 }
 .navbar-right {
     float: right !important;
@@ -331,7 +361,8 @@ label > input + img { /* IMAGE STYLES */
 
 header {
     width: 100%;
-    background: var(--gray);
+    background-color: var(--gray);
+    background-color: #4A4A4A;
 }
 
 @media (min-width: 375px) {
@@ -453,7 +484,10 @@ header {
     opacity: .7;
     filter: alpha(opacity=70);
 }
-.carousel-indicators .active { background-color: var(--mustard); }
+.carousel-indicators .active { 
+    background-color: var(--mustard); 
+    background-color: #F3C93C;
+}
 .carousel-indicators { bottom: 40px; }
 
 /* Carousel Header Styles */
@@ -1067,6 +1101,7 @@ header {
 .border-bottom {
     border: none;
     border-bottom: 2px solid var(--lightBlue);
+    border-bottom: 2px solid #6A95B5;
     width: 10%;
 }
 @media screen and (min-width: 375px) {
@@ -1109,18 +1144,21 @@ header {
 .border-top {
     border: none;
     border-top: 2px solid var(--lightBlue);
+    border-top: 2px solid #6A95B5;
     width: 5%;
     margin-left: 2.5%;
 }
 .border-middle {
     border: none;
     border-left: 2px solid var(--lightBlue);
+    border-left: 2px solid #6A95B5;
     height: 125px;
     margin-left: 5%;
 }
 .border-middle-hide {
     border: none;
     border-left: 2px solid var(--paleGreen);
+    border-left: 2px solid #D3E4CC;
     height: 60px;
     margin-left: 5%;
     margin-top: -60px;
@@ -1128,6 +1166,7 @@ header {
 .border-middle-hide-all {
     border: none;
     border-left: 2px solid var(--paleGreen);
+    border-left: 2px solid #D3E4CC;
     height: 125px;
     margin-left: 5%;
     margin-top: -125px;
@@ -1171,12 +1210,14 @@ header {
 .border-middle-loc {
     border: none;
     border-left: 2px solid var(--lightBlue);
+    border-left: 2px solid #6A95B5;
     height: 125px;
     margin-left: 5%;
 }
 .border-middle-loc-hide-all {
     border: none;
     border-left: 2px solid var(--paleGreen);
+    border-left: 2px solid #D3E4CC;
     height: 125px;
     margin-left: 5%;
     margin-top: -125px;
@@ -1239,59 +1280,6 @@ header {
         margin-left: -1.5%
     }
 }
-/** LOC CENTER-LINE-FIX */
-.loc-centerline-fix {
-    margin-left: 0;
-    padding-left: 10px;
-}
-@media screen and (min-width: 375px) {
-    .loc-centerline-fix {
-        margin-left: 1.5%;
-    }
-}
-@media screen and (min-width: 480px) {
-    .loc-centerline-fix {
-        margin-left: 0;
-    }
-}
-@media screen and (min-width: 992px) {
-    .loc-centerline-fix {
-        margin-left: 1.5%;
-    }
-}
-@media screen and (min-width: 1400px) {
-    .loc-centerline-fix {
-        margin-left: 5%;
-    }
-}
-.loc-pull-up {
-    margin-top: auto;
-    margin-left: auto;
-}
-@media screen and (min-width: 375px) {
-    .loc-pull-up {
-        margin-top: -36%;
-        margin-left: 5%;
-    }
-}
-@media screen and (min-width: 600px) {
-    .loc-pull-up {
-        margin-top: -30%;
-        margin-left: 5%;
-    }
-}
-@media screen and (min-width: 769px) {
-    .loc-pull-up {
-        margin-top: -16%;
-        margin-left: 5%;
-    }
-}
-@media screen and (min-width: 769px) {
-    .loc-pull-up {
-        margin-top: auto;
-        margin-left: auto;
-    }
-}
 .loc-push-down {
     margin-top: auto;
     margin-left: auto;
@@ -1349,6 +1337,7 @@ header {
 
 .contact-success {
     color: var(--blue); 
+    color: #004A80;
     font-size: 22px; 
     line-height: 30px; 
     margin: 10px;
@@ -1356,6 +1345,7 @@ header {
 
 .contact-error {
     color: var(--red); 
+    color: #FF0000;
     font-size: 22px; 
     line-height: 30px; 
     margin: 10px;
@@ -1371,6 +1361,7 @@ select {
     border-radius: 5px;
     box-shadow: none;
     color: var(--gray);
+    color: #4A4A4A;
     display: block;
     font-size: 16px;
     font-weight: normal;
@@ -1387,6 +1378,7 @@ select {
 select,
 select option {
     color: var(--white);
+    color: #FFFFFF;
     background-color: rgba(0, 0, 0, 0.8);
 }
 
@@ -1402,6 +1394,7 @@ select option[value=""] {
 
 input[type="text"].cf-input {
     color: var(--white);
+    color: #FFFFFF;
 }
 .center {
     text-align: center; 
@@ -1449,11 +1442,16 @@ input[type="text"].cf-input {
 .login-header-text h2 { 
     font-size: 60px;
     color: var(--white);
+    color: #FFFFFF;
     text-transform: uppercase;
     display: inline-block;
     color: var(--white);
+    color: #FFFFFF;
 }
-.login-header-text h3 { color: var(--mustard); }
+.login-header-text h3 { 
+    color: var(--mustard); 
+    color: #F3C93C;
+}
 
 @media (max-width: 768px) { 
     .header-text { top: 20%; padding: 20px ;}
@@ -1490,14 +1488,17 @@ input[type="text"].cf-input {
 #backTop.red{
     background:url(../images/uparr-48-w.png) no-repeat center center rgba(218,37,29,0.8); 
     border:1px solid var(--white);
+    border: 1px solid #FFFFFF;
 }
 #backTop.green{
     background:url(../images/uparr-48-b.png) no-repeat center center rgba(81,217,187,0.9); 
     border:1px solid var(--white);
+    border: 1px solid #FFFFFF;
 }
 #backTop.orange{
     background:url(../images/uparr-48-w.png) no-repeat center center rgba(255, 127, 0, 0.8); 
     border:1px solid var(--white);
+    border: 1px solid #FFFFFF;
 }
 
 /* Contact form */
@@ -1511,6 +1512,7 @@ input[type="text"].cf-input {
     display: inline-block;
     outline: none;
     color: var(--white);
+    color: #FFFFFF;
     text-decoration: none;
     text-transform: uppercase;
     letter-spacing: 1px;
@@ -1522,8 +1524,10 @@ a.btn:focus{outline: 0;}
 
 .btn-1 {
     color: var(--white);
+    color: #FFFFFF;
     background-color: transparent;
     border: 5px solid var(--white);
+    border: 5px solid #FFFFFF;
     margin-right: 15px;
     min-width: 170px;
     line-height: 26px;
@@ -1531,10 +1535,13 @@ a.btn:focus{outline: 0;}
 .btn-1:hover {
     color: #000;
     background-color: var(--white);
-    border-color: var(--white);}
-
+    background-color: #FFFFFF;
+    border-color: var(--white);
+    border-color: #FFFFFF;
+}
 .btn-2 {
     background: var(--mustard);
+    background: #F3C93C;
     margin:10px 0 20px;
     padding: 10px 20px;
     font-size: 18px;
@@ -1543,11 +1550,13 @@ a.btn:focus{outline: 0;}
 }
 .btn-2:hover {
     color: var(--white);
+    color: #FFFFFF;
     background: #C54100;
 }
 
 .btn-admin {
     background: var(--mustard);
+    background: #F3C93C;
     margin:10px 0 10px;
     padding: 0px 5px;
     font-size: 18px;
@@ -1556,6 +1565,7 @@ a.btn:focus{outline: 0;}
 }
 .btn-admin:hover {
     color: var(--white);
+    color: #FFFFFF;
     background: #C54100;
 }
 
@@ -1572,3 +1582,4 @@ a.btn:focus{outline: 0;}
 .maps iframe{
     pointer-events: none;
 }
+

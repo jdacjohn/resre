@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "5b1b8a02accaa4a439cb0bb33d9d6e8d",
+    "content-hash": "39c1a4e62791f3f3fc5b8ed0b2b86727",
     "packages": [
         {
             "name": "bower-asset/inputmask",
@@ -313,16 +313,16 @@
         },
         {
             "name": "fyii/geocomplete",
-            "version": "1.0.0",
+            "version": "1.1.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/flaviovs/fyii-geocomplete.git",
-                "reference": "3e2b5179e87cf683118fa15c84376b6a2c98c220"
+                "reference": "6a4fcb0f287833bb033ed6b694bd89985ded8d5c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/flaviovs/fyii-geocomplete/zipball/3e2b5179e87cf683118fa15c84376b6a2c98c220",
-                "reference": "3e2b5179e87cf683118fa15c84376b6a2c98c220",
+                "url": "https://api.github.com/repos/flaviovs/fyii-geocomplete/zipball/6a4fcb0f287833bb033ed6b694bd89985ded8d5c",
+                "reference": "6a4fcb0f287833bb033ed6b694bd89985ded8d5c",
                 "shasum": ""
             },
             "require": {
@@ -341,12 +341,12 @@
             ],
             "authors": [
                 {
-                    "name": "Flavio Veloso",
+                    "name": "Flávio Veloso",
                     "email": "flaviovs@magnux.com"
                 }
             ],
             "description": "jQuery Geocomplete widget for Yii2",
-            "time": "2017-10-23T07:06:25+00:00"
+            "time": "2018-06-24T07:11:18+00:00"
         },
         {
             "name": "gregwar/cache",
@@ -479,17 +479,79 @@
             "time": "2016-04-05T07:49:50+00:00"
         },
         {
-            "name": "twbs/bootstrap",
-            "version": "v4.1.1",
+            "name": "tecnickcom/tcpdf",
+            "version": "6.2.17",
             "source": {
                 "type": "git",
-                "url": "https://github.com/twbs/bootstrap.git",
-                "reference": "779ad9f174ea5ab7e755f6df0ec9e5912d67dd16"
+                "url": "https://github.com/tecnickcom/TCPDF.git",
+                "reference": "64fc19439863e1b1314487a72a74d9bfd0b55a53"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/twbs/bootstrap/zipball/779ad9f174ea5ab7e755f6df0ec9e5912d67dd16",
-                "reference": "779ad9f174ea5ab7e755f6df0ec9e5912d67dd16",
+                "url": "https://api.github.com/repos/tecnickcom/TCPDF/zipball/64fc19439863e1b1314487a72a74d9bfd0b55a53",
+                "reference": "64fc19439863e1b1314487a72a74d9bfd0b55a53",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.0"
+            },
+            "type": "library",
+            "autoload": {
+                "classmap": [
+                    "config",
+                    "include",
+                    "tcpdf.php",
+                    "tcpdf_parser.php",
+                    "tcpdf_import.php",
+                    "tcpdf_barcodes_1d.php",
+                    "tcpdf_barcodes_2d.php",
+                    "include/tcpdf_colors.php",
+                    "include/tcpdf_filters.php",
+                    "include/tcpdf_font_data.php",
+                    "include/tcpdf_fonts.php",
+                    "include/tcpdf_images.php",
+                    "include/tcpdf_static.php",
+                    "include/barcodes/datamatrix.php",
+                    "include/barcodes/pdf417.php",
+                    "include/barcodes/qrcode.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "LGPL-3.0"
+            ],
+            "authors": [
+                {
+                    "name": "Nicola Asuni",
+                    "email": "info@tecnick.com",
+                    "role": "lead"
+                }
+            ],
+            "description": "TCPDF is a PHP class for generating PDF documents and barcodes.",
+            "homepage": "http://www.tcpdf.org/",
+            "keywords": [
+                "PDFD32000-2008",
+                "TCPDF",
+                "barcodes",
+                "datamatrix",
+                "pdf",
+                "pdf417",
+                "qrcode"
+            ],
+            "time": "2018-02-24T11:48:20+00:00"
+        },
+        {
+            "name": "twbs/bootstrap",
+            "version": "v4.1.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/twbs/bootstrap.git",
+                "reference": "1f46337a89ed21c94a7c37bc0c0e14a71fef7d97"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/twbs/bootstrap/zipball/1f46337a89ed21c94a7c37bc0c0e14a71fef7d97",
+                "reference": "1f46337a89ed21c94a7c37bc0c0e14a71fef7d97",
                 "shasum": ""
             },
             "replace": {
@@ -527,32 +589,32 @@
                 "sass",
                 "web"
             ],
-            "time": "2018-04-30T16:04:33+00:00"
+            "time": "2018-07-12T16:27:14+00:00"
         },
         {
             "name": "vlucas/phpdotenv",
-            "version": "v2.4.0",
+            "version": "v2.5.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/vlucas/phpdotenv.git",
-                "reference": "3cc116adbe4b11be5ec557bf1d24dc5e3a21d18c"
+                "reference": "6ae3e2e6494bb5e58c2decadafc3de7f1453f70a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/vlucas/phpdotenv/zipball/3cc116adbe4b11be5ec557bf1d24dc5e3a21d18c",
-                "reference": "3cc116adbe4b11be5ec557bf1d24dc5e3a21d18c",
+                "url": "https://api.github.com/repos/vlucas/phpdotenv/zipball/6ae3e2e6494bb5e58c2decadafc3de7f1453f70a",
+                "reference": "6ae3e2e6494bb5e58c2decadafc3de7f1453f70a",
                 "shasum": ""
             },
             "require": {
                 "php": ">=5.3.9"
             },
             "require-dev": {
-                "phpunit/phpunit": "^4.8 || ^5.0"
+                "phpunit/phpunit": "^4.8.35 || ^5.0"
             },
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "2.4-dev"
+                    "dev-master": "2.5-dev"
                 }
             },
             "autoload": {
@@ -562,7 +624,7 @@
             },
             "notification-url": "https://packagist.org/downloads/",
             "license": [
-                "BSD-3-Clause-Attribution"
+                "BSD-3-Clause"
             ],
             "authors": [
                 {
@@ -577,7 +639,7 @@
                 "env",
                 "environment"
             ],
-            "time": "2016-09-01T10:05:43+00:00"
+            "time": "2018-07-01T10:25:50+00:00"
         },
         {
             "name": "yiisoft/yii2",
@@ -681,16 +743,16 @@
         },
         {
             "name": "yiisoft/yii2-composer",
-            "version": "2.0.6",
+            "version": "2.0.7",
             "source": {
                 "type": "git",
                 "url": "https://github.com/yiisoft/yii2-composer.git",
-                "reference": "163419f1f197e02f015713b0d4f85598d8f8aa80"
+                "reference": "1439e78be1218c492e6cde251ed87d3f128b9534"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/yiisoft/yii2-composer/zipball/163419f1f197e02f015713b0d4f85598d8f8aa80",
-                "reference": "163419f1f197e02f015713b0d4f85598d8f8aa80",
+                "url": "https://api.github.com/repos/yiisoft/yii2-composer/zipball/1439e78be1218c492e6cde251ed87d3f128b9534",
+                "reference": "1439e78be1218c492e6cde251ed87d3f128b9534",
                 "shasum": ""
             },
             "require": {
@@ -731,7 +793,7 @@
                 "extension installer",
                 "yii2"
             ],
-            "time": "2018-03-21T16:15:55+00:00"
+            "time": "2018-07-05T15:44:47+00:00"
         }
     ],
     "packages-dev": [],

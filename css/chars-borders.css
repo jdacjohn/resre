@@ -10,12 +10,14 @@
 /** 320PX Wide - iPhone 5, iPod Touch */
 .chars-border-middle {
     border-left: 2px solid var(--lightBlue);
+    border-left: 2px solid #6A95B5;
     height: 14%;
     margin-left: 25.5%;
     margin-top: 0%;
 }
 .chars-border-middle-hide {
     border-left: 5px solid var(--paleGreen);
+    border-left: 5px solid #D3E4CC;
     height: 14%;
     margin-left: 25%;
     margin-top: -25%;
@@ -28,12 +30,14 @@
 @media screen and (min-width: 768px) {
     .chars-border-middle-hide {
         border-left: 3px solid var(--paleGreen);
+        border-left: 3px solid #D3E4CC;
         height: 60px;
         margin-top: 75px;
         margin-left: 5.25%;
     }
     .chars-border-middle {
         border-left: 3px solid var(--lightBlue);
+        border-left: 3px solid #6A95B5;
         height: 100px;
         margin-left: 14.75%;
     }
@@ -41,6 +45,7 @@
 @media screen and (min-width: 800px) {
     .chars-border-middle-hide {
         border-left: 2px solid var(--paleGreen);
+        border-left: 2px solid #D3E4CC;
         height: 60px;
         margin-top: 75px;
         margin-left: 5.25%;
@@ -113,6 +118,7 @@
     position: absolute;
     border: none;
     border-bottom: 3px solid var(--lightBlue);
+    border-bottom: 3px solid #6A95B5;
     width: 40px;
 }
 @media screen and (max-width: 767px) {
@@ -154,6 +160,7 @@
     .chars-border-middle-wt-4c, 
     .chars-border-middle-wt-5 {
         border-left: 4px solid var(--lightBlue);
+        border-left: 4px solid #6A95B5;
         margin-left: 12.75%;
     }
 }
@@ -161,6 +168,7 @@
     .chars-border-middle-wt-1,
     .chars-border-middle-wt-2 {
         border-left: 3px solid var(--lightBlue);
+        border-left: 3px solid #6A95B5;
         margin-left: 9.25%;
     }
     .chars-border-middle-wt-1 {

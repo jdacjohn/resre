@@ -1,6 +1,72 @@
 <?php
-$root = '../';
-require($root . '_includes/app_start.inc.php');
+    $root = '../';
+    require($root . '_includes/app_start.inc.php');
+    
+    $postFrom = isset($_POST['postFrom']) ? $_POST['postFrom'] : '';
+    $mitigants = new resre\ResReMitigators();
+    $home = new resre\ResReHome();
+    $response = 0;
+    $trigger = '';
+    // Get the mitgation set from the session if already created, else create one.
+    if (isset($_SESSION[SESSION_NAME]['mitigants'])) {
+        $mitigants = unserialize($_SESSION[SESSION_NAME]['mitigants']);
+    }
+    $selected =  $mitigants->getRoofToWall()->getMitKey();
+
+    printVarIfDebug($postFrom, getenv('gDebug'), "Posted From");
+
+    if ($postFrom == '__us-garagedoor__') {
+        // Save the shutter selection to the session
+        $mitigant = $mitigants->getGarageDoor();
+        $garageSel = isset($_POST['garageSelect']) ? $_POST['garageSelect'] : '';
+        printVarIfDebug($garageSel, getenv('gDebug'), "Garage Door Selection Hidden");
+        
+        switch ($garageSel) {
+            case 'gdsup':
+            case 'gdstd':
+            case 'gdwkd':
+                $mitigant->setCurVal($garageSel);
+                $mitigant->setMitKey($garageSel);
+                break;
+            case 'gdnod':
+            case 'gdno2':
+                $mitigant->setCurVal($garageSel);
+                $mitigant->setMitKey('');
+                break;
+            default:
+                if ($mitigants->getShutters()->getCurVal() == 'shtno') {
+                    $mitigant->setCurVal('gdwkd');
+                    $mitigant->setMitKey('gdwkd');    
+                } else {
+                    $mitigant->setCurVal('gdno2');
+                    $mitigant->setMitKey('');
+                }
+        }
+    } elseif ($postFrom == "__self__") {
+        // User is trying to upload an image
+        $userDir = $_SESSION[SESSION_NAME]['user']['userHash'];
+        $fileName = $_FILES['file']['name'];
+        printVarIfDebug($fileName, getenv('gDebug'), 'Name of File to Upload');
+        $location = $root . 'userImages/'. $userDir . '/roof-to-wall/';
+        printVarIfDebug($location, getenv('gDebug'), 'Name of Folder to Upload To');
+        if (!$userDir == '') {
+            $response = saveUserImage($fileName, $location, 'roof-to-wall');
+        } else {
+            $response = '<span style="color: #F00;">You must <a href="' . $root . 'us/index.php"><strong>log in</strong></a> to upload images.</span>';
+        }
+    } elseif ($postFrom == '__us-roofwall__') {
+        if (isset($_SESSION[SESSION_NAME]['home'])) {
+            $home = unserialize($_SESSION[SESSION_NAME]['home']);
+        }
+        $newID = saveState($mitigants, $home);
+        $trigger = 'dataSaved';
+    }
+
+    $_SESSION[SESSION_NAME]['mitigants'] = serialize($mitigants);
+    
+    printVarIfDebug($_SESSION, getenv('gDebug'), 'Session after POST');
+    printVarIfDebug($mitigants, getenv('gDebug'), 'ResReMitigators');
+    printVarIfDebug($selected, getenv('gDebug'), 'Value of PostBack selection:');
 ?>
 
 <!DOCTYPE html>
@@ -19,15 +85,16 @@ require($root . '_includes/app_start.inc.php');
         <link href="<?php echo $root; ?>css/chars-borders.css" rel='stylesheet' type='text/css' media="all" />
         <link href="<?php echo $root; ?>css/ccSave.css" rel='stylesheet' type='text/css' media="all" />
     </head>
-    <body style="background-color: var(--blue);">
+    <body class="bg-blue">
         <?php include_once($root . 'includes/nav-menu.php'); ?>
         <div class="characteristics container">
             <div class="characteristics-inner">
                 <div class="characteristics-wrapper container half_padding_left half_padding_right">
                     <div class="wt-content-wrapper left">
-                        <form method="post" name="garageForm" action="<?php echo HOME_LINK; ?>us/roof-deck-attach-A.php">
-                            <input type="hidden" name="postFrom" value="__usroofwall__" />
-                            <input type="hidden" name="imgFile" value="" />
+                        <form method="post" name="roofWallForm" id="roofWallForm" action="<?php echo HOME_LINK; ?>us/roof-deck-attach-A.php">
+                            <input type="hidden" name="postFrom" value="__us-roofwall__" />
+                            <input type="hidden" name="postBack" id="postBack" value="<?php echo $selected; ?>" />
+                            <input type="hidden" name="trigger" id="trigger" value="<?php echo $trigger; ?>" />
 
                             <div class="row">
                                 <div class="chars-border-middle-wt-1"></div>
@@ -112,20 +179,67 @@ require($root . '_includes/app_start.inc.php');
 
         <!-- Continue Cancel -->
         <div class="bottom-nav">
-            <?php 
-                $back = 'garage-door';
-                $continue = 'roof-deck-attach-A';
+            <?php
+                $formId = 'roofWallForm';
                 require($root . 'includes/ccSave.php'); 
             ?>
         </div>   <!-- / .containter -->
-
         <!-- Footer -->
-            <?php include($root . 'includes/site-footer.php'); ?>
+        <?php include($root . 'includes/site-footer.php'); ?>
+        <!-- Modals -->
+        <?php 
+            require($root . 'includes/modals/upload.php'); 
+            require($root . 'includes/modals/dataSave.php');
+        ?>
+
         <!-- Core JavaScript Files -->
         <?php require($root . 'includes/page-bottom-scripts.php'); ?>
 
         <!-- Image swap functions for selections -->
         <script>
+            $(window ).on({
+                'load': function() {
+                    var selection = $(document.getElementById('postBack')).attr('value');
+                    console.log("selection = " + selection);
+                    if (selection === 'tnail') {
+                        console.log('Toe-Nail Connectiions');
+                        $(document.getElementById('sel1')).click();
+                    }
+                    if (selection === 'straps') {
+                        console.log('Strap Connectors');
+                        $(document.getElementById('sel2')).click();
+                    }
+                    if (selection === 'clips') {
+                        console.log('Clip Connectors');
+                        $(document.getElementById('sel3')).click();
+                    }
+                    if (selection === 'other') {
+                        console.log('Other');
+                        $(document.getElementById('sel4')).click();
+                    }
+                    if (selection === 'unknown') {
+                        console.log('Unknown');
+                        $(document.getElementById('sel5')).click();
+                    }
+                    if (selection === '') {
+                        console.log('No selection yet.');
+                    }
+                    var trigger = $(document.getElementById('trigger')).attr('value');
+                    if (trigger === 'dataSaved') {
+                        $("#dataSavedModal").modal('toggle');
+                    }
+                }
+            });
+            
+            $("#moveBack").click(function() {
+                 $("#roofWallForm").attr("action", "<?php echo HOME_LINK; ?>us/garage-door.php");
+                 $("#roofWallForm").submit(); 
+            });
+            $("#saveBtn").click(function() {
+                 $("#roofWallForm").attr("action", "<?php echo HOME_LINK; ?>us/roof-wall.php");
+                 $("#roofWallForm").submit(); 
+            });
+            
             $('img').on({
                 'click': function() {
                     var sel1Src;

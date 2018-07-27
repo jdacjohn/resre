@@ -23,11 +23,12 @@ if ($resReEnv == 'dev') {
     define('SITE_ROOT', 'http://resre.jdac.ddns.net');
 } else {
     // Path where the .ENV file with all the good stuff resides
-    $envPath = '/home/<appOwner>/';
+    $envPath = '/nfs/c07/h06/mnt/102065/domains/resre.erikt.com/cgi-bin/';
     // URL for the domain - no trailing slash
-    define('SITE_ROOT', 'https://resilientresidence.com');
+    define('SITE_ROOT', 'http://resre.erikt.com');
 }
 require( $root . 'vendor/autoload.php');
+
 $dotenv = new Dotenv\Dotenv($envPath);
 $dotenv->load();
 
@@ -35,7 +36,7 @@ $dotenv->load();
 if ($resReEnv == 'dev') {
     define('WEB_ROOT','/source/web/resilientResidence/resre');
 } else {
-    define('WEB_ROOT', '/home/<siteOwner>/public_html');
+    define('WEB_ROOT', '/nfs/c07/h06/mnt/102065/domains/resre.erikt.com/html');
 }
 // File system path for the project dir. No trailing slash
 define('PROJECT_DIR','');
@@ -48,7 +49,7 @@ define('PROJECT_URL', '');
 if ($resReEnv == 'dev') {
     define('HOME_LINK','http://resre.jdac.ddns.net/');
 } else {
-    define('HOME_LINK', 'https://resilientresidence.com/');
+    define('HOME_LINK', 'https://resre.erikt.com/');
 }
 // Full path to folder that will hold uploaded media. Must be writable by the server user account. Should be outside web root if possible (no trailing slash)
 // define('UPLOAD_DIR',WEB_ROOT.PROJECT_DIR.'/_uploads');
@@ -67,7 +68,7 @@ define('EMAIL_ADMIN','john@jdacsolutions.com');
 if ($resReEnv == 'dev') {
     define('EMAIL_CONTACT', 'john@jdacsolutions.com');
 } else {
-    define('EMAIL_CONTACT', 'hello@resilientresidence.com');
+    define('EMAIL_CONTACT', 'info@resilientresidence.com');
 }
 // E-mail header separator. Usually CRLF (\r\n), but some poor quality Unix mail transfer agents replace LF by CRLF automatically (which leads to doubling CR if CRLF is used). 
 // If messages are not received, try using a LF (\n) only. 
@@ -89,10 +90,11 @@ define('GOOGLE_MAPS_APIKEY', 'AIzaSyAFI9w0_CPPVjqorJ_c7Vv46PsXW32y7CE');
 // Application-specific constants used in the estimation and carrier selection processes
 // Used for image upload manipulations
 const LOGO_WIDTH = array(200, 400, 600);
-const LOGO_HEIGHT = array(108, 215,323);
+const LOGO_HEIGHT = array(108, 215,400);
 define('LOGO_THUMBNAIL', 0);
 define('LOGO_MED', 1);
 define('LOGO_LG', 2);
+const VALID_IMG_TYPES = array("jpg","png","jpeg");
 
 // State names and abbreviations used in Lists
 const STATES = array(

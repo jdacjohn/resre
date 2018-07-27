@@ -1,6 +1,58 @@
 <?php
-$root = '../';
-require($root . '_includes/app_start.inc.php');
+    $root = '../';
+    require($root . '_includes/app_start.inc.php');
+    
+    $postFrom = isset($_POST['postFrom']) ? $_POST['postFrom'] : '';
+    $mitigants = new resre\ResReMitigators();
+    $home = new resre\ResReHome();
+    $response = 0;
+    $trigger = '';
+    // Get the mitgation set from the session if already created, else create one.
+    if (isset($_SESSION[SESSION_NAME]['mitigants'])) {
+        $mitigants = unserialize($_SESSION[SESSION_NAME]['mitigants']);
+    }
+    $selected =  $mitigants->getRoofShape()->getMitKey();
+    
+    printVarIfDebug($postFrom, getenv('gDebug'), "Posted From");
+
+    if ($postFrom == '__us-shutters__') {
+        $mitigant = $mitigants->getShutters();
+        $shutterType = isset($_POST['__chars-shutters__']) ? $_POST['__chars-shutters__'] : '';
+        switch ($shutterType) {
+            case 'shtyshr':
+            case 'shtysnr':
+                $mitigant->setCurVal('shtys');
+                $mitigant->setMitKey($shutterType);
+                break;
+            case 'shtno':
+                $mitigant->setCurVal($shutterType);
+                $mitigant->setMitKey($shutterType);
+        }
+    } elseif ($postFrom == "__self__") {
+        // User is trying to upload an image
+        $userDir = $_SESSION[SESSION_NAME]['user']['userHash'];
+        $fileName = $_FILES['file']['name'];
+        printVarIfDebug($fileName, getenv('gDebug'), 'Name of File to Upload');
+        $location = $root . 'userImages/'. $userDir . '/roof-shape/';
+        printVarIfDebug($location, getenv('gDebug'), 'Name of Folder to Upload To');
+        if (!$userDir == '') {
+            $response = saveUserImage($fileName, $location, 'roof-shape');
+        } else {
+            $response = '<span style="color: #F00;">You must <a href="' . $root . 'us/index.php"><strong>log in</strong></a> to upload images.</span>';
+        }
+    } elseif ($postFrom == '__us-roofshape__') {
+        if (isset($_SESSION[SESSION_NAME]['home'])) {
+            $home = unserialize($_SESSION[SESSION_NAME]['home']);
+        }
+        $newID = saveState($mitigants, $home);
+        $trigger = 'dataSaved';
+    }
+
+    $_SESSION[SESSION_NAME]['mitigants'] = serialize($mitigants);
+
+    printVarIfDebug($_SESSION, getenv('gDebug'), 'Session after POST');
+    printVarIfDebug($mitigants, getenv('gDebug'), 'ResReMitigators');
+    printVarIfDebug($selected, getenv('gDebug'), 'Value of PostBack selection:');
 ?>
 
 <!DOCTYPE html>
@@ -19,15 +71,16 @@ require($root . '_includes/app_start.inc.php');
         <link href="<?php echo $root; ?>css/chars-borders.css" rel='stylesheet' type='text/css' media="all" />
         <link href="<?php echo $root; ?>css/ccSave.css" rel='stylesheet' type='text/css' media="all" />
     </head>
-    <body style="background-color: var(--blue);">
+    <body class="bg-blue">
         <?php include_once($root . 'includes/nav-menu.php'); ?>
         <div class="characteristics container">
             <div class="characteristics-inner">
                 <div class="characteristics-wrapper container half_padding_left half_padding_right">
                     <div class="wt-content-wrapper left">
-                        <form method="post" name="roofForm" action="<?php echo HOME_LINK; ?>us/garage-door.php">
-                            <input type="hidden" name="postFrom" value="__usroofshape__" />
-                            <input type="hidden" name="imgFile" value="" />
+                        <form method="post" name="roofForm" id="roofForm" action="<?php echo HOME_LINK; ?>us/garage-door.php">
+                            <input type="hidden" name="postFrom" value="__us-roofshape__" />
+                            <input type="hidden" name="postBack" id="postBack" value="<?php echo $selected; ?>" />
+                            <input type="hidden" name="trigger" id="trigger" value="<?php echo $trigger; ?>" />
 
                             <div class="row">
                                 <div class="chars-border-middle-wt-1"></div>
@@ -82,7 +135,7 @@ require($root . '_includes/app_start.inc.php');
                                 </div>
                                 <div class="col-md-3 col-sm-3 col-xs-10 chars-header-x3 chars-bumper">
                                     <label class="select-button">
-                                        <input type="radio" name="__chars-roof__" value="rship" />
+                                        <input type="radio" name="__chars-roof__" value="rsOther" />
                                         <img id="sel4" src="<?php echo SITE_ROOT; ?>/us/images/other-off.png" class="img-responsive chars-select-x3">
                                     </label>
                                     <div id="sel4_cb" class="col-xs-6 chars-checkbox-x3 fix-left" style="display: none"><img src="<?php echo SITE_ROOT; ?>/us/images/checkmark_blue-dark.png" class="img-responsive check-select"/></div>
@@ -92,7 +145,7 @@ require($root . '_includes/app_start.inc.php');
                                 </div>
                                 <div class="col-md-3 col-sm-3 col-xs-10 chars-header-x3">
                                     <label class="select-button">
-                                        <input type="radio" name="__chars-roof__" value="rship" />
+                                        <input type="radio" name="__chars-roof__" value="rsUnknown" />
                                         <img id="sel5" src="<?php echo SITE_ROOT; ?>/us/images/unknown-off.png" class="img-responsive chars-select-x3">
                                     </label>
                                     <div id="sel5_cb" class="col-xs-6 chars-checkbox-x3 fix-left" style="display: none"><img src="<?php echo SITE_ROOT; ?>/us/images/checkmark_blue-dark.png" class="img-responsive check-select"/></div>
@@ -113,20 +166,68 @@ require($root . '_includes/app_start.inc.php');
 
         <!-- Continue Cancel -->
         <div class="bottom-nav">
-            <?php 
-                $back = 'shutters';
-                $continue = 'garage-door';
+            <?php
+                $formId = 'roofForm';
                 require($root . 'includes/ccSave.php'); 
             ?>
         </div>   <!-- / .containter -->
 
         <!-- Footer -->
         <?php include($root . 'includes/site-footer.php'); ?>
+        <!-- Modals -->
+        <?php
+            require($root . 'includes/modals/upload.php');
+            require($root . 'includes/modals/dataSave.php');
+        ?>
+
         <!-- Core JavaScript Files -->
         <?php require($root . 'includes/page-bottom-scripts.php'); ?>
 
         <!-- Image swap functions for selections -->
         <script>
+            $(window ).on({
+                'load': function() {
+                    var selection = $(document.getElementById('postBack')).attr('value');
+                    console.log("selection = " + selection);
+                    if (selection === 'rsgab') {
+                        console.log('Gable Roof');
+                        $(document.getElementById('sel1')).click();
+                    }
+                    if (selection === 'rship') {
+                        console.log('Hipped Roof');
+                        $(document.getElementById('sel2')).click();
+                    }
+                    if (selection === 'rsgabcmb') {
+                        console.log('Combination Hip and Gable');
+                        $(document.getElementById('sel3')).click();
+                    }
+                    if (selection === 'other') {
+                        console.log('Other Roof Shape');
+                        $(document.getElementById('sel4')).click();
+                    }
+                    if (selection === 'unknown') {
+                        console.log('Unknown Roof Shape');
+                        $(document.getElementById('sel5')).click();
+                    }
+                    if (selection === '') {
+                        console.log('No selection yet.');
+                    }
+                    var trigger = $(document.getElementById('trigger')).attr('value');
+                    if (trigger === 'dataSaved') {
+                        $("#dataSavedModal").modal('toggle');
+                    }
+                }
+            });
+
+            $("#moveBack").click(function() {
+                 $("#roofForm").attr("action", "<?php echo HOME_LINK; ?>us/shutters.php");
+                 $("#roofForm").submit(); 
+            });
+            $("#saveBtn").click(function() {
+                $("#roofForm").attr("action", "<?php echo HOME_LINK; ?>us/roof-shape.php");
+                $("#roofForm").submit();
+            });
+
             $('img').on({
                 'click': function() {
                     var sel1ImageSrc;

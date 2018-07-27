@@ -1,6 +1,70 @@
 <?php
-$root = '../';
-require($root . '_includes/app_start.inc.php');
+    $root = '../';
+    require($root . '_includes/app_start.inc.php');
+    
+    $postFrom = isset($_POST['postFrom']) ? $_POST['postFrom'] : '';
+    $mitigants = new resre\ResReMitigators();
+    $home = new resre\ResReHome();
+    $response = 0;
+    $trigger = '';
+    // Get the mitgation set from the session if already created, else create one.
+    if (isset($_SESSION[SESSION_NAME]['mitigants'])) {
+        $mitigants = unserialize($_SESSION[SESSION_NAME]['mitigants']);
+    }
+    $selected =  $mitigants->getGarageDoor()->getCurVal();
+
+    printVarIfDebug($postFrom, getenv('gDebug'), "Posted From");
+    
+    if ($postFrom == '__us-roofshape__') {
+        // Save the shutter selection to the session
+        $roof = isset($_POST['__chars-roof__']) ? $_POST['__chars-roof__'] : '';
+        $mitigant = $mitigants->getRoofShape();
+        switch ($roof) {
+            case 'rsgab':
+            case 'rship':
+                $mitigant->setCurVal($roof);
+                $mitigant->setMitKey($roof);
+                break;
+            case 'rscombo':
+                $mitigant->setCurVal('rsgab');
+                $mitigant->setMitKey('rsgabcmb');
+                break;
+            case 'rsOther':
+                $mitigant->setCurVal('rsgab');
+                $mitigant->setMitKey('other');
+                break;
+            case 'rsUnknown':
+                $mitigant->setCurVal('rsgab');
+                $mitigant->setMitKey('unknown');
+                break;
+        }
+    } elseif ($postFrom == "__self__") {
+        // User is trying to upload an image
+        $userDir = $_SESSION[SESSION_NAME]['user']['userHash'];
+        $fileName = $_FILES['file']['name'];
+        printVarIfDebug($fileName, getenv('gDebug'), 'Name of File to Upload');
+        $location = $root . 'userImages/'. $userDir . '/garage/';
+        printVarIfDebug($location, getenv('gDebug'), 'Name of Folder to Upload To');
+        if (!$userDir == '') {
+            $response = saveUserImage($fileName, $location, 'garage');
+        } else {
+            $response = '<span style="color: #F00;">You must <a href="' . $root . 'us/index.php"><strong>log in</strong></a> to upload images.</span>';
+        }
+    } elseif ($postFrom == '__us-garagedoor__') {
+        if (isset($_SESSION[SESSION_NAME]['home'])) {
+            $home = unserialize($_SESSION[SESSION_NAME]['home']);
+        }
+        $newID = saveState($mitigants, $home);
+        $trigger = 'dataSaved';
+    }
+
+    $_SESSION[SESSION_NAME]['mitigants'] = serialize($mitigants);
+    
+    printVarIfDebug($_SESSION, getenv('gDebug'), 'Session after POST');
+    printVarIfDebug($mitigants, getenv('gDebug'), 'ResReMitigators');
+    printVarIfDebug($selected, getenv('gDebug'), 'Value of PostBack selection:');
+    printVarIfDebug($response, getenv('gDebug'), 'Upload Response');
+    
 ?>
 
 <!DOCTYPE html>
@@ -20,15 +84,17 @@ require($root . '_includes/app_start.inc.php');
         <link href="<?php echo $root; ?>css/ccSave.css" rel='stylesheet' type='text/css' media="all" />
     </head>
     </head>
-    <body style="background-color: var(--blue);">
+    <body class="bg-blue">
         <?php include_once($root . 'includes/nav-menu.php'); ?>
         <div class="characteristics container">
             <div class="characteristics-inner">
                 <div class="characteristics-wrapper container half_padding_left half_padding_right">
                     <div class="wt-content-wrapper left">
-                        <form method="post" name="garageForm" action="<?php echo HOME_LINK; ?>us/roof-wall.php">
-                            <input type="hidden" name="postFrom" value="__usgaragedoor__" />
-                            <input type="hidden" name="imgFile" value="" />
+                        <form method="post" name="garageForm" id="garageForm" action="<?php echo HOME_LINK; ?>us/roof-wall.php">
+                            <input type="hidden" name="postFrom" value="__us-garagedoor__" />
+                            <input type="hidden" name="postBack" id="postBack" value="<?php echo $selected; ?>" />
+                            <input type="hidden" name="garageSelect" id="garageSelect" value ="<?php echo $selected; ?>" />
+                            <input type="hidden" name="trigger" id="trigger" value="<?php echo $trigger; ?>" />
 
                             <div class="row">
                                 <div class="chars-border-middle-wt-1"></div>
@@ -48,49 +114,80 @@ require($root . '_includes/app_start.inc.php');
                                 <div class="chars-border-middle-wt-3"></div>
                                 <div class="chars-border-middle-wt-4"></div>
                                 <div class="chars-border-middle-wt-4a"></div>
+
                                 <!-- RADIOS -->
-                                <div class="col-md-3 col-sm-3 col-xs-10 chars-header chars-bumper">
-                                    <label class="select-button">
-                                        <input type="radio" name="__chars-gdoor__" value="impact" />
-                                        <img id="gdr1" src="<?php echo SITE_ROOT; ?>/us/images/garage-impact-off.png" class="img-responsive chars-select">
-                                    </label>
-                                    <div id="gdr1_cb" class="col-xs-6 chars-checkbox fix-left" style="display: none"><img src="<?php echo SITE_ROOT; ?>/us/images/checkmark_blue-dark.png" class="img-responsive check-select"/></div>
-                                    <div class="chars-header chars-label chars-buffer white2025Bold">
-                                        Impact
+                                <?php if ($mitigants->getShutters()->getCurVal() == 'shtys') { ?>
+                                    <!-- Only show the impact and no garage door options -->
+                                    <!-- Impact Rated Door (gdsup) -->
+                                    <div class="col-md-3 col-sm-3 col-xs-10 chars-header chars-bumper">
+                                        <label class="select-button">
+                                            <input type="radio" name="__chars-gdoor__" value="gdsup" />
+                                            <img id="gdr1" src="<?php echo SITE_ROOT; ?>/us/images/garage-impact-off.png" class="img-responsive chars-select">
+                                        </label>
+                                        <div id="gdr1_cb" class="col-xs-6 chars-checkbox fix-left" style="display: none"><img src="<?php echo SITE_ROOT; ?>/us/images/checkmark_blue-dark.png" class="img-responsive check-select"/></div>
+                                        <div class="chars-header chars-label chars-buffer white2025Bold">
+                                            Impact Resistant
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="col-md-3 col-sm-3 col-xs-10 chars-header">
-                                    <label class="select-button">
-                                        <input type="radio" name="__chars-gdoor__" value="wind" />
-                                        <img id="gdr2" src="<?php echo SITE_ROOT; ?>/us/images/garage-wind-off.png" class="img-responsive chars-select">
-                                    </label>
-                                    <div id="gdr2_cb" class="col-xs-6 chars-checkbox fix-left" style="display: none"><img src="<?php echo SITE_ROOT; ?>/us/images/checkmark_blue-dark.png" class="img-responsive check-select"/></div>
-                                    <div class="chars-header chars-label chars-buffer white2025Bold">
-                                        Wind
+
+                                    <!-- No Garage Door (gdno2) -->
+                                    <div class="col-md-3 col-sm-3 col-xs-10 chars-header">
+                                        <label class="select-button">
+                                            <input type="radio" name="__chars-gdoor__" id="gdr4_rb" value="gdno2" />
+                                            <img id="gdr4" src="<?php echo SITE_ROOT; ?>/us/images/no-garage-door-off.png" class="img-responsive chars-select">
+                                        </label>
+                                        <div id="gdr4_cb" class="col-xs-6 chars-checkbox fix-left" style="display: none"><img src="<?php echo SITE_ROOT; ?>/us/images/checkmark_blue-dark.png" class="img-responsive check-select"/></div>
+                                        <div class="chars-header chars-label white2025Bold">
+                                            None
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="clear hidden-xs"></div>
-                                <div class="col-md-3 col-sm-3 col-xs-10 chars-header chars-bumper">
-                                    <label class="select-button">
-                                        <input type="radio" name="__chars-gdoor__" value="standard" />
-                                        <img id="gdr3" src="<?php echo SITE_ROOT; ?>/us/images/garage-standard-off.png" class="img-responsive chars-select">
-                                    </label>
-                                    <div id="gdr3_cb" class="col-xs-6 chars-checkbox fix-left" style="display: none"><img src="<?php echo SITE_ROOT; ?>/us/images/checkmark_blue-dark.png" class="img-responsive check-select"/></div>
-                                    <div class="chars-header chars-label chars-buffer white2025Bold">
-                                        Standard
+                                    
+                                <?php } else { ?>
+                                    
+                                    <!-- Only show Standard, Weak, and No Garage Door option for No Shutters selection -->
+                                    <!-- Wind Resistant Door (gdstd) -->
+                                    <div class="col-md-3 col-sm-3 col-xs-10 chars-header chars-bumper">
+                                        <label class="select-button">
+                                            <input type="radio" name="__chars-gdoor__" value="gdstd" />
+                                            <img id="gdr2" src="<?php echo SITE_ROOT; ?>/us/images/garage-wind-off.png" class="img-responsive chars-select">
+                                        </label>
+                                        <div id="gdr2_cb" class="col-xs-6 chars-checkbox fix-left" style="display: none"><img src="<?php echo SITE_ROOT; ?>/us/images/checkmark_blue-dark.png" class="img-responsive check-select"/></div>
+                                        <div class="chars-header chars-label chars-buffer white2025Bold">
+                                            Wind Resistant
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="col-md-3 col-sm-3 col-xs-10 chars-header">
-                                    <label class="select-button">
-                                        <input type="radio" name="__chars-gdoor__" value="unknown" />
-                                        <img id="gdr4" src="<?php echo SITE_ROOT; ?>/us/images/unknown-off.png" class="img-responsive chars-select">
-                                    </label>
-                                    <div id="gdr4_cb" class="col-xs-6 chars-checkbox fix-left" style="display: none"><img src="<?php echo SITE_ROOT; ?>/us/images/checkmark_blue-dark.png" class="img-responsive check-select"/></div>
-                                    <div class="chars-header chars-label white2025Bold">
-                                        Unknown
+                                    
+                                    <!-- Standard Garage Door (gdwdk) -->
+                                    <div class="col-md-3 col-sm-3 col-xs-10 chars-header">
+                                        <label class="select-button">
+                                            <input type="radio" name="__chars-gdoor__" value="gdwkd" />
+                                            <img id="gdr3" src="<?php echo SITE_ROOT; ?>/us/images/garage-standard-off.png" class="img-responsive chars-select">
+                                        </label>
+                                        <div id="gdr3_cb" class="col-xs-6 chars-checkbox fix-left" style="display: none"><img src="<?php echo SITE_ROOT; ?>/us/images/checkmark_blue-dark.png" class="img-responsive check-select"/></div>
+                                        <div class="chars-header chars-label chars-buffer white2025Bold">
+                                            Standard Door
+                                        </div>
                                     </div>
-                                </div>
+                                    <div class="clear hidden-xs"></div>
+
+                                    <!-- No Garage Door (gdnod) -->
+                                    <div class="col-md-3 col-sm-3 col-xs-10 chars-header chars-bumper">
+                                        <label class="select-button">
+                                            <input type="radio" name="__chars-gdoor__" id="gdr4_rb" value="gdnod" />
+                                            <img id="gdr4" src="<?php echo SITE_ROOT; ?>/us/images/no-garage-door-off.png" class="img-responsive chars-select">
+                                        </label>
+                                        <div id="gdr4_cb" class="col-xs-6 chars-checkbox fix-left" style="display: none"><img src="<?php echo SITE_ROOT; ?>/us/images/checkmark_blue-dark.png" class="img-responsive check-select"/></div>
+                                        <div class="chars-header chars-label white2025Bold">
+                                            None
+                                        </div>
+                                    </div>
+
+                                <?php } ?>
                             </div>
+                            
+                            <!-- Hack to clear radio button selection -->
+                            <div style="display: none"><input type="radio" name="__chars-gdoor__" id="default" value="" /></div>
+                            
                             <div class="row no-padding-bottom no-padding-top">
                                 <div class="chars-border-middle-wt-5"></div>
                             </div>
@@ -104,20 +201,65 @@ require($root . '_includes/app_start.inc.php');
 
         <!-- Continue Cancel -->
         <div class="bottom-nav">
-            <?php 
-                $back = 'roof-shape';
-                $continue = 'roof-wall';
+            <?php
+                $formId = 'garageForm';
                 require($root . 'includes/ccSave.php'); 
             ?>
         </div>   <!-- / .containter -->
-
         <!-- Footer -->
         <?php include($root . 'includes/site-footer.php'); ?>
+        <!-- Modals -->
+        <?php
+            require($root . 'includes/modals/upload.php');
+            require($root . 'includes/modals/dataSave.php');
+        ?>
+
         <!-- Core JavaScript Files -->
         <?php require($root . 'includes/page-bottom-scripts.php'); ?>
 
         <!-- Image swap functions for selections -->
         <script>
+            $(window ).on({
+                'load': function() {
+                    var selection = $(document.getElementById('postBack')).attr('value');
+                    console.log("selection = " + selection);
+                    if (selection === 'gdsup') {
+                        console.log('Impact Resistant Garage Door');
+                        $(document.getElementById('gdr1')).click();
+                    }
+                    if (selection === 'gdstd') {
+                        console.log('Wind Resistant Garage Door');
+                        $(document.getElementById('gdr2')).click();
+                    }
+                    if (selection === 'gdwkd') {
+                        console.log('Standard Garage Door');
+                        $(document.getElementById('gdr3')).click();
+                    }
+                    if (selection === 'gdunk' || selection === 'gdno2' || selection === 'gdnod') {
+                        console.log('Unknown');
+                        $(document.getElementById('gdr4')).click();
+                    }
+                    if (selection === '') {
+                        console.log('No selection yet.');
+                    }
+                    var trigger = $(document.getElementById('trigger')).attr('value');
+                    if (trigger === 'dataSaved') {
+                        $("#dataSavedModal").modal('toggle');
+                    }
+                }
+            });
+
+            $("#moveBack").click(function() {
+                 $("#garageForm").attr("action", "<?php echo HOME_LINK; ?>us/roof-shape.php");
+                 $("#garageForm").submit(); 
+            });
+            $("#saveBtn").click(function() {
+                 $("#garageForm").attr("action", "<?php echo HOME_LINK; ?>us/garage-door.php");
+                 $("#garageForm").submit(); 
+            });
+            
+            
+            
             $('img').on({
                 'click': function() {
                     var impactImageSrc;
@@ -134,7 +276,7 @@ require($root . '_includes/app_start.inc.php');
                             $(document.getElementById('gdr1_cb')).show();
                             windImageSrc = '<?php echo SITE_ROOT; ?>/us/images/garage-wind-off.png';
                             standardImageSrc = '<?php echo SITE_ROOT; ?>/us/images/garage-standard-off.png';
-                            unknownImageSrc = '<?php echo SITE_ROOT; ?>/us/images/unknown-off.png';
+                            unknownImageSrc = '<?php echo SITE_ROOT; ?>/us/images/no-garage-door-off.png';
                             $(this).attr('src',impactImageSrc);
                             $(otherElement1).attr('src',windImageSrc);
                             $(otherElement2).attr('src',standardImageSrc);
@@ -142,10 +284,12 @@ require($root . '_includes/app_start.inc.php');
                             $(document.getElementById('gdr2_cb')).hide();
                             $(document.getElementById('gdr3_cb')).hide();
                             $(document.getElementById('gdr4_cb')).hide();
+                            $(document.getElementById('garageSelect')).attr('value', 'gdsup');
                         } else {
                             impactImageSrc = '<?php echo SITE_ROOT; ?>/us/images/garage-impact-off.png';
                             $(this).attr('src', impactImageSrc);
                             $(document.getElementById('gdr1_cb')).hide();
+                            $(document.getElementById('garageSelect')).attr('value', '');
                         }
                     } else if ($(this).attr('id') === 'gdr2') {
                         var src = $(this).attr('src');
@@ -156,7 +300,7 @@ require($root . '_includes/app_start.inc.php');
                             windImageSrc = '<?php echo SITE_ROOT; ?>/us/images/garage-wind-on.png';
                             impactImageSrc = '<?php echo SITE_ROOT; ?>/us/images/garage-impact-off.png';
                             standardImageSrc = '<?php echo SITE_ROOT; ?>/us/images/garage-standard-off.png';
-                            unknownImageSrc = '<?php echo SITE_ROOT; ?>/us/images/unknown-off.png';
+                            unknownImageSrc = '<?php echo SITE_ROOT; ?>/us/images/no-garage-door-off.png';
                             $(this).attr('src',windImageSrc);
                             $(document.getElementById('gdr2_cb')).show();
                             $(otherElement1).attr('src', impactImageSrc);
@@ -165,10 +309,12 @@ require($root . '_includes/app_start.inc.php');
                             $(document.getElementById('gdr3_cb')).hide();
                             $(otherElement3).attr('src', unknownImageSrc);
                             $(document.getElementById('gdr4_cb')).hide();
+                            $(document.getElementById('garageSelect')).attr('value', 'gdstd');
                         } else {
                             windImageSrc = '<?php echo SITE_ROOT; ?>/us/images/garage-wind-off.png';
                             $(this).attr('src', windImageSrc);
                             $(document.getElementById('gdr2_cb')).hide();
+                            $(document.getElementById('garageSelect')).attr('value', '');
                         }
                     } else if ($(this).attr('id') === 'gdr3') {
                         var src = $(this).attr('src');
@@ -179,7 +325,7 @@ require($root . '_includes/app_start.inc.php');
                             standardImageSrc = '<?php echo SITE_ROOT; ?>/us/images/garage-standard-on.png';
                             impactImageSrc = '<?php echo SITE_ROOT; ?>/us/images/garage-impact-off.png';
                             windImageSrc = '<?php echo SITE_ROOT; ?>/us/images/garage-wind-off.png';
-                            unknownImageSrc = '<?php echo SITE_ROOT; ?>/us/images/unknown-off.png';
+                            unknownImageSrc = '<?php echo SITE_ROOT; ?>/us/images/no-garage-door-off.png';
                             $(this).attr('src',standardImageSrc);
                             $(document.getElementById('gdr3_cb')).show();
                             $(otherElement1).attr('src', impactImageSrc);
@@ -188,18 +334,20 @@ require($root . '_includes/app_start.inc.php');
                             $(document.getElementById('gdr2_cb')).hide();
                             $(otherElement3).attr('src', unknownImageSrc);
                             $(document.getElementById('gdr4_cb')).hide();
+                            $(document.getElementById('garageSelect')).attr('value', 'gdwkd');
                         } else {
                             standardImageSrc = '<?php echo SITE_ROOT; ?>/us/images/garage-standard-off.png';
                             $(this).attr('src', standardImageSrc);
                             $(document.getElementById('gdr3_cb')).hide();
+                            $(document.getElementById('garageSelect')).attr('value', '');
                         }                    
                     } else if ($(this).attr('id') === 'gdr4') {
                         var src = $(this).attr('src');
                         var otherElement1 = document.getElementById('gdr1');
                         var otherElement2 = document.getElementById('gdr2');
                         var otherElement3 = document.getElementById('gdr3');
-                        if (src === '<?php echo SITE_ROOT; ?>/us/images/unknown-off.png') {
-                            unknownImageSrc = '<?php echo SITE_ROOT; ?>/us/images/unknown-on.png';
+                        if (src === '<?php echo SITE_ROOT; ?>/us/images/no-garage-door-off.png') {
+                            unknownImageSrc = '<?php echo SITE_ROOT; ?>/us/images/no-garage-door-on.png';
                             standardImageSrc = '<?php echo SITE_ROOT; ?>/us/images/garage-standard-off.png';
                             impactImageSrc = '<?php echo SITE_ROOT; ?>/us/images/garage-impact-off.png';
                             windImageSrc = '<?php echo SITE_ROOT; ?>/us/images/garage-wind-off.png';
@@ -211,10 +359,12 @@ require($root . '_includes/app_start.inc.php');
                             $(document.getElementById('gdr2_cb')).hide();
                             $(otherElement3).attr('src', standardImageSrc);
                             $(document.getElementById('gdr3_cb')).hide();
+                            $(document.getElementById('garageSelect')).attr('value', $(document.getElementById('gdr4_rb')).attr('value'));
                         } else {
-                            unknownImageSrc = '<?php echo SITE_ROOT; ?>/us/images/unknown-off.png';
+                            unknownImageSrc = '<?php echo SITE_ROOT; ?>/us/images/no-garage-door-off.png';
                             $(this).attr('src', unknownImageSrc);
                             $(document.getElementById('gdr4_cb')).hide();
+                            $(document.getElementById('garageSelect')).attr('value', '');
                         }                    
                     }
                 }

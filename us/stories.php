@@ -1,6 +1,57 @@
 <?php
-$root = '../';
-require($root . '_includes/app_start.inc.php');
+    $root = '../';
+    require($root . '_includes/app_start.inc.php');
+
+    $postFrom = isset($_POST['postFrom']) ? $_POST['postFrom'] : '';
+    $mitigants = new resre\ResReMitigators;
+    $home = new resre\ResReHome();
+    $response = 0;
+    $trigger = '';
+    // Get the mitgation set from the session if already created, else create one.
+    if (isset($_SESSION[SESSION_NAME]['mitigants'])) {
+        $mitigants = unserialize($_SESSION[SESSION_NAME]['mitigants']);
+    } 
+    $selected = $mitigants->getStories()->getCurVal();
+    // Get the home object from the session if already created, else create one.
+    if (isset($_SESSION[SESSION_NAME]['home'])) {
+        $home = unserialize($_SESSION[SESSION_NAME]['home']);
+    } 
+    
+    printVarIfDebug($postFrom, getenv('gDebug'), "Posted From");
+
+    if ($postFrom == '__us-loc__') {
+        // Posted from the location page.  Save the location post data to the home object.
+        $home->geoLoc = filter_input(INPUT_POST, 'input_geoLoc', FILTER_SANITIZE_STRING);
+        $home->latLng = $_POST['geo-home-location'];
+        $home->zipCode = $_POST['geo-home-postal_code'];
+        $home->locality = $_POST['geo-home-locality'];
+        $home->state = $_POST['geo-home-state'];
+        $home->country = $_POST['geo-home-country_short'];
+    } elseif ($postFrom == "__self__") {
+        // User is trying to upload an image
+        $userDir = $_SESSION[SESSION_NAME]['user']['userHash'];
+        $fileName = $_FILES['file']['name'];
+        printVarIfDebug($fileName, getenv('gDebug'), 'Name of File to Upload');
+        $location = $root . 'userImages/'. $userDir . '/stories/';
+        printVarIfDebug($location, getenv('gDebug'), 'Name of Folder to Upload To');
+        if (!$userDir == '') {
+            $response = saveUserImage($fileName, $location, 'stories');
+        } else {
+            $response = '<span style="color: #F00;">You must <a href="' . $root . 'us/index.php"><strong>log in</strong></a> to upload images.</span>';
+        }
+    } elseif ($postFrom == '__us-stories__') {
+        // User clicked the save button.
+        $rowID = saveState($mitigants, $home);
+        $trigger = 'dataSaved';
+    }
+      
+    // Save the home and mitigator objects to the session
+    $_SESSION[SESSION_NAME]['home'] = serialize($home);
+    $_SESSION[SESSION_NAME]['mitigants'] = serialize($mitigants);
+    printVarIfDebug($_SESSION, getenv('gDebug'), 'Session After Posting');
+    printVarIfDebug($selected, getenv('gDebug'), 'Value of PostBack selection:');
+    printVarIfDebug($mitigants, getenv('gDebug'), 'ResReMitigators');
+    printVarIfDebug($home, getenv('gDebug'), 'ResReHome');
 ?>
 
 <!DOCTYPE html>
@@ -19,15 +70,16 @@ require($root . '_includes/app_start.inc.php');
         <link href="<?php echo $root; ?>css/chars-borders.css" rel='stylesheet' type='text/css' media="all" />
         <link href="<?php echo $root; ?>css/ccSave.css" rel='stylesheet' type='text/css' media="all" />
     </head>
-    <body style="background-color: var(--blue);">
+    <body class="bg-blue">
         <?php include_once($root . 'includes/nav-menu.php'); ?>
         <div class="characteristics container">
             <div class="characteristics-inner">
                 <div class="characteristics-wrapper container half_padding_left half_padding_right">
                     <div class="wt-content-wrapper left">
-                        <form method="post" name="storiesForm" action="<?php echo HOME_LINK; ?>us/wall-types.php">
-                            <input type="hidden" name="postFrom" value="__usstories__" />
-                            <input type="hidden" name="imgFile" value="" />
+                        <form method="post" name="storiesForm" id="storiesForm" action="<?php echo HOME_LINK; ?>us/wall-types.php">
+                            <input type="hidden" name="postFrom"  value="__us-stories__" />
+                            <intput type="hidden" name="postBack" id="postBack" value="<?php echo $selected; ?>" />
+                            <input type="hidden" name="trigger" id="trigger" value="<?php echo $trigger; ?>" />
                             <div class="row">
                                 <div class="chars-border-middle-wt-1"></div>                                
                                 <div class="lineStopTop hidden-xs"></div>
@@ -54,7 +106,7 @@ require($root . '_includes/app_start.inc.php');
                                 <!-- <div class="col-md-2 col-sm-2 hidden-xs chars-marker"><span class="transparent2532 marker-transparent" style="margin-bottom: 0px; ">1</span></div> -->
                                 <div class="col-md-3 col-sm-3 col-xs-10 chars-header chars-bumper">
                                     <label class="select-button">
-                                        <input type="radio" name="__chars-walltype__" value="F1" />
+                                        <input type="radio" name="__chars-stories__" value="F1" />
                                         <img id="sel1" src="<?php echo SITE_ROOT; ?>/us/images/one-story-off.png" class="img-responsive chars-select">
                                     </label>
                                     <div id="sel1_cb" class="col-xs-6 chars-checkbox fix-left" style="display: none"><img src="<?php echo SITE_ROOT; ?>/us/images/checkmark_blue-dark.png" class="img-responsive check-select"/></div>
@@ -64,7 +116,7 @@ require($root . '_includes/app_start.inc.php');
                                 </div>
                                 <div class="col-md-3 col-sm-3 col-xs-10 chars-header">
                                     <label class="select-button">
-                                        <input type="radio" name="__chars-walltype__" value="F2" />
+                                        <input type="radio" name="__chars-stories__" value="F2" />
                                         <img id="sel2" src="<?php echo SITE_ROOT; ?>/us/images/two-story-off.png" class="img-responsive chars-select">
                                     </label>
                                     <div id="sel2_cb" class="col-xs-6 chars-checkbox fix-left" style="display: none"><img src="<?php echo SITE_ROOT; ?>/us/images/checkmark_blue-dark.png" class="img-responsive check-select"/></div>
@@ -88,55 +140,91 @@ require($root . '_includes/app_start.inc.php');
         <!-- Continue Cancel -->
         <div class="bottom-nav">
             <?php 
-                $back = 'loc';
-                $continue = 'wall-types';
+                $formId = 'storiesForm';
                 require($root . 'includes/ccSave.php'); 
             ?>
         </div>   <!-- / .containter -->
-
         <!-- Footer -->
         <?php include($root . 'includes/site-footer.php'); ?>
+        <!-- Modals -->
+        <?php
+            require($root . 'includes/modals/upload.php');
+            require($root . 'includes/modals/dataSave.php');
+        ?>
+
         <!-- Core JavaScript Files -->
         <?php require($root . 'includes/page-bottom-scripts.php'); ?>
         <!-- Image swap functions for selections -->
         <script>
+            $(window ).on({
+                'load': function() {
+                    var selection = $(document.getElementById('postBack')).attr('value');
+                    console.log("selection = " + selection);
+                    if (selection === 'F1') {
+                        console.log('Single Story');
+                        $(document.getElementById('sel1')).click();
+                    }
+                    if (selection === 'F2') {
+                        console.log('Two or More Stories');
+                        $(document.getElementById('sel2')).click();
+                    }
+                    if (selection === '') {
+                        console.log('No selection yet.');
+                    }
+                    var trigger = $(document.getElementById('trigger')).attr('value');
+                    if (trigger === 'dataSaved') {
+                        $("#dataSavedModal").modal('toggle');
+                    }
+                }
+            });
+            
             $('img').on({
                 'click': function() {
                     var twoImageSrc;
                     var singleImageSrc;
-                    if ($(this).attr('id') === 'sto2') {
+                    if ($(this).attr('id') === 'sel2') {
                         var src = $(this).attr('src');
-                        var otherElement = document.getElementById('sto1');
+                        var otherElement = document.getElementById('sel1');
                         if (src === '<?php echo SITE_ROOT; ?>/us/images/two-story-off.png') {
                             twoImageSrc = '<?php echo SITE_ROOT; ?>/us/images/two-story-on.png';
-                            $(document.getElementById('sto2_cb')).show();
+                            $(document.getElementById('sel2_cb')).show();
                             singleImageSrc = '<?php echo SITE_ROOT; ?>/us/images/one-story-off.png';
                             $(this).attr('src',twoImageSrc);
                             $(otherElement).attr('src',singleImageSrc);
-                            $(document.getElementById('sto1_cb')).hide();
+                            $(document.getElementById('sel1_cb')).hide();
                         } else {
                             twoImageSrc = '<?php echo SITE_ROOT; ?>/us/images/two-story-off.png';
                             $(this).attr('src', twoImageSrc);
-                            $(document.getElementById('sto2_cb')).hide();
+                            $(document.getElementById('sel2_cb')).hide();
                         }
-                    } else if ($(this).attr('id') === 'sto1') {
+                    } else if ($(this).attr('id') === 'sel1') {
                         var src = $(this).attr('src');
-                        var otherElement = document.getElementById('sto2');
+                        var otherElement = document.getElementById('sel2');
                         if (src === '<?php echo SITE_ROOT; ?>/us/images/one-story-off.png') {
                             twoImageSrc = '<?php echo SITE_ROOT; ?>/us/images/two-story-off.png';
                             singleImageSrc = '<?php echo SITE_ROOT; ?>/us/images/one-story-on.png';
                             $(this).attr('src',singleImageSrc);
-                            $(document.getElementById('sto1_cb')).show();
+                            $(document.getElementById('sel1_cb')).show();
                             $(otherElement).attr('src', twoImageSrc);
-                            $(document.getElementById('sto2_cb')).hide();
+                            $(document.getElementById('sel2_cb')).hide();
                         } else {
                             singleImageSrc = '<?php echo SITE_ROOT; ?>/us/images/one-story-off.png';
                             $(this).attr('src', singleImageSrc);
-                            $(document.getElementById('sto1_cb')).hide();
+                            $(document.getElementById('sel1_cb')).hide();
                         }
                     }
                 }
             });
+
+            $("#moveBack").click(function() {
+                 $("#storiesForm").attr("action", "<?php echo HOME_LINK; ?>us/loc.php");
+                 $("#storiesForm").submit(); 
+            });
+            $("#saveBtn").click(function() {
+                $("#storiesForm").attr("action", "<?php echo HOME_LINK; ?>us/stories.php");
+                $("#storiesForm").submit();
+            });
+
         </script>
         
     </body>

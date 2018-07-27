@@ -1,6 +1,36 @@
 <?php
-$root = '../';
-require($root . '_includes/app_start.inc.php');
+    $root = '../';
+    require($root . '_includes/app_start.inc.php');
+    include($root . '_includes/classes/ResReHome.php');
+    
+    $home = '';
+    if (isset($_SESSION[SESSION_NAME]['home'])) {
+        // Get the ResReHome object from the session
+        $home = unserialize($_SESSION[SESSION_NAME]['home']);
+    } else {
+        // First time here - Create a new ResReHome object.
+        $home = new resre\ResReHome();
+    }
+
+    $postFrom = isset($_POST['postFrom']) ? $_POST['postFrom'] : '';
+    printVarIfDebug($postFrom, getenv('gDebug'), "Posted From");
+
+    // If form was posted from index. php,  process home property id info, else set loc values back to what they were before looping
+    // back from the stories.php page.
+    if ($postFrom == "__us-home__") {
+        // Get the form data from us-home
+        $home->homeName = filter_input(INPUT_POST, 'input_homeName', FILTER_SANITIZE_STRING);
+        $home->homeOwnerFirstName = filter_input(INPUT_POST, 'input_firstName', FILTER_SANITIZE_STRING);
+        $val = preg_replace("/[^0-9]/", "", filter_input(INPUT_POST, 'input_homeValue', FILTER_SANITIZE_STRING));
+        printVarIfDebug($val, getenv('gDebug'), 'Home Val after filtering and stripping nonnumeric');
+        
+        $home->homeValue = is_numeric($val) ? $val : 300000;
+        // Save it to the session
+        $_SESSION[SESSION_NAME]['home'] = serialize($home);
+    } 
+    printVarIfDebug($_SESSION, getenv('gDebug'), 'Session on After Posting');
+    printVarIfDebug($home, getenv('gDebug'), 'ResReHome object');
+
 ?>
 
 <!DOCTYPE html>
@@ -13,10 +43,12 @@ require($root . '_includes/app_start.inc.php');
         <!-- Load Page HEAD script files -->
         <?php include($root . 'includes/page-head-scripts.php'); ?>
         <!-- Load site CSS -->
+        <link href="<?php echo $root; ?>css/chars-borders.css" rel='stylesheet' type='text/css' media="all" />
         <?php include($root . 'includes/page-styles.php'); ?>
+        <link href="<?php echo $root; ?>css/loc.css" rel='stylesheet' type='text/css' media="all" />
     </head>
     <body>
-       <?php include_once($root . 'includes/nav-menu.php'); ?>
+        <?php include_once($root . 'includes/nav-menu.php'); ?>
         <div class="carousel container-fluid">
             <div id="carousel" class="carousel slide " data-ride="carousel">
                 <div class="carousel-inner">
@@ -27,31 +59,32 @@ require($root . '_includes/app_start.inc.php');
                                 <div class="col-xs-12 col-md-10 carousel-header-text white3040">
                                     The location of your home will allow us to determine your risk of hurricanes and how much wind and flooding can be expected.
                                 </div>
-                                <form method="post" name="locForm" action="storeys.php">
-                                <div class="row">
-                                    <div class="col-xs-12 col-sm-6 col-md-4 carousel-header-button loc-push-down">
-                                        <a href="#" class="header-button"><span class="blue2228Bold">Find my location</span></a>
+                                <form method="post" name="locForm" id="locForm" action="stories.php">
+                                    <input type='hidden' name='postFrom' id="postFrom" value='__us-loc__' />
+                                    <div class="row">
+                                        <!-- <div class="col-xs-12 col-sm-6 col-md-4 carousel-header-button loc-push-down">
+                                            <a href="#" class="header-button"><span class="blue2228Bold">Find my location</span></a>
+                                        </div> -->
+                                        <div class="col-xs-12 col-sm-6 col-md-8 loc-pull-up">
+                                            <div class="container-fluid">
+                                                <div class="row loc-form">
+                                                    <div class="col-xs-12 col-md-8 fix-left"><label class="offwhite1215EB" style="margin-bottom: 0px; " for="input_geoLoc">Enter your zip code</label></div>
+                                                    <div class="col-xs-12 col-md-8 fix-left fix-top">
+                                                        <input type="text" class="white2532 form-paleBlue" name="input_geoLoc" id="input_geoLoc" value="<?php echo $home->geoLoc; ?>" placeholder="Corpus Christi, Texas 78418 USA" />
+                                                        <div>
+                                                            <input data-geo-home="location" type="hidden" name="geo-home-location" id="geo-start-location" value="<?php echo $home->latLng; ?>" />
+                                                            <input data-geo-home="route" type="hidden" name="geo-home-route" value="<?php echo isset($_SESSION[SESSION_NAME]['property']['homeRoute']) ? $_SESSION[SESSION_NAME]['property']['homeRoute'] : ''; ?>" />
+                                                            <input data-geo-home="street_number" type="hidden" name="geo-home-street_number" value="<?php echo isset($_SESSION[SESSION_NAME]['property']['streetNo']) ? $_SESSION[SESSION_NAME]['property']['streetNo'] : ''; ?>" />
+                                                            <input data-geo-home="postal_code" type="hidden" name="geo-home-postal_code" value="<?php echo $home->zipCode; ?>" />
+                                                            <input data-geo-home="locality" type="hidden" name="geo-home-locality" value="<?php echo $home->locality; ?>" />
+                                                            <input data-geo-home="country_short" type="hidden" name="geo-home-country_short" value="<?php echo $home->country; ?>" />
+                                                            <input data-geo-home="administrative_area_level_1" type="hidden" name="geo-home-state" value="<?php echo $home->state; ?>" />
+                                                        </div>
+                                                    </div>                                                
+                                                </div>
+                                            </div> <!-- . / container-fluid -->
+                                        </div>
                                     </div>
-                                    <div class="col-xs-12 col-sm-6 col-md-8 loc-pull-up">
-                                        <div class="container-fluid">
-                                            <div class="row">
-                                                <div class="col-xs-12 col-md-8 fix-left"><label class="offwhite1215EB" style="margin-bottom: 0px; " for="input_geoLoc">Enter city name or zip</label></div>
-                                                <div class="col-xs-12 col-md-8 fix-left fix-top">
-                                                    <input type="text" class="white2532 form-paleBlue" name="input_geoLoc" id="input_geoLoc" value="<?php echo isset($_POST['input_geoLoc']) ? $_POST['input_geoLoc'] : ''; ?>" placeholder="Corpus Christi, Texas" />
-                                                    <div>
-                                                        <input data-geo-home="location" type="hidden" name="geo-home-location" id="geo-start-location" value="" />
-                                                        <input data-geo-home="route" type="hidden" name="geo-home-route" value="" />
-                                                        <input data-geo-home="street_number" type="hidden" name="geo-home-street_number" value="" />
-                                                        <input data-geo-home="postal_code" type="hidden" name="geo-home-postal_code" value="" />
-                                                        <input data-geo-home="locality" type="hidden" name="geo-home-locality" value="" />
-                                                        <input data-geo-home="country_short" type="hidden" name="geo-home-country_short" value="" />
-                                                        <input data-geo-home="administrative_area_level_1" type="hidden" name="geo-home-state" value="" />
-                                                    </div>
-                                                </div>                                                
-                                            </div>
-                                        </div> <!-- . / container-fluid -->
-                                    </div>
-                                </div>
                                 </form>
                             </div>
                         </div><!-- /carousel_content_wrapper -->
@@ -59,20 +92,19 @@ require($root . '_includes/app_start.inc.php');
                 </div><!-- /carousel-inner -->
             </div><!-- /carousel -->      
         </div><!-- /carousel container -->
-        
-        <div class="container" style="height: 125px;">
-            <div class="row questionairre no-padding-bottom no-padding-top paleGreen">
-                    <div class="border-middle-loc"></div>
-                    <div class="border-middle-loc-hide-all"></div>
-                    <div class='col-xs-5 col-xs-offset-1 col-md-5 col-md-offset-1 centerline loc-centerline-fix'>                    
-                        <a href="<?php echo HOME_LINK; ?>us/storeys.php" class='mid-button-mustard'><span class="blue2228Bold">Continue</span></a>
-                    </div>
-                    <div class='col-xs-5 col-xs-offset-1 col-md-5 right centerline loc-centerline-fix' style='text-align: center;'>
-                        <a href="<?php echo HOME_LINK; ?>us/index.php" class='mid-button-sand'><span class="blue2228Bold">Back</span></a>
-                    </div>
+
+        <div class="bottom-nav">
+            <div class="row ccSave">
+                <div class="chars-border-middle-wt-1"></div>
+                <div class='col-xs-3 col-xs-offset-1 col-sm-6 col-sm-offset-0 ccSave-fix-left'>                    
+                    <a href="#" class='mid-button-mustard' onclick="document.getElementById('locForm').submit();"><span class="blue2228Bold">Continue</span></a>
+                </div>
+                <div class='col-xs-3 col-xs-offset-3 col-sm-6 col-sm-offset-0 ccSave-fix-right'>
+                    <a href="#" class='mid-button-sand' id="moveBack"><span class="blue2228Bold">Back</span></a>
+                </div>
             </div>
         </div>   <!-- / .containter -->
-        
+
         <!-- Footer -->
         <?php include($root . 'includes/site-footer.php'); ?>
         <!-- Core JavaScript Files -->
@@ -81,16 +113,21 @@ require($root . '_includes/app_start.inc.php');
         <script src="<?php echo $root; ?>js/jquery.geocomplete.js"></script>
         <script src="<?php echo $root; ?>js/ww.jquery.js"></script>
         <script>
-            $("#input_geoLoc").geocomplete({
-                details: "form div",
-                detailsAttribute: "data-geo-home",
-                autoselect: false,
-                blur: false,
-                geocodeafterresult: false,
-                types: ['(regions)'],
-                componentRestrictions:  
-                    { country: 'us' }
-            });
-</script>
+                            $("#input_geoLoc").geocomplete({
+                                details: "form div",
+                                detailsAttribute: "data-geo-home",
+                                autoselect: false,
+                                blur: false,
+                                geocodeafterresult: false,
+                                types: ['(regions)'],
+                                componentRestrictions:
+                                        {country: 'us'}
+                            });
+                            
+                           $("#moveBack").click(function() {
+                               $("#locForm").attr("action", "<?php echo HOME_LINK; ?>us/index.php");
+                               $("#locForm").submit(); 
+                           });
+        </script>
     </body>
 </html>

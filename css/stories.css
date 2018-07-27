@@ -50,10 +50,16 @@
 
 /* Characteristics Screens Vertical Lines */
 /* Wall Types */
-.chars-border-middle-wt-1 {
+.chars-border-middle-wt-1,
+.chars-border-middle-wt-2,
+.chars-border-middle-wt-3,
+.chars-border-middle-wt-5 {
     position: absolute;
     border: none;
     border-left: 3px solid var(--lightBlue);
+    border-left: 3px solid #6A95B5;
+}
+.chars-border-middle-wt-1 {
     height: 14%;
     margin-top: -38%;
 }
@@ -205,9 +211,6 @@
     }
 }
 .chars-border-middle-wt-2 {
-    position: absolute;
-    border: none;
-    border-left: 3px solid var(--lightBlue);
     height: 29.5%;
     margin-top: -5%;
 }
@@ -278,9 +281,6 @@
     }
 }
 .chars-border-middle-wt-3 {
-    position: absolute;
-    border: none;
-    border-left: 3px solid var(--lightBlue);
     height: 8.25%;
     margin-top: 74%;
 }
@@ -323,9 +323,6 @@
     }
 }
 .chars-border-middle-wt-5 {
-    position: absolute;
-    border: none;
-    border-left: 3px solid var(--lightBlue);
     height: 130px;
     margin-top: -62px;
 }

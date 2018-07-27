@@ -20,6 +20,7 @@
 }
 .marker-complete {
     background-color: var(--white);
+    background-color: #FFFFFF;
     border-radius: 50px;
     width: 60px;
     height: 60px;
@@ -31,19 +32,23 @@
 
 .marker-blue {
     background-color: var(--blue);
+    background-color: #004A80;
     border-radius: 50px;
 }
 .marker-mustard {
     background-color: var(--mustard);
+    background-color: #F3C93C;
 }
 .marker-white {
     background-color: var(--white);
+    background-color: #FFFFFF;
 }
 .marker-transparent {
     background-color: transparent;
 }
 .marker-sand {
     background-color: var(--sand);
+    background-color: #FCE8A4;
 }
 @media screen and (min-width: 375px) {
     .marker-blue, .marker-mustard, .marker-white, 

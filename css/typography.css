@@ -18,7 +18,7 @@
 */
 
 /* ==== Google font ==== */
-@import url('https://fonts.googleapis.com/css?family=Encode+Sans:300,400,700,800,900');
+@import url('https://fonts.googleapis.com/css?family=Encode+Sans:300,400,500,600,700,800,900');
 
 body {
     font-family: "Encode Sans",sans-serif;
@@ -38,6 +38,7 @@ h1 {
     line-height: 60px;
     font-weight: 900;
     color: var(--white);
+    color: #FFFFFF;
 }
 @media (max-width: 768px) {
     h1 {
@@ -45,6 +46,7 @@ h1 {
         line-height: 42px;
         font-weight: 900;
         color: var(--white);
+        color: #FFFFFF;
         text-transform: uppercase;
         padding-top: 25px;
         padding-bottom: 10px;
@@ -55,12 +57,14 @@ h2 {
     line-height: 75px;
     font-weight: 400;
     color: var(--slate);
+    color: #1A2D3C;
 }
 h3 {
     font-size: 40px;
     line-height: 44px;
     font-weight: 400;
     color: var(--white);
+    color: #FFFFFF;
     margin-top: 10px;
 }
 h4 {
@@ -68,6 +72,7 @@ h4 {
     line-height: 44px;
     font-weight: 900;
     color: var(--white);
+    color: #FFFFFF;
     background-color: transparent;
 }
 @media screen and (min-width: 320px) {
@@ -100,22 +105,26 @@ h5 {
     line-height: 40px;
     font-weight: 400;
     color: var(--mustard);
+    color: #F3C93C;
 }
 h6 {
     font-size: 30px;
     line-height: 40px;
     font-weight: 900;
     color: var(--slate);
+    color: #1A2D3C;
 }
 /* Paragraph Styles */
 .blue1620Bold {
     color: var(--blue);
+    color: #004A80;
     font-size: 16px;
     line-height: 20px;
     font-weight: 700;
 }
 .blue2025Bold {
     color: var(--blue);
+    color: #004A80;
     font-size: 20px;
     line-height: 25px;
     font-weight: 700;
@@ -123,6 +132,7 @@ h6 {
 
 .blue2228Bold {
     color: var(--blue);
+    color: #004A80;
     font-size: 22px;
     line-height: 28px;
     font-weight: 700;
@@ -147,12 +157,14 @@ h6 {
 }
 .blue2532 {
     color: var(--blue);
+    color: #004A80;
     font-size: 25px;
     line-height: 32px;
     font-weight: 400;
 }
 .blue2532Bold {
     color: var(--blue);
+    color: #004A80;
     font-size: 25px;
     line-height: 30px;
     font-weight: 700;
@@ -177,12 +189,14 @@ h6 {
 }
 .mustard2025Black {
     color: var(--mustard);
+    color: #F3C93C;
     font-size: 20px;
     line-height: 25px;
     font-weight: 900;
 }
 .offwhite1215EB {
     color: var(--offWhite);
+    color: #FEFEFE;
     font-size: 12px;
     line-height: 15px;
     font-weight: 800;
@@ -190,6 +204,7 @@ h6 {
 }
 .pg2230Black {
     color: var(--paleGreen);
+    color: #D3E4CC;
     font-size: 22px;
     line-height: 30px;
     font-weight: 900;
@@ -197,12 +212,14 @@ h6 {
 }
 .pg3040 {
     color: var(--paleGreen);
+    color: #D3E4CC;
     font-size: 30px;
     line-height: 40px;
     background-color: #333333;
 }
 .sand2230Black {
     color: var(--sand);
+    color: #FCE8A4;
     font-size: 22px;
     line-height: 30px;
     font-weight: 900;
@@ -210,12 +227,14 @@ h6 {
 }
 .slate1640Bold {
     color: var(--slate);
+    color: #1A2D3C;
     font-size: 16px;
     line-height: 40px;
     font-weight: 700;
 }
 .slate2025 {
     color: var(--slate);
+    color: #1A2D3C;
     font-size: 16px;
     line-height: 20px;
     font-weight: 400;
@@ -223,9 +242,11 @@ h6 {
 .slate2025 a {
     font-weight: 700;
     color: var(--blue);
+    color: #004A80;
 }
 .slate2025 a:hover {
     color: var(--rust);
+    color: #C41917;
 }
 @media screen and (min-width: 600px) {
     .slate2025 {
@@ -257,32 +278,33 @@ h6 {
 }
 .slate2025Bold {
     color: var(--slate);
+    color: #1A2D3C;
     font-size: 20px;
     line-height: 22px;
     font-weight: 700;
 }
 .slate2025Black {
     color: var(--slate);
+    color: #1A2D3C;
     font-size: 20px;
     line-height: 25px;
     font-weight: 900;
 }
 @media (max-width: 768px) {
     .slate2025Black {
-        color: var(--slate);
         font-size: 14px;
-        line-height: 16px;
-        font-weight: 900;
     }
 }
 .slate2230 {
     color: var(--slate);
+    color: #1A2D3C;
     font-size: 22px;
     line-height: 30px;
     font-weight: 400;
 }
 .slate2532 {
     color: var(--slate);
+    color: #1A2D3C;
     font-size: 25px;
     line-height: 32px;
     font-weight: 400;
@@ -293,7 +315,7 @@ h6 {
         line-height: 22px;
     }
 }
-@media screen and (min-width: 600px) and (max-width: 768px) {
+@media screen and (min-width: 600px) {
     .slate2532 {
         font-size: 25px;
         line-height: 32px;
@@ -301,6 +323,7 @@ h6 {
 }
 .slate3040 {
     color: var(--slate);
+    color: #1A2D3C;
     font-size: 30px;
     line-height: 40px;
 }
@@ -313,11 +336,13 @@ h6 {
 }
 .white1220 {
     color: var(--white);
+    color: #FFFFFF;
     font-size: 12px;
     line-height: 20px;
 }
 .white1220 > a {
     color: var(--white);
+    color: #FFFFFF;
 }
 @media screen and (max-width: 410px) {
     .white1220 {
@@ -337,12 +362,14 @@ h6 {
 }
 .white1220Bold {
     color: var(--white);
+    color: #FFFFFF;
     font-size: 12px;
     line-height: 20px;
     font-weight: 700;
 }
 .white1220Bold > a {
     color: var(--white);
+    color: #FFFFFF;
 }
 @media screen and (min-width: 480px) {
     .white1220Bold {
@@ -363,27 +390,32 @@ h6 {
 }
 .white1220Black {
     color: var(--white);
+    color: #FFFFFF;
     font-size: 12px;
     line-height: 20px;
     font-weight: 900;
 }
 .white1220Black > a {
     color: var(--white);
+    color: #FFFFFF;
 }
 .white1640 {
     color: var(--white);
+    color: #FFFFFF;
     font-size: 16px;
     line-height: 40px;
     font-weight: 400;
 }
 .white1640Bold {
     color: var(--white);
+    color: #FFFFFF;
     font-size: 16px;
     line-height: 40px;
     font-weight: 700;
 }
 .white1822 {
     color: var(--white);
+    color: #FFFFFF;
     font-size: 18px;
     line-height: 22px;
     font-weight: 400;
@@ -409,6 +441,7 @@ h6 {
 }
 .white2025 {
     color: var(--white);
+    color: #FFFFFF;
     font-size: 16px;
     line-height: 20px;
     font-weight: 300;
@@ -454,18 +487,22 @@ h6 {
 }
 .white2025Black {
     color: var(--white);
+    color: #FFFFFF;
     font-size: 20px;
     line-height: 25px;
     font-weight: 900;
 }
 .white2025Black a {
     color: var(--white);
+    color: #FFFFFF;
 }
 .white2025Black a:hover {
     color: var(--mustard);
+    color: #F3C93C;
 }
 .white2025Bold {
     color: var(--white);
+    color: #FFFFFF;
     font-size: 16px;
     line-height: 18px;
     font-weight: 700;
@@ -495,6 +532,7 @@ h6 {
 }
 .white2230 {
     color: var(--white);
+    color: #FFFFFF;
     background-color: transparent;
     font-size: 22px;
     line-height: 30px;
@@ -502,6 +540,7 @@ h6 {
 }
 .white2230Black {
     color: var(--white);
+    color: #FFFFFF;
     font-size: 22px;
     line-height: 30px;
     font-weight: 900;
@@ -509,6 +548,7 @@ h6 {
 }
 .white2532 {
     color: var(--white);
+    color: #FFFFFF;
     font-size: 25px;
     line-height: 32px;
     font-weight: 400;
@@ -516,6 +556,7 @@ h6 {
 }
 .white2532Bold {
     color: var(--white);
+    color: #FFFFFF;
     background-color: transparent;
     font-size: 25px;
     line-height: 32px;
@@ -540,6 +581,7 @@ h6 {
 }
 .white3040 {
     color: var(--white);
+    color: #FFFFFF;
     font-size: 30px;
     line-height: 40px;
     font-weight: 400;
@@ -548,7 +590,7 @@ h6 {
     .white3040 {
         font-size: 20px;
         line-height: 22px;
-    }
+    } 
 }
 @media screen and (min-width: 769px) {
     .white3040 {

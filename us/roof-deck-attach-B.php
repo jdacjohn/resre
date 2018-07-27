@@ -1,6 +1,74 @@
 <?php
-$root = '../';
-require($root . '_includes/app_start.inc.php');
+    $root = '../';
+    require($root . '_includes/app_start.inc.php');
+    
+    $postFrom = isset($_POST['postFrom']) ? $_POST['postFrom'] : '';
+    $mitigants = new resre\ResReMitigators();
+    $home = new resre\ResReHome();
+    $response = 0;
+    $trigger = '';
+    // Get the mitgation set from the session if already created, else create one.
+    if (isset($_SESSION[SESSION_NAME]['mitigants'])) {
+        $mitigants = unserialize($_SESSION[SESSION_NAME]['mitigants']);
+    }
+    $selected =  $mitigants->getRdaB()->getMitKey();
+
+    printVarIfDebug($postFrom, getenv('gDebug'), "Posted From");
+
+    if ($postFrom == '__us-RDA-A__') {
+        // Save the shutter selection to the session
+        $mitigant = $mitigants->getRdaA();
+        $rdaa = isset($_POST['__chars-rdaa__']) ? $_POST['__chars-rdaa__'] : '';
+        switch ($rdaa) {
+            case 'rda6d':
+                $mitigant->setCurVal('rda6');
+                $mitigant->setMitKey('rda6d');
+                break;
+            case 'rda8d':
+                $mitigant->setCurVal('rda8');
+                $mitigant->setMitKey('rda8s');
+                break;
+            case 'rda10d':
+                $mitigant->setCurVal('rda8');
+                $mitigant->setMitKey('rda10d');
+                break;
+            case 'rda6s':
+                $mitigant->setCurVal('rda6');
+                $mitigant->setMitKey('rda6s');
+                break;
+            case 'other':
+                $mitigant->setCurVal('rda6');
+                $mitigant->setMitKey('other');
+                break;
+            case 'unknown':
+                $mitigant->setCurVal('rda6');
+                $mitigant->setMitKey('unknown');
+                break;
+        }
+    } elseif ($postFrom == "__self__") {
+        // User is trying to upload an image
+        $userDir = $_SESSION[SESSION_NAME]['user']['userHash'];
+        $fileName = $_FILES['file']['name'];
+        printVarIfDebug($fileName, getenv('gDebug'), 'Name of File to Upload');
+        $location = $root . 'userImages/'. $userDir . '/roof-deck-attach-B/';
+        printVarIfDebug($location, getenv('gDebug'), 'Name of Folder to Upload To');
+        if (!$userDir == '') {
+            $response = saveUserImage($fileName, $location, 'RDA-B');
+        } else {
+            $response = '<span style="color: #F00;">You must <a href="' . $root . 'us/index.php"><strong>log in</strong></a> to upload images.</span>';
+        }
+    } elseif ($postFrom == '__us-RDA-B__') {
+        if (isset($_SESSION[SESSION_NAME]['home'])) {
+            $home = unserialize($_SESSION[SESSION_NAME]['home']);
+        }
+        $newID = saveState($mitigants, $home);
+        $trigger = 'dataSaved';
+    }
+
+    $_SESSION[SESSION_NAME]['mitigants'] = serialize($mitigants);
+    printVarIfDebug($_SESSION, getenv('gDebug'), 'Session after POST');
+    printVarIfDebug($mitigants, getenv('gDebug'), 'ResReMitigators');
+    printVarIfDebug($selected, getenv('gDebug'), 'Value of PostBack selection:');
 ?>
 
 <!DOCTYPE html>
@@ -19,15 +87,16 @@ require($root . '_includes/app_start.inc.php');
         <link href="<?php echo $root; ?>css/chars-borders.css" rel='stylesheet' type='text/css' media="all" />
         <link href="<?php echo $root; ?>css/ccSave.css" rel='stylesheet' type='text/css' media="all" />
     </head>
-    <body style="background-color: var(--blue);">
+    <body class="bg-blue">
         <?php include_once($root . 'includes/nav-menu.php'); ?>
         <div class="characteristics container">
             <div class="characteristics-inner">
                 <div class="characteristics-wrapper container half_padding_left half_padding_right">
                     <div class="wt-content-wrapper left">
-                        <form method="post" name="rdaBForm" action="<?php echo HOME_LINK; ?>us/water-barrier.php">
-                            <input type="hidden" name="postFrom" value="__usRDA-B__" />
-                            <input type="hidden" name="imgFile" value="" />
+                        <form method="post" name="rdaBForm" id="rdaBForm" action="<?php echo HOME_LINK; ?>us/water-barrier.php">
+                            <input type="hidden" name="postFrom" value="__us-RDA-B__" />
+                            <input type="hidden" name="postBack" id="postBack" value="<?php echo $selected; ?>" />
+                            <input type="hidden" name="trigger" id="trigger" value="<?php echo $trigger; ?>" />
 
                             <div class="row">
                                 <div class="chars-border-middle-wt-1"></div>
@@ -71,7 +140,7 @@ require($root . '_includes/app_start.inc.php');
                                 <div class="clear hidden-xs"></div>
                                 <div class="col-md-3 col-sm-3 col-xs-10 chars-header chars-bumper">
                                     <label class="select-button">
-                                        <input type="radio" name="__chars-rdaa__" value="other" />
+                                        <input type="radio" name="__chars-rdab__" value="other" />
                                         <img id="sel3" src="<?php echo SITE_ROOT; ?>/us/images/other-off.png" class="img-responsive chars-select">
                                     </label>
                                     <div id="sel3_cb" class="col-xs-6 chars-checkbox fix-left" style="display: none"><img src="<?php echo SITE_ROOT; ?>/us/images/checkmark_blue-dark.png" class="img-responsive check-select"/></div>
@@ -81,7 +150,7 @@ require($root . '_includes/app_start.inc.php');
                                 </div>
                                 <div class="col-md-3 col-sm-3 col-xs-10 chars-header">
                                     <label class="select-button">
-                                        <input type="radio" name="__chars-rwall__" value="unknown" />
+                                        <input type="radio" name="__chars-rdab__" value="unknown" />
                                         <img id="sel4" src="<?php echo SITE_ROOT; ?>/us/images/unknown-off.png" class="img-responsive chars-select">
                                     </label>
                                     <div id="sel4_cb" class="col-xs-6 chars-checkbox fix-left" style="display: none"><img src="<?php echo SITE_ROOT; ?>/us/images/checkmark_blue-dark.png" class="img-responsive check-select"/></div>
@@ -102,61 +171,137 @@ require($root . '_includes/app_start.inc.php');
 
         <!-- Continue Cancel -->
         <div class="bottom-nav">
-            <?php 
-                $back = 'roof-deck-attach-A';
-                $continue = 'water-barrier';
+            <?php
+                $formId = 'rdaBForm';
                 require($root . 'includes/ccSave.php'); 
             ?>
         </div>   <!-- / .containter -->
-
         <!-- Footer -->
         <?php include($root . 'includes/site-footer.php'); ?>
+        <!-- Modals -->
+        <?php
+            require($root . 'includes/modals/upload.php');
+            require($root . 'includes/modals/dataSave.php');
+        ?>
         <!-- Core JavaScript Files -->
         <?php require($root . 'includes/page-bottom-scripts.php'); ?>
         <!-- Image swap functions for selections -->
         <script>
+            $(window ).on({
+                'load': function() {
+                    var selection = $(document.getElementById('postBack')).attr('value');
+                    console.log("selection = " + selection);
+                    if (selection === 'rdab6') {
+                        console.log('6 Inch Spacing');
+                        $(document.getElementById('sel1')).click();
+                    }
+                    if (selection === 'rdab12') {
+                        console.log('12 Inch Spacing');
+                        $(document.getElementById('sel2')).click();
+                    }
+                    if (selection === 'other') {
+                        console.log('Other Spacing');
+                        $(document.getElementById('sel3')).click();
+                    }
+                    if (selection === 'unknown') {
+                        console.log('Unknown Spacing');
+                        $(document.getElementById('sel4')).click();
+                    }
+                    if (selection === '') {
+                        console.log('No selection yet.');
+                    }
+                    var trigger = $(document.getElementById('trigger')).attr('value');
+                    if (trigger === 'dataSaved') {
+                        $("#dataSavedModal").modal('toggle');
+                    }
+                }
+            });
+
+            $("#moveBack").click(function() {
+                 $("#rdaBForm").attr("action", "<?php echo HOME_LINK; ?>/us/roof-deck-attach-A.php");
+                 $("#rdaBForm").submit(); 
+            });
+            $("#saveBtn").click(function() {
+                 $("#rdaBForm").attr("action", "<?php echo HOME_LINK; ?>/us/roof-deck-attach-B.php");
+                 $("#rdaBForm").submit(); 
+            });
+            
             $('img').on({
                 'click': function() {
                     if ($(this).attr('id') === 'sel1') {
                         var element = document.getElementById('sel1_cb');
+                        var otherElement2 = document.getElementById('sel3');
+                        var otherElement3 = document.getElementById('sel4');
                         if ($(element).is(':visible')) {
+                            // Deselect this
                             $(element).hide();
                         } else {
+                            // Select this
                             $(element).show();
+                            sel3Src = '<?php echo SITE_ROOT; ?>/us/images/other-off.png';
+                            sel4Src = '<?php echo SITE_ROOT; ?>/us/images/unknown-off.png';
+                            $(otherElement2).attr('src', sel3Src);
+                            $(otherElement3).attr('src', sel4Src);
                         }
                         $(document.getElementById('sel2_cb')).hide();
                         $(document.getElementById('sel3_cb')).hide();
                         $(document.getElementById('sel4_cb')).hide();
                     } else if ($(this).attr('id') === 'sel2') {
                         var element = document.getElementById('sel2_cb');
+                        var otherElement2 = document.getElementById('sel3');
+                        var otherElement3 = document.getElementById('sel4');
                         if ($(element).is(':visible')) {
+                            // Deselect this
                             $(element).hide();
                         } else {
+                            // Select this
                             $(element).show();
+                            sel3Src = '<?php echo SITE_ROOT; ?>/us/images/other-off.png';
+                            sel4Src = '<?php echo SITE_ROOT; ?>/us/images/unknown-off.png';
+                            $(otherElement2).attr('src', sel3Src);
+                            $(otherElement3).attr('src', sel4Src);
                         }
                         $(document.getElementById('sel1_cb')).hide();
                         $(document.getElementById('sel3_cb')).hide();
                         $(document.getElementById('sel4_cb')).hide();
                     } else if ($(this).attr('id') === 'sel3') {
-                        var element = document.getElementById('sel3_cb');
-                        if ($(element).is(':visible')) {
-                            $(element).hide();
+                        var src = $(this).attr('src');
+                        var otherElement3 = document.getElementById('sel4');
+                        if (src === '<?php echo SITE_ROOT; ?>/us/images/other-off.png') {
+                            // Select this
+                            sel3Src = '<?php echo SITE_ROOT; ?>/us/images/other-on.png';
+                            sel4Src = '<?php echo SITE_ROOT; ?>/us/images/unknown-off.png';
+                            $(this).attr('src',sel3Src);
+                            $(document.getElementById('sel3_cb')).show();
+                            $(otherElement3).attr('src', sel4Src);
+                            $(document.getElementById('sel1_cb')).hide();
+                            $(document.getElementById('sel2_cb')).hide();
+                            $(document.getElementById('sel4_cb')).hide();
                         } else {
-                            $(element).show();
-                        }
-                        $(document.getElementById('sel1_cb')).hide();
-                        $(document.getElementById('sel2_cb')).hide();
-                        $(document.getElementById('sel4_cb')).hide();
+                            // Deselect this
+                            sel3Src = '<?php echo SITE_ROOT; ?>/us/images/other-off.png';
+                            $(this).attr('src', sel3Src);
+                            $(document.getElementById('sel3_cb')).hide();
+                        }                    
                     } else if ($(this).attr('id') === 'sel4') {
-                        var element = document.getElementById('sel4_cb');
-                        if ($(element).is(':visible')) {
-                            $(element).hide();
+                        var src = $(this).attr('src');
+                        var otherElement3 = document.getElementById('sel3');
+                        if (src === '<?php echo SITE_ROOT; ?>/us/images/unknown-off.png') {
+                            // Select this
+                            sel3Src = '<?php echo SITE_ROOT; ?>/us/images/other-off.png';
+                            sel4Src = '<?php echo SITE_ROOT; ?>/us/images/unknown-on.png';
+                            $(this).attr('src',sel4Src);
+                            $(document.getElementById('sel4_cb')).show();
+                            $(otherElement3).attr('src', sel3Src);
+                            $(document.getElementById('sel1_cb')).hide();
+                            $(document.getElementById('sel2_cb')).hide();
+                            $(document.getElementById('sel3_cb')).hide();
                         } else {
-                            $(element).show();
-                        }
-                        $(document.getElementById('sel1_cb')).hide();
-                        $(document.getElementById('sel2_cb')).hide();
-                        $(document.getElementById('sel3_cb')).hide();
+                            // Deselect this
+                            sel4Src = '<?php echo SITE_ROOT; ?>/us/images/unknown-off.png';
+                            $(this).attr('src', sel4Src);
+                            $(document.getElementById('sel4_cb')).hide();
+                        }                    
                     }
                 }
             });

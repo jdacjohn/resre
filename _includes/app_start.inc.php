@@ -41,14 +41,40 @@ $arrErr = getParam(POSTBACK_PARAMETER_PREFIX.'error', true);
 $gFullSelfRequest = 'http'.((isset($_SERVER['HTTPS'])) ? 's' : '').'://'.$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI']; //With QS
 $gQualifiedSelfRequest = 'http'.((isset($_SERVER['HTTPS'])) ? 's' : '').'://'.$_SERVER['HTTP_HOST'].$_SERVER['PHP_SELF']; //Without QS
 
-//session_cache_expire(60); //60 minute page expires
-ini_set('session.gc_maxlifetime', 3600); //60 minute session expires
-session_set_cookie_params(3600);
+$cookie_lifetime = (3600 * 24 * 30); // 30 day cookie life.
+$idle_timeout = 3600;
+$time = time();
+
+session_set_cookie_params($cookie_lifetime);
 session_start(); //start the session
+printVarIfDebug(session_id(), getenv('gDebug'), 'SessionID');
+
 
 if (!isset($_SESSION[SESSION_NAME])) {
-    //printVarIfDebug('clearing $_SESSION[SESSION_NAME] as part of startup procedure in app_start..inc.php.', getenv('gDebug'));
+    printVarIfDebug('Session has been garbage collected', getenv('gDebug'));
+    // The session has been garbage collected and is basically empty.  Rebuild the init session values and keys
     reset_session();
 }
+
+// Check if sesstion has been idle
+/**
+* Here we look for the user's LAST_ACTIVITY timestamp. If
+* it's set and indicates our $timeout_duration has passed,
+* blow away any previous $_SESSION data and start a new one.
+*/
+if (isset($_SESSION[SESSION_NAME]['user']['last_activity']) && ($time - $_SESSION[SESSION_NAME]['user']['last_activity']) > $idle_timeout) {
+    printVarIfDebug('Session Idle Timed Out', getenv('gDebug'));
+    session_unset();
+    session_destroy();
+    session_start();
+    reset_session();
+}
+
+/**
+* Finally, update LAST_ACTIVITY so that our timeout
+* is based on it and not the user's login time.
+*/
+$_SESSION[SESSION_NAME]['user']['last_activity'] = $time;
+$_SESSION[SESSION_NAME]['user']['last_activity_fmt'] = date("d F Y H:i:s", $time);
 
 define('APP_LOADED',1);

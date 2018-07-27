@@ -7,6 +7,11 @@
     height: 1450px;
     overflow: hidden;
 }
+@media screen and (min-width: 414px) {
+    .characteristics-inner {
+        height: 1465px;
+    }
+}
 @media screen and (min-width: 480px) {
     .characteristics-inner {
         height: 1825px;
@@ -19,250 +24,187 @@
 }
 @media screen and (min-width: 768px) {
     .characteristics-inner {
-        height: 850px;
+        height: 925px;
     }
 }
 @media screen and (min-width: 800px) {
     .characteristics-inner {
-        height: 950px;
-    }
-}
-@media screen and (min-width: 1024px) {
-    .characteristics-inner {
-        height: 975px;
+        height: 1025px;
     }
 }
 @media screen and (min-width: 1280px) {
     .characteristics-inner {
-        height: 1050px;
-    }
-}
-@media screen and (min-width: 1366px) {
-    .characteristics-inner {
-        height: 1100px;
+        height: 1175px;
     }
 }
 @media screen and (min-width: 1440px) {
     .characteristics-inner {
-        height: 1150px;
+        height: 1225px;
     }
 }
 @media screen and (min-width: 1536px) {
     .characteristics-inner {
-        height: 1225px;
+        height: 1300px;
     }
 }
-
+.chars-label {
+    margin-left: 40%;
+    text-align: left;
+}
 /* Characteristics Screens Vertical Lines */
 /* Wall Types */
-.chars-border-middle-wt-1 {
+.chars-border-middle-wt-1,
+.chars-border-middle-wt-2,
+.chars-border-middle-wt-3,
+.chars-border-middle-wt-4,
+.chars-border-middle-wt-4a,
+.chars-border-middle-wt-5 {
     position: absolute;
     border: none;
     border-left: 3px solid var(--lightBlue);
+    border-left: 3px solid #6A95B5;
+}
+.chars-border-middle-wt-1 {
     height: 9%;
     margin-top: -43%;
+}
+.chars-border-middle-wt-2 {
+    height: 18.7%;
+    margin-top: -5%;
+}
+.chars-border-middle-wt-3 {
+    height: 4.8%;
+    margin-top: 74%;
+}
+.chars-border-middle-wt-4 {
+    height: 4.85%;
+    margin-top: 171%;
+}
+.chars-border-middle-wt-4a {
+    height: 6.25%;
+    margin-top: 268%;
+}
+.chars-border-middle-wt-5 {
+    height: 130px;
+    margin-top: -60px;
 }
 @media screen and (min-width: 360px) {
     .chars-border-middle-wt-1 {
         height: 11%;
     }
-}
-@media screen and (min-width: 480px) {
-    .chars-border-middle-wt-1 {
-        margin-top: -46%;
-        height: 10%;
-    }
-}
-@media screen and (min-width: 600px) {
-    .chars-border-middle-wt-1 {
-        margin-top: -41%;
-        height: 9%;
-    }
-}
-@media screen and (min-width: 800px) {
-    .chars-border-middle-wt-1 {
-        margin-top: -12.5%;
-        height: 25%;
-    }
-}
-@media screen and (min-width: 1280px) {
-    .chars-border-middle-wt-1 {
-        margin-top: -12.5%;
-        height: 32%;
-    }
-}
-@media screen and (min-width: 1440px) {
-    .chars-border-middle-wt-1 {
-        margin-top: -12.5%;
-        height: 36%;
-    }
-}
-.chars-border-middle-wt-2 {
-    position: absolute;
-    border: none;
-    border-left: 3px solid var(--lightBlue);
-    height: 19%;
-    margin-top: -5%;
-}
-@media screen and (min-width: 360px) {
     .chars-border-middle-wt-2 {
         height: 15.35%;
     }
-}
-@media screen and (min-width: 375px) {
-    .chars-border-middle-wt-2 {
-        height: 15.8%;
-    }
-}
-@media screen and (min-width: 414px) {
-    .chars-border-middle-wt-2 {
-        height: 15.6%;
-    }
-}
-@media screen and (min-width: 480px) {
-    .chars-border-middle-wt-2 {
-        height: 12.1%;
-    }
-}
-@media screen and (min-width: 600px) {
-    .chars-border-middle-wt-2 {
-        height: 11.3%;
-    }
-}
-@media screen and (min-width: 768px) {
-    .chars-border-middle-wt-2 {
-        height: 105%;
-    }
-}
-@media screen and (min-width: 1280px) {
-    .chars-border-middle-wt-2 {
-        height: 93%;
-    }
-}
-@media screen and (min-width: 1366px) {
-    .chars-border-middle-wt-2 {
-        height: 92%;
-    }
-}
-.chars-border-middle-wt-3 {
-    position: absolute;
-    border: none;
-    border-left: 3px solid var(--lightBlue);
-    height: 4.8%;
-    margin-top: 74%;
-}
-@media screen and (min-width: 360px) {
     .chars-border-middle-wt-3 {
         height: 5%;
         margin-top: 72%
     }
-}
-@media screen and (min-width: 375px) {
-    .chars-border-middle-wt-3 {
-        height: 5.05%;
-        margin-top: 81.25%
-    }
-}
-@media screen and (min-width: 414px) {
-    .chars-border-middle-wt-3 {
-        margin-top: 81.75%
-    }
-}
-@media screen and (min-width: 480px) {
-    .chars-border-middle-wt-3 {
-        margin-top: 91.6%;
-    }
-}
-@media screen and (min-width: 600px) {
-    .chars-border-middle-wt-3 {
-        margin-top: 83.1%;
-    }
-}
-.chars-border-middle-wt-4 {
-    position: absolute;
-    border: none;
-    border-left: 3px solid var(--lightBlue);
-    height: 4.85%;
-    margin-top: 171%;
-}
-@media screen and (min-width: 360px) {
     .chars-border-middle-wt-4 {
         margin-top: 166.25%;
         height: 5%;
     }
-}
-@media screen and (min-width: 375px) {
-    .chars-border-middle-wt-4 {
-        margin-top: 187.75%;
-        height: 5.05%;
-    }
-}
-@media screen and (min-width: 411px) {
-    .chars-border-middle-wt-4 {
-        margin-top: 188.9%;
-    }
-}
-@media screen and (min-width: 480px) {
-    .chars-border-middle-wt-4 {
-        margin-top: 205.5%;
-    }
-}
-@media screen and (min-width: 600px) {
-    .chars-border-middle-wt-4 {
-        margin-top: 185.3%;
-    }
-}
-.chars-border-middle-wt-4a {
-    position: absolute;
-    border: none;
-    border-left: 3px solid var(--lightBlue);
-    height: 4.85%;
-    margin-top: 268%;
-}
-@media screen and (min-width: 360px) {
     .chars-border-middle-wt-4a {
         margin-top: 260%;
         height: 5%;
     }
+    .chars-border-middle-wt-5 {
+        margin-top: -22%;
+        height: 5%;
+    }
+    .chars-label {
+        margin-left: 35%;
+    }
 }
 @media screen and (min-width: 375px) {
+    .chars-border-middle-wt-2 {
+        height: 15.55%;
+    }
+    .chars-border-middle-wt-3 {
+        height: 5.05%;
+        margin-top: 81.25%
+    }
+    .chars-border-middle-wt-4 {
+        margin-top: 187.75%;
+        height: 4.95%;
+    }
     .chars-border-middle-wt-4a {
         margin-top: 294.25%;
-        height: 5.05%;
+        height: 6.3%;
+    }
+    .chars-border-middle-wt-5 {
+        margin-top: -25.5%;
+        height: 8%;
+    }
+    .chars-label {
+        margin-left: 44%;
     }
 }
 @media screen and (min-width: 411px) {
+    .chars-border-middle-wt-3,
+    .chars-border-middle-wt-4 {
+        height: 5.05%;
+    }
+    .chars-border-middle-wt-4 {
+        margin-top: 187.9%;
+    }
     .chars-border-middle-wt-4a {
         margin-top: 294.75%;
     }
+    .chars-label {
+        margin-left: 46%;
+    }
 }
 @media screen and (min-width: 414px) {
-    .chars-border-middle-wt-4a {
-        margin-top: 295.75%;
-    }
-}
-@media screen and (min-width: 480px) {
-    .chars-border-middle-wt-4a {
-        margin-top: 319.25%;
-    }
-}
-@media screen and (min-width: 600px) {
-    .chars-border-middle-wt-4a {
-        margin-top: 287.5%;
-    }
-}
-@media screen and (min-width: 411px) {
     .chars-border-middle-wt-3,
-    .chars-border-middle-wt-4,
+    .chars-border-middle-wt-4 {
+        height: 5%;
+    }
+    .chars-border-middle-wt-2 {
+        height: 15.35%;
+    }
+    .chars-border-middle-wt-3 {
+        margin-top: 81.75%
+    }
+    .chars-border-middle-wt-4 {
+        margin-top: 189%;
+        height: 4.9%;
+    }
     .chars-border-middle-wt-4a {
-        height: 5.05%;
+        margin-top: 295.9%;
+    }
+    .chars-border-middle-wt-5 {
+        margin-top: -25.3%;
     }
 }
+
 @media screen and (min-width: 480px) {
     .chars-border-middle-wt-3,
-    .chars-border-middle-wt-4,
-    .chars-border-middle-wt-4a {
+    .chars-border-middle-wt-4 {
         height: 4.35%;
+    }
+    .chars-border-middle-wt-1 {
+        margin-top: -46%;
+        height: 10%;
+    }
+    .chars-border-middle-wt-2 {
+        height: 12.1%;
+    }
+    .chars-border-middle-wt-3 {
+        margin-top: 91.5%;
+    }
+    .chars-border-middle-wt-4 {
+        margin-top: 205.5%;
+    }
+    .chars-border-middle-wt-4a {
+        margin-top: 319%;
+        height: 4.4%;
+    }
+    .chars-border-middle-wt-5 {
+        margin-top: -22.5%;
+        height: 9%;
+    }
+    .chars-label {
+        margin-left: 42%;
     }
 }
 @media screen and (min-width: 600px) {
@@ -271,35 +213,68 @@
     .chars-border-middle-wt-4a {
         height: 4.2%;
     }
-}
-.chars-border-middle-wt-5 {
-    position: absolute;
-    border: none;
-    border-left: 3px solid var(--lightBlue);
-    height: 130px;
-    margin-top: -60px;
-}
-@media screen and (min-width: 360px) {
-    .chars-border-middle-wt-5 {
-        margin-top: -22%;
-        height: 5%;
+    .chars-border-middle-wt-1 {
+        margin-top: -41%;
+        height: 9%;
     }
-}
-@media screen and (min-width: 375px) {
-    .chars-border-middle-wt-5 {
-        margin-top: -25.5%;
-        height: 8%;
+    .chars-border-middle-wt-2 {
+        height: 11.3%;
     }
-}
-@media screen and (min-width: 480px) {
-    .chars-border-middle-wt-5 {
-        margin-top: -22.5%;
-        height: 8%;
+    .chars-border-middle-wt-3 {
+        margin-top: 83.1%;
     }
-}
-@media screen and (min-width: 600px) {
+    .chars-border-middle-wt-4 {
+        margin-top: 185.3%;
+    }
+    .chars-border-middle-wt-4a {
+        margin-top: 287.5%;
+    }
     .chars-border-middle-wt-5 {
         margin-top: -19%;
-        height: 8%;
+        height: 9%;
+    }
+    .chars-label {
+        margin-left: 33%;
+    }
+}
+@media screen and (min-width: 768px) {
+    .chars-border-middle-wt-2 {
+        height: 105%;
+    }
+    .chars-label {
+        width: 75%;
+        margin-left: 20%;
+        text-align: center;
+    }
+}
+@media screen and (min-width: 800px) {
+    .chars-border-middle-wt-1 {
+        margin-top: -22%;
+        height: 25%;
+    }
+}
+@media screen and (min-width: 1024px) {
+    .chars-border-middle-wt-2 {
+        height: 110%;
+    }
+}
+@media screen and (min-width: 1366px) {
+    .chars-border-middle-wt-1 {
+        margin-top: -4%;
+    }
+    .chars-border-middle-wt-2 {
+        margin-top: 0%;
+        height: 92%;
+    }
+}
+@media screen and (min-width: 1440px) {
+    .chars-border-middle-wt-1 {
+        margin-top: -12.5%;
+        height: 36%;
+    }
+}
+@media screen and (min-width: 1920px) {
+    .chars-label {
+        margin-left: -19%;
     }
 }

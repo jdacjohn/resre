@@ -1,0 +1,624 @@
+@charset "UTF-8";
+/*
+ * resre
+ * us-home.css
+ *
+ * Description - Enter a description of the file and its purpose.
+ *
+ * Author:      John Arnold <john@jdacsolutions.com>
+ * Link:           https://jdacsolutions.com
+ *
+ * Created:             Jun 12, 2018 11:40:26 AM
+ * Last Updated:    Date 
+ * Copyright            Copyright 2018 JDAC Computing Solutions All Rights Reserved
+ */
+/* 
+    Created on : Jun 12, 2018, 11:40:26 AM
+    Author     : John Arnold <john@jdacsolutions.com>
+*/
+
+.cc {
+    margin-right: 0px;
+    margin-left: 0px;
+    padding: 30px 0;
+}
+.ccrow {
+    padding-left: 3%;
+}
+.chars-border-middle-wt-1, .chars-border-middle-wt-2 {
+    position: absolute;
+    border: none;
+    border-left: 2px solid var(--lightBlue);
+    border-left: 2px solid #6A95B5;
+}
+.chars-border-middle-wt-1 {
+    height: 14%;
+    margin-top: 35%;
+}
+.chars-border-middle-wt-2 {
+    height: 35%;
+    margin-top: 58.5%;
+}
+.chars-border-middle-wt-1, .chars-border-middle-wt-2 {
+    margin-left: 9%;
+    z-index: 0;
+}
+.chars {
+    margin-left: -10px;
+}
+.chars-header-text {
+    display: block;
+    font-size: 20px;
+    line-height: 24px;
+    color: var(--slate);
+    color: #1A2D3C;
+    padding-left: 5%;
+    padding-right: 5%;
+    padding-bottom: 30px;
+}
+.form-blue, .form-mustard {
+    margin-left: 10px;
+    margin-bottom: 15px;
+    padding-bottom: 10px;
+}
+.get-started {
+    padding-bottom: 40px;
+}
+.home-title {
+    margin-left: 5%;
+    margin-top: -10%;
+}
+.learn-more {
+    margin-left: -4%;
+    margin-top: -7%;
+}
+.lineStopTop {
+    display: block;
+    border-bottom: 2px solid var(--lightBlue);
+    border-bottom: 2px solid #6A95B5;
+    margin-top: 35%;
+    margin-left: 5%;
+    width: 30px;
+}
+.marker-blue, .marker-mustard {
+    max-width: none;
+}
+.mid-button {
+    padding-right: 0px;
+    padding-left: 10px;
+}
+.mid-button-mustard {
+    padding: 5px 14px;
+}
+.mid-content {
+    padding: 40px 10%;
+    margin-right: 0px;
+    margin-left: 0px;
+}
+.name-field-label {
+    margin-top: -15px;
+    margin-left: 10px;
+    margin-bottom: -2%;
+}
+.nine-qs {
+    padding-bottom: 30px;
+    padding-left: 5%;
+    padding-right: 5%;
+}
+.questionairre {
+    padding: 50px 10% 20px 10%;
+    margin-right: 0px;
+    margin-left: 0px;
+}
+.resre-img {}
+.slate2532 {
+    font-size: 16px;
+    line-height: 22px;
+}
+.tagline {
+    padding-top: 40px;
+}
+.white2532Bold {
+    line-height: 28px;
+}
+
+@media screen and (min-width: 360px) {
+    .chars {
+        margin-left: -13px;
+    }
+    .ccrow {
+        padding-left: 4%;
+    }
+    .chars-border-middle-wt-1 {
+        margin-top: 42%;
+    }
+    .chars-border-middle-wt-1, .chars-border-middle-wt-2 {
+        margin-left: 8.25%;
+    }
+    .chars-border-middle-wt-2 {
+        margin-top: 55.5%;
+        height: 37%;
+    }
+    .form-blue, .form-mustard {
+        margin-bottom: 20px;
+    }
+    .get-started {
+        font-size: 20px;
+        line-height: 24px;
+    }
+    .lineStopTop {
+        margin-left: 4.5%;
+        margin-top: 42%;
+    }
+    .white2532Bold {
+        padding-top: 1px;
+    }
+}
+
+@media screen and (min-width: 375px) {
+    .container {
+        width: 100%;
+    }
+    .chars {
+        margin-left: -18px;
+    }
+    .chars-border-middle-wt-1, .chars-border-middle-wt-2 {
+        margin-left: 7.25%;
+    }
+    .chars-border-middle-wt-1 {
+        margin-top: 35%;
+    }
+    .chars-border-middle-wt-2 {
+        height: 33%;
+    }
+    .home-title {
+        margin-top: -4%;
+    }
+    .lineStopTop {
+        margin-top: 35%;
+        margin-left: 3.75%;
+    }
+    .mid-button {
+        text-align: center;
+    }
+}
+
+@media screen and (min-width: 411px) {
+    .ccrow {
+        padding-left: 5%;
+    }
+    .chars-border-middle-wt-1, .lineStopTop {
+        margin-top: 32%;
+    }
+    .chars-border-middle-wt-2 {
+        margin-top: 50%;
+        height: 28%;
+    }
+    .home-title {
+        margin-top: 12%;
+    }
+    .lineStopTop {
+        margin-left: 4%;
+    }
+    .mid-button {
+        text-align: left;
+    }
+    .nine-qs {
+        padding-left: 3%;
+        padding-right: 0%;
+    }
+}
+
+@media screen and (min-width: 480px) {
+    .chars {
+        margin-left: -21px;
+    }
+    .chars-border-middle-wt-1, .chars-border-middle-wt-2 {
+        margin-left: 5.75%;
+    }
+    .chars-border-middle-wt-1, .lineStopTop {
+        margin-top: 23%;
+    }
+    .chars-border-middle-wt-1 {
+        height: 10%;
+    }
+    .chars-border-middle-wt-2 {
+        height: 25%;
+        margin-top: 37%;
+    }
+    .home-title {
+        margin-left: 5%;
+    }
+    .learn-more {
+        margin-top: 0%;
+        margin-left: 0%;
+    }
+    .lineStopTop {
+        margin-left: 3%;
+    }
+    .mid-button {
+        text-align: left;
+    }
+    .mid-button-right {
+        text-align: center;
+    }
+}
+
+@media screen and (min-width: 600px) {
+    .ccrow {
+        padding-left: 9%;
+    }
+    .chars {
+        margin-left: -4px;
+    }
+    .chars-border-middle-wt-1, .chars-border-middle-wt-2 {
+        margin-left: 7.75%;
+    }
+    .chars-border-middle-wt-1, .lineStopTop {
+        margin-top: 26%;
+    }
+    .chars-border-middle-wt-2 {
+        height: 24%;
+         margin-top: 42%;
+    }
+    .chars-header-text {
+        font-size: 24px;
+        line-height: 28px;
+        padding-right: 10%;
+        padding-bottom: 50px;
+    }
+    .form-blue, .form-mustard {
+        width: 60%;
+        font-size: 20px;
+        padding-bottom: 10px;
+        margin-bottom: 10%;
+        margin-left: 0px;
+    }
+    .get-started {
+        font-size: 24px;
+        line-height: 28px;
+        padding-bottom: 50px;
+        padding-left: 7%;
+        padding-right: 15%;
+    }
+    .learn-more {
+        margin-left: 0%;
+    }
+    .lineStopTop {
+        margin-left: 5.5%;
+    }
+    .mid-content {
+        padding-left: 15%;
+        padding-right: 8%;
+    }
+    .name-field-label {
+        margin-left: 0px;
+    }
+    .nine-qs {
+        padding-left: 0%;
+        padding-right: 4%;
+    }
+}
+
+@media screen and (min-width: 768px) {
+    .ccrow {
+        padding-left: 2%;
+    }
+    .chars {
+        margin-left: -6%;
+    }
+    .chars-border-middle-wt-1, .lineStopTop {
+        margin-top: 14%;
+    }
+    .chars-border-middle-wt-1, .chars-border-middle-wt-2 {
+        margin-left: 3%;
+    }
+    .chars-border-middle-wt-1 {
+        height: 8%;
+    }
+    .chars-border-middle-wt-2 {
+        margin-top: 25%;
+        height: 32%;
+    }
+    .get-started {
+        padding-bottom: 80px;
+        padding-left: 0%;
+    }
+    .home-title {
+        margin-top: 0%;
+    }
+    .learn-more {
+        margin-left: 2%;
+    }
+    .lineStopTop {
+        width: 50px;
+        margin-left: 0%;
+    }
+    .marker-blue, .marker-mustard {
+        width: 60px;
+        height: 60px;
+        padding: 13px 8px;
+        margin-left: 22%;
+    }
+    .mid-button {
+        padding-left: 4%;
+        padding-top: 8px;
+    }
+    .mid-button-right {
+        padding-left: 0%;
+    }
+    .mid-content {
+        padding-left: 5%;
+        padding-right: 5%;
+    }
+    .nine-qs {
+        padding-right: 0%;
+        padding-left: 2%;
+        padding-bottom: 15px;
+        margin-top: -2%;
+    }
+    .questionairre {
+        padding-left: 7%;
+    }
+    .slate2532 {
+        font-size: 25px;
+        line-height: 32px;
+    }
+    .white2532Bold {
+        font-size: 25px;
+        line-height: 32px;
+    }
+}
+
+@media screen and (min-width: 800px) {
+    .ccrow {
+        padding-left: 8%;
+    }
+    .chars-border-middle-wt-2 {
+        height: 33%;
+    }
+    .chars-header-text {
+        margin-top: -2%;
+        padding-left: 1%;
+        padding-right: 0%;
+    }
+    .form-blue, .form-mustard {
+        margin-top: -10px;
+        margin-bottom: 15%;
+    }
+    .get-started {
+        padding-bottom: 16%;
+    }
+    .home-title {
+        margin-top: 5%;
+        margin-left: 0%;
+    }
+    .learn-more {
+        margin-left: 1%;
+        margin-top: -5%;
+    }
+    .login-home {
+        margin-left: -5%;
+    }
+    .marker-blue, .marker-mustard {
+        padding-top: 14px;
+    }
+    .mid-button {
+        padding-left: 5%;
+    }
+    .mid-content {
+        padding: 60px 0%;
+    }
+    .name-field-label {
+        margin-bottom: 0%;
+    }
+    .nine-qs {
+        padding-left: 10%;
+    }
+    .questionairre {
+        padding-left: 10%;
+    }
+}
+@media screen and (min-width: 1024px) {
+    .chars {
+        margin-left: -5%;
+        margin-top: -10px;
+    }
+    .chars-border-middle-wt-1, .lineStopTop {
+        margin-top: 12%;
+    }
+    .chars-border-middle-wt-1, .chars-border-middle-wt-2 {
+        margin-left: 2.5%;
+    }
+    .chars-border-middle-wt-1 {
+        height: 10%;
+    }
+    .chars-border-middle-wt-2 {
+        height: 38%;
+        margin-top: 25%;
+    }
+    .chars-header-text {
+        font-size: 28px;
+        line-height: 32px;
+        margin-top: -0.75%;
+    }
+    .form-blue, .form-mustard {
+        margin-top: 0px;
+        padding-bottom: 15px;
+    }
+    .get-started {
+        padding-right: 10%;
+        font-size: 28px;
+        line-height: 32px;
+    }
+    .home-title {
+        margin-top: 8%;
+    }
+    .learn-more {
+        margin-top: -4%;
+    }
+    .lineStopTop {
+        margin-left: 0%;
+    }
+    .mid-button {
+        padding-top: 3px;
+    }
+    .mid-button-right {
+        text-align: left;
+        padding-left: 2%;
+    }
+    .mid-content {
+        padding-right: 5%;
+    }
+}
+
+@media screen and (min-width: 1280px) {
+    .chars-border-middle-wt-1, .chars-border-middle-wt-2 {
+        margin-left: 1.9%;
+    }
+    .chars-border-middle-wt-1 {
+        height: 15%;
+    }
+    .chars-border-middle-wt-2 {
+        margin-top: 21%;
+        height: 67%;
+    }
+    .chars-header-text {
+        padding-left: 0%;
+    }
+    .learn-more {
+        margin-left: 0%;
+        margin-top: -2%;
+    }
+    .lineStopTop, .chars-border-middle-wt-1 {
+        margin-top: 8.5%;
+    }
+    .login-home {
+        padding-left: 0%;
+    }
+    .name-field-label {
+        margin-bottom: 0%;
+    }
+    .nine-qs {
+        padding-left: 10%;
+    }
+}
+
+@media screen and (min-width: 1366px) {
+    .chars {
+        margin-top: -1%;
+    }
+    .chars-border-middle-wt-1 {
+        height: 18%;
+    }
+    .chars-border-middle-wt-2 {
+        height: 75%;
+    }
+}
+
+@media screen and (min-width: 1440px) {
+    .ccrow {
+        padding-left: 12%;
+    }
+    .chars {
+        margin-left: 0%;
+    }
+    .chars-border-middle-wt-1, .lineStopTop {
+        margin-top: 8.5%;
+    }
+    .chars-border-middle-wt-1, .chars-border-middle-wt-2 {
+        margin-left: 5.75%;
+    }
+    .chars-border-middle-wt-1 {
+        height: 15%;
+    }
+    .chars-border-middle-wt-2 {
+        height: 65%;
+        margin-top: 20%;
+    }
+    .get-started {
+        padding-left: 5%;
+    }
+    .lineStopTop {
+        margin-left: 4%;
+    }
+    .mid-content {
+        padding-left: 5%;
+    }
+}
+
+@media screen and (min-width: 1536px) {
+    .chars {
+        margin-left: 0.5%;
+    }
+    .chars-border-middle-wt-1 {
+        height: 16%;
+    }
+    .chars-border-middle-wt-2 {
+        height: 70%;
+    }
+    .home-title {
+        margin-top: 12%;
+    }
+    .learn-more {
+        margin-top: -1%;
+    }
+    .lineStopTop, .chars-border-middle-wt-1 {
+        margin-top: 7.5%;
+    }
+    .marker-blue, .marker-mustard {
+        padding: 14px 8px;
+    }
+    .mid-button-sand {
+        padding: 5px 24px;
+    }
+}
+
+@media screen and (min-width: 1600px) {
+    .chars-border-middle-wt-2 {
+        margin-top: 11%;
+        height: 85%;
+    }
+    .lineStopTop, .chars-border-middle-wt-1 {
+        margin-top: 5.5%;
+    }
+}
+
+@media screen and (min-width: 1680px) {
+    .chars-border-middle-wt-1, .chars-border-middle-wt-2 {
+        margin-left: 5.5%;
+    }
+    .chars-border-middle-wt-2 {
+        height: 75%;
+    }
+}
+
+@media screen and (min-width: 1920px) {
+    .chars {
+        margin-left: 0.9%;
+        margin-top: 0%;
+    }
+    .chars-border-middle-wt-2 {
+        height: 65%;
+    }
+    .chars-header-text {
+        margin-top: 1.25%;
+    }
+    .form-blue, .form-mustard {
+        margin-bottom: 10%;
+    }
+    .get-started {
+        padding-right: 20%;
+    }
+    .home-title {
+        margin-top: 18%;
+    }
+    .mid-button {
+        padding-top: 25px;
+        padding-left: 2%;
+    }
+    .mid-button-right {
+        padding-left: 0%;
+        margin-left: -10%;
+    }
+}

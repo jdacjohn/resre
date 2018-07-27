@@ -16,11 +16,13 @@
 
 hr {
     border-top: 2px solid var(--blue);
+    color: #004A80;
 }
 div > hr {
     margin-top: 14.5%;
     margin-left: -5%;
     border-top: 2px solid var(--blue);
+    border-top: 2px solid #004A80;
 }
 
 .wt-content-wrapper.left {
@@ -31,33 +33,31 @@ div > hr {
     width: 100%;
 }
 .rpt-wrapper {
-    margin-right: -25px;
+    margin-right: auto;
+}
+.characteristics-wrapper {
+    bottom: 0px;
 }
 /* Page heights by breakpoints */
 .characteristics-inner {
     position: relative;
     width: 100%;
-    height: 3850px;
+    height: 3850px; 
     overflow: hidden;
 }
 @media screen and (min-width: 360px) {
     .characteristics-inner {
-        height: 4100px;
-    }
-}
-@media screen and (min-width: 375px) {
-    .rpt-wrapper {
-        margin-right: -25px;
+         height: 4100px; 
     }
 }
 @media screen and (min-width: 480px) {
     .characteristics-inner {
-        height: 4200px;
+         height: 4200px; 
     }
 }
 @media screen and (min-width: 600px) {
     .characteristics-inner {
-        height: 4500px;
+        height: 4500px; 
     }
 }
 @media screen and (min-width: 768px) {
@@ -72,15 +72,12 @@ div > hr {
 }
 @media screen and (min-width: 1024px) {
     .characteristics-inner {
-        height: 3900px;
+        height: 3900px; 
     }
 }
 @media screen and (min-width: 1280px) {
     .characteristics-inner {
-        height: 4000px;
-    }
-    .rpt-wrapper {
-        margin-right: -15px;
+        height: 4000px; 
     }
 }
 @media screen and (min-width: 1366px) {
@@ -90,20 +87,16 @@ div > hr {
 }
 @media screen and (min-width: 1440px) {
     .characteristics-inner {
-        height: 4150px;
+        height: 7250px;
     }
 }
-.characteristics-inner {
-    overflow-y: visible;
-}
-
 /* Page Elements */
 .bottom-nav {
-    width: 105%;
+    margin-right: auto;
 }
 .bottom-text {
-    margin-left: 12%;
     margin-top: 25px;
+    text-align: center;
 }
 .ccButtons {
     top: 15px;
@@ -115,7 +108,8 @@ div > hr {
     width: 85%;
 }
 .ccSave {
-    height: 200px;
+    height: 175px;
+    padding: 0px;
 }
 
 .chars-border-middle-wt-1, .chars-border-middle-wt-2, 
@@ -123,7 +117,7 @@ div > hr {
     margin-left: 8.25%;
 }
 .chars {
-    margin-left: -22px;
+    margin-left: -20px;
 }
 .chars-bumper {
     margin-left: 10%;
@@ -139,23 +133,19 @@ div > hr {
 }
 
 .complete-down {
-    padding-top: 10px;
+    padding-top: 11px;
 }
 .costs {
     background-color: var(--blue);
+    background-color: #004A80;
     border-radius: 0 10px 10px 0;
 }
-.mit-cost {
+.mit-cost, .mit-cost-small {
     position: absolute;
     background-color: var(--slate);
+    background-color: #1A2D3C;
     border: 1px solid var(--lightGray);
-    border-radius: 10px 0 0 10px;
-    padding: 40px 0 35px 60px;
-}
-.mit-cost-small {
-    position: absolute;
-    background-color: var(--slate);
-    border: 1px solid var(--lightGray);
+    border: 1px solid #D8D8D8;
     border-radius: 10px 0 0 10px;
     padding: 40px 0 35px 60px;
 }
@@ -187,6 +177,7 @@ div > hr {
 }
 .recommendations {
     background-color: var(--blue);
+    background-color: #004A80;
     border-radius: 0px 10px 10px 0px;
 }
 .rec-desc {
@@ -203,18 +194,22 @@ div > hr {
 }
 .report-details {
     background-color: var(--white);
+    background-color: #FFFFFF;
     margin-right: -15px;
 }
 .report-details > div > hr {
     margin-top: 14.5%;
     margin-left: -5%;
     border-top: 2px solid var(--blue);
+    border-top: 2px solid #004A80;
 }
 .report-header {
     background-color: var(--slate);
+    background-color: #1A2D3C;
 }
 .report-summary {
     background-color: var(--blue);
+    background-color: #004A80;
 }
 .report-header, .report-summary, .report-details {
     margin-right: 0px;
@@ -239,6 +234,7 @@ div > hr {
 }
 .resources {
     background-color: var(--blue);
+    background-color: #004A80;
     border-radius: 0 10px 10px 0;
 }
 .recommendations, .resources {
@@ -254,12 +250,13 @@ div > hr {
 .retrofits-header {
     position: absolute;
     background-color: var(--slate);
+    background-color: #1A2D3C;
     border-radius: 0 10px 10px 0;
     padding: 32px 80px;
 }
 .retrofits-header {
         margin-top: -30%;
-        margin-left: 9%;
+        margin-left: 8.75%;
         font-size: 24px;
         line-height: 32px;
         font-weight: 300;
@@ -304,7 +301,12 @@ div > hr {
 }
 
 /* Report Screens Vertical Line Divs */
-/* Wall Types */
+/* Line Placements -
+    -wt-1 - Top of Page to top marker in Report Header Section.
+    -wt-2 - Bottom of tmarker in Report Header section to  top of marker in Hurricant Cat. selection section.
+    -wt-3 - Bottom of marker in Hurricane Cat. selection section to start of 'Suggested Retrofits' section (Report Detail)'
+    -wt-4 - Top of Report Detail through end of report detail.
+*/
 .chars-border-middle-wt-1, .chars-border-middle-wt-2,
 .chars-border-middle-wt-3, .chars-border-middle-wt-4 {
     position: absolute;
@@ -314,28 +316,45 @@ div > hr {
 .chars-border-middle-wt-1, .chars-border-middle-wt-2, 
 .chars-border-middle-wt-3 {
     border-left: 2px solid var(--lightGray);
+    border-left: 2px solid #D8D8D8;
 }
 .chars-border-middle-wt-4 {
     border-left: 2px solid var(--lightBlue);
+    border-left: 2px solid #6A95B5;
 }
 .chars-border-middle-wt-1 {
-    height: 4%;
-    margin-top: -30%;
+    height: 2%;
+    margin-top: -40%;
 }
     .chars-border-middle-wt-2 {
-    height: 16.5%;
-    margin-top: 0%;
+    height: 7%;
+    margin-top: 8%;
 }
 .chars-border-middle-wt-3 {
-    height: 25.5%;
-    margin-top: 7.5%;
+    height: 13%;
+    margin-top: 9%;
 }
 .chars-border-middle-wt-4 {
-    height: 44%;
-    margin-top: -17.5%;
+    height: 70%;
+    margin-top: -19%;
 }
 
 @media screen and (min-width: 360px) {
+    .ccButton-first, .ccButton-last, .ccButton-middle {
+        margin-left: 10%;
+    }
+    .chars {
+        margin-left: -22px;
+    }
+    .chars-border-middle-wt-1 {
+        margin-top: -34%;
+    }
+    .chars-border-middle-wt-3 {
+        height: 14%;
+    }
+    .chars-border-middle-wt-4 {
+        margin-top: -28%;
+    }
     .mit-cost-small {
         margin-top: 148%;
         margin-left: 13%;
@@ -354,19 +373,9 @@ div > hr {
     .report-details {
         padding-top: 100px;
     }
-    .ccButton-first, .ccButton-last, .ccButton-middle {
-        margin-left: 10%;
-    }
 }
 
 @media screen and (min-width: 375px) {
-    .bottom-nav {
-        width: 105%;
-    }
-    .bottom-text {
-        margin-left: 13%;
-        margin-top: 25px;
-    }
     .ccButtons {
         top: 15px;
     }
@@ -376,32 +385,29 @@ div > hr {
     .ccButtons > a.mid-button-sand {
         width: 85%;
     }
-    .ccSave {
-        height: 200px;
-    }
     .chars {
         margin-top: 5%;
-        margin-left: 15%;
+        margin-left: 14.25%;
     }
     .chars-border-middle-wt-1, .chars-border-middle-wt-2, 
     .chars-border-middle-wt-3, .chars-border-middle-wt-4 {
         margin-left: 12.5%;
     }
     .chars-border-middle-wt-1 {
-        height: 7%;
-        margin-top: -26%;
+        height: 3%;
+        margin-top: -32%;
     }
     .chars-border-middle-wt-2 {
-        height: 15%;
+        height: 6.5%;
         margin-top: 10%;
     }
     .chars-border-middle-wt-3 {
-        height: 24%;
-        margin-top: 11%;
+        height: 12.5%;
+        margin-top: 12%;
     }
     .chars-border-middle-wt-4 {
-        height: 46.5%;
-        margin-top: -20%;
+        height: 71.5%;
+        margin-top: -21.5%;
     }
     .chars-bumper {
         margin-left: 13.5%;
@@ -422,7 +428,7 @@ div > hr {
         margin-top: 2%;
         margin-left: 13%;
     }
-    .marker-sand, .marker-white {
+    .marker-sand, .marker-white, .marker-mustard {
         margin-left: -109%;
     }
     .mit-cost-small {
@@ -487,10 +493,10 @@ div > hr {
     .retrofits-header {
         margin-top: -30%;
         margin-left: 13%;
-        font-size: 28px;
+        font-size: 26px;
         line-height: 32px;
         font-weight: 300;
-        padding: 22px 45px;
+        padding: 22px 45px 22px 20px;
     }
     .retrofits-icon {
         margin-top: 0%;
@@ -535,6 +541,13 @@ div > hr {
     .chars-border-middle-wt-3, .chars-border-middle-wt-4 {
         margin-left: 11.25%;
     }
+    .chars-border-middle-wt-3 {
+        margin-top: 10%;
+    }
+    .chars-border-middle-wt-4 {
+        margin-top: -19.5%;
+        height: 72.5%;
+    }
     .report-title {
         margin-top: -9.5%;
         padding-right: 35px;
@@ -557,10 +570,6 @@ div > hr {
     .rec-resources {
         padding-bottom: 40px;
     }
-    .chars-border-middle-wt-4 {
-        margin-top: -18%;
-        height: 48.5%;
-    }
     .ccButton-first, .ccButton-last, .ccButton-middle {
         margin-left: 11%;
     }
@@ -569,9 +578,25 @@ div > hr {
     }
 }
 
+@media screen and (min-width: 414px) {
+    .chars {
+        margin-left: 14.5%;
+    }
+    .chars-border-middle-wt-3 {
+        height: 11.5%;
+    }
+}
+
 @media screen and (min-width: 480px) {
     .chars {
-        margin-left: 17%;
+        margin-left: 16.5%;
+    }
+    .chars-border-middle-wt-3 {
+        height: 11.25%;
+    }
+    .chars-border-middle-wt-4 {
+        margin-top: -16.75%;
+        height: 73%;
     }
     .report-title {
         margin-top: -7.25%;
@@ -603,17 +628,37 @@ div > hr {
     .retrofits-title {
         margin-top: -9%;
     }
-    .chars-border-middle-wt-4 {
-        height: 49%;
-    }
 }
 
 @media screen and (min-width: 600px) {
+    .bottom-text {
+        padding-bottom: 10px;
+    }
+    .ccSave {
+        height: 200px;
+    }
     .chars {
-        margin-left: 19.5%;
+        margin-left: 19.25%;
+    }
+    .chars-border-middle-wt-2 {
+        height: 5.25%;
+    }
+    .chars-border-middle-wt-3 {
+        margin-top: 10%;
+        height: 12%;
+    }
+    .chars-border-middle-wt-4 {
+        margin-top: -13.5%;
+        height: 72.5%;
+    }
+    .recommendations, .resources, .costs {
+        margin-left: 11.5%;
     }
     .report-title {
         margin-top: -5.25%;
+    }
+    .retrofits-header {
+        margin-left: 11.6%;
     }
     .summary-header {
         margin-top: -6%;
@@ -659,39 +704,65 @@ div > hr {
     }
 }
 @media screen and (min-width: 768px) {
+    .bottom-text {
+        font-size: 20px;
+        margin-top: 12px;
+    }
+    .ccButtons {
+        top: -15%;
+    }
     .ccButtons > a.mid-button-sand {
         width: auto;
     }
-    
+    .ccButton-first {
+        margin-left: -8%;
+    }
+    .ccButton-middle {
+        margin-left: 5%;
+    }
+    .ccSave {
+        padding-top: 50px;
+        height: 140px;
+    }
+    .chars {
+        margin-left: 21.3%;
+    }
     .chars-border-middle-wt-3,
     .chars-border-middle-wt-4 {
         display: block;
     }
+    .chars-border-middle-wt-1 {
+        margin-top: -20%;
+        height: 2.25%;
+    }
+    .chars-border-middle-wt-2 {
+        height: 5%;
+        margin-top: 8%;
+    }
+    .chars-border-middle-wt-3 {
+        margin-top: 8%;
+        height: 11.25%;
+    }
+    .chars-border-middle-wt-4 {
+        margin-top: -10.4%;
+        height: 74%;
+    }
     .chars-h4 {
         font-size: 44px;
         margin-left: 4%;
-    }
-    .rating-marker {
-        padding-left: 35px;
-    }
-    .rec-desc {
-        font-size: 22px;
-        line-height: 30px;
     }
     .mit-cost {
         margin-top: 4%;
         margin-left: 79%;
         width: 300px;
     }
-    .chars {
-        margin-left: 21.5%;
+    .mit-cost-small {
+        width: 650px;
+        margin-left: 17%;
+        margin-top: 75%;
     }
-    .report-title {
-        margin-top: -4.25%;
-    }
-    .topic {
-        margin-left: 13.5%;
-        margin-top: 15px;
+    .rating-marker {
+        padding-left: 35px;
     }
     .rbutton-first {
         margin-left: 16%;
@@ -705,6 +776,29 @@ div > hr {
     .rbuttons > a.mid-button-sand {
         width: auto;
     }
+    .recommendations, .resources, .costs {
+        padding: 10px 24px 10px 45px;
+    }
+    .rec-desc {
+        font-size: 22px;
+        line-height: 30px;
+    }
+    .retrofits-header {
+        margin-top: -15%;
+        margin-left: 11.5%;
+        font-size: 30px;
+        padding: 22px 45px !important;
+    }
+    .retrofits-img {
+        max-width: 85%;
+    }
+    .retrofits-title {
+        padding-left: 33%;
+    }
+    .risk {
+        margin-top: 0%;
+        padding-right: 25%;
+    }
     .summary-header {
         margin-top: -4.5%;
         margin-left: 13%;
@@ -714,76 +808,73 @@ div > hr {
         padding-bottom: 60px;
         padding-right: 25%;
     }
-    .risk {
-        margin-top: 0%;
-        padding-right: 25%;
-    }
-    .mit-cost-small {
-        width: 650px;
-        margin-left: 17%;
-        margin-top: 75%;
-    }
-    .retrofits-header {
-        margin-top: -15%;
-        margin-left: 11.5%;
-        font-size: 30px;
-    }
-    .retrofits-img {
-        max-width: 85%;
-    }
-    .retrofits-title {
-        padding-left: 33%;
-    }
-    .bottom-text {
-        margin-left: 3%;
-        font-size: 20px;
-        margin-top: 8px;
-    }
-    .ccSave {
-        padding-top: 60px;
-        height: 140px;
-    }
-    .ccButtons {
-        top: -15%;
-    }
-    .ccButton-first {
-        margin-left: -5.5%;
-    }
-    .ccButton-middle {
-        margin-left: 2%;
-    }
-    .ccButton-last {
-        margin-left: -4.5%;
+    .topic {
+        margin-left: 13%;
+        margin-top: 5px;
     }
     .tagline {
         margin-top: 75px;
     }
-    .chars-border-middle-wt-4 {
-        margin-top: -10%;
-        height: 51.5%;
-    }
 }
 
 @media screen and (min-width: 800px) {
+    .ccButton-first {
+        margin-left: -5%;
+    }
     .chars {
-        margin-left: 20%;
+        margin-left: 19.8%;
     }
-    .report-title {
-        margin-top: -8.25%;
-        font-size: 22px;
-        margin-left: 17%;
+    .chars-border-middle-wt-1 {
+        margin-top: -19%;
     }
-    .topic {
-        margin-left: 14%;
-        margin-top: -30px;
+    .chars-border-middle-wt-4 {
+        margin-top: -10%;
+        height: 75%;
+    }
+    .chars-bumper {
+        margin-left: 15%;
     }
     .chars-desc {
         margin-left: 17%;
         padding-right: 12%;
         padding-bottom: 40px;
     }
+    .complete-down {
+        padding-top: 6px;
+    }
+    .mit-cost-small {
+        margin-left: 19%;
+        margin-top: 82%;
+    }
+    .rating-marker {
+        padding-left: 40px;
+        margin-right: 5%;
+    }
     .rbutton-first {
         margin-left: 19%;
+    }
+    .recommendations, .resources, .costs {
+        margin-left: 11.5%;
+        padding: 22px 45px;
+    }
+    .rec-desc {
+        padding-right: 15%;
+        padding-top: 30px;
+    }
+    .report-title {
+        margin-top: -8.25%;
+        font-size: 22px;
+        margin-left: 17%;
+    }
+    .retrofits-icon {
+        margin-top: 4%;
+    }
+    .retrofits-title {
+        padding-left: 0%;
+    }
+    .risk {
+        margin-left: 17%;
+        padding-bottom: 80px;
     }
     .summary-header {
         margin-top: -6%;
@@ -794,66 +885,69 @@ div > hr {
         margin-left: 0%;
         padding-left: 23px;
     }
-    .rating-marker {
-        padding-left: 40px;
-        margin-right: 5%;
-    }
-    .risk {
-        margin-left: 17%;
-        padding-bottom: 80px;
-    }
-    .mit-cost-small {
-        margin-left: 19%;
-        margin-top: 82%;
-    }
-    .retrofits-icon {
-        margin-top: 4%;
-    }
-    .retrofits-title {
-        padding-left: 0%;
-    }
-    .recommendations, .costs, .resources {
-        margin-left: 11.5%;
-        padding: 10px 24px;
-    }
-    .rec-desc {
-        padding-right: 15%;
-        padding-top: 30px;
-    }
-    .bottom-text {
-        margin-top: 0px;
-    }
-    .ccButton-first {
-        margin-left: -3.5%;
+    .topic {
+        margin-left: 14%;
+        margin-top: -30px;
     }
 }
 
 @media screen and (min-width: 1024px) {
+    .ccButtons {
+        top: -25%;
+    }
     .chars {
-        margin-left: 7%;
+        margin-left: 6.9%;
     }
-    .marker-sand, .marker-white {
+    .chars-bumper {
+        margin-left: 14%;
+    }
+    .chars-h4 {
+        margin-top: 0%;
+        margin-left: 3.5%;
+    }
+    .chars-border-middle-wt-1 {
+        height: 4%;
+    }
+    .chars-border-middle-wt-2 {
+        height: 6%;
+    }
+    .chars-border-middle-wt-3 {
+        height: 11.5%;
+    }
+    .chars-border-middle-wt-4 {
+        margin-top: -8%;
+        height: 73%;
+    }
+    .costs {
+        margin-top: 2%;
+        margin-left: -1%;
+    }
+    .marker-sand, .marker-white, .marker-mustard {
         margin-left: 0%;
-    }
-    .summary-header {
-        margin-top: -5%;
-    }
-    .summary-desc {
-        margin-top: -4%;
-        padding-right: 40%;
-        margin-left: 16%;
-        padding-left: 30px;
-    }
-    .rating-marker {
-        padding-left: 5%;
-        margin-right: 0%;
     }
     .mit-cost {
         margin-top: 5%;
         margin-left: 70%;
     }
-    .risk.report-title {
-        padding-top: 70px;
+    .rating-marker {
+        padding-left: 5%;
+        margin-right: 0%;
+    }
+    .recommendations, .resources {
+        margin-top: 2%;
+        margin-left: 11.25%;
+    }
+    .rec-desc {
+        padding-top: 20px;
+        padding-bottom: 15px;
+        padding-right: 15px;
+    }
+    .rec-desc-no-bumper {
+        margin-left: 0px;
+    }
+    .rec-resources {
+        padding-top: 10px;
+        padding-bottom: 10px;
     }
     .report-slider {
         max-width: 90%;
@@ -862,11 +956,18 @@ div > hr {
     .report-summary {
         height: 1000px;
     }
+    .report-title {
+        margin-top: -6%;
+    }
+    .resources {
+        width: 65.5%;
+    }
     .retrofits-header {
         padding: 32px 80px;
         font-size: 36px;
         line-height: 44px;
         margin-top: -13%;
+        margin-left: 11.4%;
     }
     .retrofits-img {
         max-width: 175%;
@@ -885,81 +986,41 @@ div > hr {
         margin-left: -5%;
         margin-top: 1.5%;
     }
-    .costs {
-        margin-top: 2%;
-        margin-left: -1%;
+    .risk.report-title {
+        padding-top: 70px;
     }
-    .recommendations, .resources {
-        margin-top: 2%;
-        margin-left: 11.7%;
+    .summary-header {
+        margin-top: -5%;
     }
-    .recommendations, .costs, .resources {
-        padding: 20px 75px;
-    }
-    .rec-desc {
-    padding-top: 20px;
-    padding-bottom: 15px;
-    padding-right: 15px;
-    }
-    .rec-desc-no-bumper {
-        margin-left: 0px;
-    }
-    .rec-resources {
-        padding-top: 10px;
-        padding-bottom: 10px;
-    }
-    .resources {
-        width: 65.5%;
-    }
-    .bottom-text {
-        margin-top: -18px;
-        margin-left: 7%;
-    }
-    .ccButtons {
-        top: -25%;
-    }
-    .ccButton-first {
-        margin-left: 5.5%;
-    }
-    .ccButton-middle {
-        margin-left: -1%;
-    }
-    .ccButton-last {
-        margin-left: -5.5%;
-    }
-    .chars-border-middle-wt-1 {
-        height: 10%;
-    }
-    .chars-border-middle-wt-2 {
-        height: 13%;
-    }
-    .chars-border-middle-wt-4 {
-        margin-top: -8%;
-        height: 49.5%;
+    .summary-desc {
+        margin-top: -4%;
+        padding-right: 40%;
+        margin-left: 16%;
+        padding-left: 30px;
     }
 }
 
 @media screen and (min-width: 1280px) {
-    .report-title {
-        margin-top: -6.25%;
-    }
-    .summary-header {
-        margin-top: -3.75%;
-    }
-    .retrofits-header {
-        margin-top: -11%;
-    }
-    .retrofits-icon {
-        margin-top: 3%;
-    }
-    .retro-hr {
-        margin-top: 1%;
-    }
-    .recommendations, .resources {
-        margin-left: 11.5%;
+    .bottom-text {
+        font-size: 24px;
+        line-height: 28px;
+        margin-top: 10px;
     }
     .chars {
         margin-left: 7.75%;
+    }
+    .chars-bumper {
+        margin-left: 13.5%;
+    }
+    .chars-border-middle-wt-1 {
+        height: 5%;
+    }
+    .chars-border-middle-wt-2 {
+        margin-top: 9%;
+    }
+    .chars-border-middle-wt-4 {
+        margin-top: -6.25%;
+        height: 74%;
     }
     .mit-cost {
         width: 350px;
@@ -971,30 +1032,26 @@ div > hr {
         padding-left: 0%;
         margin-right: -18%;
     }
+    .recommendations, .resources {
+        margin-left: 11.25%;
+    }
+    .report-title {
+        margin-top: -5%;
+    }
+    .retrofits-header {
+        margin-top: -11%;
+    }
+    .retrofits-icon {
+        margin-top: 3%;
+    }
+    .retro-hr {
+        margin-top: 1%;
+    }
+    .summary-header {
+        margin-top: -3.75%;
+    }
     .report-slider {
         max-width: 75%;
-    }
-    .chars-border-middle-wt-1 {
-        height: 11%;
-    }
-    .chars-border-middle-wt-2, .chars-border-middle-wt-3 {
-        margin-top: 9%;
-    }
-    .chars-border-middle-wt-4 {
-        margin-top: -6.25%;
-    }
-    .bottom-text {
-        margin-top: -3px;
-        margin-left: 10%;
-    }
-    .ccButton-first {
-        margin-left: 0%;
-    }
-    .ccButton-middle {
-        margin-left: -2%;
-    }
-    .ccButton-last {
-        margin-left: -7.5%;
     }
     .tagline {
         margin-top: 10%;
@@ -1002,11 +1059,21 @@ div > hr {
 }
 
 @media screen and (min-width: 1366px) {
-    .report-title {
-        margin-top: -5.25%;
-    }
     .chars {
         margin-left: 8%;
+    }
+    .chars-border-middle-wt-1 {
+        height: 3%;
+        margin-top: -11%;
+    }
+    .chars-border-middle-wt-3 {
+        height: 10.5%;
+    }
+    .chars-border-middle-wt-4 {
+        margin-top: -6%;
+    }
+    .mit-cost {
+        margin-left: 74%;
     }
     .rbutton-first {
         margin-left: 18%;
@@ -1014,27 +1081,50 @@ div > hr {
     .rbutton-last, .rbutton-middle {
         margin-left: -6%;
     }
-    .mit-cost {
-        margin-left: 74%;
+    .recommendations, .resources {
+        margin-left: 11.4%;
     }
-    .summary-header {
-        margin-top: -3.5%;
+    .report-title {
+        margin-top: -5.25%;
     }
     .retrofits-header {
         margin-left: 11.4%;
         margin-top: -10%;
     }
-    .recommendations, .resources {
-        margin-left: 11.4%;
+    .summary-header {
+        margin-top: -3.5%;
+    }
+    .wt-content-wrapper.left {
+        top: 150px;
     }
 }
 
 @media screen and (min-width: 1440px) {
+    .ccButton-first {
+        margin-left: -10%;
+    }
     .chars {
-        margin-left: 8.2%;
+        margin-left: 8.1%;
+    }
+    .chars-border-middle-wt-2 {
+        height: 6%;
+    }
+    .chars-border-middle-wt-4 {
+        margin-top: -5.75%;
     }
     .mit-cost {
         margin-left: 75%;
+    }
+    .recommendations, .resources, .costs {
+        font-size: 36px;
+        line-height: 42px;
+        padding: 26px 97px 26px 45px;
+    }
+    .rec-desc-no-bumper {
+        margin-left: -1.1%;
+    }
+    .report-title {
+        margin-top: -5%;
     }
     .retrofits-icon {
         margin-left: -9%;
@@ -1042,23 +1132,9 @@ div > hr {
     .retro-hr {
         margin-left: -5%;
     }
-    .rec-desc-no-bumper {
-        margin-left: -1.1%;
-    }
-    .chars-border-middle-wt-1 {
-        height: 12%;
-    }
-    .chars-border-middle-wt-4 {
-        margin-top: -5.5%;
-    }
     .retrofits-header {
         font-size: 48px;
         line-height: 56px;
-    }
-    .recommendations, .resources, .costs {
-        font-size: 36px;
-        line-height: 42px;
-        padding: 26px 97px;
     }
     .retrofits-title h6 {
         font-size: 36px;
@@ -1067,14 +1143,27 @@ div > hr {
 }
 
 @media screen and (min-width: 1536px) {
+    .ccButtons {
+        top: 0;
+        margin-top: -1%;
+    }
+    .chars {
+        margin-left: 8.3%;
+    }
+    .chars-border-middle-wt-2 {
+        margin-top: 8.5%;
+    }
+    .chars-border-middle-wt-4 {
+        margin-top: -5.25%;
+    }
     .mit-cost {
         margin-left: 77%;
     }
+    .report-title {
+        margin-top: -4%;
+    }
     .retrofits-header {
         margin-top: -9%;
-    }
-    .bottom-text {
-        margin-top: 0px;
     }
 }
 
@@ -1082,19 +1171,23 @@ div > hr {
     .chars {
         margin-left: 8.5%;
     }
-    .report-title {
-        margin-top: -4.25%;
+    .chars-border-middle-wt-1 {
+        margin-top: -10%;
     }
-    .summary-desc {
-        margin-top: -2%;
-        margin-left: 16.25%;
+    .chars-border-middle-wt-2 {
+        height: 6%;
+    }
+    .chars-border-middle-wt-3 {
+        height: 10%;
+    }
+    .chars-border-middle-wt-4 {
+        margin-top: -5%;
     }
     .mit-cost {
         margin-left: 78%;
     }
-    .chars-border-middle-wt-4 {
-        margin-top: -5%;
-        height: 50.5%;
+    .report-title {
+        margin-top: -4.5%;
     }
     .retrofits-icon {
         margin-top: 2%;
@@ -1103,44 +1196,75 @@ div > hr {
     .retrofits-title {
         margin-left: 4%;
     }
+    .summary-desc {
+        margin-top: -2%;
+        margin-left: 16.25%;
+    }
 }
 
 @media screen and (min-width: 1680px) {
-    .chars-border-middle-wt-1 {
-        height: 14%;
+    .chars {
+        margin-left: 8.6%;
     }
-    .chars-border-middle-wt-2, .chars-border-middle-wt-3 {
+    .chars-border-middle-wt-1 {
+        height: 4%;
+    }
+    .chars-border-middle-wt-2 {
         margin-top: 8%;
+    }
+    .chars-border-middle-wt-3 {
+        height: 10%;
+    }
+    .chars-border-middle-wt-4 {
+        margin-top: -4.8%;
+        height: 74%;
     }
     .mit-cost {
         margin-left: 78.5%;
     }
-}
-
-@media screen and (min-width: 1920px) {
-    .wt-content-wrapper.left {
-        top: 2%;
-    }
-    .summary-header {
-        margin-top: -2.5%;
-    }
-    .mit-cost {
-        margin-left: 81.5%;
+    .recommendations, .resources {
+        margin-left: 11.3%;
     }
     .retrofits-header {
         margin-top: -8%;
+        margin-left: 11.35%;
     }
-    .retrofits-img {
-        width: 150%;
+}
+
+@media screen and (min-width: 1920px) {
+    .bottom-text {
+        font-size: 28px;
+        line-height: 32px;
+        margin-top: 0px;
     }
     .chars {
         margin-left: 8.9%;
     }
-    .retro-hr {
-        margin-top: 0.25%;
+    .chars-border-middle-wt-3 {
+        height: 9.5%;
     }
     .chars-border-middle-wt-4 {
         margin-top: -4.25%;
-        height: 52.5%;
+    }
+    .mit-cost {
+        margin-left: 81.5%;
+    }
+    .recommendations, .resources {
+        margin-left: 11.3%;
+    }
+    .report-title {
+        margin-top: -3.5%;
+    }
+    .retrofits-header {
+        margin-top: -7%;
+    }
+    .retro-hr {
+        margin-top: 0.25%;
+    }
+    .retrofits-img {
+        width: 150%;
+    }
+    .summary-header {
+        margin-top: -2.5%;
     }
 }

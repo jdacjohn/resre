@@ -18,7 +18,7 @@
 */
 /* Color Variables */
 :root {
-    --berry: rgba(179,18,49,1);
+    --berry: rgba(179,18,49,1); 
     --black: rgba(0,0,0,1);
     --blue: rgba(0,74,128,1);
     --gray: rgba(74,74,74,1);
@@ -44,5 +44,17 @@
 
 .blue {
     color: var(--blue);
+    color: #004A80;
+}
+.red {
+    background-color: #C21C20;
+}
+.slate {
+    background-color: var(--slate);
+    background-color: #1A2D3C;
+}
+.bg-blue {
+    background-color: var(--blue);
+    background-color: #004A80;    
 }
 

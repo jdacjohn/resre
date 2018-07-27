@@ -49,6 +49,7 @@
 /** CONTINUE / CANCEL SECTION **/
 .ccSave {
     background-color: var(--paleGreen);
+    background-color: #D3E4CC;
     padding: 80px 0;
     height: auto;
 }
@@ -166,7 +167,7 @@
     .chars-label {
         margin-left: 24%;
         margin-top: 2%;
-        line-height: 25px;
+        line-height: 30px;
         margin-bottom: 3%;
     }
     .check-select {

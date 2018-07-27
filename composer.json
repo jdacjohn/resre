@@ -6,6 +6,9 @@
         "config.fxp-asset.installer-paths": {
             "npm-asset-library": "vendor/npm",
             "bower-asset-library": "vendor/bower"
+        },
+        "ResRe": {
+            "resre\\" : "_includes/classes/"
         }
     },
     "require": {
@@ -13,7 +16,13 @@
         "twbs/bootstrap": "^4.1",
         "rohnstock/pickadate": "^3.5",
         "fyii/geocomplete": "^1.0",
-        "gregwar/image": "2.*"
+        "gregwar/image": "2.*",
+        "tecnickcom/tcpdf": "^6.2"
+    },
+    "autoload": {
+        "psr-4": {
+            "resre\\": "_includes/classes/"
+        }
     },
     "authors": [
         {

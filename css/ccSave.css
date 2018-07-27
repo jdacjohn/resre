@@ -19,8 +19,10 @@
 */
 .ccSave {
     background-color: var(--paleGreen);
+    background-color: #D3E4CC;
     padding: 0px 0px;
     height: 140px;
+    margin-right: auto;
 }
 .stories-upload {
     margin-top: 4%;

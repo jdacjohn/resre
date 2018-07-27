@@ -65,10 +65,21 @@
 
 /* Characteristics Screens Vertical Lines */
 /* Wall Types */
-.chars-border-middle-wt-1 {
+.chars-border-middle-wt-1,
+.chars-border-middle-wt-2,
+.chars-border-middle-wt-3,
+.chars-border-middle-wt-4,
+.chars-border-middle-wt-4a,
+.chars-border-middle-wt-4b,
+.chars-border-middle-wt-4c,
+.chars-border-middle-wt-5 {
     position: absolute;
     border: none;
     border-left: 3px solid var(--lightBlue);
+    border-left: 3px solid #6A95B5;
+}
+
+.chars-border-middle-wt-1 {
     height: 12%;
     margin-top: -60%;
 }
@@ -114,9 +125,6 @@
     }
 }
 .chars-border-middle-wt-2 {
-    position: absolute;
-    border: none;
-    border-left: 3px solid var(--lightBlue);
     height: 26.5%;
     margin-top: -30%;
 }
@@ -171,9 +179,6 @@
     }
 }
 .chars-border-middle-wt-3 {
-    position: absolute;
-    border: none;
-    border-left: 3px solid var(--lightBlue);
     height: 4.5%;
     margin-top: 73.5%;
 }
@@ -211,9 +216,6 @@
     }
 }
 .chars-border-middle-wt-4 {
-    position: absolute;
-    border: none;
-    border-left: 3px solid var(--lightBlue);
     height: 4.5%;
     margin-top: 170.6%;
 }
@@ -249,9 +251,6 @@
     }
 }
 .chars-border-middle-wt-4a {
-    position: absolute;
-    border: none;
-    border-left: 3px solid var(--lightBlue);
     height: 4.5%;
     margin-top: 268%;
 }
@@ -310,9 +309,6 @@
     }
 }
 .chars-border-middle-wt-4b {
-    position: absolute;
-    border: none;
-    border-left: 3px solid var(--lightBlue);
     height: 4.5%;
     margin-top: 365.2%;
 }
@@ -329,9 +325,6 @@
     }
 }
 .chars-border-middle-wt-4c {
-    position: absolute;
-    border: none;
-    border-left: 3px solid var(--lightBlue);
     height: 3.5%;
     margin-top: 462.1%;
 }
@@ -348,9 +341,6 @@
     }
 }
 .chars-border-middle-wt-5 {
-    position: absolute;
-    border: none;
-    border-left: 3px solid var(--lightBlue);
     height: 7%;
     margin-top: -23.5%;
 }
