@@ -52,7 +52,7 @@
                 <form id="reset_form" method='post' action='' style="margin-bottom: 5px;">
                     <input type="hidden" name="postFrom" value="__reset__" />
                     <input type="hidden" name="user-id" id="user-id" value="<?php echo (isset($userId)) ? $userId : 0; ?>" />
-                    <input type="hidden" name="reset-trigger" id="reset-trigger" value="<?php echo $resetTrigger; ?>" />
+                    <input type="hidden" name="reset-trigger" id="reset-trigger" value="<?php echo isset($resetTrigger) ? $resetTrigger : ''; ?>" />
                     <div class="col-md-12 fix-left" style="margin-top: 10px; margin-bottom: 5px;">
                         <input type="password" minlength="8" required class="slate2025 form-mustard modal-form" name="reset_input_password" id="reset_input_password" value="<?php echo isset($_POST['signup_input_password']) ? $_POST['signup_input_password'] : ''; ?>" placeholder="PASSWORD" />
                     </div>

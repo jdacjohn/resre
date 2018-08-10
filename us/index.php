@@ -111,7 +111,7 @@
                         To get started, either login with your existing account, or create a new account.
                 </div>
                 <div class=' col-xs-6 col-sm-3 mid-button'>
-                    <a href="#" class='mid-button-mustard' data-toggle="modal" data-target="#signupModal" id="signupLink"><span class="blue2228Bold">New User</span></a>
+                    <a class='mid-button-mustard' data-toggle="modal" data-target="#signupModal" id="signupLink"><span class="blue2228Bold">New User</span></a>
                 </div>
                 <div class=' col-xs-6 col-sm-2 mid-button mid-button-right login-home'>
                     <a href="#" class='mid-button-sand' data-toggle="modal" data-target="#loginModal" id="loginLink"><span class="blue2228Bold">Login</span></a>
@@ -125,7 +125,7 @@
                         Let's get some information about your home.  We will use the estimated value of your home to provide damage 
                         and replacement estimates.
                 </div>
-                <form method="post" name="baseConfigForm" id="baseConfigForm" action="<?php echo HOME_LINK; ?>us/loc.php">
+                <form method="post" name="baseConfigForm" id="baseConfigForm" action="<?php echo HOME_LINK; ?>_includes/procCrit/procUSHome.php">
                     <input type="hidden" name="postFrom" value="__us-home__" />
                     <div class="col-xs-2 chars-marker chars"><label class="white2532Bold marker-blue" for="input_homeName">A</label></div>
                     <div class="col-xs-10 col-lg-9">
@@ -151,7 +151,7 @@
         <div class="container">
             <div class="row cc paleGreen" style="z-index: 100;">
                 <div class='col-xs-12 ccrow'>                    
-                    <a href="#" class="<?php echo $buttonClass; ?>" onclick="document.getElementById('baseConfigForm').submit();" <?php echo $noTab; ?>><span class="blue2228Bold">Continue</span></a>
+                    <a class="<?php echo $buttonClass; ?>" onclick="document.getElementById('baseConfigForm').submit();" <?php echo $noTab; ?>><span class="blue2228Bold">Continue</span></a>
                 </div>
             </div>
         </div>   <!-- / .containter -->

@@ -2,46 +2,22 @@
     $root = '../';
     require($root . '_includes/app_start.inc.php');
     
-    $postFrom = isset($_POST['postFrom']) ? $_POST['postFrom'] : '';
     $mitigants = new resre\ResReMitigators();
-    $home = new resre\ResReHome();
-    $response = 0;
-    $trigger = '';
+
+    // Get modal triggers and upload responses (if any) and clear them from the session for subsequent pages
+    $response = isset($_SESSION[SESSION_NAME]['response']) ? $_SESSION[SESSION_NAME]['response'] : 0;
+    // Now wipe the page so we don't show erroneous messages on subsequent pages
+    unset($_SESSION[SESSION_NAME]['response']);
+    $trigger = isset($_SESSION[SESSION_NAME]['trigger']) ? $_SESSION[SESSION_NAME]['trigger'] : '';
+    // Now wipe the trigger so we don't hose subsequent pages
+    unset($_SESSION[SESSION_NAME]['trigger']);
+    
     // Get the mitgation set from the session if already created, else create one.
     if (isset($_SESSION[SESSION_NAME]['mitigants'])) {
         $mitigants = unserialize($_SESSION[SESSION_NAME]['mitigants']);
     }
     $selected =  $mitigants->getWallType()->getMitKey();
 
-    printVarIfDebug($postFrom, getenv('gDebug'), "Posted From");
-
-    if ($postFrom == '__us-stories__') {
-        // Save the base config for number of stories.
-        $mitigant = $mitigants->getStories();
-        $mitigant->setCurVal(isset($_POST['__chars-stories__']) ? $_POST['__chars-stories__'] : '');
-        $mitigant->setOptimumVal($mitigant->getCurVal());
-        $mitigant->setMitKey(strtolower($mitigant->getCurVal()));
-    } elseif ($postFrom == "__self__") {
-        // User is trying to upload an image
-        $userDir = $_SESSION[SESSION_NAME]['user']['userHash'];
-        $fileName = $_FILES['file']['name'];
-        printVarIfDebug($fileName, getenv('gDebug'), 'Name of File to Upload');
-        $location = $root . 'userImages/'. $userDir . '/wall-types/';
-        printVarIfDebug($location, getenv('gDebug'), 'Name of Folder to Upload To');
-        if (!$userDir == '') {
-            $response = saveUserImage($fileName, $location, 'wall-type');
-        } else {
-            $response = '<span style="color: #F00;">You must <a href="' . $root . 'us/index.php"><strong>log in</strong></a> to upload images.</span>';
-        }
-    } elseif ($postFrom == '__us-walltypes__') {
-        if (isset($_SESSION[SESSION_NAME]['home'])) {
-            $home = unserialize($_SESSION[SESSION_NAME]['home']);
-     }
-        $newID = saveState($mitigants, $home);
-        $trigger = 'dataSaved';
-    }
-      
-    $_SESSION[SESSION_NAME]['mitigants'] = serialize($mitigants);
     printVarIfDebug($_SESSION, getenv('gDebug'), 'Session After Posting');
     printVarIfDebug($mitigants, getenv('gDebug'), 'ResReMitigators');
     printVarIfDebug($selected, getenv('gDebug'), 'Value of PostBack selection:');
@@ -70,8 +46,8 @@
             <div class="characteristics-inner">
                 <div class="characteristics-wrapper container half_padding_left half_padding_right">
                     <div class="wt-content-wrapper left">
-                        <form method="post" name="wtForm" id='wtForm' action="<?php echo HOME_LINK; ?>us/shutters.php">
-                            <input type="hidden" name="postFrom" value="__us-walltypes__" />
+                        <form method="post" name="wtForm" id='wtForm' action="<?php echo HOME_LINK; ?>_includes/procCrit/procUSWallTypes.php">
+                            <input type="hidden" name="postFrom" id="postFrom" value="__us-walltypes__" />
                             <input type="hidden" name="postBack" id="postBack" value="<?php echo $selected; ?>" />
                             <input type="hidden" name="trigger" id="trigger" value="<?php echo $trigger; ?>" />
 
@@ -156,8 +132,15 @@
 
         <!-- Footer -->
         <?php include($root . 'includes/site-footer.php'); ?>
+        <!-- Image Preloads -->
+        <div id="preload">
+            <img src="<?php echo SITE_ROOT; ?>/us/images/frame-walls-on.png" height="1" alt="Frame Walls" />
+            <img src="<?php echo SITE_ROOT; ?>/us/images/masonry-walls-on.png" height="1" alt="Non-Reinforced Masonry Walls" />
+            <img src="<?php echo SITE_ROOT; ?>/us/images/unknown-on.png" height="1" alt="Unknown Wall Types" />
+        </div>
         <!-- Modals -->
         <?php
+            $action = SITE_ROOT . '/_includes/procCrit/procUSWallTypes.php';
             require($root . 'includes/modals/upload.php');
             require($root . 'includes/modals/dataSave.php');
         ?>
@@ -168,6 +151,7 @@
         <script>
             $(window ).on({
                 'load': function() {
+                    $(window).attr('innerDocClick', false);
                     var selection = $(document.getElementById('postBack')).attr('value');
                     console.log("selection = " + selection);
                     if (selection === 'ws') {
@@ -299,11 +283,11 @@
             });
             
             $("#moveBack").click(function() {
-                 $("#wtForm").attr("action", "<?php echo HOME_LINK; ?>us/stories.php");
+                 $(document.getElementById('postFrom')).val('__us-walltypes-back__');
                  $("#wtForm").submit(); 
             });
             $("#saveBtn").click(function() {
-                $("#wtForm").attr("action", "<?php echo HOME_LINK; ?>us/wall-types.php");
+                $(document.getElementById('postFrom')).val('__us-walltypes-save__');
                 $("#wtForm").submit();
             });
 

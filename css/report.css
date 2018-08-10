@@ -150,10 +150,10 @@ div > hr {
     padding: 40px 0 35px 60px;
 }
 .mit-cost-small {
-    margin-top: 170%;
-    margin-left: 10%;
+    margin-top: 230%;
     width: 320px;
     padding: 60px 50px 60px 40px;
+    right: 0px;
 }
 
 .mit-cost h4 {
@@ -220,7 +220,7 @@ div > hr {
     padding-bottom: 100px;
 }
 .report-summary {
-    height: 1040px;
+    height: 1165px;
 }
 
 .report-slider {
@@ -356,8 +356,7 @@ div > hr {
         margin-top: -28%;
     }
     .mit-cost-small {
-        margin-top: 148%;
-        margin-left: 13%;
+        margin-top: 200%;
     }
     .retrofits-header {
         margin-top: -34%;
@@ -432,8 +431,7 @@ div > hr {
         margin-left: -109%;
     }
     .mit-cost-small {
-        margin-top: 140%;
-        margin-left: 20%;
+        margin-top: 175%;
         width: 320px;
         padding: 60px 50px 60px 40px;
     }
@@ -483,7 +481,7 @@ div > hr {
         margin-left: 3.5%;
     }
     .report-summary {
-        height: 1040px;
+        height: 1100px;
     }
     .report-title {
         margin-top: -11.5%;
@@ -553,12 +551,11 @@ div > hr {
         padding-right: 35px;
     }
     .mit-cost-small {
-        margin-top: 115%;
-        margin-left: 16%;
+        margin-top: 150%;
         width: 345px;
     }
     .report-summary {
-        height: 970px;
+        height: 1050px;
     }
     .retrofits-header {
         margin-left: 11.75%;
@@ -584,6 +581,9 @@ div > hr {
     }
     .chars-border-middle-wt-3 {
         height: 11.5%;
+    }
+    .mit-cost-small {
+        margin-top: 145%;
     }
 }
 
@@ -612,7 +612,7 @@ div > hr {
     }
     .mit-cost-small {
         width: 400px;
-        margin-top: 105%;
+        margin-top: 134%;
     }
     .retrofits-header {
         margin-top: -24%;
@@ -675,8 +675,8 @@ div > hr {
     }
     .mit-cost-small {
         width: 450px;
-        margin-left: 23%;
-        padding-left: 75px;
+        margin-top: 125%;
+        padding: 30px 50px 30px 75px;
     }
     .retrofits-header {
         margin-top: -20%;
@@ -758,8 +758,7 @@ div > hr {
     }
     .mit-cost-small {
         width: 650px;
-        margin-left: 17%;
-        margin-top: 75%;
+        margin-top: 98%;
     }
     .rating-marker {
         padding-left: 35px;
@@ -782,6 +781,9 @@ div > hr {
     .rec-desc {
         font-size: 22px;
         line-height: 30px;
+    }
+    .report-summary {
+        height: 1175px;
     }
     .retrofits-header {
         margin-top: -15%;
@@ -843,8 +845,7 @@ div > hr {
         padding-top: 6px;
     }
     .mit-cost-small {
-        margin-left: 19%;
-        margin-top: 82%;
+        margin-top: 100%;
     }
     .rating-marker {
         padding-left: 40px;
@@ -890,7 +891,9 @@ div > hr {
         margin-top: -30px;
     }
 }
-
+.mit-cost {
+    right: 0px;
+}
 @media screen and (min-width: 1024px) {
     .ccButtons {
         top: -25%;
@@ -927,7 +930,6 @@ div > hr {
     }
     .mit-cost {
         margin-top: 5%;
-        margin-left: 70%;
     }
     .rating-marker {
         padding-left: 5%;
@@ -952,9 +954,6 @@ div > hr {
     .report-slider {
         max-width: 90%;
         margin-left: 1.5%;
-    }
-    .report-summary {
-        height: 1000px;
     }
     .report-title {
         margin-top: -6%;
@@ -1025,7 +1024,6 @@ div > hr {
     .mit-cost {
         width: 350px;
         margin-top: 3%;
-        margin-left: 73%
     }
     .rating-marker {
         margin-left: 18%;
@@ -1072,9 +1070,6 @@ div > hr {
     .chars-border-middle-wt-4 {
         margin-top: -6%;
     }
-    .mit-cost {
-        margin-left: 74%;
-    }
     .rbutton-first {
         margin-left: 18%;
     }
@@ -1111,9 +1106,6 @@ div > hr {
     }
     .chars-border-middle-wt-4 {
         margin-top: -5.75%;
-    }
-    .mit-cost {
-        margin-left: 75%;
     }
     .recommendations, .resources, .costs {
         font-size: 36px;
@@ -1156,9 +1148,6 @@ div > hr {
     .chars-border-middle-wt-4 {
         margin-top: -5.25%;
     }
-    .mit-cost {
-        margin-left: 77%;
-    }
     .report-title {
         margin-top: -4%;
     }
@@ -1182,9 +1171,6 @@ div > hr {
     }
     .chars-border-middle-wt-4 {
         margin-top: -5%;
-    }
-    .mit-cost {
-        margin-left: 78%;
     }
     .report-title {
         margin-top: -4.5%;
@@ -1218,9 +1204,6 @@ div > hr {
     .chars-border-middle-wt-4 {
         margin-top: -4.8%;
         height: 74%;
-    }
-    .mit-cost {
-        margin-left: 78.5%;
     }
     .recommendations, .resources {
         margin-left: 11.3%;

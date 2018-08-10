@@ -1,9 +1,9 @@
 composer.phar
-/vendor/
+/vendor
+/userImages
 phpinfo.php
 divtest.php
 pagestruct-test.php
-phpinfo.php
 style-proofsheet.php
 
 # Commit your application's lock file https://getcomposer.org/doc/01-basic-usage.md#commit-your-composer-lock-file-to-version-control

@@ -51,7 +51,7 @@
                 <!-- Form -->
                 <form id="signup_form" method='post' action='' style="margin-bottom: 5px;">
                     <input type="hidden" name="postFrom" value="__signup__" />
-                    <input type="hidden" name="signup-trigger" id="signup-trigger" value="<?php echo $signupTrigger; ?>" />
+                    <input type="hidden" name="signup-trigger" id="signup-trigger" value="<?php echo isset($signupTrigger) ? $signupTrigger : ''; ?>" />
                     <div class="col-md-12 fix-left"><label class="slate1640Bold" style="margin-bottom: 0px; " for="input_email">Email</label></div>
                     <div class="col-md-12 fix-left fix-top">
                         <input type="email" required class="slate2025 form-mustard modal-form" name="signup_input_email" id="signup_input_email" value="<?php echo isset($_POST['signup_input_email']) ? $_POST['signup_input_email'] : ''; ?>" placeholder="you@yourdomain.com" />
@@ -64,8 +64,8 @@
                     </div>
                 </form>
                 <div class="col-12 modal-error"><p id="signupErrMsg"><?php echo isset($signupErrMsg) ? $signupErrMsg : ''; ?></p></div>
-                <div class="col-xs-6 col-sm-3 col-md-3"><a href="#" class="mid-button-mustard modal-btn" id="signupModal-submit"><span class="slate2025 modal-btn-label"><strong>Submit</strong></span></a></div>
-                <div class="col-xs-6 col-sm-3 col-md-3" style="text-align: center;"><a href="#" class="mid-button-sand modal-btn" id="signupModal-cancel"><span class="slate2025 modal-btn-label"><strong>Cancel</strong></span></a></div>
+                <div class="col-xs-6 col-sm-3 col-md-3"><a class="mid-button-mustard modal-btn" id="signupModal-submit"><span class="slate2025 modal-btn-label"><strong>Submit</strong></span></a></div>
+                <div class="col-xs-6 col-sm-3 col-md-3" style="text-align: center;"><a class="mid-button-sand modal-btn" id="signupModal-cancel"><span class="slate2025 modal-btn-label"><strong>Cancel</strong></span></a></div>
                 <div class="clear"></div>
             </div>
         </div>

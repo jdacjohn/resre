@@ -232,6 +232,9 @@ h6 {
     line-height: 40px;
     font-weight: 700;
 }
+span#inputLabel.slate1640Bold {
+    cursor: pointer;
+}
 .slate2025 {
     color: var(--slate);
     color: #1A2D3C;
@@ -247,6 +250,7 @@ h6 {
 .slate2025 a:hover {
     color: var(--rust);
     color: #C41917;
+    cursor: pointer;
 }
 @media screen and (min-width: 600px) {
     .slate2025 {

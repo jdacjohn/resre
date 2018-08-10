@@ -41,9 +41,9 @@
                 <!-- Form -->
                 <form id="logoutForm" method='post' action='' style="margin-bottom: 5px;">
                     <input type="hidden" name="postFrom" value="__self__" />
-                    <input type="hidden" name="logout-trigger" id="logout-trigger" value="<?php echo $logoutTrigger; ?>" />
+                    <input type="hidden" name="logout-trigger" id="logout-trigger" value="<?php echo isset($logoutTrigger) ? $logoutTrigger : ''; ?>" />
                 </form>
-                <div class="col-xs-6 col-sm-3 col-md-3"><a href="#" id="logoutOk" class="mid-button-sand modal-btn"><span class="slate2025 modal-btn-label"><strong>OK</strong></span></a></div>
+                <div class="col-xs-6 col-sm-3 col-md-3"><a id="logoutOk" class="mid-button-sand modal-btn"><span class="slate2025 modal-btn-label"><strong>OK</strong></span></a></div>
                 <div class="clear"></div>
             </div>
         </div>

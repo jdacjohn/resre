@@ -2,56 +2,26 @@
     $root = '../';
     require($root . '_includes/app_start.inc.php');
 
-    $postFrom = isset($_POST['postFrom']) ? $_POST['postFrom'] : '';
     $mitigants = new resre\ResReMitigators;
     $home = new resre\ResReHome();
-    $response = 0;
-    $trigger = '';
-    // Get the mitgation set from the session if already created, else create one.
+    
+    // Get modal triggers and upload responses (if any) and clear them from the session for subsequent pages
+    $response = isset($_SESSION[SESSION_NAME]['response']) ? $_SESSION[SESSION_NAME]['response'] : 0;
+    // Now wipe the page so we don't show erroneous messages on subsequent pages
+    unset($_SESSION[SESSION_NAME]['response']);
+    $trigger = isset($_SESSION[SESSION_NAME]['trigger']) ? $_SESSION[SESSION_NAME]['trigger'] : '';
+    // Now wipe the trigger so we don't hose subsequent pages
+    unset($_SESSION[SESSION_NAME]['trigger']);
+    
+    // Get the mitgation set from the session if already created.
     if (isset($_SESSION[SESSION_NAME]['mitigants'])) {
         $mitigants = unserialize($_SESSION[SESSION_NAME]['mitigants']);
     } 
     $selected = $mitigants->getStories()->getCurVal();
-    // Get the home object from the session if already created, else create one.
+    // Get the home object from the session if already created.
     if (isset($_SESSION[SESSION_NAME]['home'])) {
         $home = unserialize($_SESSION[SESSION_NAME]['home']);
     } 
-    
-    printVarIfDebug($postFrom, getenv('gDebug'), "Posted From");
-
-    if ($postFrom == '__us-loc__') {
-        // Posted from the location page.  Save the location post data to the home object.
-        $home->geoLoc = filter_input(INPUT_POST, 'input_geoLoc', FILTER_SANITIZE_STRING);
-        $home->latLng = $_POST['geo-home-location'];
-        $home->zipCode = $_POST['geo-home-postal_code'];
-        $home->locality = $_POST['geo-home-locality'];
-        $home->state = $_POST['geo-home-state'];
-        $home->country = $_POST['geo-home-country_short'];
-    } elseif ($postFrom == "__self__") {
-        // User is trying to upload an image
-        $userDir = $_SESSION[SESSION_NAME]['user']['userHash'];
-        $fileName = $_FILES['file']['name'];
-        printVarIfDebug($fileName, getenv('gDebug'), 'Name of File to Upload');
-        $location = $root . 'userImages/'. $userDir . '/stories/';
-        printVarIfDebug($location, getenv('gDebug'), 'Name of Folder to Upload To');
-        if (!$userDir == '') {
-            $response = saveUserImage($fileName, $location, 'stories');
-        } else {
-            $response = '<span style="color: #F00;">You must <a href="' . $root . 'us/index.php"><strong>log in</strong></a> to upload images.</span>';
-        }
-    } elseif ($postFrom == '__us-stories__') {
-        // User clicked the save button.
-        $rowID = saveState($mitigants, $home);
-        $trigger = 'dataSaved';
-    }
-      
-    // Save the home and mitigator objects to the session
-    $_SESSION[SESSION_NAME]['home'] = serialize($home);
-    $_SESSION[SESSION_NAME]['mitigants'] = serialize($mitigants);
-    printVarIfDebug($_SESSION, getenv('gDebug'), 'Session After Posting');
-    printVarIfDebug($selected, getenv('gDebug'), 'Value of PostBack selection:');
-    printVarIfDebug($mitigants, getenv('gDebug'), 'ResReMitigators');
-    printVarIfDebug($home, getenv('gDebug'), 'ResReHome');
 ?>
 
 <!DOCTYPE html>
@@ -76,8 +46,8 @@
             <div class="characteristics-inner">
                 <div class="characteristics-wrapper container half_padding_left half_padding_right">
                     <div class="wt-content-wrapper left">
-                        <form method="post" name="storiesForm" id="storiesForm" action="<?php echo HOME_LINK; ?>us/wall-types.php">
-                            <input type="hidden" name="postFrom"  value="__us-stories__" />
+                        <form method="post" name="storiesForm" id="storiesForm" action="<?php echo HOME_LINK . '_includes/procCrit/procUSStories.php'?>">
+                            <input type="hidden" name="postFrom"  id="postFrom" value="__us-stories__" />
                             <intput type="hidden" name="postBack" id="postBack" value="<?php echo $selected; ?>" />
                             <input type="hidden" name="trigger" id="trigger" value="<?php echo $trigger; ?>" />
                             <div class="row">
@@ -146,8 +116,14 @@
         </div>   <!-- / .containter -->
         <!-- Footer -->
         <?php include($root . 'includes/site-footer.php'); ?>
+        <!-- Image Preloads -->
+        <div id="preload">
+            <img src="<?php echo SITE_ROOT; ?>/us/images/one-story-on.png" height="1" alt="One-Story Home" />
+            <img src="<?php echo SITE_ROOT; ?>/us/images/two-story-on.png" height="1" alt="Two-Story Home" />
+        </div>
         <!-- Modals -->
         <?php
+            $action = SITE_ROOT . '/_includes/procCrit/procUSStories.php';
             require($root . 'includes/modals/upload.php');
             require($root . 'includes/modals/dataSave.php');
         ?>
@@ -217,11 +193,11 @@
             });
 
             $("#moveBack").click(function() {
-                 $("#storiesForm").attr("action", "<?php echo HOME_LINK; ?>us/loc.php");
+                 $(document.getElementById('postFrom')).val('__us-stories-back__');
                  $("#storiesForm").submit(); 
             });
             $("#saveBtn").click(function() {
-                $("#storiesForm").attr("action", "<?php echo HOME_LINK; ?>us/stories.php");
+                $(document.getElementById('postFrom')).val('__us-stories-save__');
                 $("#storiesForm").submit();
             });
 

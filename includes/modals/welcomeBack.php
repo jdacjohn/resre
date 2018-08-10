@@ -43,7 +43,7 @@
                     <input type="hidden" name="postFrom" value="__self__" />
                     <input type="hidden" name="wb-trigger" id="wb-trigger" value="<?php echo $wbTrigger; ?>" />
                 </form>
-                <div class="col-xs-6 col-sm-3 col-md-3"><a href="#" id="wbOk" class="mid-button-sand modal-btn"><span class="slate2025 modal-btn-label"><strong>OK</strong></span></a></div>
+                <div class="col-xs-6 col-sm-3 col-md-3"><a id="wbOk" class="mid-button-sand modal-btn"><span class="slate2025 modal-btn-label"><strong>OK</strong></span></a></div>
                 <div class="clear"></div>
             </div>
         </div>

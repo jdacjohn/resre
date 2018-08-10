@@ -2,57 +2,22 @@
     $root = '../';
     require($root . '_includes/app_start.inc.php');
     
-    $postFrom = isset($_POST['postFrom']) ? $_POST['postFrom'] : '';
     $mitigants = new resre\ResReMitigators();
     $home = new resre\ResReHome();
-    $response = 0;
-    $trigger = '';
+    
+    // Get modal triggers and upload responses (if any) and clear them from the session for subsequent pages
+    $response = isset($_SESSION[SESSION_NAME]['response']) ? $_SESSION[SESSION_NAME]['response'] : 0;
+    // Now wipe the page so we don't show erroneous messages on subsequent pages
+    unset($_SESSION[SESSION_NAME]['response']);
+    $trigger = isset($_SESSION[SESSION_NAME]['trigger']) ? $_SESSION[SESSION_NAME]['trigger'] : '';
+    // Now wipe the trigger so we don't hose subsequent pages
+    unset($_SESSION[SESSION_NAME]['trigger']);
+    
     // Get the mitgation set from the session if already created, else create one.
     if (isset($_SESSION[SESSION_NAME]['mitigants'])) {
         $mitigants = unserialize($_SESSION[SESSION_NAME]['mitigants']);
     }
-    $selected =  $mitigants->getRoofShape()->getMitKey();
-    
-    printVarIfDebug($postFrom, getenv('gDebug'), "Posted From");
-
-    if ($postFrom == '__us-shutters__') {
-        $mitigant = $mitigants->getShutters();
-        $shutterType = isset($_POST['__chars-shutters__']) ? $_POST['__chars-shutters__'] : '';
-        switch ($shutterType) {
-            case 'shtyshr':
-            case 'shtysnr':
-                $mitigant->setCurVal('shtys');
-                $mitigant->setMitKey($shutterType);
-                break;
-            case 'shtno':
-                $mitigant->setCurVal($shutterType);
-                $mitigant->setMitKey($shutterType);
-        }
-    } elseif ($postFrom == "__self__") {
-        // User is trying to upload an image
-        $userDir = $_SESSION[SESSION_NAME]['user']['userHash'];
-        $fileName = $_FILES['file']['name'];
-        printVarIfDebug($fileName, getenv('gDebug'), 'Name of File to Upload');
-        $location = $root . 'userImages/'. $userDir . '/roof-shape/';
-        printVarIfDebug($location, getenv('gDebug'), 'Name of Folder to Upload To');
-        if (!$userDir == '') {
-            $response = saveUserImage($fileName, $location, 'roof-shape');
-        } else {
-            $response = '<span style="color: #F00;">You must <a href="' . $root . 'us/index.php"><strong>log in</strong></a> to upload images.</span>';
-        }
-    } elseif ($postFrom == '__us-roofshape__') {
-        if (isset($_SESSION[SESSION_NAME]['home'])) {
-            $home = unserialize($_SESSION[SESSION_NAME]['home']);
-        }
-        $newID = saveState($mitigants, $home);
-        $trigger = 'dataSaved';
-    }
-
-    $_SESSION[SESSION_NAME]['mitigants'] = serialize($mitigants);
-
-    printVarIfDebug($_SESSION, getenv('gDebug'), 'Session after POST');
-    printVarIfDebug($mitigants, getenv('gDebug'), 'ResReMitigators');
-    printVarIfDebug($selected, getenv('gDebug'), 'Value of PostBack selection:');
+    $selected =  $mitigants->getRoofShape()->getMitKey();    
 ?>
 
 <!DOCTYPE html>
@@ -77,8 +42,8 @@
             <div class="characteristics-inner">
                 <div class="characteristics-wrapper container half_padding_left half_padding_right">
                     <div class="wt-content-wrapper left">
-                        <form method="post" name="roofForm" id="roofForm" action="<?php echo HOME_LINK; ?>us/garage-door.php">
-                            <input type="hidden" name="postFrom" value="__us-roofshape__" />
+                        <form method="post" name="roofForm" id="roofForm" action="<?php echo HOME_LINK; ?>_includes/procCrit/procUSRoofShape.php">
+                            <input type="hidden" name="postFrom" id="postFrom" value="__us-roofshape__" />
                             <input type="hidden" name="postBack" id="postBack" value="<?php echo $selected; ?>" />
                             <input type="hidden" name="trigger" id="trigger" value="<?php echo $trigger; ?>" />
 
@@ -174,8 +139,17 @@
 
         <!-- Footer -->
         <?php include($root . 'includes/site-footer.php'); ?>
+        <!-- Image Preloads -->
+        <div id="preload">
+            <img src="<?php echo SITE_ROOT; ?>/us/images/gable-roof-on.png" height="1" alt="Gable Roof" />
+            <img src="<?php echo SITE_ROOT; ?>/us/images/hipped-roof-on.png" height="1" alt="Hipped Roof" />
+            <img src="<?php echo SITE_ROOT; ?>/us/images/combo-roof-on.png" height="1" alt="Combination Roof" />
+            <img src="<?php echo SITE_ROOT; ?>/us/images/other-on.png" height="1" alt="Other Roof Shape" />
+            <img src="<?php echo SITE_ROOT; ?>/us/images/unknown-on.png" height="1" alt="Unknown Roof Shape" />
+        </div>
         <!-- Modals -->
         <?php
+            $action = SITE_ROOT . '/_includes/procCrit/procUSRoofShape.php';
             require($root . 'includes/modals/upload.php');
             require($root . 'includes/modals/dataSave.php');
         ?>
@@ -187,6 +161,7 @@
         <script>
             $(window ).on({
                 'load': function() {
+                    $(window).attr('innerDocClick', false);
                     var selection = $(document.getElementById('postBack')).attr('value');
                     console.log("selection = " + selection);
                     if (selection === 'rsgab') {
@@ -220,11 +195,11 @@
             });
 
             $("#moveBack").click(function() {
-                 $("#roofForm").attr("action", "<?php echo HOME_LINK; ?>us/shutters.php");
+                 $(document.getElementById('postFrom')).val('__us-roofshape-back__');
                  $("#roofForm").submit(); 
             });
             $("#saveBtn").click(function() {
-                $("#roofForm").attr("action", "<?php echo HOME_LINK; ?>us/roof-shape.php");
+                $(document.getElementById('postFrom')).val('__us-roofshape-save__');
                 $("#roofForm").submit();
             });
 

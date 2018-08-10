@@ -29,6 +29,9 @@ a.disabled {
     pointer-events: none;
     background-color: #ccc;
 }
+/* Preload Images Div */
+div#preload { display: none; }
+
 /* page Headers */
 .header-container {
     position: absolute;

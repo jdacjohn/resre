@@ -54,7 +54,7 @@
                 <!-- Form -->
                 <form id="login_form" method='post' action='' style="margin-bottom: 5px;">
                     <input type="hidden" name="postFrom" value="__login__" />
-                    <input type="hidden" name="login-trigger" id="login-trigger" value="<?php echo $loginTrigger; ?>" />
+                    <input type="hidden" name="login-trigger" id="login-trigger" value="<?php echo isset($loginTrigger) ? $loginTrigger : ''; ?>" />
                     <div class="col-md-12 fix-left"><label class="slate1640Bold" style="margin-bottom: 0px; " for="input_email">Email</label></div>
                     <div class="col-md-12 fix-left fix-top">
                         <input type="email" required class="slate2025 form-mustard modal-form" name="login_input_email" id="login_input_email" value="<?php echo isset($_POST['login_input_email']) ? $_POST['login_input_email'] : ''; ?>" placeholder="you@yourdomain.com" />
@@ -64,8 +64,8 @@
                     </div>
                 </form>
                 <div class="col-12 modal-error"><p id="loginErrMsg"><?php echo isset($loginErrMsg) ? $loginErrMsg : '&nbsp;'; ?></p></div>
-                <div class="col-xs-6 col-sm-3 col-md-3"><a href="#" class="mid-button-mustard modal-btn" id="loginModal-submit"><span class="slate2025 modal-btn-label"><strong>Submit</strong></span></a></div>
-                <div class="col-xs-6 col-sm-3 col-md-3" style="text-align: center;"><a href="#" class="mid-button-sand modal-btn" id="loginModal-cancel"><span class="slate2025 modal-btn-label"><strong>Cancel</strong></span></a></div>
+                <div class="col-xs-6 col-sm-3 col-md-3"><a class="mid-button-mustard modal-btn" id="loginModal-submit"><span class="slate2025 modal-btn-label"><strong>Submit</strong></span></a></div>
+                <div class="col-xs-6 col-sm-3 col-md-3" style="text-align: center;"><a class="mid-button-sand modal-btn" id="loginModal-cancel"><span class="slate2025 modal-btn-label"><strong>Cancel</strong></span></a></div>
                 <div class="col-xs-12 col-sm-6 col-md-6 modal-link" style="text-align: right; padding-top: 10px;"><a href="<?php echo HOME_LINK . 'us/index.php?postFrom=pwr'; ?>" class="slate2025" id="loginModal-lostpw">Lost Password</a></div>
                 <div class="clear"></div>
                 
@@ -77,6 +77,10 @@
 <script>
     $("#loginModal-cancel").click(function() {
         $("#loginModal").modal('toggle');
+    });
+    $("#loginModal-signup").click(function() {
+        $("#loginModal").modal("toggle");
+        $("#signupModal").modal("toggle");
     });
     $("#loginModal-submit").click(function() {
         // Test if valid email address

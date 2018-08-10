@@ -2,11 +2,17 @@
     $root = '../';
     require($root . '_includes/app_start.inc.php');
     
-    $postFrom = isset($_POST['postFrom']) ? $_POST['postFrom'] : '';
     $mitigants = new resre\ResReMitigators();
     $home = new resre\ResReHome();
-    $response = 0;
-    $trigger = '';
+
+    // Get modal triggers and upload responses (if any) and clear them from the session for subsequent pages
+    $response = isset($_SESSION[SESSION_NAME]['response']) ? $_SESSION[SESSION_NAME]['response'] : 0;
+    // Now wipe the page so we don't show erroneous messages on subsequent pages
+    unset($_SESSION[SESSION_NAME]['response']);
+    $trigger = isset($_SESSION[SESSION_NAME]['trigger']) ? $_SESSION[SESSION_NAME]['trigger'] : '';
+    // Now wipe the trigger so we don't hose subsequent pages
+    unset($_SESSION[SESSION_NAME]['trigger']);
+    
     // Get the mitgation set from the session if already created, else create one.
     if (isset($_SESSION[SESSION_NAME]['mitigants'])) {
         $mitigants = unserialize($_SESSION[SESSION_NAME]['mitigants']);
@@ -16,62 +22,6 @@
     if (isset($_SESSION[SESSION_NAME]['home'])) {
         $home = unserialize($_SESSION[SESSION_NAME]['home']);
     }
-    
-    printVarIfDebug($postFrom, getenv('gDebug'), "Posted From");
-
-    if ($postFrom == '__us-walltypes__') {
-        // Save the base config for wall type.
-        $mitigant = $mitigants->getWallType();
-        $wallType = isset($_POST['__chars-walltype__']) ? $_POST['__chars-walltype__'] : '';
-        switch ($wallType) {
-            case 'WS':
-                $mitigant->setCurVal($wallType);
-                $mitigant->setOptimumVal($wallType);
-                $mitigant->setMitKey(strtolower($wallType));
-                $home->setNumberOfComponents(6);
-                break;
-            case 'rmfys':
-                $mitigant->setCurVal('MS');
-                $mitigant->setOptimumVal('MS');
-                $mitigant->setMitKey($wallType);
-                $home->setNumberOfComponents(7);
-                break;
-            case 'rmfno':
-                $mitigant->setCurVal('MS');
-                $mitigant->setOptimumVal('MS');
-                $mitigant->setMitKey($wallType);
-                $home->setNumberOfComponents(7);
-                break;
-            case 'unknown':
-                $mitigant->setCurVal('WS');
-                $mitigant->setOptimumVal('WS');
-                $mitigant->setMitKey($wallType);
-                $home->setNumberOfComponents(6);
-                break;
-        }
-    } elseif ($postFrom == "__self__") {
-        // User is trying to upload an image
-        $userDir = $_SESSION[SESSION_NAME]['user']['userHash'];
-        $fileName = $_FILES['file']['name'];
-        printVarIfDebug($fileName, getenv('gDebug'), 'Name of File to Upload');
-        $location = $root . 'userImages/'. $userDir . '/shutters/';
-        printVarIfDebug($location, getenv('gDebug'), 'Name of Folder to Upload To');
-        if (!$userDir == '') {
-            $response = saveUserImage($fileName, $location, 'shutters');
-        } else {
-            $response = '<span style="color: #F00;">You must <a href="' . $root . 'us/index.php"><strong>log in</strong></a> to upload images.</span>';
-        }
-    } elseif ($postFrom == '__us-shutters__') {
-        $newID = saveState($mitigants, $home);
-        $trigger = 'dataSaved';
-    }
-
-    $_SESSION[SESSION_NAME]['mitigants'] = serialize($mitigants);
-    $_SESSION[SESSION_NAME]['home'] = serialize($home);
-    printVarIfDebug($_SESSION, getenv('gDebug'), 'Session After Posting');
-    printVarIfDebug($mitigants, getenv('gDebug'), 'ResReMitigators');
-    printVarIfDebug($mitigants, getenv('gDebug'), 'ResReHome');
-    printVarIfDebug($selected, getenv('gDebug'), 'Value of PostBack selection:');
 ?>
 
 <!DOCTYPE html>
@@ -96,8 +46,8 @@
             <div class="characteristics-inner">
                 <div class="characteristics-wrapper container half_padding_left half_padding_right">
                     <div class="wt-content-wrapper left">
-                        <form method="post" name="shuttersForm" id="shuttersForm" action="<?php echo HOME_LINK; ?>us/roof-shape.php">
-                            <input type="hidden" name="postFrom" value="__us-shutters__" />
+                        <form method="post" name="shuttersForm" id="shuttersForm" action="<?php echo HOME_LINK; ?>_includes/procCrit/procUSShutters.php">
+                            <input type="hidden" name="postFrom" id="postFrom" value="__us-shutters__" />
                             <input type="hidden" name="postBack" id="postBack" value="<?php echo $selected; ?>" />
                             <input type="hidden" name="trigger" id="trigger" value="<?php echo $trigger; ?>" />
 
@@ -171,8 +121,15 @@
 
         <!-- Footer -->
         <?php include($root . 'includes/site-footer.php'); ?>
+        <!-- Image Preloads -->
+        <div id="preload">
+            <img src="<?php echo SITE_ROOT; ?>/us/images/hurricane-rated-on.png" height="1" alt="Hurricane Rated Shutters" />
+            <img src="<?php echo SITE_ROOT; ?>/us/images/non-rated-on.png" height="1" alt="Non-Rated Shutters" />
+            <img src="<?php echo SITE_ROOT; ?>/us/images/no-shutters-on.png" height="1" alt="No Shutters" />
+        </div>
         <!-- Modals -->
         <?php
+            $action = SITE_ROOT . '/_includes/procCrit/procUSShutters.php';
             require($root . 'includes/modals/upload.php');
             require($root . 'includes/modals/dataSave.php');
         ?>
@@ -184,6 +141,7 @@
         <script>
             $(window ).on({
                 'load': function() {
+                    $(window).attr('innerDocClick', false);
                     var selection = $(document.getElementById('postBack')).attr('value');
                     console.log("selection = " + selection);
                     if (selection === 'shtyshr') {
@@ -209,11 +167,11 @@
             });
 
             $("#moveBack").click(function() {
-                 $("#shuttersForm").attr("action", "<?php echo HOME_LINK; ?>us/wall-types.php");
+                 $(document.getElementById('postFrom')).val('__us-shutters-back__');
                  $("#shuttersForm").submit(); 
             });
             $("#saveBtn").click(function() {
-                $("#shuttersForm").attr("action", "<?php echo HOME_LINK; ?>us/shutters.php");
+                 $(document.getElementById('postFrom')).val('__us-shutters-save__');
                 $("#shuttersForm").submit();
             });
 

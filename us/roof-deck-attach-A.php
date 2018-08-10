@@ -2,73 +2,23 @@
     $root = '../';
     require($root . '_includes/app_start.inc.php');
     
-    $postFrom = isset($_POST['postFrom']) ? $_POST['postFrom'] : '';
     $mitigants = new resre\ResReMitigators();
     $home = new resre\ResReHome();
-    $response = 0;
-    $trigger = '';
+
+    // Get modal triggers and upload responses (if any) and clear them from the session for subsequent pages
+    $response = isset($_SESSION[SESSION_NAME]['response']) ? $_SESSION[SESSION_NAME]['response'] : 0;
+    // Now wipe the page so we don't show erroneous messages on subsequent pages
+    unset($_SESSION[SESSION_NAME]['response']);
+    $trigger = isset($_SESSION[SESSION_NAME]['trigger']) ? $_SESSION[SESSION_NAME]['trigger'] : '';
+    // Now wipe the trigger so we don't hose subsequent pages
+    unset($_SESSION[SESSION_NAME]['trigger']);
+    
     // Get the mitgation set from the session if already created, else create one.
     if (isset($_SESSION[SESSION_NAME]['mitigants'])) {
         $mitigants = unserialize($_SESSION[SESSION_NAME]['mitigants']);
     }
     $selected =  $mitigants->getRdaA()->getMitKey();
     
-    printVarIfDebug($postFrom, getenv('gDebug'), "Posted From");
-
-    if ($postFrom == '__us-roofwall__') {
-        // Save the shutter selection to the session
-        $mitigant = $mitigants->getRoofToWall();
-        $rwall = isset($_POST['__chars-rwall__']) ? $_POST['__chars-rwall__'] : '';
-        switch ($rwall) {
-            case 'tnail':
-                $mitigant->setCurval($rwall);
-                $mitigant->setMitKey($rwall);
-                break;
-            case 'strap':
-                $mitigant->setCurVal($rwall);
-                $mitigant->setMitKey('straps');
-                break;
-            case 'clip':
-                $mitigant->setCurVal('strap');
-                $mitigant0>setMitKey('clips');
-                break;
-            case 'other':
-                $mitigant->setCurVal('tnail');
-                $mitigant->setMitKey('other');
-                break;
-            case 'unknown':
-                $mitigant->setCurval('tnail');
-                $mitigant->setMitKey('unknown');
-                break;
-            default:
-                $mitigant->setCurval('tnail');
-                $mitigant->setMitKey('unknown');                
-        }
-    } elseif ($postFrom == "__self__") {
-        // User is trying to upload an image
-        $userDir = $_SESSION[SESSION_NAME]['user']['userHash'];
-        $fileName = $_FILES['file']['name'];
-        printVarIfDebug($fileName, getenv('gDebug'), 'Name of File to Upload');
-        $location = $root . 'userImages/'. $userDir . '/roof-deck-attach-A/';
-        printVarIfDebug($location, getenv('gDebug'), 'Name of Folder to Upload To');
-        if (!$userDir == '') {
-            $response = saveUserImage($fileName, $location, 'RDA-A');
-        } else {
-            $response = '<span style="color: #F00;">You must <a href="' . $root . 'us/index.php"><strong>log in</strong></a> to upload images.</span>';
-        }
-    } elseif ($postFrom == '__us-RDA-A__') {
-        if (isset($_SESSION[SESSION_NAME]['home'])) {
-            $home = unserialize($_SESSION[SESSION_NAME]['home']);
-        }
-        $newID = saveState($mitigants, $home);
-        $trigger = 'dataSaved';
-    }
-
-    $_SESSION[SESSION_NAME]['mitigants'] = serialize($mitigants);
-    
-    printVarIfDebug($_SESSION, getenv('gDebug'), 'Session after POST');
-    printVarIfDebug($mitigants, getenv('gDebug'), 'ResReMitigators');
-    printVarIfDebug($selected, getenv('gDebug'), 'Value of PostBack selection:');
 ?>
 
 <!DOCTYPE html>
@@ -93,8 +43,8 @@
             <div class="characteristics-inner">
                 <div class="characteristics-wrapper container half_padding_left half_padding_right">
                     <div class="wt-content-wrapper left">
-                        <form method="post" name="rdaAForm" id="rdaAForm" action="<?php echo HOME_LINK; ?>us/roof-deck-attach-B.php">
-                            <input type="hidden" name="postFrom" value="__us-RDA-A__" />
+                        <form method="post" name="rdaAForm" id="rdaAForm" action="<?php echo HOME_LINK; ?>_includes/procCrit/procUS-RDA-A.php">
+                            <input type="hidden" name="postFrom" id="postFrom" value="__us-RDA-A__" />
                             <input type="hidden" name="postBack" id="postBack" value="<?php echo $selected; ?>" />
                             <input type="hidden" name="trigger" id="trigger" value="<?php echo $trigger; ?>" />
 
@@ -121,7 +71,7 @@
                                 <div class="col-md-3 col-sm-3 col-xs-10 chars-header-x3 chars-bumper">
                                     <label class="select-button">
                                         <input type="radio" name="__chars-rdaa__" value="rda6d" />
-                                        <img id="sel1" src="<?php echo SITE_ROOT; ?>/us/images/rda-6d-nail.png" class="img-responsive chars-select-x3">
+                                        <img id="sel1" src="<?php echo SITE_ROOT; ?>/us/images/rda-6d-nail-off.png" class="img-responsive chars-select-x3">
                                     </label>
                                     <div id="sel1_cb" class="col-xs-6 chars-checkbox-x3 fix-left" style="display: none"><img src="<?php echo SITE_ROOT; ?>/us/images/checkmark_blue-dark.png" class="img-responsive check-select"/></div>
                                     <div class="chars-header chars-label-x3 chars-buffer  white2025Bold">
@@ -131,7 +81,7 @@
                                 <div class="col-md-3 col-sm-3 col-xs-10 chars-header-x3">
                                     <label class="select-button">
                                         <input type="radio" name="__chars-rdaa__" value="rda8d" />
-                                        <img id="sel2" src="<?php echo SITE_ROOT; ?>/us/images/rda-8d-nail.png" class="img-responsive chars-select-x3">
+                                        <img id="sel2" src="<?php echo SITE_ROOT; ?>/us/images/rda-8d-nail-off.png" class="img-responsive chars-select-x3">
                                     </label>
                                     <div id="sel2_cb" class="col-xs-6 chars-checkbox-x3 fix-left" style="display: none"><img src="<?php echo SITE_ROOT; ?>/us/images/checkmark_blue-dark.png" class="img-responsive check-select"/></div>
                                     <div class="chars-header chars-label-x3 chars-buffer  white2025Bold">
@@ -141,7 +91,7 @@
                                 <div class="col-md-3 col-sm-3 col-xs-10 chars-header-x3">
                                     <label class="select-button">
                                         <input type="radio" name="__chars-rdaa__" value="rda10d" />
-                                        <img id="sel3" src="<?php echo SITE_ROOT; ?>/us/images/rda-10d-nail.png" class="img-responsive chars-select-x3">
+                                        <img id="sel3" src="<?php echo SITE_ROOT; ?>/us/images/rda-10d-nail-off.png" class="img-responsive chars-select-x3">
                                     </label>
                                     <div id="sel3_cb" class="col-xs-6 chars-checkbox-x3 fix-left" style="display: none"><img src="<?php echo SITE_ROOT; ?>/us/images/checkmark_blue-dark.png" class="img-responsive check-select"/></div>
                                     <div class="chars-header chars-label-x3 chars-buffer white2025Bold">
@@ -151,7 +101,7 @@
                                 <div class="col-md-3 col-sm-3 col-xs-10 chars-header-x3 chars-bumper">
                                     <label class="select-button">
                                         <input type="radio" name="__chars-rdaa__" value="rda6s" />
-                                        <img id="sel4" src="<?php echo SITE_ROOT; ?>/us/images/rda-6d8d-nail.png" class="img-responsive chars-select-x3">
+                                        <img id="sel4" src="<?php echo SITE_ROOT; ?>/us/images/rda-6d8d-nail-off.png" class="img-responsive chars-select-x3">
                                     </label>
                                     <div id="sel4_cb" class="col-xs-6 chars-checkbox-x3 fix-left" style="display: none"><img src="<?php echo SITE_ROOT; ?>/us/images/checkmark_blue-dark.png" class="img-responsive check-select"/></div>
                                     <div class="chars-header chars-label-x3 chars-buffer white2025Bold">
@@ -198,8 +148,18 @@
         </div>   <!-- / .containter -->
         <!-- Footer -->
         <?php include($root . 'includes/site-footer.php'); ?>
+        <!-- Image Preloads -->
+        <div id="preload">
+            <img src="<?php echo SITE_ROOT; ?>/us/images/rda-6d-nail-on.png" height="1" alt="6d nail Roof-Deck Attachment" />
+            <img src="<?php echo SITE_ROOT; ?>/us/images/rda-8d-nail-on.png" height="1" alt="8d nail Roof-Deck Attachment" />
+            <img src="<?php echo SITE_ROOT; ?>/us/images/rda-10d-nail-on.png" height="1" alt="10d nail Roof-Deck Attachment" />
+            <img src="<?php echo SITE_ROOT; ?>/us/images/rda-6d8d-nail-on.png" height="1" alt="6d and 8d nail Roof-Deck Attachment" />
+            <img src="<?php echo SITE_ROOT; ?>/us/images/other-on.png" height="1" alt="Other type nail Roof-Deck Attachment" />
+            <img src="<?php echo SITE_ROOT; ?>/us/images/unknown-on.png" height="1" alt="Unknow type nail Roof-Deck Attachment" />
+        </div>
         <!-- Modals -->
         <?php 
+            $action = SITE_ROOT . '/_includes/procCrit/procUS-RDA-A.php';
             require($root . 'includes/modals/upload.php');
             require($root . 'includes/modals/dataSave.php');
         ?>
@@ -210,6 +170,7 @@
         <script>
             $(window ).on({
                 'load': function() {
+                    $(window).attr('innerDocClick', false);
                     var selection = $(document.getElementById('postBack')).attr('value');
                     console.log("selection = " + selection);
                     if (selection === 'rda6d') {
@@ -247,138 +208,219 @@
             });
 
             $("#moveBack").click(function() {
-                 $("#rdaAForm").attr("action", "<?php echo HOME_LINK; ?>/us/roof-wall.php");
+                 $(document.getElementById('postFrom')).val('__us-RDA-A-back__');
                  $("#rdaAForm").submit(); 
             });
             $("#saveBtn").click(function() {
-                 $("#rdaAForm").attr("action", "<?php echo HOME_LINK; ?>/us/roof-deck-attach-A.php");
+                 $(document.getElementById('postFrom')).val('__us-RDA-A-save__');
                  $("#rdaAForm").submit(); 
             });
             
             $('img').on({
                 'click': function() {
+                    var sel1Src;
+                    var sel2Src;
+                    var sel3Src;
+                    var sel4Src;
+                    var sel5Src;
+                    var sel6Src;
                     if ($(this).attr('id') === 'sel1') {
-                        var element = document.getElementById('sel1_cb');
-                        var otherElement4 = document.getElementById('sel5');
-                        var otherElement5 = document.getElementById('sel6');
-                        if ($(element).is(':visible')) {
-                            // Deselect this
-                            $(element).hide();
-                        } else {
-                            // Select this
-                            $(element).show();
+                       var src = $(this).attr('src');
+                       var element = document.getElementById('sel1_cb');
+                        var otherElement2 = document.getElementById('sel2');
+                        var otherElement3 = document.getElementById('sel3');
+                        var otherElement4 = document.getElementById('sel4');
+                        var otherElement5 = document.getElementById('sel5');
+                        var otherElement6 = document.getElementById('sel6');
+                        if (src === '<?php echo SITE_ROOT; ?>/us/images/rda-6d-nail-off.png') {
+                            sel1Src = '<?php echo SITE_ROOT; ?>/us/images/rda-6d-nail-on.png';
+                            $(document.getElementById('sel1_cb')).show();
+                            sel2Src = '<?php echo SITE_ROOT; ?>/us/images/rda-8d-nail-off.png';
+                            sel3Src = '<?php echo SITE_ROOT; ?>/us/images/rda-10d-nail-off.png';
+                            sel4Src = '<?php echo SITE_ROOT; ?>/us/images/rda-6d8d-nail-off.png';
                             sel5Src = '<?php echo SITE_ROOT; ?>/us/images/other-off.png';
                             sel6Src = '<?php echo SITE_ROOT; ?>/us/images/unknown-off.png';
-                            $(otherElement4).attr('src', sel5Src);
-                            $(otherElement5).attr('src', sel6Src);
+                            $(this).attr('src',sel1Src);
+                            $(otherElement2).attr('src',sel2Src);
+                            $(otherElement3).attr('src',sel3Src);
+                            $(otherElement4).attr('src',sel4Src);
+                            $(otherElement5).attr('src',sel5Src);
+                            $(otherElement6).attr('src',sel6Src);
+                            $(document.getElementById('sel2_cb')).hide();
+                            $(document.getElementById('sel3_cb')).hide();
+                            $(document.getElementById('sel4_cb')).hide();
+                            $(document.getElementById('sel5_cb')).hide();
+                            $(document.getElementById('sel6_cb')).hide();
+                        } else {
+                            // Unselecting current selection
+                            sel1Src = '<?php echo SITE_ROOT; ?>/us/images/rda-6d-nail-off.png';
+                            $(this).attr('src', sel1Src);
+                            $(document.getElementById('sel1_cb')).hide();
                         }
-                        $(document.getElementById('sel2_cb')).hide();
-                        $(document.getElementById('sel3_cb')).hide();
-                        $(document.getElementById('sel4_cb')).hide();
-                        $(document.getElementById('sel5_cb')).hide();
-                        $(document.getElementById('sel6_cb')).hide();
                     } else if ($(this).attr('id') === 'sel2') {
-                        var element = document.getElementById('sel2_cb');
-                        var otherElement4 = document.getElementById('sel5');
-                        var otherElement5 = document.getElementById('sel6');
-                        if ($(element).is(':visible')) {
-                            // Deselect this
-                            $(element).hide();
-                        } else {
-                            // Select this
-                            $(element).show();
+                       var src = $(this).attr('src');
+                        var otherElement1 = document.getElementById('sel1');
+                        var otherElement3 = document.getElementById('sel3');
+                        var otherElement4 = document.getElementById('sel4');
+                        var otherElement5 = document.getElementById('sel5');
+                        var otherElement6 = document.getElementById('sel6');
+                        if (src === '<?php echo SITE_ROOT; ?>/us/images/rda-8d-nail-off.png') {
+                            sel2Src = '<?php echo SITE_ROOT; ?>/us/images/rda-8d-nail-on.png';
+                            $(document.getElementById('sel2_cb')).show();
+                            sel1Src = '<?php echo SITE_ROOT; ?>/us/images/rda-6d-nail-off.png';
+                            sel3Src = '<?php echo SITE_ROOT; ?>/us/images/rda-10d-nail-off.png';
+                            sel4Src = '<?php echo SITE_ROOT; ?>/us/images/rda-6d8d-nail-off.png';
                             sel5Src = '<?php echo SITE_ROOT; ?>/us/images/other-off.png';
                             sel6Src = '<?php echo SITE_ROOT; ?>/us/images/unknown-off.png';
-                            $(otherElement4).attr('src', sel5Src);
-                            $(otherElement5).attr('src', sel6Src);
+                            $(this).attr('src',sel2Src);
+                            $(otherElement1).attr('src',sel1Src);
+                            $(otherElement3).attr('src',sel3Src);
+                            $(otherElement4).attr('src',sel4Src);
+                            $(otherElement5).attr('src',sel5Src);
+                            $(otherElement6).attr('src',sel6Src);
+                            $(document.getElementById('sel1_cb')).hide();
+                            $(document.getElementById('sel3_cb')).hide();
+                            $(document.getElementById('sel4_cb')).hide();
+                            $(document.getElementById('sel5_cb')).hide();
+                            $(document.getElementById('sel6_cb')).hide();
+                        } else {
+                            // Unselecting current selection
+                            sel2Src = '<?php echo SITE_ROOT; ?>/us/images/rda-8d-nail-off.png';
+                            $(this).attr('src', sel2Src);
+                            $(document.getElementById('sel2_cb')).hide();
                         }
-                        $(document.getElementById('sel1_cb')).hide();
-                        $(document.getElementById('sel3_cb')).hide();
-                        $(document.getElementById('sel4_cb')).hide();
-                        $(document.getElementById('sel5_cb')).hide();
-                        $(document.getElementById('sel6_cb')).hide();
                     } else if ($(this).attr('id') === 'sel3') {
-                        var element = document.getElementById('sel3_cb');
-                        var otherElement4 = document.getElementById('sel5');
-                        var otherElement5 = document.getElementById('sel6');
-                        if ($(element).is(':visible')) {
-                            // Deselect this
-                            $(element).hide();
-                        } else {
-                            // Select this
-                            $(element).show();
+                       var src = $(this).attr('src');
+                        var otherElement1 = document.getElementById('sel1');
+                        var otherElement2 = document.getElementById('sel2');
+                        var otherElement4 = document.getElementById('sel4');
+                        var otherElement5 = document.getElementById('sel5');
+                        var otherElement6 = document.getElementById('sel6');
+                        if (src === '<?php echo SITE_ROOT; ?>/us/images/rda-10d-nail-off.png') {
+                            // User selected this option
+                            sel3Src = '<?php echo SITE_ROOT; ?>/us/images/rda-10d-nail-on.png';
+                            $(document.getElementById('sel3_cb')).show();
+                            sel1Src = '<?php echo SITE_ROOT; ?>/us/images/rda-6d-nail-off.png';
+                            sel2Src = '<?php echo SITE_ROOT; ?>/us/images/rda-8d-nail-off.png';
+                            sel4Src = '<?php echo SITE_ROOT; ?>/us/images/rda-6d8d-nail-off.png';
                             sel5Src = '<?php echo SITE_ROOT; ?>/us/images/other-off.png';
                             sel6Src = '<?php echo SITE_ROOT; ?>/us/images/unknown-off.png';
-                            $(otherElement4).attr('src', sel5Src);
-                            $(otherElement5).attr('src', sel6Src);
+                            $(this).attr('src',sel3Src);
+                            $(otherElement1).attr('src',sel1Src);
+                            $(otherElement2).attr('src',sel2Src);
+                            $(otherElement4).attr('src',sel4Src);
+                            $(otherElement5).attr('src',sel5Src);
+                            $(otherElement6).attr('src',sel6Src);
+                            $(document.getElementById('sel1_cb')).hide();
+                            $(document.getElementById('sel2_cb')).hide();
+                            $(document.getElementById('sel4_cb')).hide();
+                            $(document.getElementById('sel5_cb')).hide();
+                            $(document.getElementById('sel6_cb')).hide();
+                        } else {
+                            // Unselecting current selection
+                            sel3Src = '<?php echo SITE_ROOT; ?>/us/images/rda-10d-nail-off.png';
+                            $(this).attr('src', sel3Src);
+                            $(document.getElementById('sel3_cb')).hide();
                         }
-                        $(document.getElementById('sel1_cb')).hide();
-                        $(document.getElementById('sel2_cb')).hide();
-                        $(document.getElementById('sel4_cb')).hide();
-                        $(document.getElementById('sel5_cb')).hide();
-                        $(document.getElementById('sel6_cb')).hide();
                     } else if ($(this).attr('id') === 'sel4') {
-                        var element = document.getElementById('sel4_cb');
-                        var otherElement4 = document.getElementById('sel5');
-                        var otherElement5 = document.getElementById('sel6');
-                        if ($(element).is(':visible')) {
-                            // Deselect this
-                            $(element).hide();
-                        } else {
-                            // Select this
-                            $(element).show();
+                       var src = $(this).attr('src');
+                        var otherElement1 = document.getElementById('sel1');
+                        var otherElement2 = document.getElementById('sel2');
+                        var otherElement3 = document.getElementById('sel3');
+                        var otherElement5 = document.getElementById('sel5');
+                        var otherElement6 = document.getElementById('sel6');
+                        if (src === '<?php echo SITE_ROOT; ?>/us/images/rda-6d8d-nail-off.png') {
+                            // User selected this option
+                            sel4Src = '<?php echo SITE_ROOT; ?>/us/images/rda-6d8d-nail-on.png';
+                            $(document.getElementById('sel4_cb')).show();
+                            sel1Src = '<?php echo SITE_ROOT; ?>/us/images/rda-6d-nail-off.png';
+                            sel2Src = '<?php echo SITE_ROOT; ?>/us/images/rda-8d-nail-off.png';
+                            sel3Src = '<?php echo SITE_ROOT; ?>/us/images/rda-10d-nail-off.png';
                             sel5Src = '<?php echo SITE_ROOT; ?>/us/images/other-off.png';
                             sel6Src = '<?php echo SITE_ROOT; ?>/us/images/unknown-off.png';
-                            $(otherElement4).attr('src', sel5Src);
-                            $(otherElement5).attr('src', sel6Src);
+                            $(this).attr('src',sel4Src);
+                            $(otherElement1).attr('src',sel1Src);
+                            $(otherElement2).attr('src',sel2Src);
+                            $(otherElement3).attr('src',sel3Src);
+                            $(otherElement5).attr('src',sel5Src);
+                            $(otherElement6).attr('src',sel6Src);
+                            $(document.getElementById('sel1_cb')).hide();
+                            $(document.getElementById('sel2_cb')).hide();
+                            $(document.getElementById('sel3_cb')).hide();
+                            $(document.getElementById('sel5_cb')).hide();
+                            $(document.getElementById('sel6_cb')).hide();
+                        } else {
+                            // Unselecting current selection
+                            sel4Src = '<?php echo SITE_ROOT; ?>/us/images/rda-6d8d-nail-off.png';
+                            $(this).attr('src', sel4Src);
+                            $(document.getElementById('sel4_cb')).hide();
                         }
-                        $(document.getElementById('sel1_cb')).hide();
-                        $(document.getElementById('sel2_cb')).hide();
-                        $(document.getElementById('sel3_cb')).hide();
-                        $(document.getElementById('sel5_cb')).hide();
-                        $(document.getElementById('sel6_cb')).hide();
                     } else if ($(this).attr('id') === 'sel5') {
-                        var src = $(this).attr('src');
-                        var otherElement5 = document.getElementById('sel6');
+                       var src = $(this).attr('src');
+                        var otherElement1 = document.getElementById('sel1');
+                        var otherElement2 = document.getElementById('sel2');
+                        var otherElement3 = document.getElementById('sel3');
+                        var otherElement4 = document.getElementById('sel4');
+                        var otherElement6 = document.getElementById('sel6');
                         if (src === '<?php echo SITE_ROOT; ?>/us/images/other-off.png') {
-                            // Select this
+                            // User selected this option
                             sel5Src = '<?php echo SITE_ROOT; ?>/us/images/other-on.png';
+                            $(document.getElementById('sel5_cb')).show();
+                            sel1Src = '<?php echo SITE_ROOT; ?>/us/images/rda-6d-nail-off.png';
+                            sel2Src = '<?php echo SITE_ROOT; ?>/us/images/rda-8d-nail-off.png';
+                            sel3Src = '<?php echo SITE_ROOT; ?>/us/images/rda-10d-nail-off.png';
+                            sel4Src = '<?php echo SITE_ROOT; ?>/us/images/rda-6d8d-nail-off.png';
                             sel6Src = '<?php echo SITE_ROOT; ?>/us/images/unknown-off.png';
                             $(this).attr('src',sel5Src);
-                            $(document.getElementById('sel5_cb')).show();
-                            $(otherElement5).attr('src', sel6Src);
+                            $(otherElement1).attr('src',sel1Src);
+                            $(otherElement2).attr('src',sel2Src);
+                            $(otherElement3).attr('src',sel3Src);
+                            $(otherElement4).attr('src',sel4Src);
+                            $(otherElement6).attr('src',sel6Src);
                             $(document.getElementById('sel1_cb')).hide();
                             $(document.getElementById('sel2_cb')).hide();
                             $(document.getElementById('sel3_cb')).hide();
                             $(document.getElementById('sel4_cb')).hide();
                             $(document.getElementById('sel6_cb')).hide();
                         } else {
-                            // Deselect this
+                            // Unselecting current selection
                             sel5Src = '<?php echo SITE_ROOT; ?>/us/images/other-off.png';
                             $(this).attr('src', sel5Src);
                             $(document.getElementById('sel5_cb')).hide();
-                        }                    
+                        }
                     } else if ($(this).attr('id') === 'sel6') {
-                        var src = $(this).attr('src');
+                       var src = $(this).attr('src');
+                        var otherElement1 = document.getElementById('sel1');
+                        var otherElement2 = document.getElementById('sel2');
+                        var otherElement3 = document.getElementById('sel3');
+                        var otherElement4 = document.getElementById('sel4');
                         var otherElement5 = document.getElementById('sel5');
                         if (src === '<?php echo SITE_ROOT; ?>/us/images/unknown-off.png') {
-                            // Select this
-                            sel5Src = '<?php echo SITE_ROOT; ?>/us/images/other-off.png';
+                            // User selected this option
                             sel6Src = '<?php echo SITE_ROOT; ?>/us/images/unknown-on.png';
-                            $(this).attr('src',sel6Src);
                             $(document.getElementById('sel6_cb')).show();
-                            $(otherElement5).attr('src', sel5Src);
+                            sel1Src = '<?php echo SITE_ROOT; ?>/us/images/rda-6d-nail-off.png';
+                            sel2Src = '<?php echo SITE_ROOT; ?>/us/images/rda-8d-nail-off.png';
+                            sel3Src = '<?php echo SITE_ROOT; ?>/us/images/rda-10d-nail-off.png';
+                            sel4Src = '<?php echo SITE_ROOT; ?>/us/images/rda-6d8d-nail-off.png';
+                            sel5Src = '<?php echo SITE_ROOT; ?>/us/images/other-off.png';
+                            $(this).attr('src',sel6Src);
+                            $(otherElement1).attr('src',sel1Src);
+                            $(otherElement2).attr('src',sel2Src);
+                            $(otherElement3).attr('src',sel3Src);
+                            $(otherElement4).attr('src',sel4Src);
+                            $(otherElement5).attr('src',sel5Src);
                             $(document.getElementById('sel1_cb')).hide();
                             $(document.getElementById('sel2_cb')).hide();
                             $(document.getElementById('sel3_cb')).hide();
                             $(document.getElementById('sel4_cb')).hide();
                             $(document.getElementById('sel5_cb')).hide();
                         } else {
-                            // Deselect this
+                            // Unselecting current selection
                             sel6Src = '<?php echo SITE_ROOT; ?>/us/images/unknown-off.png';
                             $(this).attr('src', sel6Src);
                             $(document.getElementById('sel6_cb')).hide();
-                        }                    
+                        }
                     }
                 }
             });

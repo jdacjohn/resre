@@ -51,7 +51,7 @@
                 <!-- Form -->
                 <form id="pwReset_form" method='post' action='' style="margin-bottom: 5px;">
                     <input type="hidden" name="postFrom" value="__pwreset__" />
-                    <input type="hidden" name="pwreset-trigger" id="pwreset-trigger" value="<?php echo $pwResetTrigger; ?>" />
+                    <input type="hidden" name="pwreset-trigger" id="pwreset-trigger" value="<?php echo isset($pwResetTrigger) ? $pwResetTrigger : ''; ?>" />
                     <div class="col-md-12 fix-left"><label class="slate1640Bold" style="margin-bottom: 0px; " for="pw_input_email">Email</label></div>
                     <div class="col-md-12 fix-left fix-top">
                         <input type="email" required class="slate2025 form-mustard modal-form" name="pw_input_email" id="pw_input_email" value="<?php echo isset($_POST['pw_input_email']) ? $_POST['pw_input_email'] : ''; ?>" placeholder="you@yourdomain.com" />

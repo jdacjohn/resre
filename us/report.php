@@ -68,10 +68,10 @@
                    <div class="wt-content-wrapper left" id="reportWrapper"> 
                         <!-- Report Heading -->
                         <div class="row report-header" id="reportHeader">
-                            <div class="chars-border-middle-wt-1"></div>
-                            <div class="chars-border-middle-wt-2"></div>
-                            <div class="col-md-2 col-sm-2 col-xs-2 chars-marker chars">
-                                <span class="blue2532Bold marker-white" style="margin-bottom: 0px; ">
+                            <div class="chars-border-middle-wt-1" id="cbmwt1"></div>
+                            <div class="chars-border-middle-wt-2" id="cbmwt2"></div>
+                            <div class="col-md-2 col-sm-2 col-xs-2 chars-marker chars" id="topCharMarker">
+                                <span class="blue2532Bold marker-white" style="margin-bottom: 0px; " id="topCharMarkerCircle">
                                     <img src="<?php echo SITE_ROOT; ?>/us/images/arrow_blue-dark.png" class="img-responsive complete-down"/>
                                 </span>
                             </div>
@@ -91,7 +91,7 @@
                         </div>
                         <!-- Report Summary -->
                         <div class='row report-summary' id="reportSummary">
-                            <div class='chars-border-middle-wt-3'></div>
+                            <div class='chars-border-middle-wt-3' id="cbmwt3"></div>
                             <div class='mit-cost white2230 hidden-xs hidden-sm'>
                                 <h4>Mitigation Cost Analysis</h4>
                                 <h4>Free - $</h4>
@@ -103,7 +103,7 @@
                                 <h4>$$$$</h4>
                                 $5001+
                             </div>
-                            <div class='mit-cost-small white2025 hidden-md hidden-lg'>
+                            <div class='mit-cost-small white2025 hidden-md hidden-lg' id="mitCostSmall">
                                 <p><span class="white2025Black">Mitigation Cost Analysis</span></p>
                                 <table style="text-align: left;">
                                     <tr>
@@ -128,8 +128,8 @@
                                     </tr>
                                 </table>
                             </div>
-                            <div class="col-md-2 col-sm-2 col-xs-2 chars-marker chars">
-                                <span class="blue2532Bold marker-white" style="margin-bottom: 0px; ">
+                            <div class="col-md-2 col-sm-2 col-xs-2 chars-marker chars" id="midCharMarker">
+                                <span class="blue2532Bold marker-white" style="margin-bottom: 0px; " id="midCharMarkerCircle">
                                     <img src="<?php echo SITE_ROOT; ?>/us/images/arrow_blue-dark.png" class="img-responsive complete-down"/>
                                 </span>
                             </div>
@@ -148,9 +148,15 @@
                             <div class='clear'></div>
                             <?php
                             $impactPct = number_format(($assessor->getEstimatedLoss() / $resReHome->homeValue) * 100, 2);
+                            if ($assessor->getEstimatedLoss() == 0) {
+                                $disclaimer = "* No loss ratio information could be found based on the home characterisitcs you selected.  Please click <a href='" . SITE_ROOT . "/us/stories.php' style='color: #ffffff; text-decoration: underline;'>HERE</a> to re-check your selections.";
+                            } else {
+                                $disclaimer = "* Loss percentages and values are approximate based on US Storm Loss Ratio Data and your home characteristics selections.";
+                            }
                             ?>
                             <div class="col-md-8 col-sm-10 col-xs-10 risk white2025">
                                 Your cost impact risk of a Category <?php echo $category; ?> hurricane is <strong><?php echo $impactPct; ?>%</strong> of your home's value before retrofits.
+                                <p class="white1822">&nbsp;<br /><?php echo $disclaimer; ?></p>
                             </div>
                             <div class="col-md-8 col-sm-10 col-xs-10 risk report-title white2532Bold">
                                 Damage & Calculator Cost Analysis
@@ -159,7 +165,7 @@
                                 <img src="<?php echo SITE_ROOT; ?>/us/images/spectrum.png"  id='slider' class="img-responsive report-slider"/>
                             </div>
                             <div class='clear'></div>
-                            <div class='col-md-1 col-md-offset-3 col-xs-4 col-xs-offset-2 white2532Bold' style='text-align: right;'>$<?php echo number_format($retroAssessor->getEstimatedLoss(), 0); ?></div>
+                            <div class='col-md-1 col-md-offset-3 col-xs-4 col-xs-offset-2 white2532Bold' style='text-align: center;'>$<?php echo number_format($retroAssessor->getEstimatedLoss(), 0); ?></div>
                             <div class='col-md-1 col-md-offset-1 col-xs-4 white2532Bold'>$<?php echo number_format($assessor->getEstimatedLoss(), 0); ?></div>
                             <div class='clear'></div>
                             <div class='col-md-1 col-md-offset-3 col-xs-4 col-xs-offset-2 white1822' style="text-align: center;">After</div>
@@ -173,8 +179,8 @@
                         </form>
                         <!-- Retrofit Suggestions -->
                         <div class='row report-details' id="reportDetails">
-                            <div class='chars-border-middle-wt-4'></div>
-                            <div class='retrofits-header white3040'>Suggested Retrofits</div>
+                            <div class='chars-border-middle-wt-4' id="cbmwt4"></div>
+                            <div class='retrofits-header white3040' id="suggestedRetrofits">Suggested Retrofits</div>
                             
                             <!-- Stories -->
                             <div class="col-md-2 col-sm-2 col-xs-2 chars-marker chars">
@@ -539,7 +545,7 @@
                             <div class='col-md-4 col-xs-10 col-xs-offset-2 chars-bumper slate2230 rec-desc rec-desc-no-bumper'>
                                 <strong><?php echo $mitigant->getCostIndicator(); ?></strong>
                             </div>
-                            <div class="col-md-8  col-md-offset-2 col-xs-8 col-xs-offset-2 white2230Black resources chars-desc">
+                            <div class="col-md-8  col-md-offset-2 col-xs-8 col-xs-offset-2 white2230Black resources chars-desc" id="lastResourceHeader">
                                 Resources
                             </div>
                             <div class="col-md-5 col-xs-10 col-xs-offset-2 chars-bumper slate2230 rec-resources">
@@ -584,13 +590,55 @@
             });
             
             $(window ).on({
-                'load': function() {
+                'load resize': function() {
                     var reportHeight = $(document.getElementById('reportWrapper')).height();
                     var wrapperTop = $(document.getElementById('reportWrapper')).position().top;
-                    console.log("Report Wrapper Top Position = " + wrapperTop);
-                    console.log("Report Height = " + reportHeight);
-                    console.log('New CI height = ' + (wrapperTop + reportHeight));
                     $(document.getElementById('ci')).height(reportHeight + wrapperTop);
+                    
+                    // Calculate height and top margin of line 1
+                    var charMarkerTopPos = parseInt($(document.getElementById('topCharMarker')).css('marginTop')) + 1;
+                    $(document.getElementById('cbmwt1')).css('height', wrapperTop + charMarkerTopPos);
+                    $(document.getElementById('cbmwt1')).css('marginTop', 0 - wrapperTop);
+                    console.log("Report Wrapper Top Position = " + wrapperTop);
+                    console.log("Char Marker Top Position = " + charMarkerTopPos);
+                    var charMarkerBotPos = parseInt($(document.getElementById('topCharMarkerCircle')).css('height'));
+                    console.log("Char Marker Bottom Position = " + charMarkerBotPos);
+                    
+                    // Calc height  and top margin of line 2
+                    $(document.getElementById('cbmwt2')).css('marginTop', charMarkerTopPos + charMarkerBotPos);
+                    var reportHeaderContentHeight = parseInt($(document.getElementById('reportHeaderContent')).css('height')) + 1;
+                    var reportHeaderHeight = parseInt($(document.getElementById('reportHeader')).css('height'));
+                    var summaryPaddingTop = parseInt($(document.getElementById('reportSummary')).css('paddingTop'));
+                    var midCharMarkerHeight = parseInt($(document.getElementById('midCharMarker')).css('height'));
+                    console.log('Report Summary Top Padding = ' + summaryPaddingTop);
+                    console.log('Report Header Content Height = ' + reportHeaderContentHeight);
+                    console.log('Report Header Height = ' + reportHeaderHeight);
+                    $(document.getElementById('cbmwt2')).css('height', summaryPaddingTop + reportHeaderContentHeight + reportHeaderHeight);
+                    
+                    // Calc height and top margin of line 3
+                    var midCharMarkerBotPos = parseInt($(document.getElementById('midCharMarkerCircle')).css('height')) + 1;
+                    var midCharMarkerTop = parseInt($(document.getElementById('midCharMarker')).css('marginTop'));
+                    console.log('Mid Char Marker Top = ' + midCharMarkerTop);
+                    $(document.getElementById('cbmwt3')).css('marginTop', midCharMarkerTop + midCharMarkerBotPos);
+                    var reportSummaryHeight = parseInt($(document.getElementById('reportSummary')).css('height')) + 1;
+                    $(document.getElementById('cbmwt3')).css('height', reportSummaryHeight - (midCharMarkerBotPos + midCharMarkerTop + summaryPaddingTop));
+                    
+                    // Calc height and top margin of line 4
+                    var reportDetailPaddingTop = parseInt($(document.getElementById('reportDetails')).css('paddingTop'));
+                    var reportDetailPaddingBot = parseInt($(document.getElementById('reportDetails')).css('paddingBottom'));
+                    var reportDetailHeight = parseInt($(document.getElementById('reportDetails')).css('height'));
+                    var reportDetailLastResourceHeader = parseInt($(document.getElementById('lastResourceHeader')).css('paddingBottom'));
+                    console.log("Report Details Padding Top = " + reportDetailPaddingTop);
+                    console.log("Report Details Padding Bottom = " + reportDetailPaddingBot);
+                    console.log("Report Details Height = " + reportDetailHeight);
+                    $(document.getElementById('cbmwt4')).css('marginTop', 0 - reportDetailPaddingTop);
+                    $(document.getElementById('cbmwt4')).css('height', reportDetailHeight - (reportDetailPaddingTop + reportDetailPaddingBot) + reportDetailLastResourceHeader + 4);
+                    
+                    // Calculate top position of small mitigation cost box
+                    var smallBox = $(document.getElementById('mitCostSmall'));
+                    var smallBoxHeight = parseInt($(smallBox).css('height')) + parseInt($(smallBox).css('paddingTop')) + parseInt($(smallBox).css('paddingBottom'));
+                    console.log("Mit Cost Small Box Height + Top and Bottom Padding = " + smallBoxHeight);
+                    $(smallBox).css('margin-top', (reportSummaryHeight - smallBoxHeight) - summaryPaddingTop - 10);
                 }
             });
             

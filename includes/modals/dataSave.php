@@ -42,7 +42,7 @@
                 <form id="saveForm" method='post' action='' enctype="multipart/form-data" style="margin-bottom: 5px;">
                     <input type="hidden" name="postFrom" value="__self__" />
                 </form>
-                <div class="col-xs-6 col-sm-3 col-md-3"><a href="#" id="modalOk" class="mid-button-sand modal-btn"><span class="slate2025 modal-btn-label"><strong>OK</strong></span></a></div>
+                <div class="col-xs-6 col-sm-3 col-md-3"><a id="modalOk" class="mid-button-sand modal-btn"><span class="slate2025 modal-btn-label"><strong>OK</strong></span></a></div>
                 <div class="clear"></div>
             </div>
         </div>

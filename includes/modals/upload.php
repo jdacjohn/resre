@@ -32,14 +32,14 @@
             </div>
             <div class="modal-body" style="padding-left: 50px; padding-right: 50px; padding-top: 0px;">
                 <!-- Form -->
-                <form id="uploadForm" method='post' action='' enctype="multipart/form-data" style="margin-bottom: 5px;">
+                <form id="uploadForm" method='post' action='<?php echo $action; ?>' enctype="multipart/form-data" style="margin-bottom: 5px;">
                     <input type="hidden" name="uploadDir" value="<?php echo $imgFolder; ?>" />
                     <input type="hidden" name="postFrom" value="__self__" />
                     <label for="file"><span class="slate1640Bold" id="inputLabel">Choose a file</span></label><br />
                     <input type='file' name='file' id='file' class='form-control inputFile' />
                 </form>
-                <div class="col-xs-6 col-sm-3 col-md-3"><a href="#" class="mid-button-mustard modal-btn" id="modalUpload"><span class="slate2025 modal-btn-label"><strong>Send</strong></span></a></div>
-                <div class="col-xs-6 col-sm-3 col-md-3"><a href="#" id="modalCancel" class="mid-button-sand modal-btn"><span class="slate2025 modal-btn-label"><strong>Cancel</strong></span></a></div>
+                <div class="col-xs-6 col-sm-3 col-md-3"><a class="mid-button-mustard modal-btn" id="modalUpload"><span class="slate2025 modal-btn-label"><strong>Send</strong></span></a></div>
+                <div class="col-xs-6 col-sm-3 col-md-3"><a id="modalCancel" class="mid-button-sand modal-btn"><span class="slate2025 modal-btn-label"><strong>Cancel</strong></span></a></div>
                 <div class="clear"></div>
             </div>
         </div>

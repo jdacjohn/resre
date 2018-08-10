@@ -2,69 +2,23 @@
     $root = '../';
     require($root . '_includes/app_start.inc.php');
     
-    $postFrom = isset($_POST['postFrom']) ? $_POST['postFrom'] : '';
     $mitigants = new resre\ResReMitigators();
     $home = new resre\ResReHome();
-    $response = 0;
-    $trigger = '';
+
+    // Get modal triggers and upload responses (if any) and clear them from the session for subsequent pages
+    $response = isset($_SESSION[SESSION_NAME]['response']) ? $_SESSION[SESSION_NAME]['response'] : 0;
+    // Now wipe the page so we don't show erroneous messages on subsequent pages
+    unset($_SESSION[SESSION_NAME]['response']);
+    $trigger = isset($_SESSION[SESSION_NAME]['trigger']) ? $_SESSION[SESSION_NAME]['trigger'] : '';
+    // Now wipe the trigger so we don't hose subsequent pages
+    unset($_SESSION[SESSION_NAME]['trigger']);
+    
     // Get the mitgation set from the session if already created, else create one.
     if (isset($_SESSION[SESSION_NAME]['mitigants'])) {
         $mitigants = unserialize($_SESSION[SESSION_NAME]['mitigants']);
     }
     $selected =  $mitigants->getGarageDoor()->getCurVal();
 
-    printVarIfDebug($postFrom, getenv('gDebug'), "Posted From");
-    
-    if ($postFrom == '__us-roofshape__') {
-        // Save the shutter selection to the session
-        $roof = isset($_POST['__chars-roof__']) ? $_POST['__chars-roof__'] : '';
-        $mitigant = $mitigants->getRoofShape();
-        switch ($roof) {
-            case 'rsgab':
-            case 'rship':
-                $mitigant->setCurVal($roof);
-                $mitigant->setMitKey($roof);
-                break;
-            case 'rscombo':
-                $mitigant->setCurVal('rsgab');
-                $mitigant->setMitKey('rsgabcmb');
-                break;
-            case 'rsOther':
-                $mitigant->setCurVal('rsgab');
-                $mitigant->setMitKey('other');
-                break;
-            case 'rsUnknown':
-                $mitigant->setCurVal('rsgab');
-                $mitigant->setMitKey('unknown');
-                break;
-        }
-    } elseif ($postFrom == "__self__") {
-        // User is trying to upload an image
-        $userDir = $_SESSION[SESSION_NAME]['user']['userHash'];
-        $fileName = $_FILES['file']['name'];
-        printVarIfDebug($fileName, getenv('gDebug'), 'Name of File to Upload');
-        $location = $root . 'userImages/'. $userDir . '/garage/';
-        printVarIfDebug($location, getenv('gDebug'), 'Name of Folder to Upload To');
-        if (!$userDir == '') {
-            $response = saveUserImage($fileName, $location, 'garage');
-        } else {
-            $response = '<span style="color: #F00;">You must <a href="' . $root . 'us/index.php"><strong>log in</strong></a> to upload images.</span>';
-        }
-    } elseif ($postFrom == '__us-garagedoor__') {
-        if (isset($_SESSION[SESSION_NAME]['home'])) {
-            $home = unserialize($_SESSION[SESSION_NAME]['home']);
-        }
-        $newID = saveState($mitigants, $home);
-        $trigger = 'dataSaved';
-    }
-
-    $_SESSION[SESSION_NAME]['mitigants'] = serialize($mitigants);
-    
-    printVarIfDebug($_SESSION, getenv('gDebug'), 'Session after POST');
-    printVarIfDebug($mitigants, getenv('gDebug'), 'ResReMitigators');
-    printVarIfDebug($selected, getenv('gDebug'), 'Value of PostBack selection:');
-    printVarIfDebug($response, getenv('gDebug'), 'Upload Response');
-    
 ?>
 
 <!DOCTYPE html>
@@ -90,8 +44,8 @@
             <div class="characteristics-inner">
                 <div class="characteristics-wrapper container half_padding_left half_padding_right">
                     <div class="wt-content-wrapper left">
-                        <form method="post" name="garageForm" id="garageForm" action="<?php echo HOME_LINK; ?>us/roof-wall.php">
-                            <input type="hidden" name="postFrom" value="__us-garagedoor__" />
+                        <form method="post" name="garageForm" id="garageForm" action="<?php echo HOME_LINK; ?>_includes/procCrit/procUSGarageDoor.php">
+                            <input type="hidden" name="postFrom" id="postFrom" value="__us-garagedoor__" />
                             <input type="hidden" name="postBack" id="postBack" value="<?php echo $selected; ?>" />
                             <input type="hidden" name="garageSelect" id="garageSelect" value ="<?php echo $selected; ?>" />
                             <input type="hidden" name="trigger" id="trigger" value="<?php echo $trigger; ?>" />
@@ -208,8 +162,16 @@
         </div>   <!-- / .containter -->
         <!-- Footer -->
         <?php include($root . 'includes/site-footer.php'); ?>
+        <!-- Image Preloads -->
+        <div id="preload">
+            <img src="<?php echo SITE_ROOT; ?>/us/images/garage-impact-on.png" height="1" alt="Impact Rated Garage Door" />
+            <img src="<?php echo SITE_ROOT; ?>/us/images/garage-wind-on.png" height="1" alt="Wind Rated Garage Door" />
+            <img src="<?php echo SITE_ROOT; ?>/us/images/garage-standard-on.png" height="1" alt="Standard Garage Door" />
+            <img src="<?php echo SITE_ROOT; ?>/us/images/no-garage-door-on.png" height="1" alt="No Garage Door" />
+        </div>
         <!-- Modals -->
         <?php
+            $action = SITE_ROOT . '/_includes/procCrit/procUSGarageDoor.php';
             require($root . 'includes/modals/upload.php');
             require($root . 'includes/modals/dataSave.php');
         ?>
@@ -221,6 +183,7 @@
         <script>
             $(window ).on({
                 'load': function() {
+                    $(window).attr('innerDocClick', false);
                     var selection = $(document.getElementById('postBack')).attr('value');
                     console.log("selection = " + selection);
                     if (selection === 'gdsup') {
@@ -250,11 +213,11 @@
             });
 
             $("#moveBack").click(function() {
-                 $("#garageForm").attr("action", "<?php echo HOME_LINK; ?>us/roof-shape.php");
+                 $(document.getElementById('postFrom')).val('__us-garagedoor-back__');
                  $("#garageForm").submit(); 
             });
             $("#saveBtn").click(function() {
-                 $("#garageForm").attr("action", "<?php echo HOME_LINK; ?>us/garage-door.php");
+                 $(document.getElementById('postFrom')).val('__us-garagedoor-save__');
                  $("#garageForm").submit(); 
             });
             

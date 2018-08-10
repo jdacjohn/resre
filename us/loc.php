@@ -1,8 +1,6 @@
 <?php
     $root = '../';
     require($root . '_includes/app_start.inc.php');
-    include($root . '_includes/classes/ResReHome.php');
-    
     $home = '';
     if (isset($_SESSION[SESSION_NAME]['home'])) {
         // Get the ResReHome object from the session
@@ -11,26 +9,6 @@
         // First time here - Create a new ResReHome object.
         $home = new resre\ResReHome();
     }
-
-    $postFrom = isset($_POST['postFrom']) ? $_POST['postFrom'] : '';
-    printVarIfDebug($postFrom, getenv('gDebug'), "Posted From");
-
-    // If form was posted from index. php,  process home property id info, else set loc values back to what they were before looping
-    // back from the stories.php page.
-    if ($postFrom == "__us-home__") {
-        // Get the form data from us-home
-        $home->homeName = filter_input(INPUT_POST, 'input_homeName', FILTER_SANITIZE_STRING);
-        $home->homeOwnerFirstName = filter_input(INPUT_POST, 'input_firstName', FILTER_SANITIZE_STRING);
-        $val = preg_replace("/[^0-9]/", "", filter_input(INPUT_POST, 'input_homeValue', FILTER_SANITIZE_STRING));
-        printVarIfDebug($val, getenv('gDebug'), 'Home Val after filtering and stripping nonnumeric');
-        
-        $home->homeValue = is_numeric($val) ? $val : 300000;
-        // Save it to the session
-        $_SESSION[SESSION_NAME]['home'] = serialize($home);
-    } 
-    printVarIfDebug($_SESSION, getenv('gDebug'), 'Session on After Posting');
-    printVarIfDebug($home, getenv('gDebug'), 'ResReHome object');
-
 ?>
 
 <!DOCTYPE html>
@@ -59,7 +37,7 @@
                                 <div class="col-xs-12 col-md-10 carousel-header-text white3040">
                                     The location of your home will allow us to determine your risk of hurricanes and how much wind and flooding can be expected.
                                 </div>
-                                <form method="post" name="locForm" id="locForm" action="stories.php">
+                                <form method="post" name="locForm" id="locForm" action="<?php echo SITE_ROOT . '/_includes/procCrit/procUSLoc.php'; ?>">
                                     <input type='hidden' name='postFrom' id="postFrom" value='__us-loc__' />
                                     <div class="row">
                                         <!-- <div class="col-xs-12 col-sm-6 col-md-4 carousel-header-button loc-push-down">
@@ -97,10 +75,10 @@
             <div class="row ccSave">
                 <div class="chars-border-middle-wt-1"></div>
                 <div class='col-xs-3 col-xs-offset-1 col-sm-6 col-sm-offset-0 ccSave-fix-left'>                    
-                    <a href="#" class='mid-button-mustard' onclick="document.getElementById('locForm').submit();"><span class="blue2228Bold">Continue</span></a>
+                    <a class='mid-button-mustard' onclick="document.getElementById('locForm').submit();"><span class="blue2228Bold">Continue</span></a>
                 </div>
                 <div class='col-xs-3 col-xs-offset-3 col-sm-6 col-sm-offset-0 ccSave-fix-right'>
-                    <a href="#" class='mid-button-sand' id="moveBack"><span class="blue2228Bold">Back</span></a>
+                    <a class='mid-button-sand' id="moveBack"><span class="blue2228Bold">Back</span></a>
                 </div>
             </div>
         </div>   <!-- / .containter -->
@@ -113,21 +91,27 @@
         <script src="<?php echo $root; ?>js/jquery.geocomplete.js"></script>
         <script src="<?php echo $root; ?>js/ww.jquery.js"></script>
         <script>
-                            $("#input_geoLoc").geocomplete({
-                                details: "form div",
-                                detailsAttribute: "data-geo-home",
-                                autoselect: false,
-                                blur: false,
-                                geocodeafterresult: false,
-                                types: ['(regions)'],
-                                componentRestrictions:
-                                        {country: 'us'}
-                            });
+            $("#input_geoLoc").geocomplete({
+                details: "form div",
+                detailsAttribute: "data-geo-home",
+                autoselect: false,
+                blur: false,
+                geocodeafterresult: false,
+                types: ['(regions)'],
+                componentRestrictions:
+                        {country: 'us'}
+            });
                             
-                           $("#moveBack").click(function() {
-                               $("#locForm").attr("action", "<?php echo HOME_LINK; ?>us/index.php");
-                               $("#locForm").submit(); 
-                           });
+            $(window ).on({
+                'load': function() {
+                    $(window).attr('innerDocClick', false);
+                }
+            });
+            
+           $("#moveBack").click(function() {
+               $("#locForm").attr("action", "<?php echo HOME_LINK; ?>_includes/procCrit/procUSHome.php");
+               $("#locForm").submit(); 
+           });
         </script>
     </body>
 </html>
