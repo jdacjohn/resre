@@ -39,15 +39,13 @@ h1 {
     font-weight: 900;
     color: var(--white);
     color: #FFFFFF;
+    text-transform: uppercase;
 }
-@media (max-width: 768px) {
+@media (max-width: 991px) {
     h1 {
         font-size: 42px;
         line-height: 42px;
         font-weight: 900;
-        color: var(--white);
-        color: #FFFFFF;
-        text-transform: uppercase;
         padding-top: 25px;
         padding-bottom: 10px;
     }
@@ -75,25 +73,25 @@ h4 {
     color: #FFFFFF;
     background-color: transparent;
 }
-@media screen and (min-width: 320px) {
+@media screen and (max-width: 767px) {
     h4 {
         font-size: 30px;
         line-height:  32px;
     }
 }
-@media screen and (min-width: 769px) {
+@media screen and (min-width: 768px) and (max-width: 991px) {
     h4 {
         font-size: 36px;
         line-height: 40px;
     }
 }
-@media screen and (min-width: 992px) {
+@media screen and (min-width: 992px) and (max-width: 1199px) {
     h4 {
         font-size: 40px;
         line-height: 44px;
     }
 }
-@media screen and (min-width: 1920px) {
+@media screen and (min-width: 1200px) {
     h4 {
         font-size: 48px;
         line-height: 68px;
@@ -143,13 +141,19 @@ h6 {
         line-height: 20px;
     }
 }
-@media screen and (min-width: 1280px) {
+@media screen and (min-width: 768px) and (max-width: 991px) {
+    .blue2228bold {
+        font-size: 22px;
+        line-height: 28px;
+    }
+}
+@media screen and (min-width: 992px) and (max-width: 1199px) {
     .blue2228Bold {
         font-size: 26px;
         line-height: 32px;
     }
 }
-@media screen and (min-width: 1536px) {
+@media screen and (min-width: 1200px) {
     .blue2228Bold {
         font-size: 30px;
         line-height: 36px;
@@ -169,19 +173,19 @@ h6 {
     line-height: 30px;
     font-weight: 700;
 }
-@media screen and (min-width: 375px) {
+@media screen and (max-width: 767px) {
     .blue2532Bold {
         font-size: 20px;
         line-height: 22px;
     }
 }
-@media screen and (min-width: 769px) {
+@media screen and (min-width: 768px) and (max-width: 1199px) {
     .blue2532Bold {
         font-size: 25px;
         line-height: 32px;
     }
 }
-@media screen and (min-width: 1680px) {
+@media screen and (min-width: 1200px) {
     .blue2532Bold {
         font-size: 32px;
         line-height: 36px;
@@ -202,6 +206,7 @@ h6 {
     font-weight: 800;
     background-color: transparent;
 }
+
 .pg2230Black {
     color: var(--paleGreen);
     color: #D3E4CC;
@@ -252,19 +257,19 @@ span#inputLabel.slate1640Bold {
     color: #C41917;
     cursor: pointer;
 }
-@media screen and (min-width: 600px) {
+@media screen and (max-width: 767px) {
     .slate2025 {
         font-size: 18px;
         line-height: 22px;        
     }
 }
-@media screen and (min-width: 768px) {
+@media screen and (min-width: 768px) and (max-width: 991px) {
     .slate2025 {
         font-size: 20px;
         line-height: 25px;
     }
 }
-@media screen and (min-width: 1024px) {
+@media screen and (min-width: 992px) and (max-width: 1199px) {
     .slate2025 {
         font-size: 22px;
         line-height: 26px;
@@ -274,10 +279,10 @@ span#inputLabel.slate1640Bold {
         text-decoration: underline;
     }
 }
-@media screen and (min-width: 1536px) {
+@media screen and (min-width: 1200px) {
     .slate2025 {
         font-size: 26px;
-        line-height: 30px;
+        line-height: 34px;
     }
 }
 .slate2025Bold {
@@ -294,7 +299,7 @@ span#inputLabel.slate1640Bold {
     line-height: 25px;
     font-weight: 900;
 }
-@media (max-width: 768px) {
+@media (max-width: 767px) {
     .slate2025Black {
         font-size: 14px;
     }
@@ -313,13 +318,13 @@ span#inputLabel.slate1640Bold {
     line-height: 32px;
     font-weight: 400;
 }
-@media screen and (min-width: 375px) {
+@media screen and (max-width: 767px) {
     .slate2532 {
         font-size: 20px;
         line-height: 22px;
     }
 }
-@media screen and (min-width: 600px) {
+@media screen and (min-width: 768px) {
     .slate2532 {
         font-size: 25px;
         line-height: 32px;
@@ -348,18 +353,18 @@ span#inputLabel.slate1640Bold {
     color: var(--white);
     color: #FFFFFF;
 }
-@media screen and (max-width: 410px) {
+@media screen and (max-width: 767px) {
     .white1220 {
         font-size: 11px;
     }
 }
-@media screen and (min-width: 480px) {
+@media screen and (min-width: 768px) and (max-width: 991px) {
     .white1220 {
         font-size: 13px;
         font-weight: 300;
     }
 }
-@media screen and (min-width: 600px) {
+@media screen and (min-width: 992px) {
     .white1220 {
         font-size: 16px;
     }
@@ -375,18 +380,18 @@ span#inputLabel.slate1640Bold {
     color: var(--white);
     color: #FFFFFF;
 }
-@media screen and (min-width: 480px) {
+@media screen and (max-width: 767px) {
     .white1220Bold {
         font-size: 13px;
     }
 }
-@media screen and (min-width: 768px) {
+@media screen and (min-width: 768px) and (max-width: 991px){
     .white1220Bold {
         font-size: 15px;
         line-height: 22px;
     }
 }
-@media screen and (min-width: 800px) {
+@media screen and (min-width: 992px) {
     .white1220Bold {
         font-size: 18px;
         line-height: 26px;
@@ -424,17 +429,10 @@ span#inputLabel.slate1640Bold {
     line-height: 22px;
     font-weight: 400;
 }
-@media screen and (max-width: 599px) {
+@media screen and (max-width: 767px) {
     .white1822 {
         font-size: 15px;
         line-height: 20px;
-        font-weight: 300;
-    }
-}
-@media screen and (min-width: 600px) {
-    .white1822 {
-        font-size: 20px;
-        line-height: 28px;
         font-weight: 300;
     }
 }
@@ -450,42 +448,23 @@ span#inputLabel.slate1640Bold {
     line-height: 20px;
     font-weight: 300;
 }
-@media screen and (min-width: 480px) {
+@media screen and (max-width: 767px) {
     .white2025 {
         font-size: 18px;
         line-height: 22px;
     }
 }
-@media screen and (min-width: 600px) {
-    .white2025 {
-        font-size: 20px;
-        line-height: 25px;
-    }
-}
-@media screen and (min-width: 769px) {
-    .white2025 {
-        font-size: 18px;
-        line-height: 22px;
-    }
-}
-@media screen and (min-width: 800px) {
+@media screen and (min-width: 768px) and (max-width: 1199px) {
     .white2025 {
         font-size: 20px;
         line-height: 25px;
         font-weight: 400;
     }
 }
-@media screen and (min-width: 1280px) {
+@media screen and (min-width: 1200px) {
     .white2025 {
         font-size: 22px;
         line-height: 30px;
-        font-weight: 300;
-    }
-}
-@media screen and (min-width: 1440px) {
-    .white2025 {
-        font-size: 26px;
-        line-height: 32px;
         font-weight: 300;
     }
 }
@@ -511,7 +490,7 @@ span#inputLabel.slate1640Bold {
     line-height: 18px;
     font-weight: 700;
 }
-@media screen and (min-width: 600px) {
+@media screen and (max-width: 767px) {
     .white2025Bold {
         font-size: 18px;
         line-height: 22px;
@@ -523,12 +502,7 @@ span#inputLabel.slate1640Bold {
         line-height: 25px;
     }
 }
-@media screen and (min-width: 768px) {
-    .white2025Bold {
-        font-size: 22px;
-    }
-}
-@media screen and (min-width: 1536px) {
+@media screen and (min-width: 1200px) {
     .white2025Bold {
         font-size: 32px;
         line-height: 32px;
@@ -558,6 +532,13 @@ span#inputLabel.slate1640Bold {
     font-weight: 400;
     background: transparent;
 }
+
+@media screen and (max-width: 767px) {
+    .white2532 {
+        font-size: 20px;
+        line-height: 26px;
+    }
+}
 .white2532Bold {
     color: var(--white);
     color: #FFFFFF;
@@ -566,18 +547,13 @@ span#inputLabel.slate1640Bold {
     line-height: 32px;
     font-weight: 700;
 }
-@media screen and (min-width: 320px) {
-    .white2532Bold {
-        font-size: 18px;
-    }
-}
-@media screen and (min-width: 375px) {
+@media screen and (max-width: 767px) {
     .white2532Bold {
         font-size: 20px;
         line-height: 22px;
     }
 }
-@media screen and (min-width: 769px) {
+@media screen and (min-width: 768px) {
     .white2532Bold {
         font-size: 25px;
         line-height: 32px;
@@ -590,13 +566,13 @@ span#inputLabel.slate1640Bold {
     line-height: 40px;
     font-weight: 400;
 }
-@media screen and (min-width: 375px) {
+@media screen and (max-width: 767px) {
     .white3040 {
         font-size: 20px;
-        line-height: 22px;
+        line-height: 28px;
     } 
 }
-@media screen and (min-width: 769px) {
+@media screen and (min-width: 768px) {
     .white3040 {
         font-size: 22px;
         line-height: 24px;
@@ -610,61 +586,10 @@ span#inputLabel.slate1640Bold {
 }
 
 /* CONTENT WRAPPER SIZES*/
-@media (max-width: 320px) {
-    html, body {
-        font-size:10px;
-    }
-} /* > max-width: 320px */
-@media (min-width: 320px) {
-    html, body {
-        font-size:10px;
-    }
-} /* > min-width: 320px */
-@media (min-width: 480px) {
+@media (max-width: 767px)  {
     html, body {
         font-size:12px;
     }
-} /* > min-width: 480px */
-@media (min-width: 640px)  {
-    html, body {
-        font-size:12px;
-    }
-} /* > min-width: 640px */ 
-@media (min-width: 769px) {
-    html, body {
-        font-size:14px;
-    }
-}
-@media (min-width: 800px) {
-    html, body {
-        font-size:14px;
-    }	
-}
-@media (min-width: 980px)  {
-    html, body {
-        font-size:14px;
-    }
-}
-@media (min-width: 1024px) {
-    /*normal*/
-    html, body {
-        font-size:16px;
-    }
-}
-@media (min-width: 1280px)  {
-    html, body {
-        font-size:18px;
-    }
-}
-@media (min-width: 1366px)  {
-    html, body {
-        font-size:18px;
-    }
-    .carousel h2 {
-        font-size:2.8em;
-    }
-}
-@media (max-width: 768px) {
     h4.full_size_small_screen {
         font-size:22px;
         line-height:1.2;
@@ -672,5 +597,26 @@ span#inputLabel.slate1640Bold {
     }
     p.full_size_small_screen {
     font-size:14px !important;
+    }
+} 
+@media (min-width: 768px) {
+    html, body {
+        font-size:14px;
+    }
+}
+@media (min-width: 991px) {
+    /*normal*/
+    html, body {
+        font-size:16px;
+    }
+}
+@media (min-width: 1200px)  {
+    html, body {
+        font-size:18px;
+    }
+}
+@media (min-width: 1366px)  {
+    .carousel h2 {
+        font-size:2.8em;
     }
 }

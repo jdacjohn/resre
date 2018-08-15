@@ -1,0 +1,254 @@
+@charset "UTF-8";
+
+.chars-border-middle-wt-1 {
+    position: absolute;
+    border: none;
+    border-left: 2px solid var(--lightBlue);
+    border-left: 2px solid #6A95B5;
+    height: 14%;
+    margin-top: -38%;
+    z-index:  0;
+}
+.ccSave {
+    padding: 20px 0;
+    margin-right: auto;
+}
+.tagline {
+    margin-top: 60px;
+}
+.loc-form {
+    margin-right: 5px;
+}
+.ccSave-fix-left, .ccSave-fix-right {
+    text-align: center;
+}
+@media screen and (max-width: 799px) {
+    .chars-border-middle-wt-1 {
+        display: none;
+    }
+}
+
+@media screen and (max-width: 374px) {
+    .carousel-header-text {
+        padding-top: 30%;
+        padding-left: 3%;
+    }
+    .fix-left {
+        margin-left: 9%;
+        padding-left: 0px;
+    }
+    .form-paleBlue {
+        padding-bottom: 5px;
+        padding-top: 5px;
+    }
+    .loc-push-down {
+        margin-top: 25%;
+    }
+    .loc-pull-up {
+        margin-top: 5%;
+    }
+    .loc-form {
+        margin-right: 10%;
+    }
+    .white3040, .white2532 {
+        font-size: 20px;
+        line-height: 26px;
+    }
+}
+
+@media screen and (min-width: 375px) {
+    .container {width: 100%;}
+    .carousel-header-text {
+        padding-top: 25%;
+        padding-left: 2%;
+    }
+    .fix-left {
+        margin-left: 7%;
+    }
+    /* I know this looks redundant, but have to override style.css 375 breakpoint here */
+    .form-paleBlue {
+        padding-bottom: 5px;
+        padding-top: 5px;
+    }
+    .loc-pull-up {
+        margin-top: 5%;
+    }
+    .white3040, .white2532 {
+        font-size: 20px;
+        line-height: 28px;
+    }
+}
+@media screen and (min-width: 411px) {
+    .carousel-header-text {
+        padding-left: 1%;
+    }
+    .fix-left {
+        margin-left: 6%;
+    }
+}
+@media screen and (min-width: 480px) {
+    .carousel-header-text {
+        padding-bottom: 10%;
+        padding-left: 1%;
+    }
+    .fix-left {
+        margin-left: 5%;
+    }
+    .loc-pull-up {
+        margin-top: 0%;
+    }
+    .offwhite1215EB {
+        font-size: 15px;
+    }
+    .white3040, .white2532 {
+        font-size: 24px;
+        line-height: 28px;
+    }
+}
+
+@media screen and (min-width: 600px) {
+    .carousel-header-text {
+        padding-left: 2%;
+    }
+    .ccSave {
+        padding: 30px 0;
+    }
+    .carousel-header-text {
+        padding-top: 20%;
+    }
+    .fix-left {
+        margin-left: 0.5%;
+    }
+    .white3040 {
+        font-size: 26px;
+        line-height: 30px;
+    }
+    .white2532 {
+        font-size: 25px;
+        line-height: 32px;
+    }
+}
+@media screen and (min-width: 768px) {
+    .carousel-header-text {
+        padding-top: 15%;
+        padding-left: 2%;
+        padding-right: 15%;
+    }
+    .chars-border-middle-wt-1 {
+        margin-left: 17.5%;
+        margin-top: -5.25%;
+        height: 80px;
+    }
+    .ccSave {
+        padding: 40px 0;
+    }
+    .ccSave-fix-left, .ccSave-fix-right {
+        margin-top: 1%;
+    }
+    .ccSave-fix-left {
+        text-align: left;
+        padding-left: 12%;
+    }
+    .ccSave-fix-right {
+        text-align: right;
+        padding-right: 12%;
+    }
+    .fix-left {
+        margin-left: 9%;
+    }
+    .form-paleBlue {
+        padding-bottom: 10px;
+        padding-top: 8px;
+    }
+    .loc-push-down {
+        margin-top: -10%;
+    }
+    .loc-pull-up {
+        margin-top: -3%;
+    }
+    .loc-centerline-fix {
+        text-align: center;
+        margin-top: 1%;
+    }
+    .offwhite1215EB {
+        font-size: 18px;
+        line-height: 20px;
+    }
+}
+
+@media screen and (min-width: 800px) {
+    .carousel-header-text {
+        padding-top: 7%;
+        padding-left: 4.5%;
+    }
+    .fix-left {
+        margin-left: 14%;
+    }
+    .form-paleBlue {
+        padding-bottom: 2px;
+        padding-top: 0px;
+    }
+    .loc-pull-up {
+        margin-top: -8%;
+    }
+    .offwhite1215EB {
+        font-size: 15px;
+        line-height: 15px;
+    }
+}
+@media screen and (min-width: 1024px) {
+    .chars-border-middle-wt-1 {
+        margin-left: 17%;
+    }
+    .fix-left {
+        margin-left: 9%;
+    }
+    .form-paleBlue {
+        padding-bottom: 10px;
+        padding-top: 8px;
+    }
+    .loc-pull-up {
+        margin-top: -6%;
+    }
+}
+@media screen and (min-width: 1280px) {
+    .chars-border-middle-wt-1 {
+        margin-left: 16.75%;
+        margin-top: -3.25%;
+    }
+    .white3040 {
+        font-size: 30px;
+        line-height: 40px;
+    }
+}
+@media screen and (min-width: 1366px) {
+    .carousel-header-text {
+        padding-left: 4%;
+    }
+    .fix-left {
+        margin-left: 8%;
+    }
+    .offwhite1215EB {
+        font-size: 18px;
+        line-height: 20px;
+    }
+}
+
+
+@media screen and (min-width: 1536px) {
+    .carousel-header-text {
+        padding-top: 9%;
+    }
+    .chars-border-middle-wt-1 {
+        margin-left: 16.5%;
+    }
+}
+
+@media screen and (min-width: 1920px) {
+    .loc-centerline-fix {
+        margin-top: 0%;
+    }
+    .chars-border-middle-wt-1 {
+        margin-left: 16.4%;
+    }
+}

@@ -31,96 +31,101 @@
         <?php include($root . 'includes/page-head-scripts.php'); ?>
         <!-- Load site CSS -->
         <?php include($root . 'includes/page-styles.php'); ?>
-        <link href="<?php echo $root; ?>css/roof.css" rel='stylesheet' type='text/css' media="all" />
         <link href="<?php echo $root; ?>css/chars-styles.css" rel='stylesheet' type='text/css' media="all" />
         <link href="<?php echo $root; ?>css/chars-borders.css" rel='stylesheet' type='text/css' media="all" />
+        <link href="<?php echo $root; ?>css/chars-sel.css" rel='stylesheet' type='text/css' media="all" />
+        <link href="<?php echo $root; ?>css/roof.css" rel='stylesheet' type='text/css' media="all" />
         <link href="<?php echo $root; ?>css/ccSave.css" rel='stylesheet' type='text/css' media="all" />
     </head>
     <body class="bg-blue">
         <?php include_once($root . 'includes/nav-menu.php'); ?>
         <div class="characteristics container">
-            <div class="characteristics-inner">
-                <div class="characteristics-wrapper container half_padding_left half_padding_right">
+            <div class="characteristics-inner" id="charSelectPanel">
+                <div class="characteristics-wrapper container">
                     <div class="wt-content-wrapper left">
                         <form method="post" name="roofForm" id="roofForm" action="<?php echo HOME_LINK; ?>_includes/procCrit/procUSRoofShape.php">
                             <input type="hidden" name="postFrom" id="postFrom" value="__us-roofshape__" />
                             <input type="hidden" name="postBack" id="postBack" value="<?php echo $selected; ?>" />
                             <input type="hidden" name="trigger" id="trigger" value="<?php echo $trigger; ?>" />
 
-                            <div class="row">
-                                <div class="chars-border-middle-wt-1"></div>
-                                <div class="col-md-2 col-sm-2 col-xs-2 chars-marker chars"><span class="blue2532Bold marker-white" style="margin-bottom: 0px; ">4</span></div>
-                                <div class="col-md-8 col-sm-8 topic"><h4 class="chars-h4">Roof Shape</h4></div>
+                            <div class="row">  <!-- Marker number and page header -->
+                                <div class="col-xs-2 chars-marker chars"><span class="blue2532Bold marker-white" style="margin-bottom: 0px; ">4</span></div>
+                                <div class="col-xs-10 topic"><h4 class="chars-h4">Roof Shape</h4></div>
                             </div>
-                            <div class="row">
-                                <div class="chars-border-middle-wt-2"></div>
-                                <div class="col-md-2 col-sm-2 col-xs-2 chars-marker"><span class="transparent2532 marker-transparent" style="margin-bottom: 0px; ">1</span></div>
-                                <div class="col-md-8 col-sm-10 col-xs-10 chars-desc white2025">
+                            <div class="row">  <!-- Page description -->
+                                <div class="col-xs-2 chars-marker chars"><span class="transparent2532 marker-transparent" style="margin-bottom: 0px; ">1</span></div>
+                                <div class="col-xs-10 chars-desc white2025">
                                     The type and shape of your home's roof can influence how well the roof will withstand high winds.  A hipped 
                                     roof slopes upward from all sides of the building and its aerodynamic shape helps it perform better.  A gabled 
                                     roof has two slopes that come together to form a ridge or peak at the top, making each end look like the letter A.
                                 </div>
                             </div>
-                            <div class="row no-padding-top no-padding-bottom">
-                                <div class="chars-border-middle-wt-3"></div>
-                                <div class="chars-border-middle-wt-4"></div>
-                                <div class="chars-border-middle-wt-4a"></div>
-                                <div class="chars-border-middle-wt-4b"></div>
+                            <div class="row no-padding-top no-padding-bottom">  <!-- Select Buttons -->
                                 <!-- RADIOS -->
-                                <!-- <div class="col-md-2 col-sm-2 hidden-xs chars-marker"><span class="transparent2532 marker-transparent" style="margin-bottom: 0px; ">1</span></div> -->
-                                <div class="col-md-3 col-sm-3 col-xs-10 chars-header-x3 chars-bumper">
+                                <!-- Gable Roof -->
+                                <div class="col-xs-2">&nbsp;</div>
+                                <div class="col-xs-10 col-sm-3 chars-header">
                                     <label class="select-button">
                                         <input type="radio" name="__chars-roof__" value="rsgab" />
-                                        <img id="sel1" src="<?php echo SITE_ROOT; ?>/us/images/gable-roof-off.png" class="img-responsive chars-select-x3">
+                                        <img id="sel1" src="<?php echo SITE_ROOT; ?>/us/images/gable-roof-off.png" class="img-responsive chars-select">
+                                        <p class="chars-label chars-buffer white2025Bold">
+                                            Gable Roof
+                                        </p>
                                     </label>
-                                    <div id="sel1_cb" class="col-xs-6 chars-checkbox-x3 fix-left" style="display: none"><img src="<?php echo SITE_ROOT; ?>/us/images/checkmark_blue-dark.png" class="img-responsive check-select"/></div>
-                                    <div class="chars-header chars-label-x3 chars-buffer white2025Bold">
-                                        Gable Roof
-                                    </div>
+                                    <div id="sel1_cb" class="col-xs-6 chars-checkbox fix-left" style="display: none"><img src="<?php echo SITE_ROOT; ?>/us/images/checkmark_blue-dark.png" class="img-responsive check-select"/></div>
                                 </div>
-                                <div class="col-md-3 col-sm-3 col-xs-10 chars-header-x3">
+
+                                <!-- Hipped Roof -->
+                                <div class="col-xs-2 hidden-sm hidden-md hidden-lg">&nbsp;</div>
+                                <div class="col-xs-10 col-sm-3 chars-header">
                                     <label class="select-button">
                                         <input type="radio" name="__chars-roof__" value="rship" />
-                                        <img id="sel2" src="<?php echo SITE_ROOT; ?>/us/images/hipped-roof-off.png" class="img-responsive chars-select-x3">
+                                        <img id="sel2" src="<?php echo SITE_ROOT; ?>/us/images/hipped-roof-off.png" class="img-responsive chars-select">
+                                        <p class="chars-label chars-buffer white2025Bold">
+                                            Hipped Roof
+                                        </p>
                                     </label>
-                                    <div id="sel2_cb" class="col-xs-6 chars-checkbox-x3 fix-left" style="display: none"><img src="<?php echo SITE_ROOT; ?>/us/images/checkmark_blue-dark.png" class="img-responsive check-select"/></div>
-                                    <div class="chars-header chars-label-x3 chars-buffer white2025Bold">
-                                        Hipped Roof
-                                    </div>
+                                    <div id="sel2_cb" class="col-xs-6 chars-checkbox fix-left" style="display: none"><img src="<?php echo SITE_ROOT; ?>/us/images/checkmark_blue-dark.png" class="img-responsive check-select"/></div>
                                 </div>
-                                <div class="col-md-3 col-sm-3 col-xs-10 chars-header-x3">
+                                
+                                <!-- Combination Roof -->
+                                <div class="col-xs-2 hidden-sm hidden-md hidden-lg">&nbsp;</div>
+                                <div class="col-xs-10 col-sm-3 chars-header">
                                     <label class="select-button">
                                         <input type="radio" name="__chars-roof__" value="rscombo" />
-                                        <img id="sel3" src="<?php echo SITE_ROOT; ?>/us/images/combo-roof-off.png" class="img-responsive chars-select-x3">
+                                        <img id="sel3" src="<?php echo SITE_ROOT; ?>/us/images/combo-roof-off.png" class="img-responsive chars-select">
+                                        <p class="chars-label chars-buffer white2025Bold">
+                                            Hipped &amp; Gabled
+                                        </p>
                                     </label>
-                                    <div id="sel3_cb" class="col-xs-6 chars-checkbox-x3 fix-left" style="display: none"><img src="<?php echo SITE_ROOT; ?>/us/images/checkmark_blue-dark.png" class="img-responsive check-select"/></div>
-                                    <div class="chars-header chars-label-x3 chars-buffer white2025Bold">
-                                        Combination Hip &amp; <br />Gable Roof
-                                    </div>
+                                    <div id="sel3_cb" class="col-xs-6 chars-checkbox fix-left" style="display: none"><img src="<?php echo SITE_ROOT; ?>/us/images/checkmark_blue-dark.png" class="img-responsive check-select"/></div>
                                 </div>
-                                <div class="col-md-3 col-sm-3 col-xs-10 chars-header-x3 chars-bumper">
+
+                                <!-- Other Roof -->
+                                <div class="col-xs-2">&nbsp;</div>
+                                <div class="col-xs-10 col-sm-3 chars-header">
                                     <label class="select-button">
                                         <input type="radio" name="__chars-roof__" value="rsOther" />
-                                        <img id="sel4" src="<?php echo SITE_ROOT; ?>/us/images/other-off.png" class="img-responsive chars-select-x3">
+                                        <img id="sel4" src="<?php echo SITE_ROOT; ?>/us/images/other-off.png" class="img-responsive chars-select">
+                                        <p class="chars-label chars-buffer white2025Bold">
+                                            Other
+                                        </p>
                                     </label>
-                                    <div id="sel4_cb" class="col-xs-6 chars-checkbox-x3 fix-left" style="display: none"><img src="<?php echo SITE_ROOT; ?>/us/images/checkmark_blue-dark.png" class="img-responsive check-select"/></div>
-                                    <div class="chars-header chars-label-x3 chars-buffer white2025Bold">
-                                        Other
-                                    </div>
+                                    <div id="sel4_cb" class="col-xs-6 chars-checkbox fix-left" style="display: none"><img src="<?php echo SITE_ROOT; ?>/us/images/checkmark_blue-dark.png" class="img-responsive check-select"/></div>
                                 </div>
-                                <div class="col-md-3 col-sm-3 col-xs-10 chars-header-x3">
+
+                                <!-- Unknown Roof -->
+                                <div class="col-xs-2 hidden-sm hidden-md hidden-lg">&nbsp;</div>
+                                <div class="col-xs-10 col-sm-3 chars-header">
                                     <label class="select-button">
                                         <input type="radio" name="__chars-roof__" value="rsUnknown" />
-                                        <img id="sel5" src="<?php echo SITE_ROOT; ?>/us/images/unknown-off.png" class="img-responsive chars-select-x3">
+                                        <img id="sel5" src="<?php echo SITE_ROOT; ?>/us/images/unknown-off.png" class="img-responsive chars-select">
+                                        <p class="chars-label chars-buffer white2025Bold">
+                                            Unknown
+                                        </p>
                                     </label>
-                                    <div id="sel5_cb" class="col-xs-6 chars-checkbox-x3 fix-left" style="display: none"><img src="<?php echo SITE_ROOT; ?>/us/images/checkmark_blue-dark.png" class="img-responsive check-select"/></div>
-                                    <div class="chars-header chars-label-x3 chars-buffer white2025Bold">
-                                        Unknown
-                                    </div>
+                                    <div id="sel5_cb" class="col-xs-6 chars-checkbox fix-left" style="display: none"><img src="<?php echo SITE_ROOT; ?>/us/images/checkmark_blue-dark.png" class="img-responsive check-select"/></div>
                                 </div>
-                            </div>
-                            <div class="row no-padding-bottom no-padding-top">
-                                <div class="chars-border-middle-wt-5"></div>
                             </div>
 
                         </form>

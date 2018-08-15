@@ -92,7 +92,7 @@
                                 <div class="col-12 home-title">
                                     <h1>Resilient Residence</h1>
                                 </div>
-                                <div class="col-xs-12 col-sm-8 col-md-8 chars-header-text intro">
+                                <div class="col-xs-12 col-sm-8 col-md-8 chars-header-text">
                                         Wondering whether your home is as wind resistant as it could be?
                                 </div>
                                 <div class="col-xs-12 slate2532 learn-more">
@@ -110,27 +110,29 @@
                         Answer nine questions to determine your home's wind-resistant features and see how your home will weather a storm.<br />&nbsp;<br />
                         To get started, either login with your existing account, or create a new account.
                 </div>
-                <div class=' col-xs-6 col-sm-3 col-lg-2 mid-button'>
+                <div class=' col-xs-6 col-sm-3 mid-button'>
                     <a class='mid-button-mustard' data-toggle="modal" data-target="#signupModal" id="signupLink"><span class="blue2228Bold">New User</span></a>
                 </div>
-                <div class=' col-xs-4 col-sm-2 mid-button mid-button-right login-home'>
+                <div class=' col-xs-6 col-sm-2 mid-button mid-button-right login-home'>
                     <a href="#" class='mid-button-sand' data-toggle="modal" data-target="#loginModal" id="loginLink"><span class="blue2228Bold">Login</span></a>
                 </div>
-                <div class="clear"></div>
             </div>
             <div class="row questionairre">
-                <div class="col-xs-12 col-md-12 get-started slate2025" id="getStarted">
+                    <div class="chars-border-middle-wt-1"></div>                                
+                    <div class="chars-border-middle-wt-2"></div>                                
+                    <div class="lineStopTop"></div>
+                <div class="col-xs-12 col-md-12 get-started slate2025">
                         Let's get some information about your home.  We will use the estimated value of your home to provide damage 
                         and replacement estimates.
                 </div>
                 <form method="post" name="baseConfigForm" id="baseConfigForm" action="<?php echo HOME_LINK; ?>_includes/procCrit/procUSHome.php">
                     <input type="hidden" name="postFrom" value="__us-home__" />
-                    <div class="col-xs-2 chars-marker chars" id="markerA"><label class="white2532Bold marker-blue" for="input_homeName">A</label></div>
+                    <div class="col-xs-2 chars-marker chars"><label class="white2532Bold marker-blue" for="input_homeName">A</label></div>
                     <div class="col-xs-10 col-lg-9">
                         <input type="text" class="slate2532 form-blue" name="input_homeName" value="<?php echo ($homeName == 'No-Home-Name') ? '' : $homeName; ?>" placeholder="Name of home" />
                     </div>
                     <div class="clear"></div>
-                    <div class="col-xs-2 chars-marker chars" id="markerB"><label class="white2532Bold marker-mustard" for="input_firstName">B</label></div>
+                    <div class="col-xs-2 chars-marker chars"><label class="white2532Bold marker-mustard" for="input_firstName">B</label></div>
                     <div class="col-xs-9 name-field-label slate1640Bold">
                         Enter first name
                     </div>
@@ -138,7 +140,7 @@
                         <input type="text" class="slate2532 form-mustard" name="input_firstName" value="<?php echo ($firstName == 'Jane-Doe') ? '' : $firstName; ?>" placeholder="Bob" />
                     </div>
                     <div class="clear"></div>
-                    <div class="col-xs-2 chars-marker chars" id="markerC"><label class="white2532Bold marker-blue" for="input_homeValue">C</label></div>
+                    <div class="col-xs-2 chars-marker chars"><label class="white2532Bold marker-blue" for="input_homeValue">C</label></div>
                     <div class="col-xs-10 col-lg-9">
                         <input type="text" class="slate2532 form-blue" name="input_homeValue" value="<?php echo ($homeValue == 1) ? '' : $homeValue; ?>" placeholder="Estimated home value ($)" />
                     </div>
@@ -148,7 +150,7 @@
 
         <div class="container">
             <div class="row cc paleGreen" style="z-index: 100;">
-                <div class='col-xs-12 ccrow' id="continue">                    
+                <div class='col-xs-12 ccrow'>                    
                     <a class="<?php echo $buttonClass; ?>" onclick="document.getElementById('baseConfigForm').submit();" <?php echo $noTab; ?>><span class="blue2228Bold">Continue</span></a>
                 </div>
             </div>

@@ -27,11 +27,11 @@
     </head>
     <body>
         <?php include_once($root . 'includes/nav-menu.php'); ?>
-        <div class="carousel container-fluid">
+        <div class="carousel container" id="locText">
             <div id="carousel" class="carousel slide " data-ride="carousel">
                 <div class="carousel-inner">
                     <div class="item active">
-                        <img src="<?php echo $root; ?>us/images/us-loc-bg.png" class="carousel_img" alt="#" style="max-height: 640px" />
+                        <img src="<?php echo $root; ?>us/images/us-loc-bg.png" class="carousel_img" alt="#" style="max-height: 535px" />
                         <div class="carousel-caption container half_padding_left half_padding_right">
                             <div class="carousel-content-wrapper left">
                                 <div class="col-xs-12 col-md-10 carousel-header-text white3040">
@@ -40,14 +40,11 @@
                                 <form method="post" name="locForm" id="locForm" action="<?php echo SITE_ROOT . '/_includes/procCrit/procUSLoc.php'; ?>">
                                     <input type='hidden' name='postFrom' id="postFrom" value='__us-loc__' />
                                     <div class="row">
-                                        <!-- <div class="col-xs-12 col-sm-6 col-md-4 carousel-header-button loc-push-down">
-                                            <a href="#" class="header-button"><span class="blue2228Bold">Find my location</span></a>
-                                        </div> -->
                                         <div class="col-xs-12 col-sm-6 col-md-8 loc-pull-up">
                                             <div class="container-fluid">
                                                 <div class="row loc-form">
                                                     <div class="col-xs-12 col-md-8 fix-left"><label class="offwhite1215EB" style="margin-bottom: 0px; " for="input_geoLoc">Enter your zip code</label></div>
-                                                    <div class="col-xs-12 col-md-8 fix-left fix-top">
+                                                    <div class="col-xs-12 col-md-8 fix-left fix-top" id="zipCodeIn">
                                                         <input type="text" class="white2532 form-paleBlue" name="input_geoLoc" id="input_geoLoc" value="<?php echo $home->geoLoc; ?>" placeholder="Corpus Christi, Texas 78418 USA" />
                                                         <div>
                                                             <input data-geo-home="location" type="hidden" name="geo-home-location" id="geo-start-location" value="<?php echo $home->latLng; ?>" />
@@ -71,13 +68,12 @@
             </div><!-- /carousel -->      
         </div><!-- /carousel container -->
 
-        <div class="bottom-nav">
-            <div class="row ccSave">
-                <div class="chars-border-middle-wt-1"></div>
-                <div class='col-xs-3 col-xs-offset-1 col-sm-6 col-sm-offset-0 ccSave-fix-left'>                    
+        <div class="container" id="ccSave">
+            <div class="row cc paleGreen" style="z-index: 100;">
+                <div class='col-xs-6 ccSave-fix-left' id="continue">                    
                     <a class='mid-button-mustard' onclick="document.getElementById('locForm').submit();"><span class="blue2228Bold">Continue</span></a>
                 </div>
-                <div class='col-xs-3 col-xs-offset-3 col-sm-6 col-sm-offset-0 ccSave-fix-right'>
+                <div class='col-xs-6 ccSave-fix-right'>
                     <a class='mid-button-sand' id="moveBack"><span class="blue2228Bold">Back</span></a>
                 </div>
             </div>

@@ -32,23 +32,22 @@
         <?php include($root . 'includes/page-styles.php'); ?>
         <link href="<?php echo $root; ?>css/chars-styles.css" rel='stylesheet' type='text/css' media="all" />
         <link href="<?php echo $root; ?>css/chars-borders.css" rel='stylesheet' type='text/css' media="all" />
-        <link href="<?php echo $root; ?>css/ccSave.css" rel='stylesheet' type='text/css' media="all" />
+        <link href="<?php echo $root; ?>css/chars-sel.css" rel='stylesheet' type='text/css' media="all" />
+<!--        <link href="<?php echo $root; ?>css/ccSave.css" rel='stylesheet' type='text/css' media="all" /> -->
         <link href="<?php echo $root; ?>css/complete.css" rel='stylesheet' type='text/css' media="all" />
     </head>
     <body>
 <?php include_once($root . 'includes/nav-menu.php'); ?>
-        <div class="carousel container-fluid">
+        <div class="complete-modal"><span class="blue2532Bold marker-complete" style="margin-bottom: 0px; ">100</span></div>
+        <div class="carousel container">
             <div id="carousel" class="carousel slide " data-ride="carousel">
                 <div class="carousel-inner">
                     <div class="item active">
                         <img src="<?php echo $root; ?>us/images/us-complete-bg.png" class="carousel_img" alt="#" />
-                        <div class="carousel-caption container half_padding_left half_padding_right">
+                        <div class="carousel-caption container half_padding_left half_padding_right" id="topCarousel">
                             <div class="carousel-content-wrapper left">
                                 <div class="row">
-                                    <div class="complete-border-middle-1"></div>                                
-                                    <div class="complete-border-middle-2"></div>                                
-                                    <div class="col-md-2 col-sm-2 col-xs-2 chars-marker complete-modal"><span class="blue2532Bold marker-complete" style="margin-bottom: 0px; ">100</span></div>
-                                    <!-- <div class="col-md-8 col-sm-8 topic"><h4 class="chars-h4">Your Report is Complete</h4></div> -->
+                                    <!-- <div class="col-xs-2 complete-modal"><span class="blue2532Bold marker-complete" style="margin-bottom: 0px; ">100</span></div> -->
                                 </div>
                             </div>
                         </div><!-- /carousel_content_wrapper -->
@@ -57,19 +56,18 @@
             </div><!-- /carousel -->      
         </div><!-- /carousel container -->
 
-        <div class="row">
-            <div class="chars-border-middle-wt-1"></div>                                
-            <div class="col-md-2 col-sm-2 col-xs-2 chars-marker chars">
+
+        <div class="row" id="markerDown">
+            <div class="col-xs-2 chars-marker chars">
                 <span class="blue2532Bold marker-white" style="margin-bottom: 0px; ">
                     <img src="<?php echo SITE_ROOT; ?>/us/images/arrow_blue-dark.png" class="img-responsive complete-down"/>
                 </span>
             </div>
-            <div class="col-md-8 col-sm-8 topic"><h4 class="chars-h4"><?php echo $heading; ?></h4></div>
+            <div class="col-xs-8 topic"><h4 class="chars-h4"><?php echo $heading; ?></h4></div>
         </div>
         <div class="row">
-            <div class="chars-border-middle-wt-2 hidden-xs"></div>
-            <div class="col-md-2 col-sm-2 col-xs-2 chars-marker"><span class="transparent2532 marker-transparent" style="margin-bottom: 0px; ">1</span></div>
-            <div class="col-md-8 col-sm-10 col-xs-10 chars-desc white2025">
+            <div class="col-xs-2 chars-marker"><span class="transparent2532 marker-transparent" style="margin-bottom: 0px; ">1</span></div>
+            <div class="col-xs-9 col-md-8 chars-desc white2025">
                 Click Continue to view your report, or Back to change your selections.
             </div>
         </div>
@@ -78,15 +76,14 @@
             <input type="hidden" name="trigger" id="trigger" value="<?php echo $trigger; ?>" />
         </form>
         <!-- Continue-Cancel-Save -->
-        <div class="row complete">
-            <div class="chars-border-middle"></div>                                
-            <div class='col-xs-10 col-xs-offset-1 col-sm-6 col-md-6 ccButtons ccButton-first'>
+        <div class="row complete" id="ccSave">
+            <div class='col-xs-12 col-sm-6 ccButtons ccButton-first'>
                 <a class='mid-button-mustard' onclick="document.getElementById('completeForm').submit();"><span class="blue2228Bold">Continue</span></a>
             </div>
-            <div class='col-xs-5 col-xs-offset-1 col-sm-2 col-md-2 ccButtons ccButton-middle'>
+            <div class='col-xs-6 col-sm-2 ccButtons ccButton-middle'>
                 <a id="moveBack" class='mid-button-sand'><span class="blue2228Bold">Back</span></a>
             </div>
-            <div class='col-xs-5 col-sm-2 col-md-2 ccButtons ccButton-last'>
+            <div class='col-xs-6 col-sm-2 ccButtons ccButton-last'>
                 <a id="stayHere" class='mid-button-sand'><span class="blue2228Bold">Save</span></a>
             </div>
         </div>
@@ -111,8 +108,6 @@
                     }
                 }
             });
-
-            
             $("#moveBack").click(function () {
                  $(document.getElementById('postFrom')).val('__us-complete-back__');
                 $("#completeForm").submit();

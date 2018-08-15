@@ -245,7 +245,7 @@
         margin_top: 18px;
     }
 }
-@media (max-width: 768px) {
+@media (max-width: 767px) {
     .footer_nav_links.fold a {
         display: block;
         margin: 0 !important;

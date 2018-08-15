@@ -32,107 +32,114 @@
         <?php include($root . 'includes/page-head-scripts.php'); ?>
         <!-- Load site CSS -->
         <?php include($root . 'includes/page-styles.php'); ?>
-        <link href="<?php echo $root; ?>css/rdeckattach.css" rel='stylesheet' type='text/css' media="all" />
         <link href="<?php echo $root; ?>css/chars-styles.css" rel='stylesheet' type='text/css' media="all" />
         <link href="<?php echo $root; ?>css/chars-borders.css" rel='stylesheet' type='text/css' media="all" />
+        <link href="<?php echo $root; ?>css/chars-sel.css" rel='stylesheet' type='text/css' media="all" />
+        <link href="<?php echo $root; ?>css/rdeckattach.css" rel='stylesheet' type='text/css' media="all" />
         <link href="<?php echo $root; ?>css/ccSave.css" rel='stylesheet' type='text/css' media="all" />
     </head>
     <body class="bg-blue">
         <?php include_once($root . 'includes/nav-menu.php'); ?>
         <div class="characteristics container">
-            <div class="characteristics-inner">
-                <div class="characteristics-wrapper container half_padding_left half_padding_right">
+            <div class="characteristics-inner" id="charSelectPanel">
+                <div class="characteristics-wrapper container">
                     <div class="wt-content-wrapper left">
                         <form method="post" name="rdaAForm" id="rdaAForm" action="<?php echo HOME_LINK; ?>_includes/procCrit/procUS-RDA-A.php">
                             <input type="hidden" name="postFrom" id="postFrom" value="__us-RDA-A__" />
                             <input type="hidden" name="postBack" id="postBack" value="<?php echo $selected; ?>" />
                             <input type="hidden" name="trigger" id="trigger" value="<?php echo $trigger; ?>" />
 
-                            <div class="row">
-                                <div class="chars-border-middle-wt-1"></div>
-                                <div class="col-md-2 col-sm-2 col-xs-2 chars-marker chars"><span class="blue2532Bold marker-white" style="margin-bottom: 0px; ">7</span></div>
-                                <div class="col-md-8 col-sm-8 topic"><h4 class="chars-h4">Roof Deck Attachment - A</h4></div>
+                            <div class="row">  <!-- Step number and page heading -->
+                                <div class="col-xs-2 chars-marker chars"><span class="blue2532Bold marker-white" style="margin-bottom: 0px; ">7</span></div>
+                                <div class="col-xs-10 topic"><h4 class="chars-h4">Roof Deck Attachment - A</h4></div>
                             </div>
-                            <div class="row">
-                                <div class="chars-border-middle-wt-2"></div>
-                                <div class="col-md-2 col-sm-2 col-xs-2 chars-marker"><span class="transparent2532 marker-transparent" style="margin-bottom: 0px; ">1</span></div>
-                                <div class="col-md-8 col-sm-10 col-xs-10 chars-desc white2025">
+                            <div class="row">  <!-- Page description -->
+                                <div class="col-xs-2 chars-marker chars"><span class="transparent2532 marker-transparent" style="margin-bottom: 0px; ">1</span></div>
+                                <div class="col-xs-10 chars-desc white2025">
                                     To determine the type of nails use a flashlight to look for shiners (nails that missed the rafters) along the 
                                     area where the framing meets the roof deck.
                                 </div>
                             </div>
-                            <div class="row no-padding-top no-padding-bottom">
-                                <div class="chars-border-middle-wt-3"></div>
-                                <div class="chars-border-middle-wt-4"></div>
-                                <div class="chars-border-middle-wt-4a"></div>
-                                <div class="chars-border-middle-wt-4b"></div>
-                                <div class="chars-border-middle-wt-4c"></div>
+                            <div class="row no-padding-top no-padding-bottom">  <!-- Select buttons -->
                                 <!-- RADIOS -->
-                                <div class="col-md-3 col-sm-3 col-xs-10 chars-header-x3 chars-bumper">
+                                <!-- 6d Nail -->
+                                <div class="col-xs-2">&nbsp;</div>
+                                <div class="col-xs-10 col-sm-3 chars-header">
                                     <label class="select-button">
                                         <input type="radio" name="__chars-rdaa__" value="rda6d" />
-                                        <img id="sel1" src="<?php echo SITE_ROOT; ?>/us/images/rda-6d-nail-off.png" class="img-responsive chars-select-x3">
+                                        <img id="sel1" src="<?php echo SITE_ROOT; ?>/us/images/rda-6d-nail-off.png" class="img-responsive chars-select">
+                                        <p class="chars-label chars-buffer white2025Bold">
+                                            6d Nail
+                                        </p>
                                     </label>
-                                    <div id="sel1_cb" class="col-xs-6 chars-checkbox-x3 fix-left" style="display: none"><img src="<?php echo SITE_ROOT; ?>/us/images/checkmark_blue-dark.png" class="img-responsive check-select"/></div>
-                                    <div class="chars-header chars-label-x3 chars-buffer  white2025Bold">
-                                        6d Nail
-                                    </div>
+                                    <div id="sel1_cb" class="col-xs-6 chars-checkbox fix-left" style="display: none"><img src="<?php echo SITE_ROOT; ?>/us/images/checkmark_blue-dark.png" class="img-responsive check-select"/></div>
                                 </div>
-                                <div class="col-md-3 col-sm-3 col-xs-10 chars-header-x3">
+                                
+                                <!-- 8d Nail -->
+                                <div class="col-xs-2 hidden-sm hidden-md hidden-lg">&nbsp;</div>
+                                <div class="col-xs-10 col-sm-3 chars-header">
                                     <label class="select-button">
                                         <input type="radio" name="__chars-rdaa__" value="rda8d" />
-                                        <img id="sel2" src="<?php echo SITE_ROOT; ?>/us/images/rda-8d-nail-off.png" class="img-responsive chars-select-x3">
+                                        <img id="sel2" src="<?php echo SITE_ROOT; ?>/us/images/rda-8d-nail-off.png" class="img-responsive chars-select">
+                                        <p class="chars-label chars-buffer white2025Bold">
+                                            8d Nail
+                                        </p>
                                     </label>
-                                    <div id="sel2_cb" class="col-xs-6 chars-checkbox-x3 fix-left" style="display: none"><img src="<?php echo SITE_ROOT; ?>/us/images/checkmark_blue-dark.png" class="img-responsive check-select"/></div>
-                                    <div class="chars-header chars-label-x3 chars-buffer  white2025Bold">
-                                        8d Nail
-                                    </div>
+                                    <div id="sel2_cb" class="col-xs-6 chars-checkbox fix-left" style="display: none"><img src="<?php echo SITE_ROOT; ?>/us/images/checkmark_blue-dark.png" class="img-responsive check-select"/></div>
                                 </div>
-                                <div class="col-md-3 col-sm-3 col-xs-10 chars-header-x3">
+
+                                <!-- 10d Nail -->
+                                <div class="col-xs-2 hidden-sm hidden-md hidden-lg">&nbsp;</div>
+                                <div class="col-xs-10 col-sm-3 chars-header">
                                     <label class="select-button">
                                         <input type="radio" name="__chars-rdaa__" value="rda10d" />
-                                        <img id="sel3" src="<?php echo SITE_ROOT; ?>/us/images/rda-10d-nail-off.png" class="img-responsive chars-select-x3">
+                                        <img id="sel3" src="<?php echo SITE_ROOT; ?>/us/images/rda-10d-nail-off.png" class="img-responsive chars-select">
+                                        <p class="chars-label chars-buffer white2025Bold">
+                                            10d Nail
+                                        </p>
                                     </label>
-                                    <div id="sel3_cb" class="col-xs-6 chars-checkbox-x3 fix-left" style="display: none"><img src="<?php echo SITE_ROOT; ?>/us/images/checkmark_blue-dark.png" class="img-responsive check-select"/></div>
-                                    <div class="chars-header chars-label-x3 chars-buffer white2025Bold">
-                                        10d Nail
-                                    </div>
+                                    <div id="sel3_cb" class="col-xs-6 chars-checkbox fix-left" style="display: none"><img src="<?php echo SITE_ROOT; ?>/us/images/checkmark_blue-dark.png" class="img-responsive check-select"/></div>
                                 </div>
-                                <div class="col-md-3 col-sm-3 col-xs-10 chars-header-x3 chars-bumper">
+
+                                <!-- 6d and 8d Nails -->
+                                <div class="col-xs-2">&nbsp;</div>
+                                <div class="col-xs-10 col-sm-3 chars-header">
                                     <label class="select-button">
                                         <input type="radio" name="__chars-rdaa__" value="rda6s" />
-                                        <img id="sel4" src="<?php echo SITE_ROOT; ?>/us/images/rda-6d8d-nail-off.png" class="img-responsive chars-select-x3">
+                                        <img id="sel4" src="<?php echo SITE_ROOT; ?>/us/images/rda-6d8d-nail-off.png" class="img-responsive chars-select">
+                                        <p class="chars-label chars-buffer white2025Bold">
+                                            6d and 8d Nails
+                                        </p>
                                     </label>
-                                    <div id="sel4_cb" class="col-xs-6 chars-checkbox-x3 fix-left" style="display: none"><img src="<?php echo SITE_ROOT; ?>/us/images/checkmark_blue-dark.png" class="img-responsive check-select"/></div>
-                                    <div class="chars-header chars-label-x3 chars-buffer white2025Bold">
-                                        6d and 8d Nails
-                                    </div>
+                                    <div id="sel4_cb" class="col-xs-6 chars-checkbox fix-left" style="display: none"><img src="<?php echo SITE_ROOT; ?>/us/images/checkmark_blue-dark.png" class="img-responsive check-select"/></div>
                                 </div>
-                                <div class="col-md-3 col-sm-3 col-xs-10 chars-header-x3">
+
+                                <!-- Other -->
+                                <div class="col-xs-2 hidden-sm hidden-md hidden-lg">&nbsp;</div>
+                                <div class="col-xs-10 col-sm-3 chars-header">
                                     <label class="select-button">
                                         <input type="radio" name="__chars-rdaa__" value="other" />
-                                        <img id="sel5" src="<?php echo SITE_ROOT; ?>/us/images/other-off.png" class="img-responsive chars-select-x3">
+                                        <img id="sel5" src="<?php echo SITE_ROOT; ?>/us/images/other-off.png" class="img-responsive chars-select">
+                                        <p class="chars-label chars-buffer white2025Bold">
+                                            Other
+                                        </p>
                                     </label>
-                                    <div id="sel5_cb" class="col-xs-6 chars-checkbox-x3 fix-left" style="display: none"><img src="<?php echo SITE_ROOT; ?>/us/images/checkmark_blue-dark.png" class="img-responsive check-select"/></div>
-                                    <div class="chars-header chars-label-x3 white2025Bold">
-                                        Other
-                                    </div>
+                                    <div id="sel5_cb" class="col-xs-6 chars-checkbox fix-left" style="display: none"><img src="<?php echo SITE_ROOT; ?>/us/images/checkmark_blue-dark.png" class="img-responsive check-select"/></div>
                                 </div>
-                                <div class="col-md-3 col-sm-3 col-xs-10 chars-header-x3">
+
+                                <!-- Unknown -->
+                                <div class="col-xs-2 hidden-sm hidden-md hidden-lg">&nbsp;</div>
+                                <div class="col-xs-10 col-sm-3 chars-header">
                                     <label class="select-button">
                                         <input type="radio" name="__chars-rdaa__" value="unknown" />
-                                        <img id="sel6" src="<?php echo SITE_ROOT; ?>/us/images/unknown-off.png" class="img-responsive chars-select-x3">
+                                        <img id="sel6" src="<?php echo SITE_ROOT; ?>/us/images/unknown-off.png" class="img-responsive chars-select">
+                                        <p class="chars-label chars-buffer white2025Bold">
+                                            Unknown
+                                        </p>
                                     </label>
-                                    <div id="sel6_cb" class="col-xs-6 chars-checkbox-x3 fix-left" style="display: none"><img src="<?php echo SITE_ROOT; ?>/us/images/checkmark_blue-dark.png" class="img-responsive check-select"/></div>
-                                    <div class="chars-header chars-label-x3 white2025Bold">
-                                        Unknown
-                                    </div>
+                                    <div id="sel6_cb" class="col-xs-6 chars-checkbox fix-left" style="display: none"><img src="<?php echo SITE_ROOT; ?>/us/images/checkmark_blue-dark.png" class="img-responsive check-select"/></div>
                                 </div>
                             </div>
-                            <div class="row no-padding-bottom no-padding-top">
-                                <div class="chars-border-middle-wt-5"></div>
-                            </div>
-
                         </form>
                     </div> <!-- wt-content-wrapper -->
                 </div> <!-- ./ characteristics wrapper -->

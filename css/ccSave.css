@@ -25,14 +25,11 @@
     margin-right: auto;
 }
 .stories-upload {
-    margin-top: 4%;
-    margin-bottom: 27%;
     margin-left: 13px;
 }
 .ccButtons {
     position: relative;
     float: left;
-    top: -80px;
 }
 .ccButton-first {
     margin-left: 10px;
@@ -42,149 +39,114 @@
 }
 .ccButton-last {}
 .ccUpload {}
-@media screen and (min-width: 360px) {
-    .ccButton-first {
-        margin-left: 15px;
+
+@media screen and (max-width: 767px) {
+    .ccButton-last, .ccButton-middle {
+        text-align: center;
     }
-    .stories-upload {
-        margin-top: 5%;
-    }
-}
-@media screen and (min-width: 375px) {
-    .stories-upload {
-        margin-left: 18px;
-    }
-}
-@media screen and (min-width: 411px) {
-    .stories-upload {
-        margin-left: 7.5%;
-        margin-bottom: 23%;
-        margin-top: 7%;
-    }
-    .ccButton-first {
-        margin-left: 25px;
+    .ccButton-first { 
+        margin-left: 25px; 
     }
     .ccButton-middle {
-        margin-left: 10px;
-    }
-    .ccButton-last {
         margin-left: -20px;
     }
-}
-@media screen and (min-width: 480px) {
-    .stories-upload {
-        margin-left: 12.5%;
-        margin-top: 6%;
-        margin-bottom: 20%;
+    .ccButtons {
+        top: 0px;
     }
-    .ccButton-first {
-        margin-left: 40px;
-    }
-    .ccButton-middle, .ccButton-last {
-        margin-left: -25px;
-    }
-}
-@media screen and (min-width: 600px) {
-    .stories-upload {
-        margin-top: 5%;
-        margin-bottom: 16%;
-    }
-    .ccButton-first {
-        margin-left: 11%;
-    }
-    .ccButton-middle {
-        margin-left: 0px;
-    }
-    .ccButton-last {
-        margin-left: -70px;
-    }
-}
-@media screen and (min-width: 768px) {
-    .ccSave {
-        height: 165px;
-    }
-    .stories-upload {
-        margin-top: 3%;
-        margin-bottom: 13%;
-        margin-left: 20.5%;
-    }
-    .ccButton-first {
-        margin-left: 5%;
-    }
-    .ccButton-middle {
-        margin-left: 10%;
-    }
-    .ccButton-last {
-        margin-left: -90px;
-    }
-}
-@media screen and (min-width: 800px) {
-    .ccButton-middle {
-        margin-left: 15px;
-    }
-    .ccButton-first {
-        margin-left: 8%;
-    }
-}
-@media screen and (min-width: 1024px) {
     .ccSave {
         height: 140px;
     }
+    .stories-upload {
+        margin-top: 10px;
+        margin-bottom: 30px;
+        margin-left: 35px;
+        padding-right: 50px;
+    }
+}
+
+@media screen and (min-width: 768px) and (max-width: 991px) {
+    .ccButton-first {
+        margin-left: 15px;
+    }
+    .ccButton-middle {
+        text-align: right;
+        padding-right: 40px;
+        margin-left: 0;
+    }
+    .ccButton-last {
+        margin-left: 0;
+        text-align: right;
+    }
     .ccButtons {
-        top: 35%;
+        margin-top: -80px;
+        height: 132px;
     }
-    .ccUpload {
-        margin-left: -50px;
-        margin-top: 13px;
-    }
-    .ccButton-middle {
-        margin-left: -35px;
-    }
-    .ccButton-last {
-        margin-left: -70px;
-    }
-}
-@media screen and (min-width: 1280px) {
-    .ccButton-first {
-        margin-left: 9%;
-    }
-    .ccUpload {
-        margin-top: 17px;
-    }
-    .ccButton-middle {
-        margin-left: -10%;
-    }
-    .ccButton-last {
-        margin-left: -7%;
-    }
-}
-@media screen and (min-width: 1440px) {
-    .ccButton-first {
-        margin-left: 10.5%;
-    }
-}
-@media screen and (min-width: 1536px) {
     .ccSave {
-        height: 168px;
+        margin-left: 0;
+        height: 165px;
+    }
+    .stories-upload {
+        margin: 25px 0px 105px 170px;
+    }
+}
+
+@media screen and (min-width: 992px) and (max-width: 1199px) {
+    .ccButton-first {
+        margin-left: 15px;
+    }
+    .ccButton-middle {
+        text-align: left;
+        margin-left: 0;
+    }
+    .ccButton-last {
+        margin-left: 0;
+        text-align: center;
     }
     .ccButtons {
-        top: 31%;
+        margin-top: 50px;
+        height: auto;
     }
-    .ccButton-first {
-        margin-left: 9.5%;
+    .ccSave {
+        margin-left: 0;
+        height: 165px;
     }
     .ccUpload {
-        margin-left: -5%;
-        margin-top: 22px;
+        padding-left: 0;
+        padding-right: 0;
+        padding-top: 15px;
+    }
+    .stories-upload {
+        margin: 25px 0px 105px 170px;
     }
 }
-@media screen and (min-width: 1680px) {
+
+@media screen and (min-width: 1200px) {
     .ccButton-first {
-        margin-left: 9.75%;
+        margin-left: 15px;
+    }
+    .ccButton-middle {
+        text-align: left;
+        margin-left: 0;
+    }
+    .ccButton-last {
+        margin-left: 0;
+        text-align: center;
+    }
+    .ccButtons {
+        margin-top: 50px;
+        height: auto;
+    }
+    .ccSave {
+        margin-left: 0;
+        height: 165px;
+    }
+    .ccUpload {
+        padding-left: 0;
+        padding-right: 0;
+        padding-top: 15px;
+    }
+    .stories-upload {
+        margin: 25px 0px 105px 170px;
     }
 }
-@media screen and (min-width: 1920px) {
-    .ccButton-first {
-        margin-left: 10.25%;
-    }
-}
+

@@ -143,12 +143,12 @@ function setCarousel(size)
         var current_path = src.substring(0, src.lastIndexOf("/") + 1);
         console.log(current_path);
         console.log(size);
-        if (size < 769 && current_path != 'images/small_carousel/')
+        if (size < 768 && current_path != 'images/small_carousel/')
         {
             current_path = 'images/small_carousel/';
         }
 
-        if (size >= 769 && current_path == 'images/small_carousel/')
+        if (size >= 768 && current_path == 'images/small_carousel/')
         {
             current_path = 'images/';
         }
@@ -158,7 +158,7 @@ function setCarousel(size)
 
     });
 
-    if (size < 769)
+    if (size < 768)
     {
         $('#kids_link').addClass('dropdown-toggle');
         $('#kids_link').attr('data-toggle', 'dropdown');

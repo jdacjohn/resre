@@ -32,17 +32,18 @@
         <?php include($root . 'includes/page-head-scripts.php'); ?>
         <!-- Load site CSS -->
         <?php include($root . 'includes/page-styles.php'); ?>
-        <link href="<?php echo $root; ?>css/garage.css" rel='stylesheet' type='text/css' media="all" />
         <link href="<?php echo $root; ?>css/chars-styles.css" rel='stylesheet' type='text/css' media="all" />
         <link href="<?php echo $root; ?>css/chars-borders.css" rel='stylesheet' type='text/css' media="all" />
+        <link href="<?php echo $root; ?>css/chars-sel.css" rel='stylesheet' type='text/css' media="all" />
+        <link href="<?php echo $root; ?>css/garage.css" rel='stylesheet' type='text/css' media="all" />
         <link href="<?php echo $root; ?>css/ccSave.css" rel='stylesheet' type='text/css' media="all" />
     </head>
     </head>
     <body class="bg-blue">
         <?php include_once($root . 'includes/nav-menu.php'); ?>
         <div class="characteristics container">
-            <div class="characteristics-inner">
-                <div class="characteristics-wrapper container half_padding_left half_padding_right">
+            <div class="characteristics-inner" id="charSelectPanel">
+                <div class="characteristics-wrapper container">
                     <div class="wt-content-wrapper left">
                         <form method="post" name="garageForm" id="garageForm" action="<?php echo HOME_LINK; ?>_includes/procCrit/procUSGarageDoor.php">
                             <input type="hidden" name="postFrom" id="postFrom" value="__us-garagedoor__" />
@@ -50,90 +51,90 @@
                             <input type="hidden" name="garageSelect" id="garageSelect" value ="<?php echo $selected; ?>" />
                             <input type="hidden" name="trigger" id="trigger" value="<?php echo $trigger; ?>" />
 
-                            <div class="row">
-                                <div class="chars-border-middle-wt-1"></div>
-                                <div class="col-md-2 col-sm-2 col-xs-2 chars-marker chars"><span class="blue2532Bold marker-white" style="margin-bottom: 0px; ">5</span></div>
-                                <div class="col-md-8 col-sm-8 topic"><h4 class="chars-h4">Garage Door</h4></div>
+                            <div class="row">  <!-- Marker Number and Page Header -->
+                                <div class="col-xs-2 chars-marker chars"><span class="blue2532Bold marker-white" style="margin-bottom: 0px; ">5</span></div>
+                                <div class="col-xs-10 topic"><h4 class="chars-h4">Garage Door</h4></div>
                             </div>
-                            <div class="row">
-                                <div class="chars-border-middle-wt-2"></div>
-                                <div class="col-md-2 col-sm-2 col-xs-2 chars-marker"><span class="transparent2532 marker-transparent" style="margin-bottom: 0px; ">1</span></div>
-                                <div class="col-md-8 col-sm-10 col-xs-10 chars-desc white2025">
+                            <div class="row">  <!-- Page Description -->
+                                <div class="col-xs-2 chars-marker chars"><span class="transparent2532 marker-transparent" style="margin-bottom: 0px; ">1</span></div>
+                                <div class="col-xs-10 chars-desc white2025">
                                     The best method to determine your garage door type is to look for a proof of compliance sticker (typically 
                                     yellow or white).  It will identify the type of door.  If your door does not have a label on it you may be able to 
                                     identify from the number of bracings.
                                 </div>
                             </div>
-                            <div class="row no-padding-top no-padding-bottom">
-                                <div class="chars-border-middle-wt-3"></div>
-                                <div class="chars-border-middle-wt-4"></div>
-                                <div class="chars-border-middle-wt-4a"></div>
+                            <div class="row no-padding-top no-padding-bottom">  <!-- Selection Buttons -->
 
                                 <!-- RADIOS -->
                                 <?php if ($mitigants->getShutters()->getCurVal() == 'shtys') { ?>
                                     <!-- Only show the impact and no garage door options -->
+                                    
                                     <!-- Impact Rated Door (gdsup) -->
-                                    <div class="col-md-3 col-sm-3 col-xs-10 chars-header chars-bumper">
+                                    <div class="col-xs-2">&nbsp;</div>
+                                    <div class="col-xs-10 col-sm-3 chars-header">
                                         <label class="select-button">
                                             <input type="radio" name="__chars-gdoor__" value="gdsup" />
                                             <img id="gdr1" src="<?php echo SITE_ROOT; ?>/us/images/garage-impact-off.png" class="img-responsive chars-select">
+                                            <p class="chars-label chars-buffer white2025Bold">
+                                                Impact Resistant
+                                            </p>
                                         </label>
                                         <div id="gdr1_cb" class="col-xs-6 chars-checkbox fix-left" style="display: none"><img src="<?php echo SITE_ROOT; ?>/us/images/checkmark_blue-dark.png" class="img-responsive check-select"/></div>
-                                        <div class="chars-header chars-label chars-buffer white2025Bold">
-                                            Impact Resistant
-                                        </div>
                                     </div>
 
                                     <!-- No Garage Door (gdno2) -->
-                                    <div class="col-md-3 col-sm-3 col-xs-10 chars-header">
+                                    <div class="col-xs-2 hidden-sm hidden-md hidden-lg">&nbsp;</div>
+                                    <div class="col-xs-10 col-sm-3 chars-header">
                                         <label class="select-button">
                                             <input type="radio" name="__chars-gdoor__" id="gdr4_rb" value="gdno2" />
                                             <img id="gdr4" src="<?php echo SITE_ROOT; ?>/us/images/no-garage-door-off.png" class="img-responsive chars-select">
+                                            <p class="chars-label chars-buffer white2025Bold">
+                                                None
+                                            </p>
                                         </label>
                                         <div id="gdr4_cb" class="col-xs-6 chars-checkbox fix-left" style="display: none"><img src="<?php echo SITE_ROOT; ?>/us/images/checkmark_blue-dark.png" class="img-responsive check-select"/></div>
-                                        <div class="chars-header chars-label white2025Bold">
-                                            None
-                                        </div>
                                     </div>
                                     
                                 <?php } else { ?>
                                     
                                     <!-- Only show Standard, Weak, and No Garage Door option for No Shutters selection -->
                                     <!-- Wind Resistant Door (gdstd) -->
-                                    <div class="col-md-3 col-sm-3 col-xs-10 chars-header chars-bumper">
+                                    <div class="col-xs-2">&nbsp;</div>
+                                    <div class="col-xs-10 col-sm-3 chars-header">
                                         <label class="select-button">
                                             <input type="radio" name="__chars-gdoor__" value="gdstd" />
                                             <img id="gdr2" src="<?php echo SITE_ROOT; ?>/us/images/garage-wind-off.png" class="img-responsive chars-select">
+                                            <p class="chars-label chars-buffer white2025Bold">
+                                                Wind Resistant
+                                            </p>
                                         </label>
                                         <div id="gdr2_cb" class="col-xs-6 chars-checkbox fix-left" style="display: none"><img src="<?php echo SITE_ROOT; ?>/us/images/checkmark_blue-dark.png" class="img-responsive check-select"/></div>
-                                        <div class="chars-header chars-label chars-buffer white2025Bold">
-                                            Wind Resistant
-                                        </div>
                                     </div>
                                     
                                     <!-- Standard Garage Door (gdwdk) -->
-                                    <div class="col-md-3 col-sm-3 col-xs-10 chars-header">
+                                    <div class="col-xs-2 hidden-sm hidden-md hidden-lg">&nbsp;</div>
+                                    <div class="col-xs-10 col-sm-3 chars-header">
                                         <label class="select-button">
                                             <input type="radio" name="__chars-gdoor__" value="gdwkd" />
                                             <img id="gdr3" src="<?php echo SITE_ROOT; ?>/us/images/garage-standard-off.png" class="img-responsive chars-select">
+                                            <p class="chars-label chars-buffer white2025Bold">
+                                                Standard Door
+                                            </p>
                                         </label>
                                         <div id="gdr3_cb" class="col-xs-6 chars-checkbox fix-left" style="display: none"><img src="<?php echo SITE_ROOT; ?>/us/images/checkmark_blue-dark.png" class="img-responsive check-select"/></div>
-                                        <div class="chars-header chars-label chars-buffer white2025Bold">
-                                            Standard Door
-                                        </div>
                                     </div>
-                                    <div class="clear hidden-xs"></div>
-
+ 
                                     <!-- No Garage Door (gdnod) -->
-                                    <div class="col-md-3 col-sm-3 col-xs-10 chars-header chars-bumper">
+                                    <div class="col-xs-2 hidden-sm hidden-md hidden-lg">&nbsp;</div>
+                                    <div class="col-xs-10 col-sm-3 chars-header">
                                         <label class="select-button">
                                             <input type="radio" name="__chars-gdoor__" id="gdr4_rb" value="gdnod" />
                                             <img id="gdr4" src="<?php echo SITE_ROOT; ?>/us/images/no-garage-door-off.png" class="img-responsive chars-select">
+                                            <p class="chars-label chars-buffer white2025Bold">
+                                                None
+                                            </p>
                                         </label>
                                         <div id="gdr4_cb" class="col-xs-6 chars-checkbox fix-left" style="display: none"><img src="<?php echo SITE_ROOT; ?>/us/images/checkmark_blue-dark.png" class="img-responsive check-select"/></div>
-                                        <div class="chars-header chars-label white2025Bold">
-                                            None
-                                        </div>
                                     </div>
 
                                 <?php } ?>
@@ -142,10 +143,6 @@
                             <!-- Hack to clear radio button selection -->
                             <div style="display: none"><input type="radio" name="__chars-gdoor__" id="default" value="" /></div>
                             
-                            <div class="row no-padding-bottom no-padding-top">
-                                <div class="chars-border-middle-wt-5"></div>
-                            </div>
-
                         </form>
                     </div> <!-- wt-content-wrapper -->
                 </div> <!-- ./ characteristics wrapper -->

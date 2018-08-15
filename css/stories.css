@@ -1,362 +1,206 @@
 @charset "UTF-8";
 /* CSS File for Wall Type Characteristics */
 
-.characteristics-inner {
-    position: relative;
-    width: 100%;
-    height: 900px;
-    overflow: hidden;
-}
-@media screen and (min-width: 480px) {
-    .characteristics-inner {
-        height: 1080px;
-    }
-}
-@media screen and (min-width: 600px) {
-    .characteristics-inner {
-        height: 1275px;
-    }
-}
-@media screen and (min-width: 768px) {
-    .characteristics-inner {
-        height: 775px;
-    }
-}
-@media screen and (min-width: 800px) {
-    .characteristics-inner {
-        height: 890px;
-    }
-}
-@media screen and (min-width: 1024px) {
-    .characteristics-inner {
-        height: 850px;
-    }
-}
-@media screen and (min-width: 1280px) {
-    .characteristics-inner {
-        height: 950px;
-    }
-}
-@media screen and (min-width: 1536px) {
-    .characteristics-inner {
-        height: 975px;
-    }
-}
-@media screen and (min-width: 1600px) {
+@media screen and (max-width: 767px) {
     .characteristics-inner {
         height: 1000px;
     }
 }
 
-/* Characteristics Screens Vertical Lines */
-/* Wall Types */
-.chars-border-middle-wt-1,
-.chars-border-middle-wt-2,
-.chars-border-middle-wt-3,
-.chars-border-middle-wt-5 {
-    position: absolute;
-    border: none;
-    border-left: 3px solid var(--lightBlue);
-    border-left: 3px solid #6A95B5;
-}
-.chars-border-middle-wt-1 {
-    height: 14%;
-    margin-top: -38%;
+@media screen and (min-width: 768px) and (max-width: 991px) {
+    .characteristics-inner {
+        height: 775px;
+    }
+    .chars-header {
+        margin-right: 60px;
+    }
+    .chars-header-text {
+        margin-top: 20px;
+        padding-left: 60px;
+        padding-right: 120px;
+        padding-bottom: 90px;
+    }
+    .wt-content-wrapper.left {
+        top: 90px;
+    }
+    div#charSelectPanel::after {
+        content: " ";
+        position: absolute;
+        border-left: 3px solid #6A95B5;
+        height: 90px;
+        width: 40px;
+        left: 80px;
+        top: 0;
+    }
+    div#charSelectPanel::before {
+        content: " ";
+        position: absolute;
+        border-left: none;
+        height: 100%;
+        width: 0px;
+        left: 80px;
+        top: 0;
+    }
+    div#getStarted::before {
+        content: " ";
+        position: absolute;
+        border-top: 3px solid #6A95B5;
+        height: 90px;
+        width: 40px;
+        left: 60px;
+        top: -20px;
+    }
+    div#getStarted::after {
+        content: " ";
+        position: absolute;
+        border-top: 3px solid #6A95B5;
+        height: 90px;
+        width: 40px;
+        left: 60px;
+        top: 70px;
+    }
+    div#step1::before {
+        content: " ";
+        position: absolute;
+        border-left: 3px solid #6A95B5;
+        height: 600px;
+        width: 0px;
+        left: 65px;
+        top: 90px;
+    }
+    div#continueButton::before {
+        top: 775px;  /* Always == height of characteristics-inner */
+    }
 }
 
-@media screen and (min-width: 360px) {
-    .chars-border-middle-wt-1 {
-        height: 14%;
-        margin-top: -36%;
+@media screen and (min-width: 992px) and (max-width: 1199px) {
+    .characteristics-inner {
+        height: 775px;
     }
-}
-@media screen and (min-width: 375px) {
-    .chars-border-middle-wt-1 {
-        margin-top: -39%;
+    .chars-header {
+        margin-right: 60px;
     }
-}
-@media screen and (min-width: 600px) {
-    .chars-border-middle-wt-1 {
-        height: 170px;
+    .chars-header-text {
+        margin-top: 20px;
+        padding-left: 60px;
+        padding-right: 120px;
+        padding-bottom: 90px;
+    }
+    .wt-content-wrapper.left {
+        top: 90px;
+    }
+    div#charSelectPanel::after {
+        content: " ";
+        position: absolute;
+        border-left: 3px solid #6A95B5;
+        height: 90px;
+        width: 40px;
+        left: 80px;
+        top: 0;
+    }
+    div#charSelectPanel::before {
+        content: " ";
+        position: absolute;
+        border-left: none;
+        height: 100%;
+        width: 0px;
+        left: 80px;
+        top: 0;
+    }
+    div#getStarted::before {
+        content: " ";
+        position: absolute;
+        border-top: 3px solid #6A95B5;
+        height: 90px;
+        width: 40px;
+        left: 60px;
+        top: -20px;
+    }
+    div#getStarted::after {
+        content: " ";
+        position: absolute;
+        border-top: 3px solid #6A95B5;
+        height: 90px;
+        width: 40px;
+        left: 60px;
+        top: 100px;
+    }
+    div#step1::before {
+        content: " ";
+        position: absolute;
+        border-left: 3px solid #6A95B5;
+        height: 600px;
+        width: 0px;
+        left: 65px;
+        top: 120px;
+    }
+    div#continueButton::before {
+        top: 775px;  /* Always == height of characteristics-inner */
     }
 }
 
-@media screen and (min-width: 768px) {
-    .chars-border-middle-wt-1 {
-        height: 168px !important;
+@media screen and (min-width: 1200px)  {
+    .characteristics-inner {
+        height: 850px;
     }
-    .lineStopTop, .lineStopBot {
-        margin-left: 6.6%;
-    }
-    .lineStopBot {
-        margin-top: 14%;
-    }
-    .topic {
-        margin-top: 16px !important;
-    }
-    .chars-marker {
-        margin-top: 2% !Important;
-    }
-    .chars-desc {
-        margin-top: -6% !important;
+    .chars-header {
+        margin-right: 60px;
     }
     .chars-header-text {
-        margin-top: 1.75%;
-        padding-left: 6.5%;
+        margin-top: 20px;
+        padding-left: 60px;
+        padding-right: 120px;
+        padding-bottom: 90px;
     }
-}
-@media screen and (min-width: 800px) {
-    .chars-border-middle-wt-1 {
-        height: 182px !important;
+    .wt-content-wrapper.left {
+        top: 90px;
     }
-}
-@media screen and (min-width: 1024px) {
-    .chars-border-middle-wt-1 {
-        height: 36.2% !important;
+    div#charSelectPanel::after {
+        content: " ";
+        position: absolute;
+        border-left: 3px solid #6A95B5;
+        height: 90px;
+        width: 40px;
+        left: 80px;
+        top: 0;
     }
-    .lineStopBot, .lineStopTop {
-        width: 60px !important;
-        margin-left: 4.6%;
+    div#charSelectPanel::before {
+        content: " ";
+        position: absolute;
+        border-left: none;
+        height: 100%;
+        width: 0px;
+        left: 80px;
+        top: 0;
     }
-    .chars-header-text {
-        margin-top: 0.75%;
-        padding-left: 4.5%;
+    div#getStarted::before {
+        content: " ";
+        position: absolute;
+        border-top: 3px solid #6A95B5;
+        height: 90px;
+        width: 40px;
+        left: 60px;
+        top: -20px;
     }
-    .topic {
-        margin-top: 35px !important;
+    div#getStarted::after {
+        content: " ";
+        position: absolute;
+        border-top: 3px solid #6A95B5;
+        height: 90px;
+        width: 40px;
+        left: 60px;
+        top: 100px;
     }
-    .chars-desc {
-        margin-top: 0% !important;
+    div#step1::before {
+        content: " ";
+        position: absolute;
+        border-left: 3px solid #6A95B5;
+        height: 700px;
+        width: 0px;
+        left: 65px;
+        top: 120px;
     }
-}
-@media screen and (min-width: 1280px) {
-    .chars-border-middle-wt-1 {
-        height: 39.2% !important;
-    }
-    .lineStopBot, .lineStopTop {
-        margin-left: 6.95%;
-    }
-    .lineStopBot {
-        margin-top: 10%;
-    }
-    .chars-header-text {
-        margin-top: -0.3%;
-        padding-left: 7%;
-    }
-    .topic {
-        margin-top: 42px !important;
-    }    
-}
-@media screen and (min-width: 1366px) {
-    .chars-border-middle-wt-1 {
-        height: 19% !important;
-    }
-    .lineStopTop {
-        margin-top: 9%;
-    }
-    .lineStopBot {
-        margin-top: 19%;
-    }
-    .chars-header-text {
-        margin-top: 8.7%;
-    }
-}
-@media screen and (min-width: 1440px) {
-    .lineStopBot, .lineStopTop {
-        margin-left: 7.5%;
-    }
-    .lineStopTop {
-        margin-top: 8.75%;
-    }
-    .lineStopBot {
-        margin-top: 18%;
-    }
-    .chars-header-text {
-        margin-top: 8.1%;
-        padding-left: 7.4%;
-    }
-}
-@media screen and (min-width: 1536px) {
-    .chars-header-text {
-        margin-top: 8.3%;
-        padding-left: 7.6%;
-    }
-}
-@media screen and (min-width: 1600px) {
-    .lineStopBot, .lineStopTop {
-        margin-left: 7.75%;
-    }
-    .lineStopTop {
-        margin-top: 8.5%;
-    }
-    .chars-header-text {
-        margin-top: 8.8%;
-        padding-left: 8%;
-    }
-}
-@media screen and (min-width: 1680px) {
-    .lineStopBot {
-        margin-top: 17%;
-    }
-    .chars-border-middle-wt-1 {
-        height: 20.5% !important;
-    }
-}
-@media screen and (min-width: 1920px) {
-    .chars-border-middle-wt-1 {
-        height: 23.75% !important;
-    }
-    .lineStopBot {
-        margin-top: 16%;
-    }
-}
-.chars-border-middle-wt-2 {
-    height: 29.5%;
-    margin-top: -5%;
-}
-@media screen and (min-width: 360px) {
-    .chars-border-middle-wt-2 {
-        height: 26.2%;
-    }
-}
-@media screen and (min-width: 375px) {
-    .chars-border-middle-wt-2 {
-        height: 26.8%;
-    }
-}
-@media screen and (min-width: 411px) {
-    .chars-border-middle-wt-2 {
-        height: 26.7%;
-    }
-}
-@media screen and (min-width: 414px) {
-    .chars-border-middle-wt-2 {
-        height: 26.5%;
-    }
-}
-@media screen and (min-width: 480px) {
-    .chars-border-middle-wt-2 {
-        height: 21.3%;
-    }
-}
-@media screen and (min-width: 600px) {
-    .chars-border-middle-wt-2 {
-        height: 20.15%;
-    }
-}
-@media screen and (min-width: 768px) {
-    .chars-border-middle-wt-2 {
-        margin-top: -13.5%;
-    }
-}
-@media screen and (min-width: 800px) {
-    .chars-border-middle-wt-2 {
-        margin-top: -14.5%;
-    }
-}
-@media screen and (min-width: 1024px) {
-    .chars-border-middle-wt-2 {
-        margin-top: -10.5%;
-    }
-}
-@media screen and (min-width: 1280px) {
-    .chars-border-middle-wt-2 {
-        height: 93%;
-    }
-}
-@media screen and (min-width: 1366px) {
-    .chars-border-middle-wt-2 {
-        margin-top: -9.3%;
-        height: 92% !important;
-    }
-}
-@media screen and (min-width: 1536px) {
-    .chars-border-middle-wt-2 {
-        margin-top: -8.3%;
-    }
-}
-@media screen and (min-width: 1920px) {
-    .chars-border-middle-wt-2 {
-        margin-top: -7.3%;
-    }
-}
-.chars-border-middle-wt-3 {
-    height: 8.25%;
-    margin-top: 74%;
-}
-@media screen and (min-width: 360px) {
-    .chars-border-middle-wt-3 {
-        height: 8.6%;
-        margin-top: 72%
-    }
-}
-@media screen and (min-width: 375px) {
-    .chars-border-middle-wt-3 {
-        height: 8.6%;
-        margin-top: 81%
-    }
-}
-@media screen and (min-width: 411px) {
-    .chars-border-middle-wt-3 {
-        margin-top: 81.4%;
-    }
-}
-@media screen and (min-width: 414px) {
-    .chars-border-middle-wt-3 {
-        margin-top: 81.75%
-    }
-}
-@media screen and (min-width: 480px) {
-    .chars-border-middle-wt-3 {
-        margin-top: 91.4%;
-        height: 7.8%;
-    }
-}
-@media screen and (min-width: 600px) {
-    .chars-border-middle-wt-3 {
-        margin-top: 83.2%;
-    }
-}
-@media screen and (min-width: 600px) {
-    .chars-border-middle-wt-3 {
-        height: 7.45%;
-    }
-}
-.chars-border-middle-wt-5 {
-    height: 130px;
-    margin-top: -62px;
-}
-@media screen and (min-width: 360px) {
-    .chars-border-middle-wt-5 {
-        margin-top: -22%;
-        height: 10%;
-    }
-}
-@media screen and (min-width: 375px) {
-    .chars-border-middle-wt-5 {
-        margin-top: -25%;
-        height: 11%;
-    }
-}
-@media screen and (min-width: 411px) {
-    .chars-border-middle-wt-5 {
-        margin-top: -25.5%;
-    }
-}
-@media screen and (min-width: 414px) {
-    .chars-border-middle-wt-5 {
-        margin-top: -25.2%;
-    }
-}
-@media screen and (min-width: 480px) {
-    .chars-border-middle-wt-5 {
-        margin-top: -22.5%;
-        height: 13%;
-    }
-}
-@media screen and (min-width: 600px) {
-    .chars-border-middle-wt-5 {
-        margin-top: -19%;
-        height: 15%;
+    div#continueButton::before {
+        top: 850px;  /* Always == height of characteristics-inner */
     }
 }

@@ -1,254 +1,305 @@
 @charset "UTF-8";
+.container { width: 100%; }
 
-.chars-border-middle-wt-1 {
-    position: absolute;
-    border: none;
-    border-left: 2px solid var(--lightBlue);
-    border-left: 2px solid #6A95B5;
-    height: 14%;
-    margin-top: -38%;
-    z-index:  0;
-}
-.ccSave {
-    padding: 20px 0;
-    margin-right: auto;
+.cc {
+    margin-right: 0px;
+    margin-left: 0px;
+    padding: 30px 0;
 }
 .tagline {
     margin-top: 60px;
 }
-.loc-form {
-    margin-right: 5px;
-}
 .ccSave-fix-left, .ccSave-fix-right {
     text-align: center;
 }
-@media screen and (max-width: 799px) {
-    .chars-border-middle-wt-1 {
-        display: none;
-    }
-}
 
-@media screen and (max-width: 374px) {
+@media screen and (max-width: 767px) {
     .carousel-header-text {
-        padding-top: 30%;
-        padding-left: 3%;
+        padding: 120px 15px 20px 5px;
     }
     .fix-left {
-        margin-left: 9%;
-        padding-left: 0px;
+        margin-left: 24px;
     }
     .form-paleBlue {
         padding-bottom: 5px;
         padding-top: 5px;
-    }
-    .loc-push-down {
-        margin-top: 25%;
-    }
-    .loc-pull-up {
-        margin-top: 5%;
     }
     .loc-form {
-        margin-right: 10%;
+        margin-right: 5px;
     }
-    .white3040, .white2532 {
-        font-size: 20px;
-        line-height: 26px;
+    .loc-pull-up {
+        margin-top: 20px;
+        padding-left: 10px;
+    }
+    div#locText::before {
+        content: " ";
+        position: absolute;
+        border-left: 2px solid #6A95B5;
+        height: 175px;
+        width: 0px;
+        left: 100px;
+        top: 0px;
+        z-index: 500;
+    }
+    div#locText::after {
+        content: " ";
+        position: absolute;
+        border-bottom: 2px solid #6A95B5;
+        height: 0px;
+        width: 40px;
+        left: 81px;
+        top: 175px;
     }
 }
 
-@media screen and (min-width: 375px) {
-    .container {width: 100%;}
+@media screen and (min-width: 768px) and (max-width: 991px) {
     .carousel-header-text {
-        padding-top: 25%;
-        padding-left: 2%;
-    }
-    .fix-left {
-        margin-left: 7%;
-    }
-    /* I know this looks redundant, but have to override style.css 375 breakpoint here */
-    .form-paleBlue {
-        padding-bottom: 5px;
-        padding-top: 5px;
-    }
-    .loc-pull-up {
-        margin-top: 5%;
-    }
-    .white3040, .white2532 {
-        font-size: 20px;
-        line-height: 28px;
-    }
-}
-@media screen and (min-width: 411px) {
-    .carousel-header-text {
-        padding-left: 1%;
-    }
-    .fix-left {
-        margin-left: 6%;
-    }
-}
-@media screen and (min-width: 480px) {
-    .carousel-header-text {
-        padding-bottom: 10%;
-        padding-left: 1%;
-    }
-    .fix-left {
-        margin-left: 5%;
-    }
-    .loc-pull-up {
-        margin-top: 0%;
-    }
-    .offwhite1215EB {
-        font-size: 15px;
-    }
-    .white3040, .white2532 {
-        font-size: 24px;
-        line-height: 28px;
-    }
-}
-
-@media screen and (min-width: 600px) {
-    .carousel-header-text {
-        padding-left: 2%;
-    }
-    .ccSave {
-        padding: 30px 0;
-    }
-    .carousel-header-text {
-        padding-top: 20%;
-    }
-    .fix-left {
-        margin-left: 0.5%;
-    }
-    .white3040 {
-        font-size: 26px;
-        line-height: 30px;
-    }
-    .white2532 {
-        font-size: 25px;
-        line-height: 32px;
-    }
-}
-@media screen and (min-width: 768px) {
-    .carousel-header-text {
-        padding-top: 15%;
-        padding-left: 2%;
-        padding-right: 15%;
-    }
-    .chars-border-middle-wt-1 {
-        margin-left: 17.5%;
-        margin-top: -5.25%;
-        height: 80px;
-    }
-    .ccSave {
-        padding: 40px 0;
-    }
-    .ccSave-fix-left, .ccSave-fix-right {
-        margin-top: 1%;
+        padding: 60px 15px 5px 5px;
     }
     .ccSave-fix-left {
         text-align: left;
-        padding-left: 12%;
+        padding-left: 70px;
     }
     .ccSave-fix-right {
         text-align: right;
-        padding-right: 12%;
+        padding-right: 70px;
     }
     .fix-left {
-        margin-left: 9%;
+        margin-left: 28px;
     }
     .form-paleBlue {
-        padding-bottom: 10px;
-        padding-top: 8px;
+        padding-bottom: 5px;
+        padding-top: 5px;
     }
-    .loc-push-down {
-        margin-top: -10%;
+    .loc-form {
+        margin-right: 5px;
     }
     .loc-pull-up {
-        margin-top: -3%;
+        margin-top: 20px;
+        padding-left: 10px;
     }
-    .loc-centerline-fix {
-        text-align: center;
-        margin-top: 1%;
+    div#locText::before {
+        content: " ";
+        position: absolute;
+        border-left: 3px solid #6A95B5;
+        height: 67px;
+        width: 0px;
+        left: 117px;
+        top: 0px;
+        z-index: 500;
     }
-    .offwhite1215EB {
-        font-size: 18px;
-        line-height: 20px;
+    div#locText::after {
+        content: " ";
+        position: absolute;
+        border-bottom: 3px solid #6A95B5;
+        height: 0px;
+        width: 40px;
+        left: 100px;
+        top: 65px;
+    }
+    div#ccSave::after {
+        content: " ";
+        position: absolute;
+        border-bottom: 3px solid #6A95B5;
+        height: 0px;
+        width: 40px;
+        left: 100px;
+        top: 265px;
+    }
+    div#ccSave::before {
+        content: " ";
+        position: absolute;
+        border-left: 3px solid #6A95B5;
+        height: 16%;
+        width: 0px;
+        left: 117px;
+        top: 265px;
+    }
+    div#continue::before {
+        content: " ";
+        position: absolute;
+        border-left: 3px solid #004A80;
+        height: 36px;
+        left: 117px;
+        top: -30px;
+    }
+    div#continue::after {
+        content: " ";
+        position: absolute;
+        border-left: 3px solid rgba(211,228,204,1);
+        height: 30px;
+        left: 105px;
+        top: 46px;
     }
 }
 
-@media screen and (min-width: 800px) {
+@media screen and (min-width: 992px) and (max-width: 1199px) {
+    .carousel-content-wrapper.left {
+        left: 120px;
+    }
     .carousel-header-text {
-        padding-top: 7%;
-        padding-left: 4.5%;
+        padding: 52px 15px 5px 5px;
+    }
+    .ccSave-fix-left {
+        text-align: left;
+        padding-left: 80px;
+    }
+    .ccSave-fix-right {
+        text-align: right;
+        padding-right: 80px;
     }
     .fix-left {
-        margin-left: 14%;
+        margin-left: 28px;
     }
     .form-paleBlue {
-        padding-bottom: 2px;
-        padding-top: 0px;
+        padding-bottom: 5px;
+        padding-top: 5px;
+    }
+    .loc-form {
+        margin-right: 5px;
     }
     .loc-pull-up {
-        margin-top: -8%;
+        margin-top: 20px;
+        padding-left: 10px;
     }
-    .offwhite1215EB {
-        font-size: 15px;
-        line-height: 15px;
+    
+    div#locText::before {
+        content: " ";
+        position: absolute;
+        border-left: 3px solid #6A95B5;
+        height: 67px;
+        width: 0px;
+        left: 137px;
+        top: 0px;
+        z-index: 500;
+    }
+    div#locText::after {
+        content: " ";
+        position: absolute;
+        border-bottom: 3px solid #6A95B5;
+        height: 0px;
+        width: 40px;
+        left: 120px;
+        top: 65px;
+    }
+    div#ccSave::after {
+        content: " ";
+        position: absolute;
+        border-bottom: 3px solid #6A95B5;
+        height: 0px;
+        width: 40px;
+        left: 120px;
+        top: 340px;
+    }
+    div#ccSave::before {
+        content: " ";
+        position: absolute;
+        border-left: 3px solid #6A95B5;
+        height: 16%;
+        width: 0px;
+        left: 137px;
+        top: 340px;
+    }
+    div#continue::before {
+        content: " ";
+        position: absolute;
+        border-left: 3px solid #004A80;
+        height: 36px;
+        left: 137px;
+        top: -30px;
+    }
+    div#continue::after {
+        content: " ";
+        position: absolute;
+        border-left: 2px solid rgba(211,228,204,1);
+        height: 30px;
+        left: 105px;
+        top: 55px;
     }
 }
-@media screen and (min-width: 1024px) {
-    .chars-border-middle-wt-1 {
-        margin-left: 17%;
+
+@media screen and (min-width: 1200px) {
+    .carousel-content-wrapper.left {
+        left: 120px;
+    }
+    .carousel-header-text {
+        padding: 65px 15px 5px 5px;
+    }
+    .ccSave-fix-left {
+        text-align: left;
+        padding-left: 70px;
+    }
+    .ccSave-fix-right {
+        text-align: right;
+        padding-right: 70px;
     }
     .fix-left {
-        margin-left: 9%;
+        margin-left: 28px;
     }
     .form-paleBlue {
-        padding-bottom: 10px;
-        padding-top: 8px;
+        padding-bottom: 5px;
+        padding-top: 5px;
+    }
+    .loc-form {
+        margin-right: 5px;
     }
     .loc-pull-up {
-        margin-top: -6%;
+        margin-top: 20px;
+        padding-left: 10px;
     }
-}
-@media screen and (min-width: 1280px) {
-    .chars-border-middle-wt-1 {
-        margin-left: 16.75%;
-        margin-top: -3.25%;
+    div#locText::before {
+        content: " ";
+        position: absolute;
+        border-left: 3px solid #6A95B5;
+        height: 67px;
+        width: 0px;
+        left: 137px;
+        top: 0px;
+        z-index: 500;
     }
-    .white3040 {
-        font-size: 30px;
-        line-height: 40px;
+    div#locText::after {
+        content: " ";
+        position: absolute;
+        border-bottom: 3px solid #6A95B5;
+        height: 0px;
+        width: 40px;
+        left: 120px;
+        top: 65px;
     }
-}
-@media screen and (min-width: 1366px) {
-    .carousel-header-text {
-        padding-left: 4%;
+    div#ccSave::after {
+        content: " ";
+        position: absolute;
+        border-bottom: 3px solid #6A95B5;
+        height: 0px;
+        width: 40px;
+        left: 120px;
+        top: 340px;
     }
-    .fix-left {
-        margin-left: 8%;
+    div#ccSave::before {
+        content: " ";
+        position: absolute;
+        border-left: 3px solid #6A95B5;
+        height: 200px;
+        max-height: 200px;
+        width: 0px;
+        left: 137px;
+        top: 340px;
     }
-    .offwhite1215EB {
-        font-size: 18px;
-        line-height: 20px;
+    div#continue::before {
+        content: " ";
+        position: absolute;
+        border-left: 3px solid #004A80;
+        height: 36px;
+        left: 137px;
+        top: -30px;
+    }
+    div#continue::after {
+        content: " ";
+        position: absolute;
+        border-left: 3px solid rgba(211,228,204,1);
+        height: 30px;
+        left: 137px;
+        top: 55px;
     }
 }
 
-
-@media screen and (min-width: 1536px) {
-    .carousel-header-text {
-        padding-top: 9%;
-    }
-    .chars-border-middle-wt-1 {
-        margin-left: 16.5%;
-    }
-}
-
-@media screen and (min-width: 1920px) {
-    .loc-centerline-fix {
-        margin-top: 0%;
-    }
-    .chars-border-middle-wt-1 {
-        margin-left: 16.4%;
-    }
-}

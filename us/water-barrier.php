@@ -32,73 +32,75 @@
         <?php include($root . 'includes/page-head-scripts.php'); ?>
         <!-- Load site CSS -->
         <?php include($root . 'includes/page-styles.php'); ?>
-        <link href="<?php echo $root; ?>css/water-barrier.css" rel='stylesheet' type='text/css' media="all" />
         <link href="<?php echo $root; ?>css/chars-styles.css" rel='stylesheet' type='text/css' media="all" />
         <link href="<?php echo $root; ?>css/chars-borders.css" rel='stylesheet' type='text/css' media="all" />
+        <link href="<?php echo $root; ?>css/chars-sel.css" rel='stylesheet' type='text/css' media="all" />
+        <link href="<?php echo $root; ?>css/water-barrier.css" rel='stylesheet' type='text/css' media="all" />
         <link href="<?php echo $root; ?>css/ccSave.css" rel='stylesheet' type='text/css' media="all" />
     </head>
     <body class="bg-blue">
         <?php include_once($root . 'includes/nav-menu.php'); ?>
         <div class="characteristics container">
-            <div class="characteristics-inner">
-                <div class="characteristics-wrapper container half_padding_left half_padding_right">
+            <div class="characteristics-inner" id="charSelectPanel">
+                <div class="characteristics-wrapper container">
                     <div class="wt-content-wrapper left">
                         <form method="post" name="wbForm" id="wbForm" action="<?php echo HOME_LINK; ?>_includes/procCrit/procUSWaterBarrier.php">
                             <input type="hidden" name="postFrom" id="postFrom" value="__us-WB__" />
                             <input type="hidden" name="postBack" id="postBack" value="<?php echo $selected; ?>" />
                             <input type="hidden" name="trigger" id="trigger" value="<?php echo $trigger; ?>" />
 
-                            <div class="row">
-                                <div class="chars-border-middle-wt-1"></div>
-                                <div class="col-md-2 col-sm-2 col-xs-2 chars-marker chars"><span class="blue2532Bold marker-white" style="margin-bottom: 0px; ">9</span></div>
-                                <div class="col-md-8 col-sm-8 topic"><h4 class="chars-h4">Water Barrier<h4></div>
+                            <div class="row">  <!-- Step number and page heading -->
+                                <div class="col-xs-2 chars-marker chars"><span class="blue2532Bold marker-white" style="margin-bottom: 0px; ">9</span></div>
+                                <div class="col-xs-10 topic"><h4 class="chars-h4">Water Barrier<h4></div>
                             </div>
-                            <div class="row">
-                                <div class="chars-border-middle-wt-2"></div>
-                                <div class="col-md-2 col-sm-2 col-xs-2 chars-marker"><span class="transparent2532 marker-transparent" style="margin-bottom: 0px; ">1</span></div>
-                                <div class="col-md-8 col-sm-10 col-xs-10 chars-desc white2025">
+                            <div class="row">  <!-- Page Description -->
+                                <div class="col-xs-2 chars-marker chars"><span class="transparent2532 marker-transparent" style="margin-bottom: 0px; ">1</span></div>
+                                <div class="col-xs-10 chars-desc white2025">
                                     Secondary water barriers are hard to identify without the original documentation that came with the roof. A 
                                     closed-cell adhesive can be identified from within the attic but they are easy to confuse with foam insulation 
                                     used for energy savings.
                                 </div>
                             </div>
-                            <div class="row no-padding-top no-padding-bottom">
-                                <div class="chars-border-middle-wt-3"></div>
-                                <div class="chars-border-middle-wt-4"></div>
+                            <div class="row no-padding-top no-padding-bottom">  <!-- Select buttons -->
                                 <!-- RADIOS -->
-                                <div class="col-md-3 col-sm-3 col-xs-10 chars-header-x3 chars-bumper">
+                                <!-- Closed Cell Spray Foam -->
+                                <div class="col-xs-2">&nbsp;</div>
+                                <div class="col-xs-10 col-sm-3 chars-header">
                                     <label class="select-button">
                                         <input type="radio" name="__chars-wb__" value="swryscc" selected />
-                                        <img id="sel1" src="<?php echo SITE_ROOT; ?>/us/images/wb-ccspf-off.png" class="img-responsive chars-select-x3">
+                                        <img id="sel1" src="<?php echo SITE_ROOT; ?>/us/images/wb-ccspf-off.png" class="img-responsive chars-select">
+                                        <p class="chars-label chars-buffer white2025Bold">
+                                            Spray Foam
+                                        </p>
                                     </label>
-                                    <div id="sel1_cb" class="col-xs-6 chars-checkbox-x3 fix-left" style="display: none"><img src="<?php echo SITE_ROOT; ?>/us/images/checkmark_blue-dark.png" class="img-responsive check-select"/></div>
-                                    <div class="chars-header chars-label-x3 chars-buffer white2025Bold">
-                                        Closed Cell Spray<br />Polyurethane Foam
-                                    </div>
+                                    <div id="sel1_cb" class="col-xs-6 chars-checkbox fix-left" style="display: none"><img src="<?php echo SITE_ROOT; ?>/us/images/checkmark_blue-dark.png" class="img-responsive check-select"/></div>
                                 </div>
-                                <div class="col-md-3 col-sm-3 col-xs-10 chars-header-x3">
+
+                                <!-- Adhesive Tape -->
+                                <div class="col-xs-2 hidden-sm hidden-md hidden-lg">&nbsp;</div>
+                                <div class="col-xs-10 col-sm-3 chars-header">
                                     <label class="select-button">
                                         <input type="radio" name="__chars-wb__" value="swryssa" />
-                                        <img id="sel2" src="<?php echo SITE_ROOT; ?>/us/images/wb-flashtape-off.png" class="img-responsive chars-select-x3">
+                                        <img id="sel2" src="<?php echo SITE_ROOT; ?>/us/images/wb-flashtape-off.png" class="img-responsive chars-select">
+                                        <p class="chars-label chars-buffer white2025Bold">
+                                            Flash Tape
+                                        </p>
                                     </label>
-                                    <div id="sel2_cb" class="col-xs-6 chars-checkbox-x3 fix-left" style="display: none"><img src="<?php echo SITE_ROOT; ?>/us/images/checkmark_blue-dark.png" class="img-responsive check-select"/></div>
-                                    <div class="chars-header chars-label-x3 chars-buffer white2025Bold">
-                                        Self-Adhering<br />Flashing Tape
-                                    </div>
+                                    <div id="sel2_cb" class="col-xs-6 chars-checkbox fix-left" style="display: none"><img src="<?php echo SITE_ROOT; ?>/us/images/checkmark_blue-dark.png" class="img-responsive check-select"/></div>
                                 </div>
-                                <div class="col-md-3 col-sm-3 col-xs-10 chars-header-x3">
+                                
+                                <!-- None -->
+                                <div class="col-xs-2 hidden-sm hidden-md hidden-lg">&nbsp;</div>
+                                <div class="col-xs-10 col-sm-3 chars-header">
                                     <label class="select-button">
                                         <input type="radio" name="__chars-wb__" value="swrno" />
-                                        <img id="sel3" src="<?php echo SITE_ROOT; ?>/us/images/wb-none-off.png" class="img-responsive chars-select-x3">
+                                        <img id="sel3" src="<?php echo SITE_ROOT; ?>/us/images/wb-none-off.png" class="img-responsive chars-select">
+                                        <p class="chars-label chars-buffer white2025Bold">
+                                            None
+                                        </p>
                                     </label>
-                                    <div id="sel3_cb" class="col-xs-6 chars-checkbox-x3 fix-left" style="display: none"><img src="<?php echo SITE_ROOT; ?>/us/images/checkmark_blue-dark.png" class="img-responsive check-select"/></div>
-                                    <div class="chars-header chars-label-x3 chars-buffer white2025Bold">
-                                        No Secondary Water<br />Barrier Installed
-                                    </div>
+                                    <div id="sel3_cb" class="col-xs-6 chars-checkbox fix-left" style="display: none"><img src="<?php echo SITE_ROOT; ?>/us/images/checkmark_blue-dark.png" class="img-responsive check-select"/></div>
                                 </div>
-                            </div>
-                            <div class="row no-padding-bottom no-padding-top">
-                                <div class="chars-border-middle-wt-5"></div>
                             </div>
 
                         </form>

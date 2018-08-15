@@ -35,74 +35,75 @@
         <?php include($root . 'includes/page-head-scripts.php'); ?>
         <!-- Load site CSS -->
         <?php include($root . 'includes/page-styles.php'); ?>
-        <link href="<?php echo $root; ?>css/shutters.css" rel='stylesheet' type='text/css' media="all" />
         <link href="<?php echo $root; ?>css/chars-styles.css" rel='stylesheet' type='text/css' media="all" />
-        <link href="<?php echo $root; ?>css/chars-borders.css" rel='stylesheet' type='text/css' media="all" />
+        <link href="<?php echo $root; ?>css/chars-borders.css" rel='stylesheet' type='text/css' media="all" /> 
+        <link href="<?php echo $root; ?>css/chars-sel.css" rel='stylesheet' type='text/css' media="all" />
+        <link href="<?php echo $root; ?>css/shutters.css" rel='stylesheet' type='text/css' media="all" />
         <link href="<?php echo $root; ?>css/ccSave.css" rel='stylesheet' type='text/css' media="all" />
     </head>
     <body class="bg-blue">
         <?php include_once($root . 'includes/nav-menu.php'); ?>
         <div class="characteristics container">
-            <div class="characteristics-inner">
-                <div class="characteristics-wrapper container half_padding_left half_padding_right">
+            <div class="characteristics-inner" id="charSelectPanel">
+                <div class="characteristics-wrapper container">
                     <div class="wt-content-wrapper left">
                         <form method="post" name="shuttersForm" id="shuttersForm" action="<?php echo HOME_LINK; ?>_includes/procCrit/procUSShutters.php">
                             <input type="hidden" name="postFrom" id="postFrom" value="__us-shutters__" />
                             <input type="hidden" name="postBack" id="postBack" value="<?php echo $selected; ?>" />
                             <input type="hidden" name="trigger" id="trigger" value="<?php echo $trigger; ?>" />
 
-                            <div class="row">
-                                <div class="chars-border-middle-wt-1"></div>
-                                <div class="col-md-2 col-sm-2 col-xs-2 chars-marker chars"><span class="blue2532Bold marker-white" style="margin-bottom: 0px; ">3</span></div>
-                                <div class="col-md-8 col-sm-8 topic"><h4 class="chars-h4">Shutters</h4></div>
+                            <div class="row">  <!-- Number Marker and Page Heading -->
+                                <div class="col-xs-2 chars-marker chars"><span class="blue2532Bold marker-white" style="margin-bottom: 0px; ">3</span></div>
+                                <div class="col-xs-10 topic"><h4 class="chars-h4">Shutters</h4></div>
                             </div>
-                            <div class="row">
-                                <div class="chars-border-middle-wt-2"></div>
-                                <div class="col-md-2 col-sm-2 col-xs-2 chars-marker"><span class="transparent2532 marker-transparent" style="margin-bottom: 0px; ">1</span></div>
-                                <div class="col-md-8 col-sm-10 col-xs-10 chars-desc white2025">
+                            <div class="row">  <!-- Page Description -->
+                                <div class="col-xs-2 chars-marker chars"><span class="transparent2532 marker-transparent" style="margin-bottom: 0px; ">1</span></div>
+                                <div class="col-xs-10 chars-desc white2025">
                                     Hurricane shutters are used to prevent windows from being broken by flying objects during a storm. For a 
                                     shutter to be rated as a hurricane shutter it must meet Miami-Dade TAS 201, 202, and 203, SSTD 12, or
                                     ASTM E 1886 & 1996 standards. Most shutters will have a stamp or be etched identifying it as impact rated.
                                 </div>
                             </div>
-                            <div class="row no-padding-top no-padding-bottom">
-                                <div class="chars-border-middle-wt-3"></div>
-                                <div class="chars-border-middle-wt-4"></div>
+                            <div class="row no-padding-top no-padding-bottom">  <!-- Selection Buttons -->
                                 <!-- RADIOS -->
-                                <!-- <div class="col-md-2 col-sm-2 hidden-xs chars-marker"><span class="transparent2532 marker-transparent" style="margin-bottom: 0px; ">1</span></div> -->
-                                <div class="col-lg-3 col-md-3 col-sm-3 col-xs-10 chars-header-x3 chars-bumper">
+                                <!-- Hurricane Rated Shutters -->
+                                <div class="col-xs-2">&nbsp;</div>
+                                <div class="col-xs-10 col-sm-3 chars-header">
                                     <label class="select-button">
                                         <input type="radio" name="__chars-shutters__" value="shtyshr" />
-                                        <img id="sht1" src="<?php echo SITE_ROOT; ?>/us/images/hurricane-rated-off.png" class="img-responsive chars-select-x3">
+                                        <img id="sht1" src="<?php echo SITE_ROOT; ?>/us/images/hurricane-rated-off.png" class="img-responsive chars-select">
+                                        <p class="chars-label chars-buffer white2025Bold">
+                                            Hurricane Rated
+                                        </p>
                                     </label>
-                                    <div id="sht1_cb" class="col-xs-6 chars-checkbox-x3 fix-left" style="display: none"><img src="<?php echo SITE_ROOT; ?>/us/images/checkmark_blue-dark.png" class="img-responsive check-select"/></div>
-                                    <div class="chars-header chars-label-x3 chars-buffer white2025Bold">
-                                        Hurricane Rated
-                                    </div>
+                                    <div id="sht1_cb" class="col-xs-6 chars-checkbox fix-left" style="display: none"><img src="<?php echo SITE_ROOT; ?>/us/images/checkmark_blue-dark.png" class="img-responsive check-select"/></div>
                                 </div>
-                                <div class="col-lg-3 col-md-3 col-sm-3 col-xs-10 chars-header-x3">
+                                
+                                <!-- Non-rated Shutters -->
+                                <div class="col-xs-2 hidden-sm hidden-md hidden-lg">&nbsp;</div>
+                                <div class="col-xs-10 col-sm-3 chars-header">
                                     <label class="select-button">
                                         <input type="radio" name="__chars-shutters__" value="shtysnr" />
-                                        <img id="sht2" src="<?php echo SITE_ROOT; ?>/us/images/non-rated-off.png" class="img-responsive chars-select-x3">
+                                        <img id="sht2" src="<?php echo SITE_ROOT; ?>/us/images/non-rated-off.png" class="img-responsive chars-select">
+                                        <p class="chars-label chars-buffer white2025Bold">
+                                            Non-Rated
+                                        </p>
                                     </label>
-                                    <div id="sht2_cb" class="col-xs-6 chars-checkbox-x3 fix-left" style="display: none"><img src="<?php echo SITE_ROOT; ?>/us/images/checkmark_blue-dark.png" class="img-responsive check-select"/></div>
-                                    <div class="chars-header chars-label-x3 chars-buffer white2025Bold">
-                                        Non-Rated
-                                    </div>
+                                    <div id="sht2_cb" class="col-xs-6 chars-checkbox fix-left" style="display: none"><img src="<?php echo SITE_ROOT; ?>/us/images/checkmark_blue-dark.png" class="img-responsive check-select"/></div>
                                 </div>
-                                <div class="col-lg-3 col-md-3 col-sm-3 col-xs-10 chars-header-x3">
+
+                                <!-- No Shutters -->
+                                <div class="col-xs-2 hidden-sm hidden-md hidden-lg">&nbsp;</div>
+                                <div class="col-xs-10 col-sm-3 chars-header">
                                     <label class="select-button">
                                         <input type="radio" name="__chars-shutters__" value="shtno" />
-                                        <img id="sht3" src="<?php echo SITE_ROOT; ?>/us/images/no-shutters-off.png" class="img-responsive chars-select-x3">
+                                        <img id="sht3" src="<?php echo SITE_ROOT; ?>/us/images/no-shutters-off.png" class="img-responsive chars-select">
+                                        <p class="chars-label chars-buffer white2025Bold">
+                                            No Shutters
+                                        </p>
                                     </label>
-                                    <div id="sht3_cb" class="col-xs-6 chars-checkbox-x3 fix-left" style="display: none"><img src="<?php echo SITE_ROOT; ?>/us/images/checkmark_blue-dark.png" class="img-responsive check-select"/></div>
-                                    <div class="chars-header chars-label-x3 white2025Bold">
-                                        No Shutters
-                                    </div>
+                                    <div id="sht3_cb" class="col-xs-6 chars-checkbox fix-left" style="display: none"><img src="<?php echo SITE_ROOT; ?>/us/images/checkmark_blue-dark.png" class="img-responsive check-select"/></div>
                                 </div>
-                            </div>
-                            <div class="row no-padding-bottom no-padding-top">
-                                <div class="chars-border-middle-wt-5"></div>
                             </div>
 
                         </form>

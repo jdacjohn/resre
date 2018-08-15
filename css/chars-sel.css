@@ -1,0 +1,338 @@
+@charset "UTF-8";
+/*
+ * resre
+ * chars-sel.css
+ *
+ * Description - Common CSS for characteristics selection screens
+ *
+ * Author:      John Arnold <john@jdacsolutions.com>
+ * Link:           https://jdacsolutions.com
+ *
+ * Created:             Aug 13, 2018 8:54:56 AM
+ * Last Updated:    Date 
+ * Copyright            Copyright 2018 JDAC Computing Solutions All Rights Reserved
+ */
+/* 
+    Created on : Aug 13, 2018, 8:54:56 AM
+    Author     : John Arnold <john@jdacsolutions.com>
+*/
+
+body {
+    min-width: 320px;
+}
+.characteristics-inner {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+    min-width: 320px;
+    max-width: 1536px;
+}
+
+.container { width: 100%; }
+
+@media screen and (max-width: 767px) {
+    .characteristics-inner {
+        height: 1000px;
+    }
+    .chars-checkbox {
+        margin-left: 52px;
+        margin-top: -120px;
+    }
+    .chars-desc {
+        margin-left: 0;
+        margin-top: 0;
+        margin-bottom: 30px;
+        padding-right: 90px;
+        padding-left: 0px;
+    }
+    .chars-h4 {
+        margin-left: 0;
+        margin-top: -2px;
+    }
+    .chars-header {
+        margin-left: 0px;
+        padding-left: 0px;
+    }
+    .chars-label {
+        margin-left: 0px;
+        margin-right: 0px;
+    }
+    .chars-marker.chars {
+        margin-left: 0;
+        padding-left: 22px;
+        padding-right: 0px;
+    }
+    .chars-select {
+        width: 225px;
+    }
+    .check-select {
+        width: 120px;
+    }
+    .marker-white {
+        margin-left: 0px;
+        padding-top: 3px;
+        padding-left: 6px;
+    }
+    .topic {
+        margin-left: 0px;
+        padding-left: 0px;
+    }
+    .wt-content-wrapper.left {
+        width: 100%;
+        left: 15px;
+    }
+    div#charSelectPanel::after {
+        content: " ";
+        position: absolute;
+        border-left: 2px solid #6A95B5;
+        height: 100%;
+        width: 40px;
+        left: 36px;
+        top: 0;
+    }
+}
+
+@media screen and (min-width: 768px) and (max-width: 991px) {
+    .characteristics-inner {
+        height: 1000px;
+    }
+    .chars-checkbox {
+        margin-left: 52px;
+        margin-top: -145px;
+    }
+    .chars-desc {
+        margin-left: 0;
+        margin-top: 0;
+        margin-bottom: 30px;
+        padding-right: 90px;
+        padding-left: 0px;
+    }
+    .chars-h4 {
+        margin-left: 0;
+        margin-top: -2px;
+    }
+    .chars-header {
+        margin-left: 0;
+        margin-top: 0;
+        padding-left: 0px;
+    }
+    .chars-label {
+        margin-left: 0px;
+        margin-right: 0px;
+        width: 225px;
+        margin-top: 15px;
+    }
+    .chars-marker.chars {
+        margin-left: 0;
+        margin-top: 0;
+        padding-left: 52px;
+        padding-right: 0px;
+    }
+    .chars-select {
+        width: 225px;
+    }
+    .check-select {
+        width: 120px;
+    }
+    .marker-white {
+        margin-left: 0px;
+        padding-top: 14px;
+        padding-left: 6px;
+    }
+    .select-button {
+        margin-left: 0px;
+        padding: 0px;
+    }
+    .topic {
+        margin-left: 0px;
+        padding-left: 0px;
+        margin-top: 0;
+        padding-top: 13px;
+    }
+    .wt-content-wrapper.left {
+        width: 100%;
+        left: 15px;
+        top: 120px;
+    }
+    div#charSelectPanel::before {
+        content: " ";
+        position: absolute;
+        border-left: 3px solid #6A95B5;
+        height: 100%;
+        width: 0px;
+        left: 80px;
+        top: 0;
+    }
+    div#continueButton::before {
+        content: " ";
+        position: absolute;
+        border-left: 3px solid #004A80;
+        height: 90px;
+        left: 80px;
+        top: 1000px;  /* Always == height of characteristics-inner */
+    }
+}
+
+@media screen and (min-width: 992px) and (max-width: 1199px) {
+    .characteristics-inner {
+        height: 1000px;
+    }
+    .chars-checkbox {
+        margin-left: 52px;
+        margin-top: -110px;
+    }
+    .chars-desc {
+        margin-left: 0;
+        margin-top: 0;
+        margin-bottom: 30px;
+        padding-right: 90px;
+        padding-left: 0px;
+    }
+    .chars-h4 {
+        margin-left: 0;
+        margin-top: -2px;
+    }
+    .chars-header {
+        margin-left: 0;
+        margin-top: 0;
+        padding-left: 0px;
+    }
+    .chars-label {
+        margin-left: 0px;
+        margin-right: 0px;
+        width: 225px;
+        margin-top: 15px;
+    }
+    .chars-marker.chars {
+        margin-left: 0;
+        margin-top: 0;
+        padding-left: 52px;
+        padding-right: 0px;
+    }
+    .chars-select {
+        width: 225px;
+    }
+    .check-select {
+        width: 120px;
+    }
+    .marker-white {
+        margin-left: 0px;
+        padding-top: 14px;
+        padding-left: 6px;
+    }
+    .select-button {
+        margin-left: 0px;
+        padding: 0px;
+    }
+    .topic {
+        margin-left: 0px;
+        padding-left: 0px;
+        margin-top: 0;
+        padding-top: 13px;
+    }
+    .wt-content-wrapper.left {
+        width: 100%;
+        left: 15px;
+        top: 120px;
+    }
+    div#charSelectPanel::before {
+        content: " ";
+        position: absolute;
+        border-left: 3px solid #6A95B5;
+        height: 100%;
+        width: 0px;
+        left: 80px;
+        top: 0;
+    }
+    div#continueButton::before {
+        content: " ";
+        position: absolute;
+        border-left: 3px solid #004A80;
+        height: 90px;
+        left: 80px;
+        top: 1000px;  /* Always == height of characteristics-inner */
+    }
+}
+
+@media screen and (min-width: 1200px) {
+    .characteristics-inner {
+        height: 1000px;
+    }
+    .chars-checkbox {
+        margin-left: 60px;
+        margin-top: -115px;
+    }
+    .chars-desc {
+        margin-left: 0;
+        margin-top: 0;
+        margin-bottom: 30px;
+        padding-bottom: 30px;
+        padding-right: 90px;
+        padding-left: 0px;
+    }
+    .chars-h4 {
+        margin-left: 0;
+        margin-top: -2px;
+    }
+    .chars-header {
+        margin-left: 0;
+        margin-top: 0;
+        padding-left: 0px;
+    }
+    .chars-label {
+        font-size: 20px;
+        margin-left: 0px;
+        margin-right: 0px;
+        width: 225px;
+        margin-top: 15px;
+    }
+    .chars-marker.chars {
+        margin-left: 0;
+        margin-top: 0;
+        padding-left: 52px;
+        padding-right: 0px;
+    }
+    .chars-select {
+        width: 225px;
+    }
+    .check-select {
+        width: 120px;
+    }
+    .marker-white {
+        margin-left: 0px;
+        padding-top: 12px;
+        padding-left: 6px;
+    }
+    .select-button {
+        margin-left: 0px;
+        padding: 0px;
+    }
+    .topic {
+        margin-left: 0px;
+        padding-left: 0px;
+        margin-top: 0;
+        padding-top: 0px;
+    }
+    .wt-content-wrapper.left {
+        width: 100%;
+        left: 15px;
+        top: 120px;
+    }
+    div#charSelectPanel::before {
+        content: " ";
+        position: absolute;
+        border-left: 3px solid #6A95B5;
+        height: 100%;
+        width: 0px;
+        left: 80px;
+        top: 0;
+    }
+    div#continueButton::before {
+        content: " ";
+        position: absolute;
+        border-left: 3px solid #004A80;
+        height: 90px;
+        left: 80px;
+        top: 1000px;  /* Always == height of characteristics-inner */
+    }
+}

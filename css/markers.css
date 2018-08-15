@@ -80,16 +80,6 @@
 @media screen and (min-width: 768px) {
     .marker-blue, .marker-mustard, .marker-white, 
     .marker-transparent, .marker-sand {
-        width: 30px;
-        height: 30px;
-        padding: 4px 8px;
-        margin-left: 32%;
-    }
-}
-
-@media screen and (min-width: 769px) {
-    .marker-blue, .marker-mustard, .marker-white, 
-    .marker-transparent, .marker-sand {
         width: 60px;
         height: 60px;
         padding: 14px 10px;
@@ -103,10 +93,6 @@
         height: 60px;
         padding: 14px 10px;
         margin-left: 20%;
-    }
-    .marker-complete {
-        width: 90px;
-        height: 90px;
     }
 }
 @media screen and (min-width: 992px) {
@@ -136,15 +122,6 @@
         margin-left: 40%;
     }
 }
-@media screen and (min-width: 1440px) {
-    .marker-complete {
-        border-radius: 60px;
-        width: 120px;
-        height: 120px;
-        padding: 45px 8px;
-        margin-left: 75%;        
-    }    
-}
 @media screen and (min-width: 1600px) {
     .marker-blue, .marker-mustard, .marker-white, 
     .marker-transparent, .marker-sand {
@@ -156,9 +133,6 @@
 }
 
 /** Selection Button Horizontal positioning */
-.select-button {
-    padding: 0px 40px;
-}
 @media screen and (min-width: 768px) {
     .select-button {
         margin-left: -14%;
@@ -294,13 +268,6 @@
     }
     .topic {
         margin-top: 12.2%;
-    }
-    .marker-complete {
-        border-radius: 90px;
-        width: 160px;
-        height: 160px;
-        padding: 70px 8px;
-        margin-left: 50%;
     }
 }
 @media screen and (min-width: 1920px) {

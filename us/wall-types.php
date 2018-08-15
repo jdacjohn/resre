@@ -37,82 +37,85 @@
         <?php include($root . 'includes/page-styles.php'); ?>
         <link href="<?php echo $root; ?>css/chars-styles.css" rel='stylesheet' type='text/css' media="all" />
         <link href="<?php echo $root; ?>css/chars-borders.css" rel='stylesheet' type='text/css' media="all" />
+        <link href="<?php echo $root; ?>css/chars-sel.css" rel='stylesheet' type='text/css' media="all" />
         <link href="<?php echo $root; ?>css/wt.css" rel='stylesheet' type='text/css' media="all" />
         <link href="<?php echo $root; ?>css/ccSave.css" rel='stylesheet' type='text/css' media="all" />
     </head>
     <body class="bg-blue">
         <?php include_once($root . 'includes/nav-menu.php'); ?>
         <div class="characteristics container">
-            <div class="characteristics-inner">
-                <div class="characteristics-wrapper container half_padding_left half_padding_right">
+            <div class="characteristics-inner" id="charSelectPanel">
+                <div class="characteristics-wrapper container">
                     <div class="wt-content-wrapper left">
                         <form method="post" name="wtForm" id='wtForm' action="<?php echo HOME_LINK; ?>_includes/procCrit/procUSWallTypes.php">
                             <input type="hidden" name="postFrom" id="postFrom" value="__us-walltypes__" />
                             <input type="hidden" name="postBack" id="postBack" value="<?php echo $selected; ?>" />
                             <input type="hidden" name="trigger" id="trigger" value="<?php echo $trigger; ?>" />
 
-                            <div class="row">
-                                <div class="chars-border-middle-wt-1"></div>
-                                <div class="col-md-2 col-sm-2 col-xs-2 chars-marker chars"><span class="blue2532Bold marker-white" style="margin-bottom: 0px; ">2</span></div>
-                                <div class="col-md-8 col-sm-8 topic"><h4 class="chars-h4">Wall Types</h4></div>
+                            <div class="row">  <!-- Number Marker and Heading -->
+                                <div class="col-xs-2 chars-marker chars"><span class="blue2532Bold marker-white" style="margin-bottom: 0px; ">2</span></div>
+                                <div class="col-xs-10 topic"><h4 class="chars-h4">Wall Types</h4></div>
                             </div>
-                            <div class="row">
-                                <div class="chars-border-middle-wt-2"></div>
-                                <div class="col-md-2 col-sm-2 col-xs-2 chars-marker"><span class="transparent2532 marker-transparent" style="margin-bottom: 0px; ">1</span></div>
-                                <div class="col-md-8 col-sm-10 col-xs-10 chars-desc white2025">
+                            <div class="row"> <!-- Page Description -->
+                                <div class="col-xs-2 chars-marker chars"><span class="transparent2532 marker-transparent" style="margin-bottom: 0px; ">&nbsp;</span></div>
+                                <div class="col-xs-10 chars-desc white2025">
                                     A trick to determining your wall type is to look at the windows from the outside of the home. Frame windows are typically
                                     mounted flush with the wall and with masonry walls the windows are typically inset.
                                 </div>
                             </div>
-                            <div class="row no-padding-top no-padding-bottom">
-                                <div class="chars-border-middle-wt-3"></div>
-                                <div class="chars-border-middle-wt-4"></div>
-                                <div class="chars-border-middle-wt-4a"></div>
+                            <div class="row no-padding-top no-padding-bottom"> <!-- Selection Buttons -->
                                 <!-- RADIOS -->
-                                <div class="col-md-3 col-sm-3 col-xs-10 chars-header chars-bumper">
+                                <!-- Wood Frame Walls -->
+                                <div class="col-xs-2">&nbsp;</div>
+                                <div class="col-xs-10 col-sm-3 chars-header">
                                     <label class="select-button">
                                         <input type="radio" name="__chars-walltype__" value="WS" />
                                         <img id="sel1" src="<?php echo SITE_ROOT; ?>/us/images/frame-walls-off.png" class="img-responsive chars-select">
+                                        <p class="chars-label chars-buffer white2025Bold">
+                                            Frame
+                                        </p>
                                     </label>
                                     <div id="sel1_cb" class="col-xs-6 chars-checkbox fix-left" style="display: none"><img src="<?php echo SITE_ROOT; ?>/us/images/checkmark_blue-dark.png" class="img-responsive check-select"/></div>
-                                    <div class="chars-header chars-label chars-buffer white2025Bold">
-                                        Frame
-                                    </div>
                                 </div>
-                                <div class="col-md-3 col-sm-3 col-xs-10 chars-header">
+                                <!-- Reinforced Masonry Walls -->
+                                <div class="col-xs-2 hidden-sm hidden-md hidden-lg">&nbsp;</div>
+                                <div class="col-xs-10 col-sm-3 chars-header">
                                     <label class="select-button">
                                         <input type="radio" name="__chars-walltype__" value="rmfys" />
                                         <img id="sel2" src="<?php echo SITE_ROOT; ?>/us/images/masonry-walls-off.png" class="img-responsive chars-select">
+                                        <p class="chars-label chars-buffer white2025Bold">
+                                            Reinforced Masonry
+                                        </p>
                                     </label>
                                     <div id="sel2_cb" class="col-xs-6 chars-checkbox fix-left" style="display: none"><img src="<?php echo SITE_ROOT; ?>/us/images/checkmark_blue-dark.png" class="img-responsive check-select"/></div>
-                                    <div class="chars-header chars-label chars-buffer white2025Bold">
-                                        Reinforced Masonry
-                                    </div>
                                 </div>
-                                <div class="clear hidden-xs"></div>
-                                <div class="col-md-3 col-sm-3 col-xs-10 chars-header chars-bumper">
+
+                                <!-- Non-reinforced Masonry Walls -->
+                                <div class="col-xs-2 hidden-sm hidden-md hidden-lg">&nbsp;</div>
+                                <div class="col-xs-10 col-sm-3 chars-header">
                                     <label class="select-button">
                                         <input type="radio" name="__chars-walltype__" value="rmfno" />
                                         <img id="sel3" src="<?php echo SITE_ROOT; ?>/us/images/masonry-walls-off.png" class="img-responsive chars-select">
+                                        <p class="chars-label chars-buffer white2025Bold">
+                                            Standard Masonry
+                                        </p>
                                     </label>
                                     <div id="sel3_cb" class="col-xs-6 chars-checkbox fix-left" style="display: none"><img src="<?php echo SITE_ROOT; ?>/us/images/checkmark_blue-dark.png" class="img-responsive check-select"/></div>
-                                    <div class="chars-header chars-label chars-buffer white2025Bold">
-                                        Non-Reinforced Masonry
-                                    </div>
                                 </div>
-                                <div class="col-md-3 col-sm-3 col-xs-10 chars-header">
+                                <div class="clear hidden-xs"></div>
+                                
+                                <!-- Unknown -->
+                                <div class="col-xs-2">&nbsp;</div>                                
+                                <div class="col-xs-10 col-sm-3 chars-header">
                                     <label class="select-button">
                                         <input type="radio" name="__chars-walltype__" value="unknown" />
                                         <img id="sel4" src="<?php echo SITE_ROOT; ?>/us/images/unknown-off.png" class="img-responsive chars-select">
+                                        <p class="chars-label chars-buffer white2025Bold">
+                                            Unknown
+                                        </p>
                                     </label>
                                     <div id="sel4_cb" class="col-xs-6 chars-checkbox fix-left" style="display: none"><img src="<?php echo SITE_ROOT; ?>/us/images/checkmark_blue-dark.png" class="img-responsive check-select"/></div>
-                                    <div class="chars-header chars-label white2025Bold">
-                                        Unknown
-                                    </div>
                                 </div>
-                            </div>
-                            <div class="row no-padding-bottom no-padding-top">
-                                <div class="chars-border-middle-wt-5"></div>
                             </div>
 
                         </form>
