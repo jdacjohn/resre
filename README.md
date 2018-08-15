@@ -1,16 +1,15 @@
-# resre
+# Resilient Residence
 
-Project Title:		Resilient Residences
+Project Title:       Resilient Residences
 
-Project Desc:	PHP/MySQL Web Application developed for University of Florida for potential storm damage assessments based
-		on home construction characteristics.
+Project Desc:     PHP/MySQL Web Application developed for University of Florida for potential storm damage assessments based on home construction characteristics.
 						
-Project Info:	PHP 7.2, MySQL 5.7, Bootstrap 3, Composer
+Project Info:        PHP 7.2, MySQL 5.7, Bootstrap 3, Composer
 
-Project Dev Link:	http://resre.jdac.ddns.net/us
-Author:  	John Arnold <john@jdacsolutions.com>
-Author Site:	https://jdacsolutions.com
-GitHub:		https://www.github.com/jdacjohn/resre
+Project Dev Link:     http://resre.jdac.ddns.net/us
+Project Author:        John Arnold <john@jdacsolutions.com>
+Author Site:             https://jdacsolutions.com
+GitHub:                    https://www.github.com/jdacjohn/resre
 
 Change History:
 
@@ -24,7 +23,3 @@ Release 1.01 - 8/10/2018
 Release 1.0 - 6/20/2018
 	-	Initial design completion and page navigation;
 	-	Completion of all assessment functions and loss ratio comparisons
-
-	
-
-
