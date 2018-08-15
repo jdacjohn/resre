@@ -7,6 +7,7 @@ Project Desc:	PHP/MySQL Web Application developed for University of Florida for 
 						
 Project Info:	PHP 7.2, MySQL 5.7, Bootstrap 3, Composer
 
+Project Dev Link:	http://resre.jdac.ddns.net/us
 Author:  	John Arnold <john@jdacsolutions.com>
 Author Site:	https://jdacsolutions.com
 GitHub:		https://www.github.com/jdacjohn/resre
